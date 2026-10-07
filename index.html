@@ -144,6 +144,7 @@ select.field { appearance: auto; }
 .btnrow { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .opts { display: flex; flex-direction: column; gap: 6px; }
 .opt { text-align: left; border: 1px solid var(--line-2); background: var(--bg); border-radius: 10px; padding: 8px 12px; min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 15px; }
+.opt[disabled] { opacity: .45; cursor: default; }
 .opt[aria-pressed="true"] { border-color: var(--cyan); background: var(--cyan-soft); font-weight: 700; }
 .badge { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--muted); white-space: nowrap; }
 .badge.easy { border-color: rgba(61, 255, 162, .5); color: var(--good); }
@@ -301,6 +302,32 @@ x("reverse-crunch","Reverse Crunch","Core","Bodyweight","Medium","10–15","45 s
 x("cable-crunch","Cable Crunch","Core","Cable","Later","10–15","60 sec",60,"Abs",["Core"],"Curl your ribs toward your hips. Keep your hips still. Light weight.","Stop with 2 reps left","Ab crunch machine.","cable crunch proper form");
 x("knee-raise","Captain's Chair Knee Raise","Core","Bodyweight","Later","8–12","60 sec",60,"Lower abs, hip flexors",["Core"],"Back and forearms on the pads. Raise your knees and lower slowly.","Stop before you swing","Reverse crunch.","captains chair knee raise proper form",{bw:true});
 
+// More dumbbell work
+x("db-bench","Flat Dumbbell Press","Chest","Dumbbell","Medium","8–12","2–3 min",120,"Chest, triceps",["Chest"],"Sit with the dumbbells on your thighs, then lie back and bring them up. Lower to chest level with elbows at about 45°. Start light.","Stop with 2 reps left","Flat machine chest press.","dumbbell bench press proper form beginner");
+x("db-row","One-Arm Dumbbell Row","Back","Dumbbell","Easy","8–12","90 sec",90,"Lats, mid-back",["Back"],"One hand and knee on a flat bench so your back is supported and flat. Pull the dumbbell to your hip. Do not twist.","Stop with 1–3 reps left","Chest-supported row.","one arm dumbbell row proper form",{per:"per arm"});
+x("db-rear-fly","Chest-Supported Dumbbell Rear Fly","Shoulders","Dumbbell","Easy","12–20","60 sec",60,"Rear delts, upper back",["Shoulders"],"Lie chest-down on an incline bench. Light dumbbells. Raise your arms out wide with soft elbows and squeeze.","Stop with 1–2 reps left","Reverse pec deck.","chest supported dumbbell rear delt fly");
+x("db-curl","Seated Dumbbell Curl","Arms","Dumbbell","Easy","10–15","60–90 sec",75,"Biceps",["Biceps"],"Sit on a bench with back support. Turn your palms up as you curl. Elbows stay by your sides. No swinging.","Last set: 0–1 reps left","Cable curl.","seated dumbbell curl proper form");
+x("db-preacher","Dumbbell Preacher Curl","Arms","Dumbbell","Easy","10–15","60–90 sec",75,"Biceps",["Biceps"],"One arm at a time with the back of your arm flat on the preacher pad. Lower slowly to a near-straight arm.","Last set: 0–1 reps left","Preacher curl machine, or cable curl.","dumbbell preacher curl proper form",{per:"per arm"});
+x("db-overhead-ext","Seated Dumbbell Overhead Extension","Arms","Dumbbell","Easy","10–15","60–90 sec",75,"Triceps (long head)",["Triceps"],"Sit on a bench with the back pad upright. Hold one dumbbell with both hands overhead. Lower it behind your head, elbows pointing up.","Last set: 0–1 reps left","Overhead cable extension, or rope pushdown.","seated dumbbell overhead tricep extension");
+
+/* Each exercise belongs to a slot; you can pick any version in that slot */
+var SLOTS = {
+  quads: ["leg-press","hack-squat","goblet-squat"],
+  "chest-incline": ["incline-db-press","incline-press"],
+  "chest-flat": ["chest-press","db-bench"],
+  vpull: ["lat-pulldown","neutral-pulldown","assisted-pullup"],
+  row: ["chest-row","db-row","seated-row"],
+  hams: ["seated-curl","lying-curl","db-rdl"],
+  press: ["db-shoulder-press","shoulder-press"],
+  side: ["db-lateral","cable-lateral"],
+  rear: ["rear-pec","db-rear-fly","face-pull"],
+  biceps: ["db-preacher","db-curl","incline-curl","hammer-curl","cable-curl","preacher-curl"],
+  triceps: ["pushdown","db-overhead-ext","overhead-ext"],
+  "quad-iso": ["leg-ext"], glutes: ["hip-thrust"], calves: ["calf-raise"], lats: ["straight-arm"], fly: ["pec-deck","cable-fly"]
+};
+var SLOT_OF = {};
+Object.keys(SLOTS).forEach(function (k) { SLOTS[k].forEach(function (id) { if (!SLOT_OF[id]) SLOT_OF[id] = k; }); });
+
 var BY = {};
 LIB.forEach(function (e) { BY[e.id] = e; var m = e.reps.match(/(\d+)\D+(\d+)/); e.lo = m ? +m[1] : 8; e.hi = m ? +m[2] : 12; });
 var CORE_OPTS = ["dead-bug","bird-dog","plank","side-plank","machine-crunch","pallof-press","reverse-crunch","cable-crunch","knee-raise"];
@@ -310,9 +337,9 @@ var MUSCLES = ["Chest","Back","Shoulders","Biceps","Triceps","Quads","Hamstrings
 /* ---------- Workout days: 7 main exercises max, plus an optional core finisher ---------- */
 var DAYS = {
   A:  {n: "Full Body A", hint: "Legs, chest, back, shoulders, arms", core: "dead-bug",
-       ex: [["leg-press",3],["incline-press",3],["lat-pulldown",3],["seated-curl",3],["cable-lateral",3],["cable-curl",2],["pushdown",2],["core",2]]},
+       ex: [["leg-press",3],["incline-db-press",3],["lat-pulldown",3],["seated-curl",3],["db-lateral",3],["db-preacher",2],["pushdown",2],["core",2]]},
   B:  {n: "Full Body B", hint: "Legs, chest, back, shoulders, arms", core: "plank",
-       ex: [["hack-squat",3],["chest-press",3],["chest-row",3],["lying-curl",2],["cable-lateral",3],["incline-curl",2],["overhead-ext",2],["core",2]]},
+       ex: [["hack-squat",3],["chest-press",3],["chest-row",3],["db-shoulder-press",2],["cable-lateral",3],["lying-curl",2],["incline-curl",2],["db-overhead-ext",2],["core",2]]},
   UP: {n: "Upper", hint: "Chest, back, shoulders, arms",
        ex: [["incline-press",3],["lat-pulldown",3],["chest-press",2],["chest-row",2],["cable-lateral",3],["cable-curl",3],["pushdown",3]]},
   LO: {n: "Lower", hint: "Quads, hamstrings, glutes, calves", core: "side-plank",
@@ -332,7 +359,7 @@ var DAYS = {
 };
 var PLANS = {
   fb:   {n: "Full Body", stage: "Stage 1 · start here", when: "Weeks 1–12", days: "3 days", perWeek: 3, sched: "Mon · Wed · Fri. Alternate A and B: A B A, then B A B.", cycle: ["A","B"],
-         why: "Every muscle trained about 3 times a week with 7 exercises a session. You learn a small set of machines and a missed day costs little."},
+         why: "Every muscle trained about 3 times a week: 7 exercises on A, 8 on B. A mix of machines, cables and dumbbells. You learn a small set of machines and a missed day costs little."},
   ul:   {n: "Upper / Lower", stage: "Stage 2", when: "After about 3 months of steady training", days: "4 days", perWeek: 4, sched: "Mon Upper · Tue Lower · Thu Upper · Fri Lower", cycle: ["UP","LO"],
          why: "Each muscle twice a week with more sets per session. The natural step up once 3 full-body days feel easy and you can train 4 days."},
   ppl:  {n: "Push / Pull / Legs", stage: "Stage 2 or 3", when: "When you want shorter, focused sessions", days: "3 or 6 days", perWeek: 3, sched: "Rotate Push → Pull → Legs on Mon · Wed · Fri. Later: 6 days, twice through.", cycle: ["PU","PL","LG"],
@@ -369,6 +396,7 @@ function fixProfile() {
   p.core = p.core || {};
   Object.keys(DAYS).forEach(function (d) { if (DAYS[d].core && !BY[p.core[d]]) p.core[d] = DAYS[d].core; });
   p.notes = p.notes || {};
+  p.pick = p.pick || {};
   if (!p.start) p.start = dstr(monNum(todayStr()));
   S.profile = p; S.sessions = S.sessions || {}; S.body = S.body || {};
   Object.keys(S.sessions).forEach(function (k) {
@@ -376,7 +404,7 @@ function fixProfile() {
     if (!s.day) s.day = s.wid || "A";
     if (!DAYS[s.day]) s.day = "A";
     if (!s.plan) s.plan = (s.day === "A" || s.day === "B") ? "fb" : p.plan;
-    s.sets = s.sets || {}; s.done = s.done || {}; s.extras = s.extras || [];
+    s.sets = s.sets || {}; s.done = s.done || {}; s.extras = s.extras || []; s.picks = s.picks || {};
   });
 }
 function cacheSave() { try { localStorage.setItem(LK, JSON.stringify(S)); } catch (e) {} }
@@ -469,13 +497,24 @@ function ensureSess() {
   var k = curKey();
   if (!S.sessions[k]) {
     var d = curDay(), inPlan = PLANS[S.profile.plan].cycle.indexOf(d) >= 0;
-    S.sessions[k] = {date: todayStr(), day: d, plan: inPlan ? S.profile.plan : "extra", week: weekIdx() + 1, core: S.profile.core[d] || null, sets: {}, done: {}, extras: []};
+    S.sessions[k] = {date: todayStr(), day: d, plan: inPlan ? S.profile.plan : "extra", week: weekIdx() + 1, picks: {}, sets: {}, done: {}, extras: []};
   }
   return S.sessions[k];
 }
-function coreFor(day, sess) { return (sess && sess.core && BY[sess.core]) ? sess.core : (S.profile.core[day] || DAYS[day].core); }
+function coreFor(day, sess) { return pickFor(day, "core", DAYS[day].core, sess); }
+function pickFor(day, slot, def, sess) {
+  var opts = slot === "core" ? CORE_OPTS : (SLOTS[slot.split("#")[0]] || [def]);
+  var c = sess && sess.picks && sess.picks[slot];
+  if (!c && slot === "core" && sess && sess.core) c = sess.core;
+  if (!c) c = S.profile.pick[day + ":" + slot];
+  if (!c && slot === "core") c = S.profile.core[day];
+  return (c && BY[c] && opts.indexOf(c) >= 0) ? c : def;
+}
 function fullList(day, sess) {
-  var list = DAYS[day].ex.map(function (r) { return {id: r[0] === "core" ? coreFor(day, sess) : r[0], sets: r[1], core: r[0] === "core"}; });
+  var list = DAYS[day].ex.map(function (r, i) {
+    var core = r[0] === "core", slot = core ? "core" : (SLOT_OF[r[0]] || r[0]) + "#" + i;
+    return {id: core ? coreFor(day, sess) : pickFor(day, slot, r[0], sess), sets: r[1], core: core, slot: slot};
+  });
   ((sess && sess.extras) || []).forEach(function (ex) { if (BY[ex.id]) list.push({id: ex.id, sets: ex.sets, extra: true}); });
   return list;
 }
@@ -519,7 +558,7 @@ function volGrid(pid) {
 }
 
 /* ---------- Today ---------- */
-function exRow(item, sess, key) {
+function exRow(item, sess, key, used) {
   var e = BY[item.id], rows = (sess && sess.sets[item.id]) || [], n = Math.max(rows.length, item.sets);
   var prev = prevFor(item.id, key), sg = suggest(e, prev), done = exDone(item, sess), sd = setsDone(item.id, sess);
   var k = "ex-" + item.id;
@@ -539,15 +578,19 @@ function exRow(item, sess, key) {
       '<button class="chk" type="button" data-act="tick" data-ex="' + e.id + '" data-i="' + i + '" data-pw="' + esc(ph.w || "") + '" data-pr="' + esc(ph.r || "") + '" aria-pressed="' + !!r.d + '" aria-label="Set ' + (i + 1) + ' done">✓</button></div>';
   }
   h += '</div><button class="link" type="button" data-act="addset" data-ex="' + e.id + '">+ Add a set</button>';
-  h += '<p class="swapline"><b>Machine busy or uncomfortable?</b> ' + esc(e.sub) + '</p>';
-  if (item.core) {
-    h += '<p class="small">Pick the core exercise you are comfortable with. Easy ones need only a mat. Skip it on days you run out of time.</p><div class="opts">' + CORE_OPTS.map(function (id) {
-      var o = BY[id];
-      return '<button class="opt" type="button" data-act="setcore" data-id="' + id + '" aria-pressed="' + (id === item.id) + '"><span>' + esc(o.n) + '</span><span class="badge ' + (o.lvl === "Easy" ? "easy" : o.lvl === "Later" ? "later" : "") + '">' + o.lvl + '</span></button>';
+  var vopts = item.core ? CORE_OPTS : (item.slot && SLOTS[item.slot.split("#")[0]] ? SLOTS[item.slot.split("#")[0]] : []);
+  if (vopts.length > 1) {
+    h += '<p class="label">' + (item.core ? "Choose your core exercise" : "Choose your version") + '</p>' +
+      '<p class="small">' + (item.core ? "Easy ones need only a mat. Skip it on days you run out of time." : "Machine busy, or prefer dumbbells? Pick another version. Your choice is remembered for this workout.") + '</p><div class="opts">' + vopts.map(function (vid) {
+      var o = BY[vid];
+      var taken = vid !== item.id && used && used.indexOf(vid) >= 0;
+      return '<button class="opt" type="button" data-act="pick" data-slot="' + item.slot + '" data-id="' + vid + '" aria-pressed="' + (vid === item.id) + '"' + (taken ? ' disabled title="Already in today\'s workout"' : "") + '><span>' + esc(o.n) + (taken ? ' <span class="small">(already today)</span>' : "") + '</span><span class="badge ' + (o.lvl === "Easy" ? "easy" : o.lvl === "Later" ? "later" : "") + '">' + esc(o.eq) + (o.lvl === "Later" ? " · later" : "") + '</span></button>';
     }).join("") + '</div>';
+  } else {
+    h += '<p class="swapline"><b>Machine busy or uncomfortable?</b> ' + esc(e.sub) + '</p>';
   }
   h += '<div class="btnrow"><a class="btn" target="_blank" rel="noopener" href="' + ytUrl(e.yt) + '">How-to video</a>' +
-    (item.extra ? '<button class="btn quiet" type="button" data-act="rmextra" data-ex="' + e.id + '">Remove</button>' : '<button class="btn quiet" type="button" data-act="opennote" data-ex="' + e.id + '">Machine settings</button>') + '</div>';
+    (item.extra ? '<button class="btn quiet" type="button" data-act="rmextra" data-ex="' + e.id + '">Remove</button>' : '<button class="btn quiet" type="button" data-act="opennote" data-ex="' + e.id + '">' + (e.eq === "Machine" || e.eq === "Cable" ? "Machine settings" : "My notes") + '</button>') + '</div>';
   if (UI.open["note-" + e.id] || S.profile.notes[e.id] || item.extra) {
     h += '<input class="field note" type="text" data-ex="' + e.id + '" value="' + esc(S.profile.notes[e.id]) + '" placeholder="My settings, e.g. seat 4, back pad 3" aria-label="Machine settings for ' + esc(e.n) + '">';
   }
@@ -566,11 +609,12 @@ function viewToday() {
   var cnt = sessionsThisWeek(), wk = weekIdx() + 1, nd = nextDay();
   var h = '<div class="sec">';
   h += '<div><p class="label">Week ' + wk + ' · ' + cnt + ' session' + (cnt === 1 ? "" : "s") + ' this week</p><h2>' + esc(DAYS[day].n) + '</h2><p class="sub">' + esc(DAYS[day].hint) + (day !== nd ? ' · your plan says ' + esc(DAYS[nd].n) + ' next' : "") + '</p></div>';
-  h += '<div class="meter"><div class="row-t"><span class="big">' + done + '<span> / ' + tot + ' exercises</span></span><span class="small">about 60 min</span></div><div class="bar"><i style="width:' + pct + '%"></i></div></div>';
+  h += '<div class="meter"><div class="row-t"><span class="big">' + done + '<span> / ' + tot + ' exercises</span></span><span class="small">50–65 min</span></div><div class="bar"><i style="width:' + pct + '%"></i></div></div>';
   if (wk % 8 === 0) h += '<div class="note"><b>Lighter week.</b> Same exercises with about 60% of your usual weight, or half the sets.</div>';
   if (wk <= 2) h += '<div class="note"><b>Weeks 1–2:</b> learn the machines. Use weights that leave 3–4 reps in reserve.</div>';
   h += '<details class="fold" data-k="warm"' + (UI.open.warm ? " open" : "") + '><summary>Warm-up · 6–8 min</summary><div class="in"><ul>' + WARMUP.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + '</ul></div></details>';
-  h += '<div class="stack">' + list.map(function (it) { return exRow(it, sess, key); }).join("") + '</div>';
+  var used = list.map(function (it) { return it.id; });
+  h += '<div class="stack">' + list.map(function (it) { return exRow(it, sess, key, used); }).join("") + '</div>';
   h += '<p class="small">Tap the circle when an exercise is done. Tap the name for sets, tips and to log your weights.</p>';
   var have = list.map(function (it) { return it.id; });
   h += '<details class="fold" data-k="addex"' + (UI.open.addex ? " open" : "") + '><summary>+ Add an exercise</summary><div class="in"><div class="chips">' + GROUPS.map(function (g) {
@@ -696,12 +740,13 @@ function viewGuide() {
   var h = '<div class="sec"><div><p class="label">Beginner · 184 cm · 80 kg · lean gain</p><h2>Guide</h2><p class="sub">What the research says, in short. Tap a topic.</p></div>';
   h += '<div class="card"><h3>The 6 things that build muscle</h3><ol>' +
     '<li><b>Show up 3 times a week</b> for months. Consistency beats the perfect program.</li>' +
-    '<li><b>Give each muscle enough hard sets.</b> Full Body gives each big muscle about 7–9 sets a week, and arms about 6 plus the work they get from presses and rows. That is plenty while you are new.</li>' +
+    '<li><b>Give each muscle enough hard sets.</b> Full Body gives each big muscle about 7–9 sets a week, shoulders about 12, and arms about 6 plus the work they get from presses and rows. That is plenty while you are new.</li>' +
     '<li><b>Finish sets with 1–3 reps left.</b> Anywhere from about 5 to 30 reps builds muscle if the set is hard.</li>' +
     '<li><b>Add reps, then weight.</b> Log every session so you can beat last time.</li>' +
     '<li><b>Eat enough protein and a small surplus.</b> About 150–170 g protein a day.</li>' +
     '<li><b>Sleep 7–9 hours.</b> Muscle grows between sessions.</li></ol></div>';
-  h += fold("why", "Why 7 exercises a day", '<p>Each session trains every major muscle with one exercise and 2–3 hard sets. Seven exercises with proper rest takes about 50 minutes, plus warm-up and an optional 5-minute core finisher. More exercises would mostly add tiredness, not muscle, at this stage.</p><p>Workout A and B use different machines for the same muscles, so over the week you hit each one from two angles.</p>');
+  h += fold("why", "Why 7–8 exercises a day", '<p>Each session trains every major muscle with one exercise and 2–3 hard sets. That takes about 50–60 minutes with proper rest, plus warm-up and an optional 5-minute core finisher. More exercises would mostly add tiredness, not muscle, at this stage.</p><p>Workout A and B use different exercises for the same muscles, so over the week you hit each one from two angles.</p>');
+  h += fold("db", "Machines, cables or dumbbells?", '<p>Muscles respond to hard sets, not to the type of equipment, so pick whatever feels good and is free. Each exercise has a <b>Choose your version</b> list with machine, cable and dumbbell options for the same muscle.</p><ul><li><b>Dumbbells work well for:</b> curls, lateral raises, seated shoulder press, overhead triceps, rows with a hand on the bench, incline press.</li><li><b>Machines are better for:</b> legs while you train alone (leg press, hack squat), because you can stop safely at any point.</li><li><b>Pressing with heavier dumbbells:</b> sit with them on your thighs and kick them up one at a time, and lower them back to your thighs when done. Start light.</li></ul>');
   h += fold("prog", "How to progress", '<ol><li>Pick a weight where you hit the bottom of the rep range with 2–3 reps left.</li><li>Each session, add reps with the same weight.</li><li>When every set reaches the top of the range with good form, add the smallest weight step.</li><li>Reps drop back down. Build up again.</li><li>Miss reps 2–3 sessions in a row? Check sleep and food first.</li><li>Every 8th week, or when run down, do a lighter week.</li></ol>');
   h += fold("first", "Your first 12 weeks", '<ul><li><b>Weeks 1–2:</b> learn the machines. Leave 3–4 reps in reserve. Save your seat settings.</li><li><b>Weeks 3–8:</b> push to 1–3 reps left. Weights go up quickly because you are learning the movements.</li><li><b>Week 8:</b> lighter week, then check weight, waist and photos.</li><li><b>Weeks 9–12:</b> keep progressing. After week 12, look at the Plans tab and pick your next step.</li></ul><p class="small">The first year is the fastest for muscle gain. Visible changes usually show around weeks 8–12.</p>');
   h += fold("splits", "Splits explained", '<ul><li><b>Full Body:</b> everything each session, 3 days.</li><li><b>Upper / Lower:</b> upper body one day, legs the next, 4 days.</li><li><b>Push:</b> chest, shoulders, triceps. <b>Pull:</b> back, biceps. <b>Legs:</b> quads, hamstrings, glutes, calves.</li><li><b>Body-part pairs:</b> chest &amp; biceps, back &amp; triceps, shoulders &amp; arms, legs. Big muscle first, small muscle after.</li></ul><p class="small">When total weekly sets are the same, these build about the same muscle. Training a muscle twice a week makes it easier to fit enough sets in.</p>');
@@ -809,10 +854,13 @@ document.addEventListener("click", function (ev) {
     mark("session", curKey()); render(true);
   }
   else if (a === "addset") { var s2 = ensureSess(), ar = s2.sets[id] = s2.sets[id] || [], it2 = itemFor(id, s2); while (ar.length < (it2 ? it2.sets : 0)) ar.push({}); ar.push({}); s2.done[id] = false; mark("session", curKey()); render(true); }
-  else if (a === "setcore") {
-    var d = curDay(), cid = b.getAttribute("data-id"), s3 = ensureSess(), oldK = "ex-" + coreFor(d, s3);
-    s3.core = cid; S.profile.core[d] = cid; UI.open["ex-" + cid] = !!UI.open[oldK];
-    mark("session", curKey()); mark("profile"); render(true); toast(BY[cid].n + " is now your core finisher on " + DAYS[d].n);
+  else if (a === "pick") {
+    var d = curDay(), slot = b.getAttribute("data-slot"), cid = b.getAttribute("data-id"), s3 = ensureSess();
+    var curIt = fullList(d, s3).filter(function (q) { return q.slot === slot; })[0], oldId = curIt ? curIt.id : null;
+    if (oldId === cid) return;
+    s3.picks[slot] = cid; S.profile.pick[d + ":" + slot] = cid; if (slot === "core") { s3.core = cid; S.profile.core[d] = cid; }
+    UI.open["ex-" + cid] = !!UI.open["ex-" + oldId];
+    mark("session", curKey()); mark("profile"); render(true); toast("Switched to " + BY[cid].n);
   }
   else if (a === "opennote") { UI.open["note-" + id] = true; render(true); var f = document.querySelector('.note[data-ex="' + id + '"]'); if (f) f.focus(); }
   else if (a === "addgroup") { UI.addGroup = b.getAttribute("data-g"); render(true); }

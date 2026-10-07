@@ -8,7 +8,7 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
 
 ## What it does
 
-- **Today:** shows the next workout in your plan. Each exercise is a row you tick off. Tap a row for sets, reps, rest, technique, your last numbers, what to do next time, set-by-set logging, a swap if the machine is busy, and a how-to video.
+- **Today:** shows the next workout in your plan. Each exercise is a row you tick off. Tap a row for sets, reps, rest, technique, your last numbers, what to do next time, set-by-set logging, a choice of machine, cable or dumbbell versions, and a how-to video.
 - **Rest timer:** starts on its own when you tick a set.
 - **Plans:**
   - Full Body A/B, 3 days (start here)
