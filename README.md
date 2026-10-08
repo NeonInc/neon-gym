@@ -17,6 +17,7 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
   - Body-part pairs: Chest & Biceps, Legs, Back & Triceps, Shoulders & Arms
 
   Each plan shows the weekly hard sets per muscle. You can also pick any workout on any day.
+- **Food:** a calorie and protein counter with South African products built in (biltong, amasi, Futurelife, Jungle Oats, maize meal, Albany, Koo, Black Cat, USN / Evox whey and more). Quick portions, ready-made combos, your own saved foods and daily targets.
 - **Progress:** log weight and waist, see 7-day average charts and a plain note on whether to eat more, less or the same. It also tracks top weight per lift.
 - **Guide:** progression rules, the first 12 weeks, food (no fish needed), supplements, recovery and sources.
 - **Backup codes:** your log lives in the browser. Copy a code to back it up or move it to another phone.
@@ -25,7 +26,7 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
 
 ```
 index.html            The app (built from src/app.html)
-src/app.html          Source: styles, markup and script in one file
+src/app.html          Source: styles, markup, script and food data in one file
 tools/build.py        Wraps src/app.html into index.html
 manifest.webmanifest  Install-as-app settings
 sw.js                 Offline cache

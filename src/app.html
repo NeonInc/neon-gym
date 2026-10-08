@@ -199,10 +199,48 @@ textarea.field { min-height: 90px; font-family: ui-monospace, monospace; font-si
 .timer.go .tt { color: var(--good); }
 .timer button { border: 1px solid var(--line-2); background: transparent; border-radius: 10px; min-height: 40px; padding: 0 12px; font-weight: 700; }
 .toast { text-align: center; font-size: 14px; font-weight: 700; background: var(--surface-2); border: 1px solid var(--line-2); border-radius: 10px; padding: 8px; }
-.nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.nav { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
 .nav button { border: 0; background: transparent; border-radius: 10px; min-height: 50px; font-weight: 700; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
 .nav svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .nav button[aria-selected="true"] { color: var(--cyan); background: var(--cyan-soft); }
+/* Food */
+.datenav { display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: 8px; }
+.datenav > div { text-align: center; }
+.datenav .link[disabled] { opacity: .3; }
+.mbar { display: flex; flex-direction: column; gap: 6px; }
+.mbar .row-t { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-variant-numeric: tabular-nums; }
+.mbar .mlab { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
+.mbar .mval { font-size: 14px; color: var(--muted); }
+.mbar .mval b { font-family: var(--font-display); font-size: 18px; color: var(--ink); }
+.mbar.big .mval b { font-size: 28px; }
+.mbar.big .bar { height: 10px; }
+.bar.over i { background: var(--warn); box-shadow: none; }
+.mini { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tip { font-size: 14px; color: var(--muted); }
+.tip b { color: var(--ink); }
+.meal { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; }
+.mhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 2px 0 6px; }
+.mhead b { font-family: var(--font-display); font-size: 19px; }
+.fentry { display: grid; grid-template-columns: 1fr auto 40px; gap: 8px; align-items: center; padding: 7px 0; border-top: 1px solid var(--line); }
+.fentry .nm, .fitem .nm { min-width: 0; display: flex; flex-direction: column; }
+.fmac { display: flex; flex-direction: column; align-items: flex-end; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fmac b { font-family: var(--font-display); font-size: 17px; color: var(--cyan); }
+.fmac span { font-size: 12px; color: var(--muted); }
+.fentry .x { min-height: 40px; border: 0; background: transparent; color: var(--muted); font-size: 18px; padding: 0; }
+.addfood { gap: 12px; }
+.flist { display: flex; flex-direction: column; }
+.fitem { border-top: 1px solid var(--line); }
+.fitem.open { background: var(--bg); border-radius: 10px; border-top-color: transparent; margin-block: 4px; }
+.fhead { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 6px; min-height: 52px; border: 0; background: transparent; text-align: left; }
+.fhead b { font-weight: 600; }
+.fbody { padding: 0 8px 12px; display: flex; flex-direction: column; gap: 10px; }
+.qty { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.qty button { width: 42px; height: 42px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--surface); font-size: 20px; font-weight: 700; }
+.qty b { font-family: var(--font-display); font-size: 20px; }
+.row4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.check { display: flex; gap: 8px; align-items: center; font-size: 14px; min-height: 40px; }
+.check input { width: 20px; height: 20px; accent-color: var(--cyan); }
+@media (max-width: 380px) { .row4 { grid-template-columns: 1fr 1fr; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -223,6 +261,7 @@ textarea.field { min-height: 90px; font-family: ui-monospace, monospace; font-si
   </div>
   <nav class="nav" id="nav" role="tablist" aria-label="Sections">
     <button type="button" role="tab" data-act="tab" data-tab="today"><svg viewBox="0 0 24 24"><path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12"/></svg>Today</button>
+    <button type="button" role="tab" data-act="tab" data-tab="food"><svg viewBox="0 0 24 24"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 2-3 5-3 8h3v10"/></svg>Food</button>
     <button type="button" role="tab" data-act="tab" data-tab="plans"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Plans</button>
     <button type="button" role="tab" data-act="tab" data-tab="progress"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 15l4-4 3 3 5-6"/></svg>Progress</button>
     <button type="button" role="tab" data-act="tab" data-tab="guide"><svg viewBox="0 0 24 24"><path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 1-4-4z"/><path d="M9 9h6M9 13h6"/></svg>Guide</button>
@@ -373,7 +412,7 @@ function mmss(s) { return Math.floor(s / 60) + ":" + pad(s % 60); }
 
 /* ---------- State and storage ---------- */
 var LK = "menlyn-log-v2";
-var S = {profile: {}, sessions: {}, body: {}};
+var S = {profile: {}, sessions: {}, body: {}, food: {}};
 var UI = {tab: "today", day: null, open: {}, del: null, addGroup: "Chest", confirmClear: false};
 var DB = null, UID = null, syncErr = false;
 
@@ -385,7 +424,8 @@ function fixProfile() {
   p.notes = p.notes || {};
   p.pick = p.pick || {};
   if (!p.start) p.start = dstr(monNum(todayStr()));
-  S.profile = p; S.sessions = S.sessions || {}; S.body = S.body || {};
+  p.myFoods = p.myFoods || []; p.targets = p.targets || {};
+  S.profile = p; S.sessions = S.sessions || {}; S.body = S.body || {}; S.food = S.food || {};
   Object.keys(S.sessions).forEach(function (k) {
     var s = S.sessions[k];
     if (!s.day) s.day = s.wid || "A";
@@ -415,6 +455,7 @@ function writeOne(k) {
   if (p[0] === "profile") return base.set(JSON.parse(JSON.stringify(S.profile)));
   if (p[0] === "session") { var d = base.collection("sessions").doc(p[1]); return S.sessions[p[1]] ? d.set(JSON.parse(JSON.stringify(S.sessions[p[1]]))) : d.delete(); }
   if (p[0] === "body") { var b = base.collection("body").doc(p[1]); return S.body[p[1]] ? b.set(JSON.parse(JSON.stringify(S.body[p[1]]))) : b.delete(); }
+  if (p[0] === "food") { var fo = base.collection("food").doc(p[1]); return S.food[p[1]] ? fo.set(JSON.parse(JSON.stringify(S.food[p[1]]))) : fo.delete(); }
   return Promise.resolve();
 }
 function flush() {
@@ -428,6 +469,7 @@ function markAll() {
   pending["profile|"] = 1;
   Object.keys(S.sessions).forEach(function (k) { pending["session|" + k] = 1; });
   Object.keys(S.body).forEach(function (k) { pending["body|" + k] = 1; });
+  Object.keys(S.food).forEach(function (k) { pending["food|" + k] = 1; });
   cacheSave(); clearTimeout(tmr); tmr = setTimeout(flush, 300); setSync("saving");
 }
 /* Cloud sync only exists when the page runs as a claude.ai artifact; on GitHub Pages it saves on the phone */
@@ -441,8 +483,11 @@ function connect() {
       if (!id) { setSync("local"); return null; }
       DB = db; UID = id;
       var base = db.doc("data/users/" + id + "/profile");
-      return Promise.all([base.get(), base.collection("sessions").get(), base.collection("body").get()]).then(function (res) {
-        var ps = res[0], ss = res[1], bs = res[2];
+      return Promise.all([base.get(), base.collection("sessions").get(), base.collection("body").get(), base.collection("food").get()]).then(function (res) {
+        var ps = res[0], ss = res[1], bs = res[2], fs = res[3], localFood = S.food || {}, remoteFood = {};
+        fs.docs.forEach(function (d) { remoteFood[d.id] = JSON.parse(JSON.stringify(d.data())); });
+        Object.keys(localFood).forEach(function (k) { if (!remoteFood[k]) pending["food|" + k] = 1; });
+        S.food = Object.assign({}, localFood, remoteFood);
         var localSess = S.sessions, localBody = S.body, remoteSess = {}, remoteBody = {};
         ss.docs.forEach(function (d) { remoteSess[d.id] = JSON.parse(JSON.stringify(d.data())); });
         bs.docs.forEach(function (d) { remoteBody[d.id] = JSON.parse(JSON.stringify(d.data())); });
@@ -737,7 +782,7 @@ function viewGuide() {
   h += fold("prog", "How to progress", '<ol><li>Pick a weight where you hit the bottom of the rep range with 2–3 reps left.</li><li>Each session, add reps with the same weight.</li><li>When every set reaches the top of the range with good form, add the smallest weight step.</li><li>Reps drop back down. Build up again.</li><li>Miss reps 2–3 sessions in a row? Check sleep and food first.</li><li>Every 8th week, or when run down, do a lighter week.</li></ol>');
   h += fold("first", "Your first 12 weeks", '<ul><li><b>Weeks 1–2:</b> learn the machines. Leave 3–4 reps in reserve. Save your seat settings.</li><li><b>Weeks 3–8:</b> push to 1–3 reps left. Weights go up quickly because you are learning the movements.</li><li><b>Week 8:</b> lighter week, then check weight, waist and photos.</li><li><b>Weeks 9–12:</b> keep progressing. After week 12, look at the Plans tab and pick your next step.</li></ul><p class="small">The first year is the fastest for muscle gain. Visible changes usually show around weeks 8–12.</p>');
   h += fold("splits", "Splits explained", '<ul><li><b>Full Body:</b> everything each session, 3 days.</li><li><b>Upper / Lower:</b> upper body one day, legs the next, 4 days.</li><li><b>Push:</b> chest, shoulders, triceps. <b>Pull:</b> back, biceps. <b>Legs:</b> quads, hamstrings, glutes, calves.</li><li><b>Body-part pairs:</b> chest &amp; biceps, back &amp; triceps, shoulders &amp; arms, legs. Big muscle first, small muscle after.</li></ul><p class="small">When total weekly sets are the same, these build about the same muscle. Training a muscle twice a week makes it easier to fit enough sets in.</p>');
-  h += fold("food", "Food for lean gains", '<ul><li><b>Calories:</b> start at about 2,900 a day, roughly 10% above maintenance.</li><li><b>Gain rate:</b> about 0.2–0.3 kg a week. Research for beginners suggests 0.25–0.5% of body weight a week; you are at the lower end to keep your waist lean.</li><li><b>Protein:</b> 150–170 g a day, in 4 meals of about 35–45 g. Studies show gains level off around 1.6 g per kg; you are above that.</li><li><b>Fat:</b> 70–80 g. <b>Carbs:</b> the rest, roughly 380–400 g.</li><li><b>Adjust:</b> flat for 2–3 weeks, add 150–200 kcal. Over 0.4 kg a week or waist up 2 cm, cut 150–200 kcal.</li></ul>' +
+  h += fold("food", "Food for lean gains", '<ul><li><b>Calories:</b> start at about 2,900 a day, roughly 10% above maintenance.</li><li><b>Gain rate:</b> about 0.2–0.3 kg a week. Research for beginners suggests 0.25–0.5% of body weight a week; you are at the lower end to keep your waist lean.</li><li><b>Track it:</b> the Food tab counts calories and protein, with South African products built in.</li><li><b>Protein:</b> 150–170 g a day, in 4 meals of about 35–45 g. Studies show gains level off around 1.6 g per kg; you are above that.</li><li><b>Fat:</b> 70–80 g. <b>Carbs:</b> the rest, roughly 380–400 g.</li><li><b>Adjust:</b> flat for 2–3 weeks, add 150–200 kcal. Over 0.4 kg a week or waist up 2 cm, cut 150–200 kcal.</li></ul>' +
     '<p><b>Cheap, easy protein (no fish, no veg needed):</b></p><ul><li>Eggs: 3 eggs ≈ 18 g</li><li>Chicken breast or thighs: 150 g cooked ≈ 40 g</li><li>Beef mince: 150 g cooked ≈ 35 g</li><li>Biltong: 50 g ≈ 25 g (a good snack)</li><li>Milk or maas: 500 ml ≈ 17 g</li><li>Plain or high-protein yoghurt, cottage cheese</li><li>Peanut butter on bread for extra calories</li><li>Whey protein: 1 scoop ≈ 20–25 g, an easy fix on low days</li></ul><p class="small">For vitamins, blend fruit and some spinach into a smoothie with milk and oats. You won\'t taste the spinach. Oranges and other fruit count too.</p>');
   h += fold("rec", "Recovery and cardio", '<ul><li>Sleep 7–9 hours.</li><li>Walk 6–8k steps on rest days.</li><li>Two easy cardio sessions a week, 20–30 min, at a pace where you can talk. No hard intervals before leg days.</li><li>Soreness is normal. Joint pain is a stop sign.</li></ul>');
   h += fold("supp", "Supplements", '<ul><li><b>Creatine monohydrate,</b> 3–5 g every day, any time: strong evidence for strength and muscle. Plain monohydrate is the cheapest and works.</li><li><b>Whey protein:</b> only to fill gaps when food falls short.</li><li><b>Vitamin D:</b> test first.</li><li><b>Fish oil, magnesium:</b> not needed for muscle gain.</li></ul>');
@@ -754,9 +799,232 @@ function viewGuide() {
   return h + '</div>';
 }
 
+/* ---------- Food: calorie and protein counter ---------- */
+/* Values per "base" amount (100 g, 100 ml or 1 item). Sources: pack labels via brand sites, Open Food Facts and FatSecret SA; generic whole foods from USDA FoodData Central. */
+var FOODS = [];
+function fd(id, n, cat, base, kcal, p, c, f, portions, note) { FOODS.push({id: id, n: n, cat: cat, base: base, kcal: kcal, p: p, c: c, f: f, portions: portions, note: note || ""}); }
+// Protein first
+fd("biltong", "Beef biltong (lean)", "Protein", "100 g", 249, 52.2, 1.4, 3.8, [["50 g", .5], ["100 g", 1], ["30 g snack", .3]], "Fatty biltong has a lot more calories.");
+fd("whey-usn", "Whey protein, 1 scoop (USN BlueLab)", "Protein", "1 scoop 32 g", 130, 23.6, 5.8, 1.5, [["1 scoop", 1], ["2 scoops", 2]], "Check your tub; flavours differ slightly.");
+fd("whey-evox", "Whey protein, 1 scoop (Evox)", "Protein", "1 scoop 32 g", 120, 23, 3, 1.5, [["1 scoop", 1], ["2 scoops", 2]]);
+fd("egg", "Egg, large", "Protein", "1 egg", 72, 6.3, 0.4, 4.8, [["1 egg", 1], ["2 eggs", 2], ["3 eggs", 3], ["4 eggs", 4]]);
+fd("chicken-breast", "Chicken breast, cooked, no skin", "Protein", "100 g", 165, 31, 0, 3.6, [["150 g (1 fillet)", 1.5], ["100 g", 1], ["200 g", 2]]);
+fd("chicken-thigh", "Chicken thigh, cooked, no skin", "Protein", "100 g", 209, 26, 0, 10.9, [["2 thighs (≈150 g meat)", 1.5], ["100 g", 1]]);
+fd("mince", "Beef mince, cooked (regular)", "Protein", "100 g", 250, 25.9, 0, 15.4, [["150 g", 1.5], ["100 g", 1], ["200 g", 2]]);
+fd("mince-lean", "Beef mince, cooked (lean)", "Protein", "100 g", 217, 26.1, 0, 11.8, [["150 g", 1.5], ["100 g", 1], ["200 g", 2]]);
+fd("futurelife-hp", "Futurelife High Protein (dry)", "Protein", "75 g serving", 246, 22.5, 29, 4, [["1 serving 75 g", 1], ["½ serving", .5]], "Made with water. Log milk separately if you use it.");
+// Dairy
+fd("amasi", "Amasi / maas, full cream (Clover)", "Dairy", "100 ml", 60, 3.3, 4.7, 3.4, [["1 glass 250 ml", 2.5], ["500 ml", 5], ["1 cup 200 ml", 2]]);
+fd("milk-full", "Milk, full cream", "Dairy", "100 ml", 64, 3.3, 4.8, 3.4, [["1 glass 250 ml", 2.5], ["in coffee 30 ml", .3], ["500 ml", 5]]);
+fd("milk-low", "Milk, 2% low fat (Clover)", "Dairy", "100 ml", 47, 3.2, 5.3, 1, [["1 glass 250 ml", 2.5], ["500 ml", 5]]);
+fd("yog-hp", "High-protein plain yoghurt (Woolworths)", "Dairy", "100 g", 60, 9.4, 4.9, 1, [["1 tub 175 g", 1.75], ["100 g", 1], ["250 g", 2.5]]);
+fd("yog-fruit", "Fruit yoghurt, full cream (Clover)", "Dairy", "100 g", 92, 2.1, 13, 3.3, [["1 tub 175 g", 1.75], ["100 g", 1]], "Tasty but low in protein.");
+fd("cottage", "Cottage cheese, smooth low fat (Lancewood)", "Dairy", "100 g", 68, 9.1, 2, 2.7, [["½ tub 125 g", 1.25], ["100 g", 1], ["1 tub 250 g", 2.5]]);
+fd("cheddar", "Cheddar cheese", "Dairy", "100 g", 403, 24.9, 1.3, 33.1, [["1 slice 20 g", .2], ["30 g", .3], ["50 g", .5]]);
+fd("cheese-slice", "Processed cheese slice (Clover)", "Dairy", "1 slice 17 g", 47, 2.3, 1, 3.7, [["1 slice", 1], ["2 slices", 2]]);
+// Carbs
+fd("oats", "Jungle Oats (dry)", "Carbs", "100 g", 379, 13.1, 57, 7.9, [["½ cup 40 g", .4], ["60 g", .6], ["80 g", .8]]);
+fd("pap", "Maize meal / pap (dry meal)", "Carbs", "100 g", 348, 6.8, 74, 1.6, [["1 plate stiff pap (75 g dry)", .75], ["50 g dry", .5], ["100 g dry", 1]], "Weigh the dry meal. A normal plate of stiff pap uses about 75 g.");
+fd("bread-brown", "Brown bread, 1 slice (Albany Superior)", "Carbs", "1 slice 40 g", 91, 3.1, 17, 0.5, [["1 slice", 1], ["2 slices", 2], ["4 slices", 4]]);
+fd("rice", "White rice, cooked", "Carbs", "100 g", 130, 2.7, 28, 0.3, [["1 cup 160 g", 1.6], ["100 g", 1], ["2 cups 320 g", 3.2]]);
+fd("pasta", "Pasta, cooked", "Carbs", "100 g", 158, 5.8, 31, 0.9, [["1 cup 140 g", 1.4], ["100 g", 1], ["2 cups 280 g", 2.8]]);
+fd("potato", "Potato, boiled", "Carbs", "100 g", 87, 1.9, 20, 0.1, [["1 medium 170 g", 1.7], ["100 g", 1]]);
+fd("beans", "Baked beans in tomato sauce (Koo)", "Carbs", "100 g", 99, 5.1, 16, 1, [["½ can 205 g", 2.05], ["full can 410 g", 4.1], ["100 g", 1]]);
+fd("pb", "Peanut butter (Black Cat smooth)", "Carbs", "100 g", 550, 23.2, 24, 38, [["1 tbsp 16 g", .16], ["2 tbsp 32 g", .32]], "Very high in calories, so easy for gaining.");
+// Fruit
+fd("orange", "Orange, medium", "Fruit", "1 orange", 62, 1.2, 15.4, 0.2, [["1", 1], ["2", 2]]);
+fd("banana", "Banana, medium", "Fruit", "1 banana", 105, 1.3, 27, 0.4, [["1", 1], ["2", 2]]);
+fd("apple", "Apple, medium", "Fruit", "1 apple", 95, 0.5, 25, 0.3, [["1", 1]]);
+var FOOD_BY = {}; FOODS.forEach(function (x) { FOOD_BY[x.id] = x; });
+var COMBOS = [
+  {id: "c-shake", n: "Amasi protein shake", desc: "500 ml amasi, 1 scoop whey, 1 banana", parts: [["amasi", 5], ["whey-usn", 1], ["banana", 1]]},
+  {id: "c-eggs", n: "Eggs on toast", desc: "3 eggs, 2 slices brown bread", parts: [["egg", 3], ["bread-brown", 2]]},
+  {id: "c-oats", n: "Protein oats", desc: "80 g oats, 250 ml milk, 1 scoop whey", parts: [["oats", .8], ["milk-full", 2.5], ["whey-usn", 1]]},
+  {id: "c-pap", n: "Pap and mince", desc: "1 plate stiff pap, 150 g mince", parts: [["pap", .75], ["mince", 1.5]]},
+  {id: "c-chicken", n: "Chicken and rice", desc: "150 g chicken breast, 1 cup rice", parts: [["chicken-breast", 1.5], ["rice", 1.6]]},
+  {id: "c-smoothie", n: "Hidden-veg smoothie", desc: "250 ml milk, 1 scoop whey, banana, handful of spinach, 40 g oats", parts: [["milk-full", 2.5], ["whey-usn", 1], ["banana", 1], ["oats", .4]]}
+];
+COMBOS.forEach(function (cb) {
+  var t = {kcal: 0, p: 0, c: 0, f: 0};
+  cb.parts.forEach(function (pt) { var x = FOOD_BY[pt[0]]; ["kcal","p","c","f"].forEach(function (k) { t[k] += x[k] * pt[1]; }); });
+  cb.kcal = Math.round(t.kcal); cb.p = Math.round(t.p); cb.c = Math.round(t.c); cb.f = Math.round(t.f);
+});
+var FCATS = ["Top protein","Combos","Protein","Dairy","Carbs","Fruit","My foods"];
+var MEALS = ["Breakfast","Lunch","Dinner","Snacks"];
+var TOP_PROTEIN = ["whey-usn","biltong","chicken-breast","egg","amasi","yog-hp","cottage","mince","futurelife-hp"];
+var DEF_TARGETS = {kcal: 2900, p: 160, c: 390, f: 75};
+
+function targets() { var t = S.profile.targets || {}; return {kcal: t.kcal || DEF_TARGETS.kcal, p: t.p || DEF_TARGETS.p, c: t.c || DEF_TARGETS.c, f: t.f || DEF_TARGETS.f}; }
+function foodDay(d) { return (S.food[d] && S.food[d].items) || []; }
+function totals(items) { var t = {kcal: 0, p: 0, c: 0, f: 0}; items.forEach(function (it) { t.kcal += it.kcal; t.p += it.p; t.c += it.c; t.f += it.f; }); return t; }
+function r0(v) { return Math.round(v); }
+function r1(v) { return Math.round(v * 10) / 10; }
+function defaultMeal() { var h = new Date().getHours(); return h < 10 ? "Breakfast" : h < 15 ? "Lunch" : h < 18 ? "Snacks" : "Dinner"; }
+function addFoodEntry(entry) {
+  var d = UI.fdate || todayStr();
+  if (!S.food[d]) S.food[d] = {items: []};
+  entry.t = Date.now(); entry.meal = UI.fmeal || defaultMeal();
+  S.food[d].items.push(entry);
+  mark("food", d);
+}
+function proteinIdeas(left) {
+  if (left <= 5) return "";
+  var opts = [["1 scoop whey", 23.6], ["50 g biltong", 26], ["3 eggs", 19], ["500 ml amasi", 16.5], ["150 g chicken breast", 46], ["175 g high-protein yoghurt", 16.5]];
+  var pick = [], rem = left;
+  for (var i = 0; i < opts.length && rem > 5 && pick.length < 3; i++) { if (opts[i][1] <= rem + 8) { pick.push(opts[i][0]); rem -= opts[i][1]; } }
+  if (!pick.length) pick.push("150 g chicken breast");
+  return pick.join(" + ");
+}
+function macroBar(label, val, goal, unit, big) {
+  var pct = goal ? Math.min(100, Math.round(val / goal * 100)) : 0, over = val > goal * 1.05;
+  return '<div class="mbar' + (big ? " big" : "") + '"><div class="row-t"><span class="mlab">' + label + '</span><span class="mval"><b>' + r0(val) + '</b> / ' + goal + ' ' + unit + '</span></div><div class="bar' + (over ? " over" : "") + '"><i style="width:' + pct + '%"></i></div></div>';
+}
+function foodRow(x, kind) {
+  var open = UI.fopen === x.id, p0 = kind === "combo" ? null : (x.portions || [["1 portion", 1]])[0], m0 = p0 ? p0[1] : 1;
+  var h = '<div class="fitem' + (open ? " open" : "") + '"><button type="button" class="fhead" data-act="fopen" data-id="' + esc(x.id) + '" aria-expanded="' + open + '"><span class="nm"><b>' + esc(x.n) + '</b><span class="small">' +
+    (kind === "combo" ? esc(x.desc) : esc(p0[0])) + '</span></span><span class="fmac"><b>' + r1(x.p * m0) + ' g</b><span>' + r0(x.kcal * m0) + ' kcal</span></span></button>';
+  if (open) {
+    if (kind === "combo") {
+      h += '<div class="fbody"><p class="small">' + x.kcal + ' kcal · ' + x.p + ' g protein · ' + x.c + ' g carbs · ' + x.f + ' g fat</p><button class="btn solid" type="button" data-act="fadd" data-kind="combo" data-id="' + x.id + '" data-q="1">Add to ' + esc(UI.fmeal || defaultMeal()) + '</button></div>';
+    } else {
+      var ports = x.portions || [["1 portion", 1]];
+      h += '<div class="fbody"><div class="chips">' + ports.map(function (pt, i) {
+        return '<button class="chip" type="button" data-act="fport" data-i="' + i + '" aria-pressed="' + ((UI.fport || 0) === i) + '">' + esc(pt[0]) + '</button>';
+      }).join("") + '</div>';
+      var m = ports[Math.min(UI.fport || 0, ports.length - 1)][1] * (UI.fqty || 1);
+      h += '<div class="qty"><button type="button" data-act="fqty" data-d="-1" aria-label="Less">−</button><span><b>' + (UI.fqty || 1) + '×</b></span><button type="button" data-act="fqty" data-d="1" aria-label="More">+</button>' +
+        '<span class="small">' + r0(x.kcal * m) + ' kcal · ' + r1(x.p * m) + ' g protein · ' + r0(x.c * m) + ' g carbs · ' + r0(x.f * m) + ' g fat</span></div>' +
+        '<p class="small">Per ' + esc(x.base) + ': ' + r0(x.kcal) + ' kcal, ' + r1(x.p) + ' g protein.' + (x.note ? " " + esc(x.note) : "") + '</p>' +
+        '<div class="btnrow"><button class="btn solid" type="button" data-act="fadd" data-kind="' + (kind || "food") + '" data-id="' + esc(x.id) + '">Add to ' + esc(UI.fmeal || defaultMeal()) + '</button>' +
+        (kind === "my" ? '<button class="btn quiet" type="button" data-act="fdelmy" data-id="' + esc(x.id) + '">' + (UI.fdelmy === x.id ? "Tap again to delete" : "Delete food") + '</button>' : '<span></span>') + '</div></div>';
+    }
+  }
+  return h + '</div>';
+}
+function viewFood() {
+  var d = UI.fdate || todayStr(), items = foodDay(d), t = totals(items), g = targets();
+  var isToday = d === todayStr(), left = g.p - t.p;
+  var h = '<div class="sec">';
+  h += '<div class="datenav"><button type="button" class="link" data-act="fday" data-d="-1" aria-label="Previous day">‹ Prev</button><div><p class="label">' + (isToday ? "Today" : fmtD(d)) + '</p><h2>Food</h2></div><button type="button" class="link" data-act="fday" data-d="1" aria-label="Next day"' + (isToday ? " disabled" : "") + '>Next ›</button></div>';
+  h += '<div class="card">' + macroBar("Protein", t.p, g.p, "g", true) + macroBar("Calories", t.kcal, g.kcal, "kcal", true) +
+    '<div class="mini">' + macroBar("Carbs", t.c, g.c, "g") + macroBar("Fat", t.f, g.f, "g") + '</div>' +
+    (left > 5 ? '<p class="tip"><b>' + r0(left) + ' g protein to go.</b> For example: ' + esc(proteinIdeas(left)) + '.</p>' : '<p class="tip"><b>Protein target hit.</b> Nice work.</p>') + '</div>';
+  // log by meal
+  h += '<div class="stack">' + MEALS.map(function (ml) {
+    var its = items.map(function (it, i) { return [it, i]; }).filter(function (p) { return (p[0].meal || "Snacks") === ml; });
+    var mt = totals(its.map(function (p) { return p[0]; }));
+    return '<section class="meal"><div class="mhead"><b>' + ml + '</b><span class="small">' + (its.length ? r0(mt.p) + ' g protein · ' + r0(mt.kcal) + ' kcal' : "Nothing yet") + '</span></div>' +
+      its.map(function (p) {
+        var it = p[0], i = p[1], del = UI.fdel === it.t;
+        return '<div class="fentry"><span class="nm"><span>' + esc(it.n) + '</span><span class="small">' + esc(it.portion || "") + '</span></span><span class="fmac"><b>' + r1(it.p) + ' g</b><span>' + r0(it.kcal) + ' kcal</span></span><button type="button" class="x" data-act="fdel" data-t="' + it.t + '" aria-label="Remove ' + esc(it.n) + '">' + (del ? "Remove?" : "×") + '</button></div>';
+      }).join("") + '</section>';
+  }).join("") + '</div>';
+  // add food
+  h += '<div class="card addfood"><h3>Add food</h3><div class="daypick"><p class="label">Meal</p><div class="chips">' + MEALS.map(function (ml) {
+    return '<button class="chip" type="button" data-act="fmeal" data-m="' + ml + '" aria-pressed="' + ((UI.fmeal || defaultMeal()) === ml) + '">' + ml + '</button>';
+  }).join("") + '</div></div>';
+  h += '<input class="field" id="fsearch" type="search" placeholder="Search: biltong, amasi, eggs…" value="' + esc(UI.fq || "") + '" aria-label="Search foods">';
+  h += '<div class="chips">' + FCATS.map(function (c) { return '<button class="chip" type="button" data-act="fcat" data-c="' + c + '" aria-pressed="' + ((UI.fcat || "Top protein") === c) + '">' + c + '</button>'; }).join("") + '</div>';
+  h += '<div class="flist" id="flist">' + foodList() + '</div>';
+  h += '</div>';
+  // quick / custom
+  h += '<details class="fold" data-k="fquick"' + (UI.open.fquick ? " open" : "") + '><summary>Quick add or save your own food</summary><div class="in">' +
+    '<p class="small">Read the label on the pack. Enter the values for the amount you ate, or tick "Save" to keep it in My foods.</p>' +
+    '<input class="field" id="qn" type="text" placeholder="Name, e.g. Nando\'s quarter chicken" aria-label="Food name">' +
+    '<div class="row4"><label class="fl">kcal<input class="field" id="qk" type="text" inputmode="decimal"></label><label class="fl">Protein g<input class="field" id="qp" type="text" inputmode="decimal"></label><label class="fl">Carbs g<input class="field" id="qc" type="text" inputmode="decimal"></label><label class="fl">Fat g<input class="field" id="qf" type="text" inputmode="decimal"></label></div>' +
+    '<label class="check"><input type="checkbox" id="qsave"> Save to My foods</label>' +
+    '<button class="btn solid" type="button" data-act="fquick">Add</button>' +
+    '<p class="small">Labels show kJ? Divide kJ by 4.2 to get kcal.</p></div></details>';
+  h += '<details class="fold" data-k="ftargets"' + (UI.open.ftargets ? " open" : "") + '><summary>Daily targets</summary><div class="in">' +
+    '<p class="small">Set for a slow lean gain at about 80 kg. Change them if your weight trend says so (Progress tab).</p>' +
+    '<div class="row4"><label class="fl">kcal<input class="field" id="tk" type="text" inputmode="numeric" value="' + g.kcal + '"></label><label class="fl">Protein g<input class="field" id="tp" type="text" inputmode="numeric" value="' + g.p + '"></label><label class="fl">Carbs g<input class="field" id="tc" type="text" inputmode="numeric" value="' + g.c + '"></label><label class="fl">Fat g<input class="field" id="tf" type="text" inputmode="numeric" value="' + g.f + '"></label></div>' +
+    '<div class="btnrow"><button class="btn" type="button" data-act="ftargets">Save targets</button><button class="btn quiet" type="button" data-act="ftreset">Reset</button></div></div></details>';
+  h += '<details class="fold" data-k="fbest"' + (UI.open.fbest ? " open" : "") + '><summary>Best protein picks (SA shops)</summary><div class="in">' + bestPicks() + '</div></details>';
+  h += '<p class="small">Values come from pack labels and food databases. Brands and recipes change, so check the label if a number looks off.</p>';
+  return h + '</div>';
+}
+function foodList() {
+  var q = (UI.fq || "").trim().toLowerCase(), cat = UI.fcat || "Top protein", list;
+  var mine = (S.profile.myFoods || []).map(function (m) { return {id: m.id, n: m.n, cat: "My foods", base: "1 portion", kcal: m.kcal, p: m.p, c: m.c, f: m.f, portions: [["1 portion", 1], ["½ portion", .5]], my: true}; });
+  if (q) {
+    var all = mine.concat(FOODS), cm = COMBOS.filter(function (c) { return (c.n + " " + c.desc).toLowerCase().indexOf(q) >= 0; });
+    list = all.filter(function (x) { return x.n.toLowerCase().indexOf(q) >= 0; });
+    if (!list.length && !cm.length) return '<p class="empty">Nothing found. Use "Quick add" below for anything not in the list.</p>';
+    return cm.map(function (c) { return foodRow(c, "combo"); }).join("") + list.map(function (x) { return foodRow(x, x.my ? "my" : "food"); }).join("");
+  }
+  if (cat === "Combos") return '<p class="small">Ready-made meals. Tap to see the totals and add them in one go.</p>' + COMBOS.map(function (c) { return foodRow(c, "combo"); }).join("");
+  if (cat === "My foods") return mine.length ? mine.map(function (x) { return foodRow(x, "my"); }).join("") : '<p class="empty">No saved foods yet. Use "Quick add" and tick Save.</p>';
+  if (cat === "Top protein") list = TOP_PROTEIN.map(function (id) { return FOOD_BY[id]; });
+  else list = FOODS.filter(function (x) { return x.cat === cat; });
+  return list.map(function (x) { return foodRow(x, "food"); }).join("");
+}
+function bestPicks() {
+  return '<p class="small">Protein per serving, and cost where we found a price (Oct 2026, check the shelf).</p><div class="tbl"><table><thead><tr><th>Food</th><th>Serving</th><th>Protein</th><th>kcal</th></tr></thead><tbody>' +
+    [["Chicken breast", "150 g cooked", 46, 248], ["Beef biltong, lean", "50 g", 26, 125], ["Whey (USN / Evox)", "1 scoop", 23, 125], ["Futurelife High Protein", "75 g", 22.5, 246], ["Beef mince", "150 g cooked", 39, 375], ["3 large eggs", "3", 19, 216], ["Amasi", "500 ml", 16.5, 300], ["High-protein yoghurt", "175 g", 16.5, 105], ["Cottage cheese", "125 g", 11.4, 85]].map(function (r) {
+      return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td><b>' + r[2] + ' g</b></td><td>' + r[3] + '</td></tr>';
+    }).join("") + '</tbody></table></div>' +
+    '<ul><li><b>Cheapest protein we priced:</b> amasi. A 2 kg tub at about R40 gives roughly 66 g protein, around 60c per gram.</li><li><b>Whey:</b> a 2 kg tub (about R1,400) costs roughly R1 per gram of protein. Handy, but not cheaper than amasi, eggs or chicken bought in bulk.</li><li><b>Futurelife High Protein</b> is a quick breakfast with 22.5 g protein, but it is mostly carbs, so count it as a meal.</li><li><b>Watch out:</b> fruit yoghurts and flavoured milks are mostly sugar, with little protein.</li></ul>';
+}
+function foodEntryFrom(kind, id) {
+  if (kind === "combo") { var cb = COMBOS.filter(function (c) { return c.id === id; })[0]; return cb && {n: cb.n, portion: cb.desc, kcal: cb.kcal, p: cb.p, c: cb.c, f: cb.f}; }
+  var x = kind === "my" ? (S.profile.myFoods || []).filter(function (m) { return m.id === id; })[0] : FOOD_BY[id];
+  if (!x) return null;
+  var ports = kind === "my" ? [["1 portion", 1], ["½ portion", .5]] : x.portions;
+  var pt = ports[Math.min(UI.fport || 0, ports.length - 1)], qn = UI.fqty || 1, m = pt[1] * qn;
+  return {n: x.n, portion: (qn > 1 ? qn + " × " : "") + pt[0], kcal: x.kcal * m, p: x.p * m, c: x.c * m, f: x.f * m, fid: id};
+}
+function foodClick(a, b) {
+  if (a === "fopen") { var id = b.getAttribute("data-id"); UI.fopen = UI.fopen === id ? null : id; UI.fport = 0; UI.fqty = 1; UI.fdelmy = null; renderFoodList(); return true; }
+  if (a === "fport") { UI.fport = +b.getAttribute("data-i"); renderFoodList(); return true; }
+  if (a === "fqty") { UI.fqty = Math.max(1, Math.min(10, (UI.fqty || 1) + +b.getAttribute("data-d"))); renderFoodList(); return true; }
+  if (a === "fadd") {
+    var e = foodEntryFrom(b.getAttribute("data-kind"), b.getAttribute("data-id"));
+    if (e) { addFoodEntry(e); UI.fopen = null; render(true); toast("Added " + r1(e.p) + " g protein to " + (UI.fmeal || defaultMeal())); }
+    return true;
+  }
+  if (a === "fdel") {
+    var t = +b.getAttribute("data-t"), d = UI.fdate || todayStr();
+    if (UI.fdel !== t) { UI.fdel = t; render(true); return true; }
+    S.food[d].items = S.food[d].items.filter(function (it) { return it.t !== t; }); UI.fdel = null;
+    if (!S.food[d].items.length) delete S.food[d];
+    mark("food", d); render(true); return true;
+  }
+  if (a === "fmeal") { UI.fmeal = b.getAttribute("data-m"); render(true); return true; }
+  if (a === "fcat") { UI.fcat = b.getAttribute("data-c"); UI.fq = ""; UI.fopen = null; render(true); return true; }
+  if (a === "fday") {
+    var cur = dnum(UI.fdate || todayStr()) + +b.getAttribute("data-d");
+    if (cur > dnum(todayStr())) return true;
+    UI.fdate = dstr(cur); UI.fdel = null; render(true); return true;
+  }
+  if (a === "fquick") {
+    var n = $("qn").value.trim() || "Quick add", k = num($("qk").value), p = num($("qp").value), c = num($("qc").value) || 0, f = num($("qf").value) || 0;
+    if (k == null && p == null) { toast("Enter at least calories or protein"); return true; }
+    if (k == null) k = p * 4 + c * 4 + f * 9;
+    var entry = {n: n, portion: "quick add", kcal: k, p: p || 0, c: c, f: f};
+    if ($("qsave").checked) {
+      S.profile.myFoods = S.profile.myFoods || [];
+      S.profile.myFoods.push({id: "my-" + Date.now(), n: n, kcal: k, p: p || 0, c: c, f: f}); mark("profile");
+    }
+    addFoodEntry(entry); render(true); toast("Added " + n); return true;
+  }
+  if (a === "fdelmy") {
+    var mid = b.getAttribute("data-id");
+    if (UI.fdelmy !== mid) { UI.fdelmy = mid; renderFoodList(); return true; }
+    S.profile.myFoods = (S.profile.myFoods || []).filter(function (m) { return m.id !== mid; }); UI.fdelmy = null; UI.fopen = null; mark("profile"); render(true); return true;
+  }
+  if (a === "ftargets") {
+    var tg = {kcal: num($("tk").value), p: num($("tp").value), c: num($("tc").value), f: num($("tf").value)};
+    S.profile.targets = {}; ["kcal","p","c","f"].forEach(function (k2) { if (tg[k2] && tg[k2] > 0) S.profile.targets[k2] = Math.round(tg[k2]); });
+    mark("profile"); render(true); toast("Targets saved"); return true;
+  }
+  if (a === "ftreset") { S.profile.targets = {}; mark("profile"); render(true); toast("Targets reset"); return true; }
+  return false;
+}
+function renderFoodList() { var el = $("flist"); if (el) el.innerHTML = foodList(); else render(true); }
+
 function render(keepScroll) {
   var y = window.scrollY;
-  var v = UI.tab === "today" ? viewToday() : UI.tab === "plans" ? viewPlans() : UI.tab === "progress" ? viewProgress() : viewGuide();
+  var v = UI.tab === "today" ? viewToday() : UI.tab === "food" ? viewFood() : UI.tab === "plans" ? viewPlans() : UI.tab === "progress" ? viewProgress() : viewGuide();
   $("view").innerHTML = v;
   $("eyebrow").textContent = PLANS[S.profile.plan].n + " plan";
   Array.prototype.forEach.call(document.querySelectorAll("#nav button"), function (b) { b.setAttribute("aria-selected", b.getAttribute("data-tab") === UI.tab); });
@@ -804,6 +1072,7 @@ document.addEventListener("input", function (ev) {
     while (arr.length <= i) arr.push({});
     arr[i][t.getAttribute("data-f")] = t.value;
     mark("session", curKey());
+  } else if (t.id === "fsearch") { UI.fq = t.value; UI.fopen = null; renderFoodList();
   } else if (t.classList.contains("note")) { S.profile.notes[t.getAttribute("data-ex")] = t.value; mark("profile"); }
 });
 function itemFor(id, s) { return fullList(curDay(), s).filter(function (q) { return q.id === id; })[0]; }
@@ -813,6 +1082,8 @@ document.addEventListener("click", function (ev) {
   var a = b.getAttribute("data-act"), id = b.getAttribute("data-ex");
   if (a !== "clear") UI.confirmClear = false;
   if (a !== "import") UI.confirmImport = false;
+  if (a !== "fdel") UI.fdel = null;
+  if (foodClick(a, b)) return;
   if (a === "tab") { UI.tab = b.getAttribute("data-tab"); render(false); }
   else if (a === "extick") {
     var s0 = ensureSess(), it0 = itemFor(id, s0), was = exDone(it0, s0);
