@@ -10,6 +10,7 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
 
 - **Today:** shows the next workout in your plan. Each exercise is a row you tick off. Tap a row for sets, reps, rest, technique, your last numbers, what to do next time, set-by-set logging, a choice of machine, cable or dumbbell versions, and a how-to video.
 - **Equipment tags:** every exercise shows what it uses, colour-coded: Machine, Machine (plate-loaded / assisted), Cable (single / rope / bar / V-handle / double), Dumbbell, Barbell (EZ bar), Smith machine and Bodyweight. The add-exercise list can be filtered by equipment, and the kg column says "kg each" for dumbbells and "assist kg" for assisted machines.
+- **Workout:** today's workout stays put even if your phone closes the app. Tap **Change** to pick another workout from a list of cards; the choice is saved. Do the exercises in any order. Each exercise opens to three tabs: Log sets, How-to and Swap. Tap **Finish workout** whenever you're done: it asks "Done for today?", lists anything you didn't get to (saved as skipped), and shows exercises, sets, kg lifted and time. Your plan then moves on to the next workout. The app reopens on the tab and exercise you were on, and the rest timer keeps counting.
 - **Rest timer:** starts on its own when you tick a set.
 - **Plans:**
   - Full Body A/B, 3 days (start here)
