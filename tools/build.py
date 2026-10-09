@@ -9,7 +9,7 @@ head = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#05050f">
+<meta name="theme-color" content="#15181d">
 <meta name="description" content="Neon Gym: a beginner-friendly gym plan and log. Full body now, splits later, with weights, rest timer and progress tracking.">
 <title>{title} · Neon Inc™</title>
 <link rel="icon" href="icon.svg" type="image/svg+xml">

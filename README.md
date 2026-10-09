@@ -9,6 +9,7 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
 ## What it does
 
 - **Today:** shows the next workout in your plan. Each exercise is a row you tick off. Tap a row for sets, reps, rest, technique, your last numbers, what to do next time, set-by-set logging, a choice of machine, cable or dumbbell versions, and a how-to video.
+- **Equipment tags:** every exercise shows what it uses, colour-coded: Machine, Machine (plate-loaded / assisted), Cable (single / rope / bar / V-handle / double), Dumbbell, Barbell (EZ bar), Smith machine and Bodyweight. The add-exercise list can be filtered by equipment, and the kg column says "kg each" for dumbbells and "assist kg" for assisted machines.
 - **Rest timer:** starts on its own when you tick a set.
 - **Plans:**
   - Full Body A/B, 3 days (start here)
