@@ -309,6 +309,8 @@ body.locked { overflow: hidden; }
 .sheet-head h3 { font-size: 21px; }
 .sheet-head > span { width: 44px; }
 .sheet-body { overflow-y: auto; padding: 4px 16px calc(20px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 12px; overscroll-behavior: contain; }
+.sheet-body > * { flex-shrink: 0; }
+.spin { position: sticky; top: -4px; z-index: 2; margin: -4px -16px 0; padding: 4px 16px 10px; background: var(--surface); display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid var(--line); }
 .amt { display: grid; grid-template-columns: 56px 1fr 56px; gap: 10px; align-items: center; }
 .amtin { width: 100%; min-height: 64px; border: 1px solid var(--line-2); border-radius: 14px; background: var(--field); color: var(--ink); text-align: center; font-family: var(--font-display); font-size: 38px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .amtin:focus { border-color: var(--magenta); outline: none; box-shadow: 0 0 0 3px rgba(255, 43, 214, .2); }
@@ -408,6 +410,41 @@ svg.chart .bh { fill: var(--magenta); }
 .sheet.wk .field:focus-visible { outline-color: var(--cyan); }
 .sheet .btn.fd { border-color: rgba(255, 43, 214, .55); color: var(--magenta); background: rgba(255, 43, 214, .1); }
 .sheet .link.del { color: var(--eq-barbell); align-self: center; }
+/* Profile button and sheet */
+.avatar { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface); color: var(--muted); display: grid; place-items: center; padding: 0; flex: none; }
+.avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+.avatar svg, .acct .pic svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; }
+.avatar .ini, .acct .ini { font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--cyan); }
+.avatar .s { position: absolute; right: -1px; bottom: -1px; width: 11px; height: 11px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 2px var(--bg); }
+.avatar .s[data-s="saving"], .sd[data-s="saving"] { background: #ffd700; }
+.avatar .s[data-s="bad"], .sd[data-s="bad"] { background: var(--warn); }
+.acct { display: grid; grid-template-columns: 60px minmax(0, 1fr); gap: 14px; align-items: center; }
+.acct .pic { width: 60px; height: 60px; border-radius: 50%; background: var(--field); border: 1px solid var(--line-2); display: grid; place-items: center; overflow: hidden; color: var(--cyan); }
+.acct .pic img { width: 100%; height: 100%; object-fit: cover; }
+.acct .pic svg { width: 30px; height: 30px; }
+.acct .pic .ini { font-size: 28px; }
+.acct b { display: block; font-family: var(--font-display); font-size: 24px; line-height: 1.1; }
+.acct .small { display: block; margin-top: 2px; overflow-wrap: anywhere; }
+.plist { background: var(--field); border: 1px solid var(--line); border-radius: 14px; display: flex; flex-direction: column; overflow: hidden; }
+.prow { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 14px; min-height: 52px; border: 0; border-top: 1px solid var(--line); background: transparent; text-align: left; font-size: 15px; color: var(--ink); }
+.plist > .prow:first-child { border-top: 0; }
+.prow > span:first-child { min-width: 0; display: flex; flex-direction: column; }
+.prow b { font-weight: 600; }
+.prow .v { color: var(--muted); font-size: 14px; text-align: right; display: inline-flex; align-items: center; gap: 7px; }
+.prow.tap::after { content: ""; flex: none; width: 7px; height: 7px; border-right: 2px solid var(--muted); border-top: 2px solid var(--muted); transform: rotate(45deg); margin-right: 3px; }
+.sd { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--good); }
+.sd[data-s="off"] { background: var(--muted); }
+.pfoot { text-align: center; font-size: 12px; color: var(--muted); margin: 6px 0 0; line-height: 1.8; }
+.pfoot a { color: var(--muted); }
+/* Stats */
+.sumtiles i { font-size: 11px; white-space: nowrap; }
+.ptiles.wk .fh { border-color: rgba(255, 43, 214, .45); }
+.ptiles.wk .fh b { color: var(--magenta); }
+.stabs { position: sticky; top: 0; z-index: 3; }
+.chead { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.chip.xs { min-height: 32px; padding: 3px 12px; font-size: 13px; }
+.callout { border-left: 3px solid var(--cyan); background: var(--cyan-soft); border-radius: 0 10px 10px 0; padding: 10px 12px; }
+.callout p { margin: 0; font-size: 14px; }
 @media (max-width: 380px) { .calc .vol, .ptiles { grid-template-columns: 1fr 1fr; } .row4 { grid-template-columns: 1fr 1fr; } .rlab b { font-size: 28px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
@@ -417,7 +454,7 @@ svg.chart .bh { fill: var(--magenta); }
     <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 54 19v26L32 58 10 45V19z" fill="none" stroke="#00e5f4" stroke-width="4"/><path d="M19 32h26" stroke="#ff2bd6" stroke-width="5" stroke-linecap="round"/><rect x="15" y="24" width="6" height="16" rx="2" fill="#ff2bd6"/><rect x="43" y="24" width="6" height="16" rx="2" fill="#ff2bd6"/></svg>
     <div><div class="brand-t">NEON GYM</div><div class="brand-s" id="eyebrow">Full Body plan</div></div>
   </div>
-  <div class="hbtns"><div class="sync" id="sync" role="status">Loading…</div><button type="button" class="hguide" id="guideBtn" data-act="tab" data-tab="guide" aria-label="Guide: how the plan works" title="Guide"><svg viewBox="0 0 24 24"><path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 1-4-4z"/><path d="M9 9h6M9 13h6"/></svg></button></div>
+  <div class="hbtns"><button type="button" class="hguide" id="guideBtn" data-act="tab" data-tab="guide" aria-label="Guide: how the plan works" title="Guide"><svg viewBox="0 0 24 24"><path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 1-4-4z"/><path d="M9 9h6M9 13h6"/></svg></button><button type="button" class="avatar" id="profileBtn" data-act="profile" aria-label="Profile and settings" aria-haspopup="dialog"></button></div>
 </header>
 <main id="view"></main>
 <div id="sheet" class="sheet" hidden></div>
@@ -630,15 +667,18 @@ function cacheLoad() {
   try { var r = localStorage.getItem(LK); if (r) { var o = JSON.parse(r); if (o && o.profile) S = o; } } catch (e) {}
   fixProfile();
 }
-function setSync(s) {
-  var t = {local: "Saved on this phone", synced: "Saved", saving: "Saving…", error: "Not synced · kept on this phone",
-           signedout: "On this phone · Sign in to back up"}[s] || "";
-  var nu = window.NeonCloud && window.NeonCloud.user && window.NeonCloud.user();
-  if (nu && s === "synced") t = "Saved · " + (nu.name || nu.email || "").split(/[\s@]/)[0];
-  var el = $("sync"); if (el) {
-    el.textContent = t; el.className = "sync" + (s === "error" ? " bad" : "") + (s === "signedout" ? " off" : "");
-    if (window.NeonCloud && window.NeonCloud.enabled) { el.setAttribute("role", "button"); el.tabIndex = 0; el.style.cursor = "pointer"; }
-  }
+/* Save state: local | saving | synced | error | signedout. Shown as the dot on the profile button and in the profile sheet. */
+var SYNC = "local";
+function setSync(s) { SYNC = s; paintAvatar(); if (UI.sheet && UI.sheet.mode === "profile") renderSheet(); }
+function ncOn() { return window.NeonCloud && window.NeonCloud.enabled ? window.NeonCloud : null; }
+function ncUser() { var nc = ncOn(); return nc && nc.user ? nc.user() : null; }
+var PERSON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c1.2-3.6 4-5.4 7-5.4s5.8 1.8 7 5.4"/></svg>';
+function picFor(u) { return u && u.photo ? '<img src="' + esc(u.photo) + '" alt="" referrerpolicy="no-referrer">' : u ? '<span class="ini">' + esc((u.name || u.email || "?").charAt(0).toUpperCase()) + '</span>' : PERSON; }
+function paintAvatar() {
+  var b = $("profileBtn"); if (!b) return;
+  var u = ncUser(), dot = {synced: "ok", saving: "saving", error: "bad"}[SYNC];
+  b.innerHTML = picFor(u) + (dot ? '<span class="s" data-s="' + dot + '"></span>' : "");
+  b.setAttribute("aria-label", u ? "Profile: signed in as " + (u.name || u.email) : "Profile and settings");
 }
 var pending = {}, chain = Promise.resolve(), tmr = null;
 function mark(kind, key) {
@@ -715,11 +755,6 @@ function pullAll(db, id) {
 /* On neoninc.github.io: sign in with the Neon Inc account (shared with the hub and other apps). */
 function connectNeon(nc) {
   basePath = function (id) { return "users/" + id + "/gym/profile"; };
-  var el = $("sync");
-  if (el) el.addEventListener("click", function () {
-    if (!nc.user()) nc.signIn().catch(function (e) { alert("Sign-in didn't work: " + ((e && e.message) || e)); });
-    else if (confirm("Signed in as " + (nc.user().email || nc.user().name) + ".\n\nSign out on this device? Your log stays saved in your account.")) nc.signOut();
-  });
   nc.onUser(function (u) {
     if (!u) { DB = null; UID = null; setSync("signedout"); return; }
     setSync("saving");
@@ -921,14 +956,14 @@ function viewToday() {
 
 /* ---------- Resume after the phone closes the app (kept on this device only) ---------- */
 function saveUI() {
-  S.ui = {tab: UI.tab, open: UI.open, extab: UI.extab || {}, timerEnd: T.end > Date.now() ? T.end : 0, at: Date.now()};
+  S.ui = {tab: UI.tab, open: UI.open, extab: UI.extab || {}, statTab: UI.statTab || "", timerEnd: T.end > Date.now() ? T.end : 0, at: Date.now()};
   cacheSave();
 }
 function restoreUI() {
   var u = S.ui;
   if (!u || !u.at || Date.now() - u.at > 6 * 3600e3) return;
   if (["today","plans","progress","food","guide"].indexOf(u.tab) >= 0) UI.tab = u.tab;
-  UI.open = u.open || {}; UI.extab = u.extab || {};
+  UI.open = u.open || {}; UI.extab = u.extab || {}; if (u.statTab) UI.statTab = u.statTab;
   if (u.timerEnd && u.timerEnd > Date.now()) { T.end = u.timerEnd; T.fired = false; $("timerBar").hidden = false; if (!T.iv) T.iv = setInterval(tick, 250); tick(); }
 }
 
@@ -1350,29 +1385,84 @@ function chart(key, unit) {
   s += '<text x="' + L + '" y="' + (H - 6) + '">' + fmtD(pts[0].d) + '</text><text x="' + (W - R) + '" y="' + (H - 6) + '" text-anchor="end">' + fmtD(last.d) + '</text></svg>';
   return s + '<p class="small">Dots are single weigh-ins. The line is your 7-day average.</p>';
 }
-function viewProgress() {
-  var logged = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length;
-  var lastKg = Object.keys(S.body).filter(function (d) { return S.body[d].kg != null; }).sort().pop();
-  var h = '<div class="sec"><div><p class="label">Week ' + (weekIdx() + 1) + ' · ' + logged + ' session' + (logged === 1 ? "" : "s") + ' logged</p><h2>Stats</h2></div>';
-  h += '<div class="card">' + calCard() + '</div>';
-  h += '<div class="card"><h3>Exercise history</h3><p class="small">Your best set from the last session. Tap one to see every session and your strength trend.</p>' + exHistCard() + '</div>';
-  h += '<div class="card"><h3>Protein this week</h3>' + foodWeek() + '</div>';
-  h += '<div class="card"><h3>Log body numbers</h3><div class="row3"><label class="fl">Date<input class="field" id="bdate" type="date" value="' + todayStr() + '"></label><label class="fl">Weight (kg)<input class="field" id="bkg" type="text" inputmode="decimal" placeholder="' + (lastKg ? S.body[lastKg].kg : "80.0") + '"></label><label class="fl">Waist (cm)<input class="field" id="bwaist" type="text" inputmode="decimal" placeholder="at navel"></label></div>' +
-    '<p class="small">Weigh in the morning after the toilet. Measure your waist relaxed, at the navel, once a week.</p><button class="btn solid" type="button" data-act="savebody">Save entry</button></div>';
-  h += '<div class="card insight"><h3>What your numbers say</h3><p>' + insight() + '</p><p class="small">General guidance for a slow lean gain, not medical advice.</p></div>';
-  h += '<div class="card"><h3>Weight</h3>' + chart("kg", "kg") + '</div>';
-  h += '<div class="card"><h3>Waist</h3>' + chart("waist", "cm") + '</div>';
-  var ds = Object.keys(S.body).sort().reverse().slice(0, 8);
-  h += '<div class="card"><h3>Recent entries</h3>' + (ds.length ? '<div>' + ds.map(function (d) {
-    var b = S.body[d];
-    return '<div class="entry"><span>' + fmtD(d) + ' · ' + (b.kg != null ? b.kg + " kg" : "–") + ' · ' + (b.waist != null ? b.waist + " cm" : "–") + '</span><button type="button" data-act="delbody" data-d="' + d + '">' + (UI.del === d ? "Tap again to remove" : "Remove") + '</button></div>';
-  }).join("") + '</div>' : '<p class="empty">No entries yet.</p>') + '</div>';
-  h += '<div class="card"><h3>Progress photos</h3><p>Every 4 weeks: front, side and back. Same light, same time of day, relaxed pose. Keep them in one album on your phone.</p></div>';
+/* ---------- Profile sheet (top right): account, you, your data ---------- */
+function profileBody() {
+  var nc = ncOn(), u = ncUser(), me = S.profile.me || {}, tg = targets(), p = PLANS[S.profile.plan], sh = UI.sheet;
+  var STAT = {synced: u ? "Saved to your account" : "Saved", saving: "Saving…", error: "Not synced yet, kept on this phone", local: "Saved on this phone only", signedout: "Saved on this phone only"};
+  var dot = {synced: "ok", saving: "saving", error: "bad"}[SYNC] || "off";
+  var h = '<div class="acct"><span class="pic">' + picFor(u) + '</span><div><b>' + (u ? esc(u.name || "Signed in") : "Not signed in") + '</b><span class="small">' +
+    (u ? esc(u.email) : nc ? "Sign in with Google to keep your workouts and food log on every device." : DB ? "Your log is saved with your Claude account." : "Your log is saved in this browser.") + '</span></div></div>';
+  h += '<div class="plist"><div class="prow"><span>Your log</span><span class="v"><i class="sd" data-s="' + dot + '"></i>' + (STAT[SYNC] || "") + '</span></div></div>';
+  if (nc) h += u ? '<button class="btn quiet" type="button" data-act="psignout">' + (sh.confirmOut ? "Tap again to sign out on this phone" : "Sign out") + '</button><p class="small">One Neon Inc account for the hub and every Neon Inc app. Signing out keeps everything in your account.</p>'
+    : '<button class="btn solid" type="button" data-act="psignin">Sign in with Google</button><p class="small">Uses your Neon Inc account, the same one as the hub and the other Neon Inc apps. What you logged on this phone is added to your account.</p>';
+  var meTxt = me.w ? [me.sex === "f" ? "Female" : "Male", me.age, me.h + " cm", me.w + " kg", GOALS[me.goal || "lean"].n].filter(Boolean).join(" · ") : "Add your details to work out your targets";
+  h += '<p class="label">You</p><div class="plist">' +
+    '<button class="prow tap" type="button" data-act="sheet" data-m="targets"><span><b>Body and goal</b><span class="small">' + esc(meTxt) + '</span></span></button>' +
+    '<button class="prow tap" type="button" data-act="sheet" data-m="targets"><span><b>Daily targets</b><span class="small">' + tg.kcal + ' kcal · ' + tg.p + ' g protein</span></span></button>' +
+    '<button class="prow tap" type="button" data-act="ptab" data-tab="plans"><span><b>Plan</b><span class="small">' + esc(p.n) + ' · ' + p.perWeek + ' days a week</span></span></button></div>';
+  var nW = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length, nF = Object.keys(S.food).filter(function (d) { return foodDay(d).length; }).length, nB = Object.keys(S.body).length;
+  h += '<p class="label">Your data</p><div class="plist"><div class="prow"><span>Logged</span><span class="v">' + nW + ' workout' + (nW === 1 ? "" : "s") + ' · ' + nF + ' food day' + (nF === 1 ? "" : "s") + ' · ' + nB + ' weigh-in' + (nB === 1 ? "" : "s") + '</span></div></div>';
   h += '<details class="fold" data-k="backup"' + (UI.open.backup ? " open" : "") + '><summary>Back up or move your log</summary><div class="in">' +
-    '<p class="small">Your log is saved in this browser. Copy a backup code and keep it in your notes, or paste a code from another phone to load it here.</p>' +
+    '<p class="small">' + (u ? "Your log is already saved in your account. " : "") + 'Copy a backup code and keep it in your notes, or paste a code from another phone to load it here.</p>' +
     '<button class="btn" type="button" data-act="export">Copy backup code</button>' +
     '<textarea class="field" id="impcode" placeholder="Paste a backup code here" aria-label="Backup code"></textarea>' +
     '<button class="btn quiet" type="button" data-act="import">' + (UI.confirmImport ? "Tap again to replace this log" : "Load backup code") + '</button></div></details>';
+  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
+  return {title: "Profile", body: h};
+}
+
+/* ---------- Stats: summary, then Training / Body / Food ---------- */
+function weekStreak() {
+  var wk = {}; Object.keys(S.sessions).forEach(function (k) { var s = S.sessions[k]; if (hasDone(s)) wk[monNum(s.date)] = 1; });
+  var m = monNum(todayStr()), n = 0;
+  if (!wk[m]) m -= 7;
+  while (wk[m]) { n++; m -= 7; }
+  return n;
+}
+function lastWeigh() {
+  var ds = Object.keys(S.body).filter(function (d) { return S.body[d].kg != null; }).sort();
+  if (!ds.length) return null;
+  var d = ds[ds.length - 1], kg = S.body[d].kg, before = ds.filter(function (x) { return dnum(x) <= dnum(d) - 7; }).pop();
+  return {d: d, kg: kg, diff: before ? r1(kg - S.body[before].kg) : null};
+}
+function statSummary() {
+  var p = PLANS[S.profile.plan], cnt = sessionsThisWeek(), st = weekStreak(), lw = lastWeigh(), g = targets(), end = dnum(todayStr()), ps = [];
+  for (var i = 0; i < 7; i++) { var its = foodDay(dstr(end - i)); if (its.length) ps.push(totals(its).p); }
+  var avgP = ps.length ? r0(ps.reduce(function (a, b) { return a + b; }, 0) / ps.length) : null;
+  return '<div class="ptiles wk sumtiles">' +
+    '<div class="hi"><span>Week</span><b>' + cnt + '<small>/' + p.perWeek + '</small></b><i>workouts</i></div>' +
+    '<div><span>Streak</span><b>' + st + '</b><i>week' + (st === 1 ? "" : "s") + '</i></div>' +
+    '<div><span>Weight</span><b>' + (lw ? r1(lw.kg) : "–") + (lw ? '<small>kg</small>' : "") + '</b><i>' + (lw && lw.diff != null ? (lw.diff > 0 ? "+" : "") + lw.diff + " in a week" : lw ? fmtD(lw.d) : "not logged") + '</i></div>' +
+    '<div class="fh"><span>Protein</span><b>' + (avgP != null ? avgP + '<small>g</small>' : "–") + '</b><i>' + (avgP != null ? "avg · goal " + g.p : "no food yet") + '</i></div></div>';
+}
+function viewProgress() {
+  var logged = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length, tab = UI.statTab || "training";
+  var h = '<div class="sec"><div><p class="label">Week ' + (weekIdx() + 1) + ' · ' + logged + ' workout' + (logged === 1 ? "" : "s") + ' logged</p><h2>Stats</h2></div>';
+  h += statSummary();
+  h += '<div class="extabs stabs" role="tablist" aria-label="Stats sections">' + [["training", "Training"], ["body", "Body"], ["food", "Food"]].map(function (t) {
+    return '<button type="button" role="tab" data-act="stab" data-v="' + t[0] + '" aria-selected="' + (tab === t[0]) + '">' + t[1] + '</button>';
+  }).join("") + '</div>';
+  if (tab === "training") {
+    h += '<div class="card">' + calCard() + '</div>';
+    h += '<div class="card"><h3>Exercise history</h3><p class="small">Your best set last time and the change since your first session. Tap one for every session and a strength chart.</p>' + exHistCard() + '</div>';
+  } else if (tab === "body") {
+    var lastKg = Object.keys(S.body).filter(function (d) { return S.body[d].kg != null; }).sort().pop(), key = UI.bchart || "kg";
+    h += '<div class="card"><h3>Log weight and waist</h3><div class="row3"><label class="fl">Date<input class="field" id="bdate" type="date" value="' + todayStr() + '" max="' + todayStr() + '"></label><label class="fl">Weight (kg)<input class="field" id="bkg" type="text" inputmode="decimal" placeholder="' + (lastKg ? S.body[lastKg].kg : "80.0") + '"></label><label class="fl">Waist (cm)<input class="field" id="bwaist" type="text" inputmode="decimal" placeholder="at navel"></label></div>' +
+      '<button class="btn solid" type="button" data-act="savebody">Save</button><p class="small">Weigh in the morning after the toilet, 3 or more times a week. Measure your waist relaxed, at the navel, once a week.</p></div>';
+    h += '<div class="card"><div class="chead"><h3>Trend</h3><div class="chips">' + [["kg", "Weight"], ["waist", "Waist"]].map(function (c) { return '<button class="chip xs" type="button" data-act="bchart" data-v="' + c[0] + '" aria-pressed="' + (key === c[0]) + '">' + c[1] + '</button>'; }).join("") + '</div></div>' +
+      chart(key, key === "kg" ? "kg" : "cm") + '<div class="callout insight"><p>' + insight() + '</p></div><p class="small">General guidance, not medical advice.</p></div>';
+    var ds = Object.keys(S.body).sort().reverse();
+    h += '<details class="fold" data-k="bentries"' + (UI.open.bentries ? " open" : "") + '><summary>All entries · ' + ds.length + '</summary><div class="in">' + (ds.length ? '<div>' + ds.slice(0, 30).map(function (d) {
+      var b = S.body[d];
+      return '<div class="entry"><span>' + fmtD(d) + ' · ' + (b.kg != null ? b.kg + " kg" : "–") + ' · ' + (b.waist != null ? b.waist + " cm" : "–") + '</span><button type="button" data-act="delbody" data-d="' + d + '">' + (UI.del === d ? "Tap again to remove" : "Remove") + '</button></div>';
+    }).join("") + '</div>' : '<p class="empty">No entries yet.</p>') + '</div></details>';
+    h += '<p class="small"><b>Progress photos:</b> every 4 weeks, front, side and back, same light and time of day. Keep them in one album on your phone.</p>';
+  } else {
+    var g = targets();
+    h += '<div class="card"><h3>Protein this week</h3>' + foodWeek() + '</div>';
+    h += '<div class="plist"><button class="prow tap" type="button" data-act="sheet" data-m="targets"><span><b>Your daily targets</b><span class="small">' + g.kcal + ' kcal · ' + g.p + ' g protein · ' + g.c + ' g carbs · ' + g.f + ' g fat</span></span></button>' +
+      '<button class="prow tap" type="button" data-act="tab" data-tab="food"><span><b>Food log</b><span class="small">Add what you ate today</span></span></button></div>';
+  }
   return h + '</div>';
 }
 
@@ -1415,7 +1505,8 @@ function viewGuide() {
 
 /* ---------- Food: calorie and protein counter ---------- */
 /* Values per "base" amount (100 g, 100 ml or 1 item). SA products: pack labels via brand sites, Open Food Facts and FatSecret South Africa.
-   Plain whole foods (eggs, fresh meat, rice, fruit) use USDA FoodData Central averages. a = extra search words. */
+   Plain whole foods (eggs, fresh meat, rice, fruit) use USDA FoodData Central averages. a = extra search words.
+   Sources for the takeaway, pizza, snack and drink items: tools/food-sources.md */
 var FOODS = [];
 function fd(id, n, cat, base, kcal, p, c, f, portions, note, a) { FOODS.push({id: id, n: n, cat: cat, base: base, kcal: kcal, p: p, c: c, f: f, portions: portions, note: note || "", a: a || ""}); }
 // Breakfast & cereals
@@ -1475,14 +1566,14 @@ fd("butternut", "Butternut, cooked", "Bread & starch", "100 g", 40, 0.9, 10.5, 0
 fd("mealie", "Mealie (corn on the cob)", "Bread & starch", "1 cob", 96, 3.4, 21, 1.5, [["1 cob", 1], ["2 cobs", 2]], "Generic value.", "corn mielie");
 fd("beans", "Baked beans in tomato sauce (Koo)", "Bread & starch", "100 g", 99, 5.1, 16, 1, [["½ can 205 g", 2.05], ["full can 410 g", 4.1], ["100 g", 1]], "", "");
 fd("chakalaka", "Chakalaka (Koo)", "Bread & starch", "100 g", 96, 2.7, 12.4, 3.2, [["2 tbsp 50 g", .5], ["½ can 205 g", 2.05]], "", "relish");
-// Snacks & bars
-fd("trust-bar", "Protein bar (USN Trust)", "Snacks & bars", "1 bar 58 g", 220, 22, 20, 7, [["1 bar", 1]], "", "protein bar usn");
-fd("fl-bar", "High Protein bar (Futurelife)", "Snacks & bars", "1 bar 50 g", 168, 12.5, 14, 6.5, [["1 bar", 1]], "", "protein bar");
-fd("pb", "Peanut butter (Black Cat smooth)", "Snacks & bars", "100 g", 550, 23.2, 24, 38, [["1 tbsp 16 g", .16], ["2 tbsp 32 g", .32]], "Very high in calories, so easy for gaining.", "peanutbutter");
-fd("peanuts", "Peanuts, roasted & salted", "Snacks & bars", "100 g", 585, 24, 21.5, 49.7, [["handful 30 g", .3], ["50 g", .5]], "Generic value.", "nuts");
-fd("simba", "Chips, Simba salt & vinegar 36 g", "Snacks & bars", "1 packet 36 g", 190, 2.7, 17, 12.6, [["1 small packet", 1]], "", "crisps");
-fd("barone", "Bar One (Nestlé)", "Snacks & bars", "1 bar 52 g", 241, 2.3, 35, 9.9, [["1 bar", 1]], "", "chocolate");
-fd("lunchbar", "Lunch Bar (Cadbury)", "Snacks & bars", "1 bar 48 g", 254, 3, 29.2, 12.5, [["1 bar", 1]], "", "chocolate");
+// Bars, chips and nuts
+fd("trust-bar", "Protein bar (USN Trust)", "Bars & sweets", "1 bar 58 g", 220, 22, 20, 7, [["1 bar", 1]], "", "protein bar usn");
+fd("fl-bar", "High Protein bar (Futurelife)", "Bars & sweets", "1 bar 50 g", 168, 12.5, 14, 6.5, [["1 bar", 1]], "", "protein bar");
+fd("pb", "Peanut butter (Black Cat smooth)", "Extras", "100 g", 550, 23.2, 24, 38, [["1 tbsp 16 g", .16], ["2 tbsp 32 g", .32]], "Very high in calories, so easy for gaining.", "peanutbutter");
+fd("peanuts", "Peanuts, roasted & salted", "Chips & nuts", "100 g", 585, 24, 21.5, 49.7, [["handful 30 g", .3], ["50 g", .5]], "Generic value.", "nuts");
+fd("simba", "Chips, Salt & Vinegar (Simba)", "Chips & nuts", "1 packet 36 g", 190, 2.7, 17, 12.6, [["small packet 36 g", 1], ["big packet 120 g", 3.33]], "", "simba crisps chips salt vinegar");
+fd("barone", "Bar One (Nestlé)", "Bars & sweets", "1 bar 52 g", 241, 2.3, 35, 9.9, [["1 bar", 1]], "", "chocolate");
+fd("lunchbar", "Lunch Bar (Cadbury)", "Bars & sweets", "1 bar 48 g", 254, 3, 29.2, 12.5, [["1 bar", 1]], "", "chocolate");
 // Fruit
 fd("orange", "Orange, medium", "Fruit", "1 orange", 62, 1.2, 15.4, 0.2, [["1", 1], ["2", 2]], "", "lemoen");
 fd("naartjie", "Naartjie", "Fruit", "1 naartjie", 47, 0.7, 11.8, 0.3, [["1", 1], ["2", 2]], "", "mandarin tangerine");
@@ -1491,15 +1582,15 @@ fd("apple", "Apple, medium", "Fruit", "1 apple", 95, 0.5, 25, 0.3, [["1", 1]], "
 fd("grapes", "Grapes", "Fruit", "100 g", 69, 0.7, 18, 0.2, [["1 cup 150 g", 1.5], ["100 g", 1]], "", "druiwe");
 fd("mango", "Mango", "Fruit", "100 g", 60, 0.8, 15, 0.4, [["1 cup 165 g", 1.65], ["1 whole ≈300 g", 3]], "", "");
 fd("avo", "Avocado", "Fruit", "100 g", 160, 2, 8.5, 14.7, [["½ avo ≈70 g", .7], ["1 avo ≈140 g", 1.4]], "", "avo");
-// Extras & drinks
-fd("butter", "Butter or margarine", "Extras & drinks", "10 g", 72, 0.1, 0, 8.1, [["1 tsp on bread 5 g", .5], ["10 g", 1]], "Margarine is a little lower.", "rama spread");
-fd("mayo", "Mayonnaise", "Extras & drinks", "1 tbsp 14 g", 94, 0.1, 0.1, 10.3, [["1 tbsp", 1], ["2 tbsp", 2]], "", "mayo");
-fd("oil", "Cooking oil", "Extras & drinks", "1 tbsp 14 g", 124, 0, 0, 14, [["1 tbsp", 1], ["2 tbsp", 2]], "Count the oil you cook with.", "sunflower sunfoil");
-fd("sugar", "Sugar", "Extras & drinks", "1 tsp 4 g", 16, 0, 4, 0, [["1 tsp", 1], ["2 tsp", 2], ["3 tsp", 3]], "", "tea coffee");
-fd("honey", "Honey", "Extras & drinks", "1 tbsp 21 g", 64, 0.1, 17.3, 0, [["1 tsp", .33], ["1 tbsp", 1]], "", "heuning");
-fd("jam", "Jam", "Extras & drinks", "1 tbsp 20 g", 56, 0.1, 13.8, 0, [["1 tbsp", 1]], "", "konfyt");
-fd("ricoffy", "Ricoffy (Nescafé), 1 tsp", "Extras & drinks", "1 serving 2.7 g", 10, 0.2, 2, 0, [["1 cup", 1], ["2 cups", 2]], "Add milk and sugar separately.", "coffee");
-fd("cola", "Cola, regular 330 ml", "Extras & drinks", "1 can 330 ml", 139, 0, 35, 0, [["1 can", 1], ["500 ml bottle", 1.52]], "Generic value.", "coke coca-cola soft drink cooldrink");
+// Extras and drinks
+fd("butter", "Butter or margarine", "Extras", "10 g", 72, 0.1, 0, 8.1, [["1 tsp on bread 5 g", .5], ["10 g", 1]], "Margarine is a little lower.", "rama spread");
+fd("mayo", "Mayonnaise", "Extras", "1 tbsp 14 g", 94, 0.1, 0.1, 10.3, [["1 tbsp", 1], ["2 tbsp", 2]], "", "mayo");
+fd("oil", "Cooking oil", "Extras", "1 tbsp 14 g", 124, 0, 0, 14, [["1 tbsp", 1], ["2 tbsp", 2]], "Count the oil you cook with.", "sunflower sunfoil");
+fd("sugar", "Sugar", "Extras", "1 tsp 4 g", 16, 0, 4, 0, [["1 tsp", 1], ["2 tsp", 2], ["3 tsp", 3]], "", "tea coffee");
+fd("honey", "Honey", "Extras", "1 tbsp 21 g", 64, 0.1, 17.3, 0, [["1 tsp", .33], ["1 tbsp", 1]], "", "heuning");
+fd("jam", "Jam", "Extras", "1 tbsp 20 g", 56, 0.1, 13.8, 0, [["1 tbsp", 1]], "", "konfyt");
+fd("ricoffy", "Ricoffy (Nescafé), 1 tsp", "Drinks", "1 serving 2.7 g", 10, 0.2, 2, 0, [["1 cup", 1], ["2 cups", 2]], "Add milk and sugar separately.", "coffee");
+fd("cola", "Coca-Cola Original, 300 ml can", "Drinks", "1 can 300 ml", 127, 0, 31.8, 0, [["1 can 300 ml", 1], ["440 ml can", 1.47], ["500 ml bottle", 1.67], ["1 glass 250 ml", .83]], "Full sugar. SA cans are 300 ml.", "coke coca-cola soft drink cooldrink soda original");
 // Takeaways
 fd("bigmac", "Big Mac (McDonald's SA)", "Takeaways", "1 burger", 543, 27, 46.8, 26.7, [["1", 1]], "", "mcdonalds burger");
 fd("chickenbigmac", "Chicken Big Mac (McDonald's SA)", "Takeaways", "1 burger", 989, 33.7, 74.5, 47.7, [["1", 1]], "", "mcdonalds burger");
@@ -1507,6 +1598,137 @@ fd("mcchicken", "McChicken (McDonald's SA)", "Takeaways", "1 burger", 432, 17.6,
 fd("mcfries", "Fries, medium (McDonald's SA)", "Takeaways", "1 medium", 334, 5.1, 40, 16.3, [["1 medium", 1]], "", "mcdonalds chips");
 fd("nandos-breast", "Nando's ¼ chicken breast", "Takeaways", "1 quarter 199 g", 329, 44.3, 0, 16.8, [["1 quarter", 1], ["½ chicken (≈2 quarters)", 2]], "Plain chicken only. Add sides separately.", "nandos peri-peri");
 fd("kingsteer", "King Steer burger (Steers)", "Takeaways", "1 burger", 654, 49.1, 28, 38.9, [["1", 1]], "", "steers burger");
+// Pizza and takeaways
+fd("pz-debs-meaty", "Something Meaty, 1 slice (Debonairs, large)", "Pizza", "1 slice", 185, 11.4, 20, 7, [["1 slice", 1], ["2 slices", 2], ["3 slices", 3], ["whole large (8 slices)", 8]], "Large pizza has 8 slices.", "debonairs debs pizza meaty something meaty");
+fd("pz-debs-triple-meat", "Triple-Decker Meaty, 1 slice (Debonairs)", "Pizza", "1 slice", 354, 18.5, 39.2, 13.7, [["1 slice", 1], ["2 slices", 2], ["3 slices", 3]], "Large size.", "debonairs debs pizza triple decker tripledecker meat meaty");
+fd("pz-debs-triple-chicken", "Triple-Decker Chicken, 1 slice (Debonairs)", "Pizza", "1 slice", 347, 17.9, 41, 12.4, [["1 slice", 1], ["2 slices", 2], ["3 slices", 3]], "Large size.", "debonairs debs pizza triple decker tripledecker chicken");
+fd("pz-debs-hawaiian", "Hawaiian, 1 slice (Debonairs, large)", "Pizza", "1 slice", 159, 9.3, 18, 5.8, [["1 slice", 1], ["2 slices", 2], ["3 slices", 3], ["whole large (8 slices)", 8]], "Large pizza has 8 slices.", "debonairs debs pizza hawaiian ham pineapple");
+fd("pz-debs-margherita", "Margherita, 1 slice (Debonairs, standard)", "Pizza", "1 slice", 95, 5.2, 11, 3.5, [["1 slice", 1], ["2 slices", 2], ["3 slices", 3], ["whole standard (6 slices)", 6]], "Standard pizza has 6 slices.", "debonairs debs pizza margherita margarita cheese");
+fd("pz-debs-regina", "Regina pizza, per 100 g (Debonairs)", "Pizza", "100 g", 237, 13.9, 27, 8.3, [["100 g", 1], ["200 g", 2], ["300 g", 3]], "", "debonairs debs pizza regina ham mushroom");
+fd("pz-romans-sweet-chilli", "Sweet Chilli Chicken, slice (Roman's, large)", "Pizza", "1 slice", 239, 14.4, 22.9, 10, [["1 slice", 1], ["2 slices", 2], ["3 slices", 3]], "", "romans roman's pizza sweet chilli chicken");
+fd("pz-romans-four-in-one", "Four in One, 1 slice (Roman's, large)", "Pizza", "1 slice", 239, 14.7, 21.1, 10.6, [["1 slice", 1], ["2 slices", 2], ["3 slices", 3]], "", "romans roman's pizza four in one 4 in 1");
+fd("pz-woolies-margherita", "Margherita pizza, per 100 g (Woolworths)", "Pizza", "100 g", 253, 10.8, 31, 9.8, [["100 g", 1], ["200 g", 2], ["300 g", 3]], "", "woolworths woolies pizza margherita supermarket frozen");
+fd("pz-cheese", "Pizza slice, cheese/margherita (generic)", "Pizza", "1 slice 107 g", 285, 12.2, 35.6, 10.4, [["1 slice", 1], ["2 slices", 2], ["3 slices", 3]], "Generic value.", "pizza slice cheese margherita margarita takeaway");
+fd("pz-meat", "Pizza slice, meat/pepperoni (generic)", "Pizza", "1 slice 111 g", 313, 13, 35.5, 13.2, [["1 slice", 1], ["2 slices", 2], ["3 slices", 3]], "Generic value.", "pizza slice meat pepperoni salami takeaway");
+fd("kfc-breast", "Chicken breast piece (KFC)", "Takeaways", "1 piece 163 g", 360, 34, 11, 21, [["1 piece", 1], ["2 pieces", 2]], "", "kfc original recipe chicken piece bucket breast");
+fd("kfc-thigh", "Chicken thigh piece (KFC)", "Takeaways", "1 piece 105 g", 280, 17, 4, 20, [["1 piece", 1], ["2 pieces", 2], ["3 pieces", 3]], "", "kfc original recipe chicken piece bucket thigh");
+fd("kfc-streetwise2", "Streetwise 2 with chips (KFC)", "Takeaways", "1 meal", 510, 28.8, 36, 26.4, [["1 meal", 1]], "", "kfc streetwise two 2 chips meal");
+fd("kfc-streetwise2-pap", "Streetwise 2 with pap (KFC)", "Takeaways", "1 meal", 578, 31.8, 57, 23.3, [["1 meal", 1]], "With regular pap.", "kfc streetwise two 2 pap meal");
+fd("kfc-zinger", "Zinger burger (KFC)", "Takeaways", "1 burger", 444, 33.8, 34, 18.1, [["1 burger", 1]], "Burger only, no chips or drink.", "kfc zinger burger spicy chicken");
+fd("kfc-dunked-wings", "Dunked Wings, 4 wings (KFC)", "Takeaways", "1 serving", 409, 23.2, 21, 25.3, [["4 wings", 1], ["8 wings", 2]], "", "kfc dunked wings sticky");
+fd("kfc-chips", "Chips, regular (KFC)", "Takeaways", "1 regular", 300, 5.6, 33, 15, [["1 regular", 1]], "", "kfc chips fries regular");
+fd("kfc-pops", "Pops, large (KFC)", "Takeaways", "1 large", 361, 34.1, 20, 14.3, [["large", 1], ["small", 0.48]], "", "kfc pops popcorn chicken");
+fd("kfc-twister", "Sweet Chilli Twister (KFC)", "Takeaways", "1 wrap 200 g", 294, 26.8, 21, 11.1, [["1 wrap", 1]], "", "kfc twister wrap sweet chilli");
+fd("steers-burger", "Steers burger, beef (Steers)", "Takeaways", "1 burger 185 g", 360, 25.1, 27, 16.8, [["1 burger", 1]], "", "steers original burger beef flame grilled");
+fd("wimpy-burger", "Wimpy burger (Wimpy)", "Takeaways", "1 burger", 421, 25.3, 33, 19.4, [["1 burger", 1]], "", "wimpy burger beef");
+fd("wimpy-cheese", "Cheese burger (Wimpy)", "Takeaways", "1 burger", 508, 29.4, 34, 24.8, [["1 burger", 1]], "", "wimpy cheeseburger cheese burger beef");
+fd("wimpy-cheese-tomato", "Cheese & tomato sandwich (Wimpy)", "Takeaways", "1 sandwich", 368, 13.8, 31.1, 20.1, [["1 sandwich", 1]], "", "wimpy toasted toastie cheese tomato sandwich");
+fd("wimpy-early-bird", "Early Bird breakfast (Wimpy)", "Takeaways", "1 plate", 503, 26.8, 19, 35.5, [["1 plate", 1]], "", "wimpy breakfast early bird eggs bacon");
+fd("nandos-chips", "PERi-PERi chips, per 100 g (Nando's)", "Takeaways", "100 g", 203, 3, 27, 10, [["100 g", 1], ["150 g", 1.5], ["200 g", 2]], "Same values as plain chips.", "nandos peri peri chips fries side");
+fd("nandos-rice", "Spicy rice, single side (Nando's)", "Takeaways", "1 side 150 g", 225, 4.5, 38.9, 4.7, [["1 single side", 1], ["2 sides", 2]], "", "nandos spicy rice side");
+fd("nandos-wrap", "Chicken wrap (Nando's)", "Takeaways", "1 wrap 270 g", 409, 35.1, 37.8, 13.5, [["1 wrap", 1]], "", "nandos chicken wrap peri peri");
+fd("mc-qpc", "Quarter Pounder with Cheese (McDonald's SA)", "Takeaways", "1 burger", 440, 26.1, 37.2, 19.9, [["1 burger", 1]], "", "mcdonalds mcd maccies quarter pounder qpc cheese burger");
+fd("mc-cheeseburger", "Cheeseburger (McDonald's SA)", "Takeaways", "1 burger", 324, 16.1, 33.4, 13.5, [["1 burger", 1], ["2 burgers", 2]], "", "mcdonalds mcd maccies cheeseburger cheese burger");
+fd("mc-nuggets6", "Chicken McNuggets, 6 pc (McDonald's SA)", "Takeaways", "1 box", 238, 15.8, 14.3, 12.6, [["4 pc", 0.667], ["6 pc", 1], ["12 pc", 2]], "", "mcdonalds mcd maccies mcnuggets nuggets chicken");
+fd("mc-mcflurry", "Oreo McFlurry (McDonald's SA)", "Takeaways", "1 serving", 344, 6, 54, 11, [["1 McFlurry", 1]], "", "mcdonalds mcd maccies mcflurry oreo ice cream dessert");
+fd("spur-cheddamelt", "Cheddamelt burger + chips, 100 g (Spur)", "Takeaways", "100 g", 205, 7.9, 13, 12.9, [["100 g", 1], ["300 g", 3], ["500 g", 5]], "Spur gives per-100 g values only. Pepper sauce, with chips and onion rings.", "spur cheddamelt burger chips onion rings");
+fd("slap-chips", "Slap chips, shop fries (generic)", "Takeaways", "100 g", 312, 3.4, 41.4, 14.7, [["100 g", 1], ["200 g", 2], ["300 g", 3]], "Generic value.", "slap chips fries hot chips shop chippies");
+fd("fried-wings", "Fried chicken wings, no bone (generic)", "Takeaways", "100 g", 321, 26.1, 2.4, 22.2, [["100 g", 1], ["1 wing (about 19 g)", 0.19], ["6 wings (about 115 g)", 1.14]], "Generic value.", "chicken licken hotwings hot wings fried wings");
+// Chips, nuts and sweets
+fd("ch-simba-chutney", "Chips, Mrs H.S. Balls Chutney (Simba)", "Chips & nuts", "100 g", 527, 7.4, 46, 35, [["small packet 36 g", .36], ["big packet 120 g", 1.2], ["handful 30 g", .3]], "", "simba crisps chips chutney mrs balls fruit chutney");
+fd("ch-simba-cheese-onion", "Chips, Cheese & Onion (Simba)", "Chips & nuts", "100 g", 528, 7.5, 47.2, 35, [["small packet 36 g", .36], ["big packet 120 g", 1.2], ["handful 30 g", .3]], "", "simba crisps chips cheese onion");
+fd("ch-simba-tomato", "Chips, Tomato Sauce (Simba)", "Chips & nuts", "100 g", 528, 7.5, 47.2, 35, [["small packet 36 g", .36], ["big packet 120 g", 1.2], ["handful 30 g", .3]], "", "simba crisps chips tomato sauce");
+fd("ch-lays-salted", "Chips, Salted (Lay's)", "Chips & nuts", "100 g", 528, 7.5, 47.2, 35, [["small packet 36 g", .36], ["big packet 120 g", 1.2], ["handful 30 g", .3]], "", "lays lay's crisps chips salted lightly salted plain");
+fd("ch-lays-spring-onion", "Chips, Spring Onion & Cheese (Lay's)", "Chips & nuts", "100 g", 527, 7.4, 46, 35, [["small packet 36 g", .36], ["big packet 120 g", 1.2], ["handful 30 g", .3]], "", "lays lay's crisps chips spring onion cheese");
+fd("ch-doritos-sweet-chilli", "Doritos, Sweet Chilli Pepper", "Chips & nuts", "100 g", 465, 6.7, 63, 20.7, [["small packet 45 g", .45], ["handful 30 g", .3]], "", "doritos corn chips tortilla nachos sweet chilli pepper");
+fd("ch-niknaks-cheese", "NikNaks, Original Cheese (Simba)", "Chips & nuts", "100 g", 525, 5.5, 58.5, 31, [["small packet 50 g", .5], ["big packet 135 g", 1.35], ["handful 30 g", .3]], "", "niknaks nik naks cheese maize snack simba");
+fd("ch-fritos-bbq", "Fritos, Barbecue (Simba)", "Chips & nuts", "100 g", 512, 6.2, 52, 31, [["small packet 25 g", .25], ["handful 30 g", .3]], "Tomato flavour is a bit lower (about 475 kcal per 100 g).", "fritos corn chips bbq barbecue simba");
+fd("ch-cheese-curls", "Cheese Curls (Willards)", "Chips & nuts", "100 g", 535, 6.2, 43, 37.9, [["handful 30 g", .3], ["bowl 50 g", .5]], "", "willards cheese curls cheas curls puffs");
+fd("ch-big-korn-bites", "Big Korn Bites (Willards)", "Chips & nuts", "100 g", 493, 5.9, 54, 27, [["small packet 25 g", .25], ["packet 50 g", .5], ["handful 30 g", .3]], "", "willards big korn bites corn chips");
+fd("ch-ghost-pops", "Ghost Pops (Simba)", "Chips & nuts", "100 g", 542, 5.8, 51, 35.2, [["handful 30 g", .3], ["big bag 100 g", 1]], "", "simba ghost pops maize snack");
+fd("ch-popcorn-plain", "Popcorn, plain (air-popped)", "Chips & nuts", "100 g", 387, 12.9, 77.8, 4.5, [["1 cup popped 8 g", .08], ["bowl 30 g", .3]], "Generic value. Popcorn made in oil is about 500 kcal per 100 g.", "popcorn plain air popped pop corn");
+fd("ch-popcorn-butter", "Popcorn, butter (microwave)", "Chips & nuts", "100 g", 518, 9.1, 55, 30.6, [["1 cup popped 14 g", .14], ["bowl 30 g", .3], ["big bowl 50 g", .5]], "Generic value. Close to movie popcorn without extra butter.", "popcorn butter microwave movie cinema pop corn");
+fd("ch-potato-chips", "Potato chips (crisps), plain", "Chips & nuts", "100 g", 535, 7, 48.8, 34.9, [["small packet 36 g", .36], ["big packet 120 g", 1.2], ["handful 30 g", .3]], "Generic value.", "chips crisps potato generic plain salted");
+fd("nt-almonds", "Almonds, raw", "Chips & nuts", "100 g", 579, 21.1, 21.6, 49.9, [["handful 30 g", .3], ["small bag 50 g", .5]], "Generic value.", "almonds nuts amandels");
+fd("nt-cashews", "Cashews, roasted & salted", "Chips & nuts", "100 g", 581, 16.8, 30.2, 47.8, [["handful 30 g", .3], ["small bag 50 g", .5]], "Generic value.", "cashews cashew nuts salted roasted");
+fd("nt-mixed-nuts", "Mixed nuts, roasted & salted", "Chips & nuts", "100 g", 594, 17.3, 25.4, 51.5, [["handful 30 g", .3], ["small bag 50 g", .5]], "Generic value. Mix with peanuts.", "mixed nuts salted roasted safari");
+fd("nt-macadamias", "Macadamia nuts", "Chips & nuts", "100 g", 718, 7.9, 13.8, 75.8, [["handful 30 g", .3], ["small bag 50 g", .5]], "Generic value.", "macadamia macadamias nuts");
+fd("nt-pistachios", "Pistachios, roasted & salted (shelled)", "Chips & nuts", "100 g", 569, 21.1, 27.6, 45.8, [["handful 30 g", .3], ["small bag 50 g", .5]], "Generic value. Weight without the shells.", "pistachios pistachio nuts");
+fd("nt-sunflower-seeds", "Sunflower seeds, roasted & salted", "Chips & nuts", "100 g", 582, 19.3, 24.1, 49.8, [["tablespoon 10 g", .1], ["handful 30 g", .3]], "Generic value. Kernels without shells.", "sunflower seeds sonneblom pitte seeds");
+fd("nt-trail-mix", "Trail mix (nuts, seeds & raisins)", "Chips & nuts", "100 g", 462, 13.8, 44.9, 29.4, [["handful 30 g", .3], ["small bag 50 g", .5]], "Generic value.", "trail mix nuts and raisins student fuel");
+fd("nt-peanuts-raisins", "Peanuts & raisins (Safari)", "Chips & nuts", "100 g", 510, 20.3, 30, 32.8, [["serving 40 g", .4], ["handful 30 g", .3]], "", "peanuts raisins nuts and raisins safari simba");
+fd("nt-raisins", "Raisins, seedless (Safari)", "Chips & nuts", "100 g", 329, 3.2, 72, 1.3, [["tablespoon 10 g", .1], ["handful 30 g", .3]], "", "raisins rosyntjies dried fruit safari sultanas");
+fd("nt-dried-mango", "Dried mango strips (Safari)", "Chips & nuts", "100 g", 305, 2.7, 68, .5, [["handful 30 g", .3], ["50 g", .5]], "", "dried mango dried fruit safari");
+fd("sw-dairy-milk", "Chocolate, Dairy Milk (Cadbury)", "Bars & sweets", "100 g", 521, 7.7, 59, 27.5, [["quarter slab 20 g", .2], ["80 g slab", .8], ["150 g slab", 1.5]], "", "cadbury dairy milk chocolate slab");
+fd("sw-kitkat", "KitKat 4-finger (Nestlé)", "Bars & sweets", "1 bar 41.5 g", 214, 2.5, 24.9, 11.2, [["1 bar (4 fingers)", 1], ["2 fingers", .5]], "", "kitkat kit kat nestle chocolate wafer");
+fd("sw-tex", "Tex (Nestlé)", "Bars & sweets", "1 bar 40 g", 199, 2.5, 24, 9.9, [["1 bar", 1], ["Tex Mini 18 g", .45]], "", "tex nestle chocolate bar wafer");
+fd("sw-ps", "PS chocolate bar (Cadbury)", "Bars & sweets", "1 bar 48 g", 250, 2.4, 29.9, 12.9, [["1 bar", 1]], "Caramilk PS is about the same.", "ps p.s. cadbury chocolate bar caramilk");
+fd("sw-aero", "Aero, milk (Nestlé)", "Bars & sweets", "100 g", 532, 7.1, 57, 30.1, [["bar 40 g", .4], ["slab 85 g", .85]], "", "aero nestle chocolate bubbly");
+fd("sw-smarties", "Smarties (Nestlé)", "Bars & sweets", "1 box 40 g", 187, 1.3, 28, 7.8, [["1 box", 1], ["mini box 17 g", .425]], "", "smarties nestle chocolate sweets");
+fd("sw-jelly-tots", "Jelly Tots (Beacon)", "Bars & sweets", "100 g", 273, .1, 68, 0, [["handful 20 g", .2], ["packet 100 g", 1]], "", "jelly tots beacon sweets lekkers jelly");
+fd("sw-chomp", "Chomp (Cadbury)", "Bars & sweets", "100 g", 516, 2.9, 66, 22.6, [["bar 23 g", .23], ["small Chomp 12 g", .12]], "", "chomp cadbury chocolate bar");
+fd("sw-tennis", "Tennis biscuit (Bakers)", "Bars & sweets", "1 biscuit 9 g", 40, .6, 6.2, 1.5, [["1 biscuit", 1], ["3 biscuits", 3], ["5 biscuits", 5]], "", "tennis biscuits bakers koekies coconut");
+fd("sw-romany-creams", "Romany Creams (Bakers)", "Bars & sweets", "1 biscuit 14.5 g", 72, .9, 9, 3.8, [["1 biscuit", 1], ["2 biscuits", 2]], "", "romany creams bakers biscuits chocolate koekies");
+fd("sw-marie", "Marie biscuit (Bakers Blue Label)", "Bars & sweets", "1 biscuit 6 g", 24, .4, 4, .8, [["2 biscuits", 2], ["4 biscuits", 4]], "", "marie biscuits blue label bakers tea biscuit koekies");
+fd("sw-choc-kits", "Choc-Kits (Bakers)", "Bars & sweets", "1 biscuit 12.5 g", 62, .8, 8.5, 3, [["1 biscuit", 1], ["2 biscuits", 2]], "", "choc kits chockits bakers chocolate biscuits koekies");
+fd("sw-eet-sum-mor", "Eet-Sum-Mor (Bakers)", "Bars & sweets", "1 biscuit 13.5 g", 63, 1, 7.5, 3.2, [["1 biscuit", 1], ["2 biscuits", 2]], "", "eet sum mor eetsummor shortbread bakers biscuits koekies");
+fd("sw-oreo", "Oreo biscuit", "Bars & sweets", "1 biscuit 9.2 g", 44, .4, 6.5, 1.8, [["1 biscuit", 1], ["3 biscuits", 3]], "", "oreo cookies biscuits chocolate");
+fd("sw-ice-cream", "Ice cream, vanilla", "Bars & sweets", "100 g", 207, 3.5, 23.6, 11, [["1 scoop 66 g", .66], ["2 scoops", 1.32]], "Generic value. One ½-cup scoop is about 66 g.", "ice cream vanilla roomys dessert");
+fd("sw-magnum", "Magnum Classic (Ola)", "Bars & sweets", "1 ice cream 100 ml", 212, 2.5, 20, 13.2, [["1 ice cream", 1]], "", "magnum ola ice cream chocolate");
+fd("sw-koeksister", "Koeksister, small (PnP)", "Bars & sweets", "1 koeksister 30 g", 112, 1.3, 20, 2.8, [["1 koeksister", 1], ["3 koeksisters", 3]], "Cocktail size. Count a big bakery one as 2 or more.", "koeksister koeksisters koesister syrup plaited pnp");
+fd("sw-doughnut", "Doughnut, glazed", "Bars & sweets", "1 doughnut 60 g", 253, 3.7, 28.7, 13.6, [["1 doughnut", 1]], "Generic value.", "doughnut donut glazed");
+fd("sw-muffin", "Muffin, blueberry (bakery)", "Bars & sweets", "100 g", 375, 4.5, 53, 16.1, [["small muffin 66 g", .66], ["large muffin ~120 g", 1.2]], "Generic value. Café muffins are often big; weigh if you can.", "muffin blueberry bakery cafe");
+fd("sw-grenade", "Protein bar (Grenade Carb Killa)", "Bars & sweets", "1 bar 60 g", 225, 20, 20, 9.5, [["1 bar", 1]], "Carbs include sugar alcohols (polyols).", "protein bar grenade carb killa");
+fd("sw-pvm-bar", "Energy bar (PVM Octane)", "Bars & sweets", "1 bar 45 g", 175, 5.3, 26, 5.4, [["1 bar", 1]], "", "energy bar pvm octane cycling running");
+// Drinks, SA favourites, meals and sides
+fd("dr-coke-nosugar", "Coca-Cola No Sugar", "Drinks", "100 ml", 0, 0, 0, 0, [["300 ml can", 3], ["440 ml can", 4.4], ["500 ml bottle", 5], ["2 L bottle", 20]], "About 1 kJ per 100 ml. Sweetened with sweeteners.", "coke zero coca-cola diet sugar free cooldrink soda");
+fd("dr-fanta", "Fanta Orange", "Drinks", "100 ml", 16, 0, 3.9, 0, [["300 ml can", 3], ["500 ml bottle", 5], ["2 L bottle", 20]], "SA recipe uses some sugar plus sweeteners.", "fanta orange cooldrink soda fizzy");
+fd("dr-sprite", "Sprite", "Drinks", "100 ml", 13, 0, 3.1, 0, [["300 ml can", 3], ["500 ml bottle", 5], ["2 L bottle", 20]], "Sugar-reduced SA recipe.", "lemonade lemon lime cooldrink soda fizzy");
+fd("dr-stoney", "Stoney Ginger Beer", "Drinks", "100 ml", 29, 0, 7.4, 0, [["300 ml can", 3], ["500 ml bottle", 5], ["2 L bottle", 20]], "", "ginger beer stoney classic cooldrink soda");
+fd("dr-creme-soda", "Creme Soda (Sparletta)", "Drinks", "100 ml", 15, 0, 3.7, 0, [["300 ml can", 3], ["500 ml bottle", 5], ["2 L bottle", 20]], "", "cream soda green sparletta cooldrink soda");
+fd("dr-iron-brew", "Iron Brew (Sparletta)", "Drinks", "100 ml", 15, 0, 3.5, 0, [["300 ml can", 3], ["500 ml bottle", 5], ["2 L bottle", 20]], "Sugar-reduced SA recipe.", "ironbrew sparletta cooldrink soda");
+fd("dr-appletiser", "Appletiser", "Drinks", "100 ml", 43, 0, 10, 0, [["330 ml can", 3.3], ["275 ml bottle", 2.75], ["1.25 L bottle", 12.5]], "100% apple juice, sparkling.", "sparkling apple juice");
+fd("dr-liqui-fruit", "Liqui-Fruit 100% juice", "Drinks", "100 ml", 54, 0.2, 12.4, 0, [["1 glass 250 ml", 2.5], ["330 ml can", 3.3], ["1 L carton", 10]], "No added sugar, but fruit sugar adds up.", "liquifruit liqui fruit juice");
+fd("dr-ceres", "Ceres 100% juice", "Drinks", "100 ml", 44, 0, 10, 0, [["200 ml box", 2], ["1 glass 250 ml", 2.5], ["1 L carton", 10]], "No added sugar, but fruit sugar adds up.", "ceres fruit juice medley whispers");
+fd("dr-oros", "Oros orange squash, undiluted", "Drinks", "100 ml", 62, 0.2, 16, 0.1, [["glass 250 ml, mixed 1+4", 0.5], ["glass 250 ml, mixed 1+3", 0.625], ["1 L jug, mixed 1+4", 2]], "Values are for undiluted Oros. Label says mix 1 part with 3 to 4 parts water.", "oros squash cordial concentrate orange juice");
+fd("dr-energade", "Energade sports drink", "Drinks", "100 ml", 19, 0.2, 4, 0.1, [["500 ml bottle", 5], ["1 L bottle", 10]], "", "energade sports drink isotonic");
+fd("dr-powerade", "Powerade sports drink", "Drinks", "100 ml", 32, 0, 8, 0, [["500 ml bottle", 5]], "Mountain Blast. Other flavours are about the same.", "powerade sports drink isotonic");
+fd("dr-monster", "Monster Energy, original", "Drinks", "100 ml", 47, 0, 12, 0, [["500 ml can", 5]], "Original green can.", "monster energy drink");
+fd("dr-redbull", "Red Bull", "Drinks", "100 ml", 46, 0, 10.8, 0, [["250 ml can", 2.5], ["355 ml can", 3.55]], "", "red bull redbull energy drink");
+fd("dr-play", "Play energy drink", "Drinks", "100 ml", 19, 0, 4.6, 0, [["500 ml can", 5]], "Original flavour.", "play power play energy drink");
+fd("dr-bos", "BOS Ice Tea", "Drinks", "100 ml", 20, 0, 5, 0, [["500 ml bottle", 5], ["1 L bottle", 10]], "Rooibos ice tea. Flavours are about the same.", "bos ice tea iced tea rooibos peach lemon");
+fd("dr-castle", "Castle Lager", "Drinks", "100 ml", 43, 0, 2, 0, [["340 ml bottle", 3.4], ["440 ml can", 4.4], ["750 ml quart", 7.5]], "5% alcohol. Most of the kcal come from alcohol.", "castle beer lager dumpie quart");
+fd("dr-castle-lite", "Castle Lite", "Drinks", "100 ml", 30, 0, 1.6, 0, [["340 ml bottle", 3.4], ["440 ml can", 4.4]], "4% alcohol. Most of the kcal come from alcohol.", "castle lite beer light lager dumpie");
+fd("dr-black-label", "Carling Black Label", "Drinks", "100 ml", 46, 0, 2, 0, [["340 ml bottle", 3.4], ["440 ml can", 4.4], ["500 ml can", 5], ["750 ml quart", 7.5]], "5.5% alcohol. Most of the kcal come from alcohol.", "black label carling beer lager zamalek quart");
+fd("dr-hansa", "Hansa Pilsener", "Drinks", "100 ml", 39, 0, 2, 0, [["340 ml bottle", 3.4], ["440 ml can", 4.4], ["750 ml quart", 7.5]], "Most of the kcal come from alcohol.", "hansa beer pilsener pils lager quart");
+fd("dr-savanna", "Savanna Dry cider", "Drinks", "100 ml", 50, 0, 3.6, 0, [["330 ml bottle", 3.3], ["500 ml can", 5]], "6% alcohol. Most of the kcal come from alcohol.", "savanna cider dry");
+fd("dr-hunters", "Hunter's Dry cider", "Drinks", "100 ml", 51, 0, 4.6, 0, [["330 ml bottle", 3.3], ["440 ml can", 4.4]], "Most of the kcal come from alcohol.", "hunters dry cider");
+fd("dr-wine-red", "Red wine, dry", "Drinks", "100 ml", 85, 0.1, 2.6, 0, [["small glass 125 ml", 1.25], ["large glass 175 ml", 1.75], ["750 ml bottle", 7.5]], "Generic value. About 13% alcohol.", "wine red merlot cabernet pinotage shiraz");
+fd("dr-wine-white", "White wine, dry", "Drinks", "100 ml", 82, 0.1, 2.6, 0, [["small glass 125 ml", 1.25], ["large glass 175 ml", 1.75], ["750 ml bottle", 7.5]], "Generic value. Sweet wines are higher.", "wine white sauvignon blanc chenin chardonnay");
+fd("dr-cappuccino", "Cappuccino, no sugar", "Drinks", "100 ml", 31, 1.7, 2.4, 1.7, [["regular cup 250 ml", 2.5], ["large cup 350 ml", 3.5]], "Generic value. Add sugar separately.", "coffee cappuccino flat white cafe vida seattle mugg bean");
+fd("sa-vetkoek", "Vetkoek, plain", "SA favourites", "1 vetkoek 80 g", 280, 7.2, 42.7, 9.5, [["1 vetkoek", 1], ["2 vetkoek", 2]], "Generic value. Size and oil vary a lot.", "vetkoek fat cake fatcake amagwinya magwinya dumpling");
+fd("sa-bunny", "Bunny chow, quarter", "SA favourites", "1 quarter 285 g", 529, 28.8, 51.4, 22.9, [["1 quarter", 1], ["half bunny", 2]], "Generic value. Varies a lot by shop; big quarters weigh more.", "bunny chow quarter curry durban mutton chicken beans");
+fd("sa-samoosa-beef", "Samoosas, beef (Checkers)", "SA favourites", "100 g", 306, 10.1, 29, 16.1, [["1 small samoosa 16 g", 0.16], ["50 g", 0.5], ["100 g", 1]], "", "samoosa samosa mince beef");
+fd("sa-samoosa-chicken", "Samoosas, chicken (Woolworths)", "SA favourites", "100 g", 281, 12.2, 26, 13.3, [["1 samoosa 16 g", 0.16], ["4 samoosas 64 g", 0.64], ["100 g", 1]], "", "samoosa samosa chicken");
+fd("sa-sausage-roll", "Sausage roll (Pieman's)", "SA favourites", "1 roll 160 g", 404, 13.9, 27, 26.7, [["1 roll", 1]], "", "sausage roll pastry pie piemans");
+fd("sa-cheese-griller", "Cheese griller (Enterprise)", "SA favourites", "1 griller 63 g", 135, 9.6, 2.5, 9.6, [["1 griller", 1], ["2 grillers", 2]], "", "cheese griller sausage grillers braai");
+fd("sa-russian", "Russian sausage (Eskort)", "SA favourites", "100 g", 228, 14.4, 2.5, 18, [["100 g", 1], ["150 g", 1.5]], "Shop Russians vary in size.", "russian sausage vienna kota chips");
+fd("sa-toastie", "Toasted cheese sandwich", "SA favourites", "1 toastie 83 g", 291, 9.2, 27.9, 15.8, [["1 toastie", 1], ["2 toasties", 2]], "Generic value.", "toasted cheese toastie grilled cheese sandwich tosti");
+fd("sa-chicken-feet", "Chicken feet, cooked", "SA favourites", "100 g", 215, 19.4, 0.2, 14.6, [["1 foot 34 g", 0.34], ["5 feet", 1.7]], "Generic value.", "chicken feet walkie talkies maotwana runaways");
+fd("sa-curry-rice", "Chicken curry & rice (Woolworths meal)", "Meals & sides", "1 meal 300 g", 312, 25.2, 33.3, 5.4, [["1 meal", 1]], "Ready meal. Home plates are often bigger.", "chicken curry rice ready meal woolies");
+fd("sa-chicken-curry", "Chicken curry, no rice", "Meals & sides", "100 g", 124, 11.5, 4.7, 6.7, [["1 serving 177 g", 1.77], ["1 cup 236 g", 2.36]], "Generic value. Add rice or pap separately.", "chicken curry");
+fd("sa-spag-bol", "Spaghetti bolognese", "Meals & sides", "100 g", 146, 7.1, 18.2, 5.1, [["1 cup 249 g", 2.49], ["big plate 400 g", 4]], "Generic value.", "spaghetti bolognaise bolognese spag bol mince pasta");
+fd("sa-beef-stew", "Beef stew with potato & veg", "Meals & sides", "100 g", 83, 6.7, 8.6, 2.3, [["1 cup 252 g", 2.52], ["big plate 400 g", 4]], "Generic value.", "beef stew potjie oxtail");
+fd("sa-mash", "Mashed potato", "Meals & sides", "100 g", 100, 1.8, 15.7, 3.5, [["half cup 105 g", 1.05], ["1 cup 210 g", 2.1]], "Generic value.", "mash mashed potatoes");
+fd("sa-coleslaw", "Coleslaw, creamy (Woolworths)", "Meals & sides", "100 g", 194, 1.6, 6, 18.3, [["2 tbsp 30 g", 0.3], ["side portion 75 g", 0.75], ["100 g", 1]], "Mayo-based. Most of the kcal come from the dressing.", "coleslaw slaw salad cabbage");
+fd("sa-potato-salad", "Potato salad (Pick n Pay)", "Meals & sides", "100 g", 171, 1.4, 14, 12.2, [["side portion 75 g", 0.75], ["100 g", 1], ["150 g", 1.5]], "", "potato salad mayo");
+fd("sa-frikkadel", "Frikkadels, beef (Pick n Pay)", "Meals & sides", "100 g", 267, 21.5, 5, 17.8, [["1 frikkadel 50 g", 0.5], ["2 frikkadels 100 g", 1], ["150 g", 1.5]], "", "frikkadel frikkadelle meatballs rissoles");
+fd("sa-livers", "Peri-peri chicken livers (Woolworths)", "Meals & sides", "100 g", 152, 8.2, 6, 10.7, [["100 g", 1], ["150 g", 1.5], ["200 g", 2]], "Livers in sauce, so protein is lower than plain livers.", "chicken livers peri peri piri piri");
+fd("sa-mac-cheese", "Macaroni and cheese", "Meals & sides", "100 g", 192, 8, 20.5, 8.6, [["1 cup 240 g", 2.4], ["150 g", 1.5]], "Generic value.", "macaroni cheese mac and cheese pasta");
+fd("sa-hake-battered", "Hake, battered (Woolworths)", "Meals & sides", "100 g", 182, 12.6, 10, 9.8, [["100 g", 1], ["150 g", 1.5], ["200 g", 2]], "Frozen battered hake.", "hake fish battered fried fish and chips");
+fd("sa-hake-fried-shop", "Fried fish fillet (Fishaways)", "Meals & sides", "1 fillet", 267, 22.4, 9, 15.2, [["1 fillet", 1], ["2 fillets", 2]], "Shop-fried fish. Chips not included.", "fried hake fish fishaways fish and chips");
+fd("sa-hake-grilled", "Hake fillet, grilled (I&J Flame Grills)", "Meals & sides", "100 g", 87, 14.1, 1, 2.9, [["100 g", 1], ["150 g", 1.5], ["200 g", 2]], "", "hake fish grilled fillet");
+fd("sa-mogodu", "Mogodu / tripe, cooked", "Meals & sides", "100 g", 94, 11.7, 2, 4.1, [["100 g", 1], ["150 g", 1.5], ["200 g", 2]], "Generic value.", "mogodu tripe ulusu matumbo offal");
 var FOOD_BY = {}; FOODS.forEach(function (x) { FOOD_BY[x.id] = x; });
 var COMBOS = [
   {id: "c-yog-crunch", n: "Yoghurt & Futurelife Crunch", desc: "175 g low fat plain yoghurt, 40 g Futurelife Crunch", parts: [["yog-lowfat", 1.75], ["futurelife-crunch", .4]]},
@@ -1525,7 +1747,7 @@ COMBOS.forEach(function (cb) {
   cb.parts.forEach(function (pt) { var x = FOOD_BY[pt[0]]; ["kcal","p","c","f"].forEach(function (k) { t[k] += x[k] * pt[1]; }); });
   cb.kcal = Math.round(t.kcal); cb.p = Math.round(t.p); cb.c = Math.round(t.c); cb.f = Math.round(t.f);
 });
-var FCATS = ["Top protein","Combos","Breakfast","Dairy & shakes","Meat & eggs","Bread & starch","Snacks & bars","Fruit","Extras & drinks","Takeaways","My foods"];
+var FCATS = ["Top protein","Combos","Breakfast","Dairy & shakes","Meat & eggs","Bread & starch","Meals & sides","SA favourites","Takeaways","Pizza","Chips & nuts","Bars & sweets","Fruit","Drinks","Extras","My foods"];
 var MEALS = ["Breakfast","Lunch","Dinner","Snacks"];
 var TOP_PROTEIN = ["whey-usn","biltong","chicken-breast","egg","amasi","yog-hp","cottage","mince","futurelife-hp","trust-bar","rotisserie","steak"];
 var DEF_TARGETS = {kcal: 2900, p: 160, c: 390, f: 75};
@@ -1647,7 +1869,9 @@ function sheetList() {
   if (q) {
     var words = q.split(/\s+/), hay = function (x) { return (x.n + " " + (x.a || "") + " " + (x.cat || "") + " " + (x.desc || "")).toLowerCase(); };
     var hit = function (x) { var hs = hay(x); return words.every(function (w) { return hs.indexOf(w) >= 0; }); };
-    var list = mine.concat(FOODS).filter(hit).sort(function (x, y) { return (x.n.toLowerCase().indexOf(q) === 0 ? 0 : 1) - (y.n.toLowerCase().indexOf(q) === 0 ? 0 : 1); });
+    /* Best matches first: name starts with it, then name has every word, then search words, then only the category */
+    var rank = function (x) { var nm = x.n.toLowerCase(); return nm.indexOf(q) === 0 ? 0 : words.every(function (w) { return nm.indexOf(w) >= 0; }) ? 1 : words.every(function (w) { return (nm + " " + (x.a || "")).toLowerCase().indexOf(w) >= 0; }) ? 2 : 3; };
+    var list = mine.concat(FOODS).filter(hit).map(function (x, i) { return {x: x, r: rank(x), i: i}; }).sort(function (a, b) { return a.r - b.r || a.i - b.i; }).map(function (o) { return o.x; });
     var cm = COMBOS.filter(hit);
     if (!list.length && !cm.length) return '<p class="empty">Nothing found. Try another word ("wors", "maas", "wrap") or <button type="button" class="link inline" data-act="sheet" data-m="custom" data-keep="1">add your own</button>.</p>';
     return list.map(function (x) { return foodRowFor(x); }).join("") + cm.map(comboRow).join("");
@@ -1668,6 +1892,7 @@ function sheetBody() {
   var sh = UI.sheet, meal = sh.meal || defaultMeal();
   if (sh.mode === "finish") return finishBody();
   if (sh.mode === "daypick") return dayPickBody();
+  if (sh.mode === "profile") return profileBody();
   if (sh.mode === "dayview") { var dt = new Date(dnum(sh.d) * 864e5); return {title: WD[dt.getUTCDay()] + " " + fmtD(sh.d), body: dayViewBody(sh.d)}; }
   if (sh.mode === "exhist") return exHistBody(sh.id, !!sh.from);
   if (sh.mode === "plannew") return planNewBody();
@@ -1676,8 +1901,8 @@ function sheetBody() {
   if (sh.mode === "add") {
     var cats = ["Recent"].concat(FCATS);
     return {title: "Add to " + meal, body:
-      '<input class="field" id="fsearch" type="search" placeholder="Search: chicken, wrap, maas, wors…" value="' + esc(sh.q || "") + '" aria-label="Search foods" autocomplete="off">' +
-      (sh.q ? "" : '<div class="hscroll">' + cats.map(function (c) { return '<button class="chip" type="button" data-act="scat" data-c="' + esc(c) + '" aria-pressed="' + ((sh.cat || "Recent") === c) + '">' + esc(c) + '</button>'; }).join("") + '</div>') +
+      '<div class="spin"><input class="field" id="fsearch" type="search" enterkeyhint="search" placeholder="Search: pizza, chicken, maas, wors…" value="' + esc(sh.q || "") + '" aria-label="Search foods" autocomplete="off">' +
+      '<div class="hscroll" id="fcats"' + (sh.q ? " hidden" : "") + '>' + cats.map(function (c) { return '<button class="chip" type="button" data-act="scat" data-c="' + esc(c) + '" aria-pressed="' + ((sh.cat || "Recent") === c) + '">' + esc(c) + '</button>'; }).join("") + '</div></div>' +
       '<div class="flist" id="flist">' + sheetList() + '</div>' +
       '<button type="button" class="btn quiet" data-act="sheet" data-m="custom" data-keep="1">Can\'t find it? Add your own</button>'};
   }
@@ -1737,7 +1962,7 @@ function renderSheet() {
   el.innerHTML = '<div class="sheet-back" data-act="sclose"></div><div class="sheet-in" role="dialog" aria-modal="true" aria-label="' + esc(b.title) + '"><div class="sheet-head">' +
     (b.back ? '<button type="button" class="iconbtn" data-act="sback" aria-label="Back">‹</button>' : '<span></span>') + '<h3>' + esc(b.title) + '</h3><button type="button" class="iconbtn" data-act="sclose" aria-label="Close">×</button></div><div class="sheet-body">' + b.body + '</div></div>';
   el.setAttribute("data-mode", UI.sheet.mode);
-  el.className = "sheet" + (["finish","daypick","dayview","exhist","plannew","planedit","exadd"].indexOf(UI.sheet.mode) >= 0 ? " wk" : "");
+  el.className = "sheet" + (["finish","daypick","dayview","exhist","plannew","planedit","exadd","profile"].indexOf(UI.sheet.mode) >= 0 ? " wk" : "");
   el.hidden = false; document.body.classList.add("locked");
   if (same) el.querySelector(".sheet-body").scrollTop = sc;
 }
@@ -1783,7 +2008,6 @@ function foodClick(a, b) {
   if (a === "sheet") {
     var m = b.getAttribute("data-m");
     openSheet({mode: m, meal: b.getAttribute("data-meal") || (sh && sh.meal) || defaultMeal(), q: "", keep: !!b.getAttribute("data-keep"), fromAdd: m === "custom" && !!sh});
-    if (m === "add") setTimeout(function () { var s = $("fsearch"); if (s && !UI.sheet.q) try { s.focus({preventScroll: true}); } catch (e) {} }, 60);
     return true;
   }
   if (a === "sclose") { closeSheet(); return true; }
@@ -1886,7 +2110,7 @@ function readMe() {
   if (!me.sex) me.sex = "m";
   return me;
 }
-function renderFoodList() { var el = $("flist"); if (el) el.innerHTML = sheetList(); }
+function renderFoodList() { var el = $("flist"), c = $("fcats"); if (el) el.innerHTML = sheetList(); if (c) c.hidden = !!(UI.sheet.q || "").trim(); }
 
 /* ---------- Stats: food this week ---------- */
 function foodWeek() {
@@ -1971,6 +2195,7 @@ document.addEventListener("input", function (ev) {
 function itemFor(id, s) { return fullList(curDay(), s).filter(function (q) { return q.id === id; })[0]; }
 document.addEventListener("keydown", function (ev) {
   if (ev.key === "Escape" && UI.sheet) closeSheet();
+  if (ev.key === "Enter" && ev.target.id === "fsearch") ev.target.blur();
   if (ev.key === "Enter" && UI.sheet && ev.target.id === "famt") { var bt = document.querySelector('[data-act="aadd"],[data-act="asave"]'); if (bt) bt.click(); }
 });
 document.addEventListener("click", function (ev) {
@@ -1983,6 +2208,15 @@ document.addEventListener("click", function (ev) {
   if (a === "tab") { UI.tab = b.getAttribute("data-tab"); if (UI.sheet) closeSheet(); render(false); saveUI(); }
   else if (a === "extab") { UI.extab = UI.extab || {}; UI.extab[id] = b.getAttribute("data-v"); saveUI(); render(true); }
   else if (a === "daypick") { openSheet({mode: "daypick"}); }
+  else if (a === "profile") { openSheet({mode: "profile"}); }
+  else if (a === "ptab") { UI.tab = b.getAttribute("data-tab"); closeSheet(); render(false); saveUI(); }
+  else if (a === "psignin") { var ncI = ncOn(); if (ncI) ncI.signIn().catch(function (e) { toast("Sign-in didn't work. " + (((e && e.message) || e) + "").slice(0, 80)); }); }
+  else if (a === "psignout") {
+    if (!UI.sheet.confirmOut) { UI.sheet.confirmOut = true; renderSheet(); return; }
+    var ncO = ncOn(); if (ncO) ncO.signOut().then(function () { toast("Signed out. Your log stays in your account."); });
+  }
+  else if (a === "stab") { UI.statTab = b.getAttribute("data-v"); render(true); saveUI(); }
+  else if (a === "bchart") { UI.bchart = b.getAttribute("data-v"); render(true); }
   else if (a === "pickday") {
     var pd = b.getAttribute("data-d"); UI.day = null;
     S.profile.todayPick = {date: todayStr(), day: pd}; mark("profile"); closeSheet(); render(false);
@@ -2067,9 +2301,10 @@ document.addEventListener("click", function (ev) {
   else if (a === "import") {
     var v = $("impcode").value;
     if (!v.trim()) { toast("Paste a backup code first"); return; }
-    if (!UI.confirmImport) { UI.confirmImport = true; var keep = v; render(true); $("impcode").value = keep; return; }
+    var redraw = function () { if (UI.sheet) renderSheet(); else render(true); };
+    if (!UI.confirmImport) { UI.confirmImport = true; var keep = v; redraw(); $("impcode").value = keep; return; }
     UI.confirmImport = false;
-    if (importCode(v)) { render(true); toast("Backup loaded"); } else toast("That code didn't work. Copy the whole code and try again.");
+    if (importCode(v)) { closeSheet(); render(true); toast("Backup loaded"); } else { redraw(); toast("That code didn't work. Copy the whole code and try again."); }
   }
   else if (a === "t15") { T.end += 15000; T.fired = false; $("timerBar").classList.remove("go"); if (!T.iv) T.iv = setInterval(tick, 250); tick(); saveUI(); }
   else if (a === "tskip") { hideTimer(); }
@@ -2078,6 +2313,7 @@ document.addEventListener("click", function (ev) {
 cacheLoad();
 restoreUI();
 setSync("local");
+paintAvatar();
 render(false);
 connect();
 if ("serviceWorker" in navigator && document.querySelector('link[rel="manifest"]')) {

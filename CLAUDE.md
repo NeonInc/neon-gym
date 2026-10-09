@@ -14,3 +14,6 @@ Neon Gym is live at https://neoninc.github.io/neon-gym/ and is one tile on the N
 - Cloud saves: on neoninc.github.io the gym signs in through the shared `/neon-cloud.js` (hub repo)
   and saves to `users/{uid}/gym/profile` (see `connectNeon` in `src/app.html`). Inside claude.ai it
   uses the artifact store instead. The script tag is added by `tools/build.py`, not `src/app.html`.
+- Sign-in lives in the Profile sheet (round button top right, `#profileBtn`, `profileBody()`); the dot on it shows
+  the save state from `setSync()`. Backup codes are in that sheet too.
+- Food values: one `fd(...)` line per food in `src/app.html`; note where new values came from in `tools/food-sources.md`.

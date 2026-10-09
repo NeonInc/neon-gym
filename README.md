@@ -21,14 +21,16 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
   Each plan shows the weekly hard sets per muscle. You can also pick any workout on any day.
 
   **My plans:** tap **Create** to build your own. Start blank or copy a plan (it keeps the versions you picked with Swap), name each workout, add exercises from the library (filter by muscle group and equipment), set the sets, reorder, and choose how many days a week you train. Your own plans work like the built-in ones: rotation, the workout picker, history and cloud saves. Deleting a plan keeps its logged workouts in your history.
-- **Food** (far right, in magenta): rings for protein and calories, then your meals. Tap **+ Add** on a meal, search a food and type exactly how much you had (grams, ml or servings) with live protein and calories. Tap a logged item to change the amount, move it to another meal or remove it. Combos split into their parts so each amount can be changed. Recent foods remember your last amount. About 80 South African foods are built in, and you can save your own.
+- **Food** (far right, in magenta): rings for protein and calories, then your meals. Tap **+ Add** on a meal, search a food and type exactly how much you had (grams, ml or servings) with live protein and calories. Tap a logged item to change the amount, move it to another meal or remove it. Combos split into their parts so each amount can be changed. Recent foods remember your last amount. About 200 South African foods are built in, and you can save your own: pizza (Debonairs, Roman's), takeaways (KFC, McDonald's, Steers, Wimpy, Nando's, Spur), chips and nuts (Simba, Lay's, NikNaks, Safari), chocolates and biscuits, cooldrinks, juice, beer and cider, and SA favourites like vetkoek, bunny chow and samoosas. The search bar and categories stay at the top while you scroll, and the keyboard only opens when you tap search. Where the values come from: `tools/food-sources.md`.
 - **Your targets:** anyone can enter sex, age, height, weight, activity and goal. The app estimates calories (Mifflin-St Jeor × activity, adjusted for the goal) and protein (1.8–2.2 g/kg by goal), and the Progress advice follows that goal.
-- **Stats:**
-  - **History calendar:** a cyan day means you trained, a magenta dot means you logged food. Tap any day to see that workout (every exercise with its sets, kg × reps, and what was skipped) and that day's food. Page back through earlier months.
-  - **Exercise history:** every exercise you've trained with your best set last time and the change since your first session. Tap one for a strength chart, your best set ever and every session's sets.
-  - Protein per day this week against your target, then log weight and waist, see 7-day average charts and a plain note on whether to eat more, less or the same.
+- **Profile** (round button, top right): sign in with Google (your Neon Inc account), see whether your log is saved, your body details and daily targets, your plan, how much you've logged, and backup codes.
+- **Stats:** four tiles at the top (workouts this week, week streak, weight, average protein), then three sections:
+  - **Training · history calendar:** a cyan day means you trained, a magenta dot means you logged food. Tap any day to see that workout (every exercise with its sets, kg × reps, and what was skipped) and that day's food. Page back through earlier months.
+  - **Training · exercise history:** every exercise you've trained with your best set last time and the change since your first session. Tap one for a strength chart, your best set ever and every session's sets.
+  - **Body:** log weight and waist, a 7-day average chart (weight or waist) and a plain note on whether to eat more, less or the same, plus all entries.
+  - **Food:** protein per day this week against your target, and your daily targets.
 - **Guide** (book button, top right): progression rules, the first 12 weeks, food (no fish needed), supplements, recovery and sources.
-- **Backup codes:** your log lives in the browser. Copy a code to back it up or move it to another phone.
+- **Backup codes** (in Profile): copy a code to back up your log or move it to another phone.
 
 ## Files
 
@@ -36,6 +38,7 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
 index.html            The app (built from src/app.html)
 src/app.html          Source: styles, markup, script and food data in one file
 tools/build.py        Wraps src/app.html into index.html
+tools/food-sources.md Where each food's values come from
 manifest.webmanifest  Install-as-app settings
 sw.js                 Offline cache
 icon.svg, icon-*.png  App icons
