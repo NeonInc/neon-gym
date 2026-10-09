@@ -15,6 +15,7 @@ head = f"""<!DOCTYPE html>
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
+<script src="../neon-cloud.js"></script>
 <style>html,body{{margin:0}}:root{{padding-top:env(safe-area-inset-top,0px)}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
 </head>
 <body>

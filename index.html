@@ -9,6 +9,7 @@
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
+<script src="../neon-cloud.js"></script>
 <style>html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -66,6 +67,8 @@ header.top { padding-block: 18px 8px; display: flex; justify-content: space-betw
 .sync { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
 .sync::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--good); margin-right: 6px; vertical-align: 1px; }
 .sync.bad::before { background: var(--warn); }
+.sync.off { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.sync.off::before { background: var(--muted); }
 
 h2 { font-family: var(--font-display); font-size: 34px; font-weight: 700; line-height: 1; margin: 2px 0 0; text-wrap: balance; letter-spacing: .01em; }
 h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; line-height: 1.15; margin: 0; }
@@ -465,6 +468,9 @@ var LK = "menlyn-log-v2";
 var S = {profile: {}, sessions: {}, body: {}, food: {}};
 var UI = {tab: "today", day: null, open: {}, del: null, addGroup: "Chest", confirmClear: false};
 var DB = null, UID = null, syncErr = false;
+/* Where a person's gym data lives. On claude.ai it's the artifact's store; on neoninc.github.io
+   it's the person's Neon Inc account (users/{uid}/gym/profile), see /neon-cloud.js. */
+var basePath = function (id) { return "data/users/" + id + "/profile"; };
 
 function fixProfile() {
   var p = S.profile || {};
@@ -490,8 +496,14 @@ function cacheLoad() {
   fixProfile();
 }
 function setSync(s) {
-  var t = {local: "Saved on this phone", synced: "Saved", saving: "Saving…", error: "Not synced · kept on this phone"}[s] || "";
-  var el = $("sync"); if (el) { el.textContent = t; el.className = "sync" + (s === "error" ? " bad" : ""); }
+  var t = {local: "Saved on this phone", synced: "Saved", saving: "Saving…", error: "Not synced · kept on this phone",
+           signedout: "On this phone · Sign in to back up"}[s] || "";
+  var nu = window.NeonCloud && window.NeonCloud.user && window.NeonCloud.user();
+  if (nu && s === "synced") t = "Saved · " + (nu.name || nu.email || "").split(/[\s@]/)[0];
+  var el = $("sync"); if (el) {
+    el.textContent = t; el.className = "sync" + (s === "error" ? " bad" : "") + (s === "signedout" ? " off" : "");
+    if (window.NeonCloud && window.NeonCloud.enabled) { el.setAttribute("role", "button"); el.tabIndex = 0; el.style.cursor = "pointer"; }
+  }
 }
 var pending = {}, chain = Promise.resolve(), tmr = null;
 function mark(kind, key) {
@@ -501,7 +513,7 @@ function mark(kind, key) {
   clearTimeout(tmr); tmr = setTimeout(flush, 700); setSync("saving");
 }
 function writeOne(k) {
-  var p = k.split("|"), base = DB.doc("data/users/" + UID + "/profile");
+  var p = k.split("|"), base = DB.doc(basePath(UID));
   if (p[0] === "profile") return base.set(JSON.parse(JSON.stringify(S.profile)));
   if (p[0] === "session") { var d = base.collection("sessions").doc(p[1]); return S.sessions[p[1]] ? d.set(JSON.parse(JSON.stringify(S.sessions[p[1]]))) : d.delete(); }
   if (p[0] === "body") { var b = base.collection("body").doc(p[1]); return S.body[p[1]] ? b.set(JSON.parse(JSON.stringify(S.body[p[1]]))) : b.delete(); }
@@ -522,8 +534,10 @@ function markAll() {
   Object.keys(S.food).forEach(function (k) { pending["food|" + k] = 1; });
   cacheSave(); clearTimeout(tmr); tmr = setTimeout(flush, 300); setSync("saving");
 }
-/* Cloud sync only exists when the page runs as a claude.ai artifact; on GitHub Pages it saves on the phone */
+/* Cloud sync: on neoninc.github.io through the Neon Inc account (connectNeon); as a claude.ai artifact through its store. Otherwise it saves on the phone. */
 function connect() {
+  var nc = window.NeonCloud;
+  if (nc && nc.enabled) { connectNeon(nc); return; }
   var cl = window.claude;
   if (!cl || !cl.use) { setSync("local"); return; }
   Promise.all([cl.use("user"), cl.use("db")]).then(function (r) {
@@ -531,8 +545,14 @@ function connect() {
     if (!user || !db) { setSync("local"); return null; }
     return user.id().then(function (id) {
       if (!id) { setSync("local"); return null; }
+      return pullAll(db, id);
+    });
+  }).catch(function () { setSync(DB ? "error" : "local"); });
+}
+/* Load the account's copy and combine it with what's on this phone, then upload anything missing. */
+function pullAll(db, id) {
       DB = db; UID = id;
-      var base = db.doc("data/users/" + id + "/profile");
+      var base = db.doc(basePath(id));
       return Promise.all([base.get(), base.collection("sessions").get(), base.collection("body").get(), base.collection("food").get()]).then(function (res) {
         var ps = res[0], ss = res[1], bs = res[2], fs = res[3], localFood = S.food || {}, remoteFood = {};
         fs.docs.forEach(function (d) { remoteFood[d.id] = JSON.parse(JSON.stringify(d.data())); });
@@ -550,8 +570,22 @@ function connect() {
         if (Object.keys(pending).length) { clearTimeout(tmr); tmr = setTimeout(flush, 300); }
         render(true);
       });
-    });
-  }).catch(function () { setSync(DB ? "error" : "local"); });
+}
+
+/* On neoninc.github.io: sign in with the Neon Inc account (shared with the hub and other apps). */
+function connectNeon(nc) {
+  basePath = function (id) { return "users/" + id + "/gym/profile"; };
+  var el = $("sync");
+  if (el) el.addEventListener("click", function () {
+    if (!nc.user()) nc.signIn().catch(function (e) { alert("Sign-in didn't work: " + ((e && e.message) || e)); });
+    else if (confirm("Signed in as " + (nc.user().email || nc.user().name) + ".\n\nSign out on this device? Your log stays saved in your account.")) nc.signOut();
+  });
+  nc.onUser(function (u) {
+    if (!u) { DB = null; UID = null; setSync("signedout"); return; }
+    setSync("saving");
+    nc.firestore().then(function (db) { return pullAll(db, u.uid); })
+      .catch(function () { setSync(DB ? "error" : "local"); });
+  });
 }
 
 /* ---------- Program logic ---------- */
