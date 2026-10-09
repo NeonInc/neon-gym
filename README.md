@@ -18,10 +18,10 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
   - Body-part pairs: Chest & Biceps, Legs, Back & Triceps, Shoulders & Arms
 
   Each plan shows the weekly hard sets per muscle. You can also pick any workout on any day.
-- **Food:** a calorie and protein counter with about 80 South African foods and portions (Futurelife, ProNutro, Weet-Bix, Clover, amasi, boerewors, biltong, droëwors, polony, viennas, Albany, Woolworths wraps, pap, samp, chakalaka, Koo, snacks and SA takeaways such as McDonald's, Nando's and Steers). Search with everyday words like "wors", "maas" or "wrap". Includes combos, quick add and saved foods.
+- **Food** (far right, in magenta): rings for protein and calories, then your meals. Tap **+ Add** on a meal, search a food and type exactly how much you had (grams, ml or servings) with live protein and calories. Tap a logged item to change the amount, move it to another meal or remove it. Combos split into their parts so each amount can be changed. Recent foods remember your last amount. About 80 South African foods are built in, and you can save your own.
 - **Your targets:** anyone can enter sex, age, height, weight, activity and goal. The app estimates calories (Mifflin-St Jeor × activity, adjusted for the goal) and protein (1.8–2.2 g/kg by goal), and the Progress advice follows that goal.
-- **Progress:** log weight and waist, see 7-day average charts and a plain note on whether to eat more, less or the same. It also tracks top weight per lift.
-- **Guide:** progression rules, the first 12 weeks, food (no fish needed), supplements, recovery and sources.
+- **Stats:** protein per day this week against your target, then log weight and waist, see 7-day average charts and a plain note on whether to eat more, less or the same. It also tracks top weight per lift.
+- **Guide** (book button, top right): progression rules, the first 12 weeks, food (no fish needed), supplements, recovery and sources.
 - **Backup codes:** your log lives in the browser. Copy a code to back it up or move it to another phone.
 
 ## Files
