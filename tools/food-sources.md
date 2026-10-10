@@ -212,3 +212,141 @@ Per-100 g macros for generic FatSecret dishes were scaled from the full-macro se
 (e.g. spaghetti bolognese 364 kcal / 249 g). No numbers were made up.
 */
 ```
+
+## Everyday meals: burgers, sandwiches, sushi, takeaway dishes, plates
+
+```
+// SOURCES (fatsecret generic entries are mostly USDA FNDDS foods; weights derived as kcal per serving / kcal per 100 g)
+// av-burger-beef: https://www.fatsecret.co.za/calories-nutrition/generic/large-hamburger-with-condiments-and-vegetables (512 kcal; 235 kcal/100 g -> 218 g)
+// av-burger-beef-small: https://www.fatsecret.co.za/calories-nutrition/generic/hamburger-on-bun (270 kcal; 290 kcal/100 g -> 93 g)
+// av-cheeseburger: https://www.fatsecret.co.nz/calories-nutrition/generic/cheeseburger-(large-single-patty-with-condiments-and-vegetables) (563 kcal; 257/100 g -> 219 g)
+// av-cheeseburger-small: https://www.fatsecret.co.za/calories-nutrition/generic/cheeseburger-(single-patty-with-condiments) (295 kcal; 261/100 g -> 113 g)
+// av-burger-double: https://www.fatsecret.co.za/calories-nutrition/generic/double-cheeseburger-on-bun (472 kcal; 299/100 g -> 158 g)
+// av-burger-chicken-crumbed: https://www.fatsecret.co.za/calories-nutrition/generic/chicken-fillet-sandwich (515 kcal; 283/100 g -> 182 g)
+// av-burger-chicken-grilled: https://www.fatsecret.co.za/calories-nutrition/generic/grilled-chicken-fillet-sandwich-with-cheese-lettuce-tomato-and-spread-on-bun (524 kcal; 229/100 g -> 229 g)
+// av-burger-veggie: https://www.fatsecret.co.nz/calories-nutrition/generic/meatless-soyburger-with-cheese-on-bun (1 serving 140 g)
+// av-hotdog: https://www.fatsecret.com.sg/calories-nutrition/generic/frankfurter-or-hot-dog-with-catsup-and-or-mustard-on-bun (1 serving 105 g)
+// av-chip-roll: https://www.fatsecret.co.za/calories-nutrition/generic/chip-sandwich (1 serving 120 g)
+// av-sandwich-chicken-mayo: https://www.fatsecret.co.za/calories-nutrition/generic/chicken-salad-or-chicken-spread-sandwich (1 serving 141 g)
+// av-sandwich-ham-cheese: https://www.fatsecret.co.za/calories-nutrition/generic/ham-and-cheese-sandwich (352 kcal; 241/100 g -> 146 g)
+// av-sandwich-egg-mayo: https://www.fatsecret.co.za/calories-nutrition/generic/egg-salad-sandwich (1 serving 159 g)
+// av-toasted-chicken-mayo: Wimpy SA chicken mayonnaise toasted sandwich, 1 sandwich 200 g: https://www.fatsecret.co.za/calories-nutrition/wimpy/chicken-mayonnaise-toasted-sandwich/1-sandwich
+// av-wrap-chicken: https://www.fatsecret.co.za/calories-nutrition/generic/chicken-wrap (1 serving 130 g)
+// av-shawarma-chicken: https://www.fatsecret.co.za/calories-nutrition/generic/chicken-shawarma (1 serving 390 g; same values as generic chicken-gyro-sandwich)
+// av-gyro-beef-lamb: https://www.fatsecret.co.nz/calories-nutrition/generic/gyro-sandwich-(pita-bread-beef-lamb-onion-condiments-with-tomato-and-spread) (1 serving 390 g)
+// av-sub-cold-meat: https://www.fatsecret.co.za/calories-nutrition/generic/cold-cut-sandwich-submarine-with-lettuce-and-tomato (1 serving 254 g). No generic chicken-sub entry found.
+// av-sushi-salmon-nigiri: per 100 g from Norwegian Food Composition Table https://matvaretabellen.no/en/sushi-nigiri-salmon (143 kcal, 7.8 P, 16.8 C, 5 F); piece weight 28 g from https://www.fatsecret.co.za/calories-nutrition/generic/salmon-sushi (48 kcal/piece, 170 kcal/100 g)
+// av-sushi-california: https://www.fatsecret.co.za/calories-nutrition/generic/california-rolls (33 kcal/piece; 126/100 g -> 26 g)
+// av-sushi-salmon-maki: https://www.fatsecret.co.za/calories-nutrition/generic/salmon-maki (28 kcal/piece; 184/100 g -> 15 g)
+// av-sashimi-salmon: https://www.fatsecret.co.za/calories-nutrition/generic/salmon-sashimi (41 kcal/piece; 146/100 g -> 28 g)
+// av-sushi-salmon-rose: Pick n Pay salmon roses per rose https://www.fatsecret.co.za/calories-nutrition/pick-n-pay/salmon-roses/1-rose ; weight 33 g derived from average kcal density of
+//   Ocean Basket (182 kcal/100 g) https://www.fatsecret.co.za/calories-nutrition/ocean-basket/salmon-roses/1-serving and Woolworths (220 kcal/100 g) https://www.fatsecret.co.za/calories-nutrition/woolworths/salmon-roses/100g
+// av-sushi-prawn-tempura: Ocean Basket rock shrimp tempura roll per 100 g https://www.fatsecret.co.za/calories-nutrition/ocean-basket/rock-shrimp-tempura-roll/100g
+// av-fried-rice-chicken: https://www.fatsecret.co.za/calories-nutrition/generic/chicken-fried-rice (1 cup 329 kcal; 166/100 g -> 198 g)
+// av-chow-mein-chicken: https://www.fatsecret.com.sg/calories-nutrition/generic/chicken-or-turkey-chow-mein-or-chop-suey-with-noodles (1 serving 220 g)
+// av-noodle-stir-fry-chicken: https://www.fatsecret.co.za/calories-nutrition/generic/chicken-lo-mein (1 serving 200 g)
+// av-sweet-sour-chicken: https://www.fatsecret.co.za/calories-nutrition/generic/sweet-and-sour-chicken-or-turkey (1 cup 224 kcal; 89/100 g -> 252 g)
+// av-spring-roll: https://www.fatsecret.co.za/calories-nutrition/generic/egg-roll (1 serving 90 g)
+// av-butter-chicken-rice: Woolworths SA butter chicken ready meal 350 g https://www.fatsecret.co.za/calories-nutrition/woolworths/butter-chicken/1-serving (48 g carbs, so includes rice)
+// av-curry-rice-beef: built from 177 g beef curry https://www.fatsecret.co.za/calories-nutrition/generic/beef-curry (cup 434 kcal, 184/100 g -> 236 g cup)
+//   + 160 g cooked white rice (app's "rice" entry: 130 kcal, 2.7 P, 28 C, 0.3 F per 100 g)
+// av-burrito-chicken: https://www.fatsecret.co.za/calories-nutrition/generic/burrito-with-chicken-beans-and-cheese (1 medium 238 g)
+// av-taco-beef: https://www.fatsecret.co.za/calories-nutrition/generic/soft-taco-with-beef-cheese-and-lettuce (1 serving 92 g)
+// av-quesadilla-chicken: https://www.fatsecret.co.za/calories-nutrition/generic/quesadilla-with-poultry-and-cheese (563 kcal; 306/100 g -> 184 g)
+// av-nachos-cheese: https://www.fatsecret.co.za/calories-nutrition/generic/nachos-with-cheese (346 kcal; 306/100 g -> 113 g)
+// Plates built from the app's existing generic entries:
+// av-steak-chips: 200 g "steak" (190 kcal, 29 P, 0 C, 8 F /100 g) + 150 g "slap-chips" (312, 3.4, 41.4, 14.7 /100 g)
+// av-chicken-chips: 150 g "rotisserie" meat (237, 27.1, 0, 13.5 /100 g) + 150 g "slap-chips"
+// av-fish-chips: 150 g "sa-hake-battered" (182, 12.6, 10, 9.8 /100 g) + 150 g "slap-chips"
+// av-roast-chicken-dinner: 150 g "rotisserie" + 136 g roast potato with fat https://mobile.fatsecret.co.za/calories-nutrition/generic/roasted-potato-(fat-added-in-cooking) (1 medium 136 g: 203 kcal, 3.16 P, 27.28 C, 9.52 F)
+//   + 100 g "butternut" (40, 0.9, 10.5, 0.1)
+// av-spaghetti-carbonara: Woolworths SA spaghetti carbonara 300 g https://www.fatsecret.co.za/calories-nutrition/woolworths/spaghetti-carbonara/1-serving
+// av-lasagne: https://www.fatsecret.co.za/calories-nutrition/generic/lasagna-with-meat (1 piece 206 g)
+// av-cottage-pie: https://www.fatsecret.co.za/calories-nutrition/generic/shepherds-pie-with-beef (1 cup 243 g)
+// av-schnitzel-chicken: https://www.fatsecret.com.sg/calories-nutrition/generic/baked-or-fried-coated-chicken-breast-skinless-(coating-eaten) (100 g: 234 kcal, 25 P, 9.69 C, 9.88 F; serving 108 g)
+// av-salad-chicken-caesar: https://www.fatsecret.co.za/calories-nutrition/generic/caesar-salad-with-chicken (188 kcal/100 g; 1 serving 150 g; macros scaled from 1 cup = 108.5 g)
+// av-salad-greek: https://www.fatsecret.co.za/calories-nutrition/generic/greek-salad (1 serving 105 g)
+// av-salad-chicken: https://www.fatsecret.co.nz/calories-nutrition/generic/chicken-or-turkey-garden-salad-(chicken-and-or-turkey-tomato-and-or-carrots-other-vegetables)
+//   (1 fast food order = 161 kcal at 64 kcal/100 g -> 252 g; macros scaled from 1 cup = 90 g)
+// Skipped (no trustworthy source found): boerewors roll, ramen bowl, chicken sub (used cold-meat sub), beef wrap, sushi platter by weight.
+```
+
+## Everyday meals: breakfast, bakery, desserts, café drinks, soups, braai
+
+```
+/* Sources (fatsecret "generic" entries are mostly USDA FNDDS/SR values; checked 2026-10-10)
+ * Breakfast plate, full: composite of fatsecret generic fried egg (https://www.fatsecret.co.za/calories-nutrition/generic/fried-egg),
+ *   bacon rasher below, app boerewors (75 g), app white bread (35 g) and butter (5 g).
+ * Omelette plain:   https://www.fatsecret.co.za/calories-nutrition/generic/egg-omelette-or-scrambled-egg
+ * Omelette cheese:  https://www.fatsecret.co.za/calories-nutrition/generic/egg-omelette-or-scrambled-egg-with-cheese
+ * Omelette ham & cheese: https://www.fatsecret.com.au/calories-nutrition/generic/egg-omelette-or-scrambled-egg-with-cheese-and-ham-or-bacon
+ * Scrambled eggs:   https://www.fatsecret.co.za/calories-nutrition/generic/scrambled-egg
+ * Bacon rasher: average of Eskort back bacon https://www.fatsecret.co.za/calories-nutrition/eskort/back-bacon/100g and SPAR bacon rashers
+ *   https://www.fatsecret.co.za/calories-nutrition/spar/breakfast-fry-bacon-rashers/100g ; rasher weight 30 g from
+ *   https://www.fatsecret.co.za/calories-nutrition/eskort/round-cut-bacon/1-rasher
+ * Flapjack plain:   https://www.fatsecret.co.za/calories-nutrition/generic/plain-pancakes
+ * Pancakes butter & syrup: https://www.fatsecret.co.za/calories-nutrition/generic/pancakes-with-butter-and-syrup
+ * Pancake cinnamon sugar: https://www.fatsecret.co.za/calories-nutrition/generic/plain-crepe (18 cm, 50 g) + 2 tsp sugar (app value)
+ * French toast:     https://www.fatsecret.co.za/calories-nutrition/generic/plain-french-toast
+ * Waffle:           https://www.fatsecret.co.za/calories-nutrition/generic/plain-waffle
+ * Granola & yoghurt: USDA SR Legacy 170355 "Yogurt parfait, lowfat, with fruit and granola" https://getfoodfacts.com/food/yogurt-parfait-lowfat-with-fruit-and-granola-170355
+ * Avocado toast:    https://www.fatsecret.co.za/calories-nutrition/generic/avocado-toast
+ * Breakfast wrap:   https://www.fatsecret.com.au/calories-nutrition/generic/breakfast-burrito
+ * Bacon egg cheese muffin: https://www.fatsecret.co.za/calories-nutrition/generic/egg-cheese-and-bacon-on-english-muffin
+ * Croissant bacon egg cheese: https://www.fatsecret.co.nz/calories-nutrition/generic/croissant-with-egg-cheese-and-bacon
+ * Croissant plain:  https://www.fatsecret.co.za/calories-nutrition/generic/croissant
+ * Croissant cheese: https://www.fatsecret.co.za/calories-nutrition/generic/cheese-croissant
+ * Muffin bran:      https://www.fatsecret.co.za/calories-nutrition/generic/wheat-bran-muffin
+ * Muffin chocolate: https://www.fatsecret.co.za/calories-nutrition/generic/chocolate-muffin
+ * Scone jam cream:  https://www.fatsecret.co.za/calories-nutrition/generic/scone + app jam (1 tbsp) +
+ *   https://www.fatsecret.co.za/calories-nutrition/generic/whipping-cream (1 tbsp, whipped)
+ * Cinnamon bun:     https://www.fatsecret.co.za/calories-nutrition/generic/frosted-sweet-cinnamon-bun
+ * Bagel cream cheese: https://www.fatsecret.co.za/calories-nutrition/generic/bagel-with-cream-cheese
+ * Roll white:       https://www.fatsecret.co.za/calories-nutrition/generic/burger-bun ; small roll weight from
+ *   https://www.fatsecret.co.za/calories-nutrition/generic/hamburger-or-hotdog-rolls
+ * Garlic bread:     https://www.fatsecret.co.za/calories-nutrition/generic/garlic-bread
+ * Garlic roll (braai): average of https://www.fatsecret.co.za/calories-nutrition/spar/garlic-braai-rolls/1-serving and
+ *   https://www.fatsecret.co.za/calories-nutrition/pnp/garlic-onion-braai-rolls/1-roll
+ * Cheese roll:      https://www.fatsecret.co.za/calories-nutrition/generic/cheese-roll
+ * Chocolate cake:   https://www.fatsecret.co.za/calories-nutrition/generic/chocolate-cake-(with-chocolate-icing)
+ * Cheesecake:       https://www.fatsecret.co.za/calories-nutrition/generic/cheesecake
+ * Carrot cake:      https://www.fatsecret.co.za/calories-nutrition/generic/carrot-cake-with-icing
+ * Malva & custard: average of https://www.fatsecret.co.za/calories-nutrition/woolworths/malva-pudding/100g and
+ *   https://www.fatsecret.co.za/calories-nutrition/the-menu/malva-pudding/100g , plus app custard (100 g)
+ * Melktert: average of https://www.fatsecret.co.za/calories-nutrition/generic/melktert and
+ *   https://www.fatsecret.co.za/calories-nutrition/woolworths/milk-tart/100g ; 90 g slice from the generic entry
+ * Brownie:          https://www.fatsecret.co.za/calories-nutrition/generic/brownie
+ * Apple pie:        https://www.fatsecret.co.za/calories-nutrition/generic/apple-pie-(two-crust)
+ * Sundae:           https://www.fatsecret.com.sg/calories-nutrition/generic/ice-cream-sundae-(with-whipped-cream)
+ * Latte, full cream: Norwegian Food Composition Table, "Caffe Latte, single, with whole milk" https://www.matvaretabellen.no/en/caffe-latte-single-with-whole-milk
+ * Flat white: same per-100 g values as the whole-milk latte above, scaled to a 180 ml cup
+ *   (fatsecret generic flat white https://www.fatsecret.co.za/calories-nutrition/generic/flat-white is reduced-fat milk, 58 kcal)
+ * Hot chocolate:    https://www.fatsecret.co.za/calories-nutrition/generic/hot-chocolate-cocoa-(made-with-whole-milk)
+ * Iced coffee/frappe: https://www.fatsecret.co.nz/calories-nutrition/generic/frappuccino (per 100 ml)
+ * Milkshake:        https://www.fatsecret.com.sg/calories-nutrition/generic/chocolate-homemade-or-fountain-type-milk-shake
+ * Smoothie fruit:   https://www.matvaretabellen.no/en/smoothie-yogurt-juice-banana-and-berries
+ * Smoothie protein: https://www.fatsecret.co.za/calories-nutrition/generic/protein-smoothie
+ * Tea / rooibos with milk & sugar: https://www.fatsecret.co.za/calories-nutrition/generic/tea-with-milk-and-sugar ;
+ *   plain rooibos ~1 kcal per cup https://www.fatsecret.co.za/calories-nutrition/generic/rooibos
+ * Orange juice fresh: https://www.matvaretabellen.no/en/orange-juice-freshly-squeezed
+ * Soup butternut:   https://www.fatsecret.co.za/calories-nutrition/generic/butternut-soup
+ * Soup chicken:     https://www.fatsecret.co.za/calories-nutrition/generic/chicken-noodle-soup
+ * Soup split pea:   https://www.fatsecret.co.za/calories-nutrition/generic/split-pea-soup
+ * Soup lentil:      https://www.fatsecret.co.za/calories-nutrition/generic/lentil-soup
+ * Chicken braaied:  https://www.fatsecret.co.za/calories-nutrition/generic/chicken-or-turkey-with-barbecue-sauce-(skin-eaten)
+ * Sosatie lamb: average of https://www.fatsecret.co.za/calories-nutrition/woolworths/6-lamb-sosaties/100g and
+ *   https://mobile.fatsecret.co.za/calories-nutrition/woolworths/lamb-kebabs/100g
+ * Kebab beef:       https://www.fatsecret.co.za/calories-nutrition/generic/beef-shish-kabob-with-vegetables
+ * Braaibroodjie: composite of app white bread (70 g), cheddar (30 g), butter (10 g) + USDA SR raw tomato (30 g) and onion (15 g)
+ * Sous: average of https://www.fatsecret.co.za/calories-nutrition/woolworths/braai-relish-tomato-onion-with-herb/100g and
+ *   https://www.fatsecret.co.za/calories-nutrition/miami/tomato-onion-mix/100g
+ * Garden salad: https://mobile.fatsecret.co.za/calories-nutrition/generic/lettuce-salad-with-assorted-vegetables-(including-tomatoes-and-or-carrots)
+ *   (side salad, 153 g) + 2 tbsp https://www.fatsecret.co.za/calories-nutrition/generic/italian-salad-dressing
+ * Roast potatoes:   https://www.fatsecret.co.za/calories-nutrition/generic/roasted-potato-(fat-added-in-cooking)
+ * Onion rings:      https://www.fatsecret.co.za/calories-nutrition/generic/onion-rings-(breaded-and-fried)
+ * Cheese & crackers: app cheddar (30 g) + https://www.fatsecret.com.sg/calories-nutrition/generic/crackers (6 round crackers)
+ * Fruit salad:      https://www.fatsecret.co.za/calories-nutrition/generic/fruit-salad
+ * Hummus & pita: https://www.fatsecret.co.za/calories-nutrition/generic/white-pita-bread (1 large) + 60 g generic hummus
+ *   https://www.fatsecret.co.nz/calories-nutrition/food/hummus
+ */
+```
