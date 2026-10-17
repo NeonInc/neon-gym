@@ -17,3 +17,5 @@ Neon Gym is live at https://neoninc.github.io/neon-gym/ and is one tile on the N
 - Sign-in lives in the Profile sheet (round button top right, `#profileBtn`, `profileBody()`); the dot on it shows
   the save state from `setSync()`. Backup codes are in that sheet too.
 - Food values: one `fd(...)` line per food in `src/app.html`; note where new values came from in `tools/food-sources.md`.
+- Water is stored per day inside that day's food doc (`S.food[d].water = [{ml, t}]`), so it syncs with food.
+  A food doc can hold only water: use `tidyFoodDay(d)` instead of deleting a day when its items run out.

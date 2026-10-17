@@ -216,7 +216,7 @@ textarea.field { min-height: 90px; font-family: ui-monospace, monospace; font-si
 .timer.go .tt { color: var(--good); }
 .timer button { border: 1px solid var(--line-2); background: transparent; border-radius: 10px; min-height: 40px; padding: 0 12px; font-weight: 700; }
 .toast { text-align: center; font-size: 14px; font-weight: 700; background: var(--surface-2); border: 1px solid var(--line-2); border-radius: 10px; padding: 8px; }
-.nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.nav { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
 .nav button { border: 0; background: transparent; border-radius: 10px; min-height: 50px; font-weight: 700; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
 .nav svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .nav button[aria-selected="true"] { color: var(--accent); background: var(--accent-soft); }
@@ -492,6 +492,48 @@ h3 { font-size: 27px; line-height: 1; letter-spacing: .01em; }
 .timer { border-color: var(--accent); }
 .timer .tt { font-size: 36px; }
 @media (min-width: 560px) { h2 { font-size: 64px; } }
+/* ---- Water ---- */
+:root { --water: #4cc9f0; --water-deep: #1f8fd6; }
+.nav button.wnav { color: color-mix(in srgb, var(--water) 70%, var(--muted)); }
+.nav button.wnav[aria-selected="true"] { color: var(--water); background: transparent; box-shadow: inset 0 2px 0 var(--water); border-radius: 0; }
+.water h2 em { color: var(--water); }
+.water details.fold > summary::after { color: var(--water); }
+.wcard { flex-direction: row; align-items: center; gap: 18px; background: linear-gradient(160deg, rgba(76, 201, 240, .1), var(--surface) 60%); border-color: rgba(76, 201, 240, .25); }
+.wbottle { flex: none; width: 120px; }
+.bottle { width: 100%; height: auto; display: block; overflow: visible; }
+.bottle .bbg { fill: rgba(76, 201, 240, .05); }
+.bottle .bout { fill: none; stroke: rgba(205, 238, 250, .55); stroke-width: 2.5; }
+.bottle .cap { fill: var(--water-deep); }
+.bottle .wlevel { transition: transform 1.1s cubic-bezier(.3, 1.2, .4, 1); }
+.bottle .wv1 { fill: var(--water); }
+.bottle .wv2 { fill: var(--water-deep); opacity: .8; }
+.bottle .wv1w { animation: wave 2.6s linear infinite; }
+.bottle .wv2w { animation: wave 4s linear infinite reverse; }
+@keyframes wave { from { transform: translateX(0); } to { transform: translateX(-50px); } }
+.bottle .bub { fill: rgba(255, 255, 255, .55); animation: bub 3.2s ease-in infinite; }
+.bottle .b2 { animation-delay: 1.1s; } .bottle .b3 { animation-delay: 2.2s; }
+@keyframes bub { from { transform: translateY(70px); opacity: 0; } 20% { opacity: 1; } to { transform: translateY(-10px); opacity: 0; } }
+.bottle .shine { stroke: rgba(255, 255, 255, .18); stroke-width: 5; stroke-linecap: round; }
+.bottle .tickm { stroke: rgba(205, 238, 250, .35); stroke-width: 1.5; }
+.wnum { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.wbig { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: .85; color: var(--water); letter-spacing: .01em; }
+.wbig small { font-size: 28px; margin-left: 3px; color: var(--ink); }
+.wleft { margin: 6px 0 0; font-weight: 700; font-size: 16px; }
+.wleft.done { color: var(--water); }
+.wnum .link { color: var(--water); padding: 2px 0; min-height: 32px; }
+.wadd { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.wadd button { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 12px 4px 10px; border-radius: 8px; border: 1px solid rgba(76, 201, 240, .35); background: rgba(76, 201, 240, .08); color: var(--ink); }
+.wadd button:active { background: rgba(76, 201, 240, .22); transform: scale(.97); }
+.wadd svg { width: 26px; height: 26px; fill: rgba(76, 201, 240, .25); stroke: var(--water); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; margin-bottom: 2px; }
+.wadd b { font-family: var(--font-display); font-weight: 400; font-size: 22px; line-height: 1; color: var(--water); }
+.wadd span { font-family: var(--font-mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; text-align: center; }
+svg.chart .wb { fill: rgba(76, 201, 240, .45); }
+svg.chart .wh { fill: var(--water); }
+svg.chart .wg { stroke: var(--water); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.sheet.wt .btn.solid { background: var(--water); border-color: var(--water); color: #04131a; }
+.sheet.wt .chip[aria-pressed="true"] { background: var(--water); border-color: var(--water); color: #04131a; }
+.sheet.wt .amtin:focus { border-color: var(--water); box-shadow: 0 0 0 3px rgba(76, 201, 240, .2); }
+@media (max-width: 380px) { .wbottle { width: 96px; } .wbig { font-size: 60px; } .nav button { font-size: 10px; letter-spacing: .02em; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -516,6 +558,7 @@ h3 { font-size: 27px; line-height: 1; letter-spacing: .01em; }
     <button type="button" role="tab" data-act="tab" data-tab="plans"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Plans</button>
     <button type="button" role="tab" data-act="tab" data-tab="progress"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 15l4-4 3 3 5-6"/></svg>Stats</button>
     <button type="button" role="tab" class="fnav" data-act="tab" data-tab="food"><svg viewBox="0 0 24 24"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 2-3 5-3 8h3v10"/></svg>Food</button>
+    <button type="button" role="tab" class="wnav" data-act="tab" data-tab="water"><svg viewBox="0 0 24 24"><path d="M12 3c3.5 4.5 6 8 6 11a6 6 0 0 1-12 0c0-3 2.5-6.5 6-11z"/></svg>Water</button>
   </nav>
 </div></div>
 
@@ -1008,7 +1051,7 @@ function saveUI() {
 function restoreUI() {
   var u = S.ui;
   if (!u || !u.at || Date.now() - u.at > 6 * 3600e3) return;
-  if (["today","plans","progress","food","guide"].indexOf(u.tab) >= 0) UI.tab = u.tab;
+  if (["today","plans","progress","food","water","guide"].indexOf(u.tab) >= 0) UI.tab = u.tab;
   UI.open = u.open || {}; UI.extab = u.extab || {}; if (u.statTab) UI.statTab = u.statTab;
   if (u.timerEnd && u.timerEnd > Date.now()) { T.end = u.timerEnd; T.fired = false; $("timerBar").hidden = false; if (!T.iv) T.iv = setInterval(tick, 250); tick(); }
 }
@@ -2145,6 +2188,110 @@ function ring(val, goal, label, unit, cls) {
   return '<div class="ring ' + cls + (over ? " over" : "") + '"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="rt" cx="50" cy="50" r="' + R + '"/><circle class="rv" cx="50" cy="50" r="' + R + '" stroke-dasharray="' + (C * pct).toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 50 50)"/></svg>' +
     '<div class="rlab"><b>' + r0(val) + '</b><span>of ' + goal + ' ' + unit + '</span><em>' + label + '</em></div></div>';
 }
+/* ---------- Water: logged per day inside that day's food doc (S.food[d].water = [{ml, t}]) so it syncs with food ---------- */
+function waterDay(d) { return (S.food[d] && S.food[d].water) || []; }
+function waterMl(d) { return waterDay(d).reduce(function (a, w) { return a + (+w.ml || 0); }, 0); }
+function waterBase() { var me = S.profile.me || {}; return S.profile.waterGoal || (me.w ? Math.round(me.w * 35 / 250) * 250 : 2500); }
+function waterGoal(d) { return waterBase() + (sessionsOn(d).length ? 500 : 0); }
+function litres(ml) { return String(Math.round(Math.round(ml / 50) * 50 / 10) / 100); }
+function tidyFoodDay(d) { var f = S.food[d]; if (f && !(f.items || []).length && !(f.water || []).length) delete S.food[d]; }
+function addWater(ml, d) {
+  d = d || UI.wdate || todayStr();
+  if (!S.food[d]) S.food[d] = {items: []};
+  (S.food[d].water = S.food[d].water || []).push({ml: ml, t: Date.now() + Math.floor(Math.random() * 1000)});
+  mark("food", d);
+}
+function waterStreak() {
+  var n = 0, t = dnum(todayStr()), dd = t;
+  if (waterMl(todayStr()) < waterGoal(todayStr())) dd = t - 1;
+  while (waterMl(dstr(dd)) >= waterGoal(dstr(dd)) && waterMl(dstr(dd)) > 0) { n++; dd--; }
+  return n;
+}
+function bottleSvg(pct) {
+  var top = 46, bot = 172, y = bot - (bot - top) * Math.min(1, pct);
+  var wave = function (cls, amp) { return '<path class="' + cls + '" d="M0 ' + amp + ' Q12.5 0 25 ' + amp + ' T50 ' + amp + ' T75 ' + amp + ' T100 ' + amp + ' T125 ' + amp + ' T150 ' + amp + ' T175 ' + amp + ' T200 ' + amp + ' V200 H0 Z"/>'; };
+  return '<svg class="bottle" viewBox="0 0 100 180" aria-hidden="true"><defs><clipPath id="bclip"><path d="M40 16h20v10c0 4 4 7 10 12 9 7 16 12 16 24v96c0 9-7 16-16 16H30c-9 0-16-7-16-16V62c0-12 7-17 16-24 6-5 10-8 10-12z"/></clipPath></defs>' +
+    '<rect class="cap" x="37" y="3" width="26" height="13" rx="3"/>' +
+    '<g clip-path="url(#bclip)"><rect class="bbg" x="0" y="0" width="100" height="180"/>' +
+    '<g class="wlevel" data-y="' + y.toFixed(1) + '" style="transform:translateY(' + (UI.wLevel != null ? UI.wLevel : 180).toFixed(1) + 'px)"><g class="wv2w">' + wave("wv2", 7) + '</g><g class="wv1w">' + wave("wv1", 5) + '</g>' +
+    '<circle class="bub b1" cx="34" cy="60" r="2.2"/><circle class="bub b2" cx="58" cy="80" r="1.6"/><circle class="bub b3" cx="70" cy="50" r="2"/></g>' +
+    '<path class="shine" d="M24 70v80" /></g>' +
+    '<path class="bout" d="M40 16h20v10c0 4 4 7 10 12 9 7 16 12 16 24v96c0 9-7 16-16 16H30c-9 0-16-7-16-16V62c0-12 7-17 16-24 6-5 10-8 10-12z"/>' +
+    [0.25, 0.5, 0.75].map(function (f) { var yy = bot - (bot - top) * f; return '<line class="tickm" x1="78" x2="86" y1="' + yy + '" y2="' + yy + '"/>'; }).join("") + '</svg>';
+}
+function animWater() {
+  var g = document.querySelector(".wlevel"); if (!g) return;
+  var y = +g.getAttribute("data-y");
+  requestAnimationFrame(function () { requestAnimationFrame(function () { g.style.transform = "translateY(" + y + "px)"; }); });
+  UI.wLevel = y;
+}
+function waterWeek() {
+  var end = dnum(todayStr()), days = [];
+  for (var i = 6; i >= 0; i--) { var ds = dstr(end - i); days.push({d: ds, ml: waterMl(ds), g: waterGoal(ds)}); }
+  var W = 320, H = 130, L = 30, R = 8, T = 14, B = 22, mx = Math.max.apply(null, days.map(function (x) { return Math.max(x.ml, x.g); })) * 1.1;
+  var bw = (W - L - R) / 7, Y = function (v) { return T + (1 - v / mx) * (H - T - B); }, g0 = waterBase();
+  var s = '<svg class="chart wchart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Water per day this week">';
+  s += '<line class="gl" x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(0) + '" y2="' + Y(0) + '"/><line class="wg" x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(g0) + '" y2="' + Y(g0) + '"/><text x="' + (L - 4) + '" y="' + (Y(g0) + 3) + '" text-anchor="end">' + litres(g0) + '</text>';
+  days.forEach(function (x) {
+    var cx = L + days.indexOf(x) * bw + bw * .2, w = bw * .6, y = Y(x.ml), dd = new Date(dnum(x.d) * 864e5);
+    s += '<rect class="' + (x.ml >= x.g ? "wh" : "wb") + '" x="' + cx.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + Math.max(0, Y(0) - y).toFixed(1) + '" rx="3"/>';
+    s += '<text x="' + (cx + w / 2).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="middle">' + ["S","M","T","W","T","F","S"][dd.getUTCDay()] + '</text>';
+    if (x.ml) s += '<text class="ev" x="' + (cx + w / 2).toFixed(1) + '" y="' + (y - 4).toFixed(1) + '" text-anchor="middle">' + litres(x.ml) + '</text>';
+  });
+  var logged = days.filter(function (x) { return x.ml; }), hit = days.filter(function (x) { return x.ml && x.ml >= x.g; }).length;
+  var avg = logged.length ? logged.reduce(function (a, x) { return a + x.ml; }, 0) / logged.length : 0;
+  return s + '</svg><div class="vol"><div><span>Average</span><b>' + (avg ? litres(avg) + ' L' : "–") + '</b></div><div><span>Goal hit</span><b>' + hit + ' / 7</b></div><div><span>Streak</span><b>' + waterStreak() + ' day' + (waterStreak() === 1 ? "" : "s") + '</b></div></div>';
+}
+var GLASSES = [[250, "Glass", "M7 4h10l-1.4 16H8.4z"], [500, "Bottle", "M10 2h4v3l2 3v14H8V8l2-3z"], [750, "Big bottle", "M9.5 2h5v3l2.5 3.5V22h-10V8.5L9.5 5z"]];
+function viewWater() {
+  var d = UI.wdate || todayStr(), isToday = d === todayStr(), ml = waterMl(d), goal = waterGoal(d), pct = goal ? ml / goal : 0, left = goal - ml, log = waterDay(d).slice().reverse();
+  var dt = new Date(dnum(d) * 864e5);
+  var h = '<div class="sec water">';
+  h += '<div class="fdate"><button type="button" class="iconbtn" data-act="wday" data-d="-1" aria-label="Previous day">‹</button><div><p class="label">' + (isToday ? "Today" : WD[dt.getUTCDay()]) + '</p><h2>' + (isToday ? "Hydr<em>ate.</em>" : fmtD(d)) + '</h2></div><button type="button" class="iconbtn" data-act="wday" data-d="1" aria-label="Next day"' + (isToday ? " disabled" : "") + '>›</button></div>';
+  h += '<div class="card wcard"><div class="wbottle">' + bottleSvg(pct) + '</div><div class="wnum"><p class="label">' + Math.round(pct * 100) + '% of goal</p><b class="wbig">' + litres(ml) + '<small>L</small></b><span class="small">of ' + litres(goal) + ' L' + (sessionsOn(d).length ? " · training day +0.5 L" : "") + '</span>' +
+    '<p class="wleft' + (left <= 0 ? " done" : "") + '">' + (left > 0 ? (left >= 1000 ? litres(left) + " L" : r0(left) + " ml") + " to go" : "Goal hit. Nice.") + '</p>' +
+    (log.length ? '<button type="button" class="link" data-act="wundo">Undo last (' + log[0].ml + ' ml)</button>' : "") + '</div></div>';
+  h += '<div class="wadd">' + GLASSES.map(function (g) {
+    return '<button type="button" data-act="wadd" data-ml="' + g[0] + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + g[2] + '"/></svg><b>+' + g[0] + '</b><span>' + g[1] + '</span></button>';
+  }).join("") + '<button type="button" data-act="wcustom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><b>Other</b><span>Any amount</span></button></div>';
+  h += '<div class="card"><h3>This week</h3>' + waterWeek() + '</div>';
+  h += '<details class="fold" data-k="wlog"' + (UI.open.wlog ? " open" : "") + '><summary>' + (isToday ? "Today's" : fmtD(d)) + ' log · ' + log.length + '</summary><div class="in">' + (log.length ? log.map(function (w) {
+    return '<div class="entry"><span>' + new Date(w.t).toTimeString().slice(0, 5) + ' · ' + w.ml + ' ml</span><button type="button" data-act="wdel" data-t="' + w.t + '">Remove</button></div>';
+  }).join("") : '<p class="empty">Nothing yet. Tap a glass above.</p>') + '</div></details>';
+  h += '<div class="plist"><button class="prow tap" type="button" data-act="wgoal"><span><b>Daily goal</b><span class="small">' + litres(waterBase()) + ' L' + (S.profile.waterGoal ? " (set by you)" : " (about 35 ml per kg)") + ' · +0.5 L on training days</span></span></button></div>';
+  h += '<p class="small">A rough guide, not a medical target. Drink more when it\'s hot or you sweat a lot. Tea, coffee and other drinks count too.</p>';
+  return h + '</div>';
+}
+function waterAmtBody() {
+  var sh = UI.sheet, v = sh.amt == null ? 300 : sh.amt;
+  return {title: "Add water", body: '<div class="amt"><button type="button" class="step" data-act="wstep" data-d="-50" aria-label="Less">−</button><input id="wamt" class="amtin" type="text" inputmode="numeric" value="' + v + '" aria-label="Millilitres"><button type="button" class="step" data-act="wstep" data-d="50" aria-label="More">+</button></div><p class="unitlab">ml</p>' +
+    '<div class="hscroll">' + [100, 200, 330, 440, 1000, 1500].map(function (n) { return '<button class="chip" type="button" data-act="wpre" data-v="' + n + '">' + (n >= 1000 ? litres(n) + " L" : n + " ml") + '</button>'; }).join("") + '</div>' +
+    '<button class="btn solid" type="button" data-act="wsave">Add water</button>'};
+}
+function waterGoalBody() {
+  var me = S.profile.me || {}, auto = me.w ? Math.round(me.w * 35 / 250) * 250 : 2500, v = S.profile.waterGoal || auto;
+  return {title: "Daily water goal", body: '<div class="amt"><button type="button" class="step" data-act="wgstep" data-d="-250" aria-label="Less">−</button><input id="wgoal" class="amtin" type="text" inputmode="numeric" value="' + v + '" aria-label="Goal in millilitres"><button type="button" class="step" data-act="wgstep" data-d="250" aria-label="More">+</button></div><p class="unitlab">ml a day</p>' +
+    '<p class="small">' + (me.w ? "For " + me.w + " kg, about 35 ml per kg is " + litres(auto) + " L." : "Add your weight in Profile → Body and goal and the goal works itself out (about 35 ml per kg).") + ' On days you train, the app adds 0.5 L.</p>' +
+    '<div class="btnrow"><button class="btn solid" type="button" data-act="wgsave">Save goal</button><button class="btn quiet" type="button" data-act="wgauto">Use ' + litres(auto) + ' L</button></div>'};
+}
+function waterClick(a, b) {
+  var d = UI.wdate || todayStr(), sh = UI.sheet;
+  if (a === "wadd") { var ml = +b.getAttribute("data-ml"); addWater(ml, d); render(true); toast("+" + ml + " ml"); try { if (navigator.vibrate) navigator.vibrate(20); } catch (e) {} return true; }
+  if (a === "wcustom") { openSheet({mode: "water"}); return true; }
+  if (a === "wstep" || a === "wgstep") { var inp = $(a === "wstep" ? "wamt" : "wgoal"), n = Math.max(0, (num(inp.value) || 0) + +b.getAttribute("data-d")); inp.value = n; return true; }
+  if (a === "wpre") { $("wamt").value = b.getAttribute("data-v"); return true; }
+  if (a === "wsave") { var v = Math.round(num($("wamt").value) || 0); if (v <= 0 || v > 5000) { toast("Enter between 1 and 5000 ml"); return true; } addWater(v, d); closeSheet(); render(true); toast("+" + v + " ml"); return true; }
+  if (a === "wundo" || a === "wdel") {
+    var arr = waterDay(d); if (!arr.length) return true;
+    var t = a === "wdel" ? +b.getAttribute("data-t") : arr[arr.length - 1].t, gone = arr.filter(function (w) { return w.t === t; })[0];
+    S.food[d].water = arr.filter(function (w) { return w.t !== t; }); tidyFoodDay(d); mark("food", d); render(true); toast("Removed " + (gone ? gone.ml + " ml" : "")); return true;
+  }
+  if (a === "wday") { var nd = dnum(d) + +b.getAttribute("data-d"); if (nd > dnum(todayStr())) return true; UI.wdate = dstr(nd); UI.wLevel = null; render(true); return true; }
+  if (a === "wgoal") { openSheet({mode: "wgoal"}); return true; }
+  if (a === "wgsave") { var g = Math.round(num($("wgoal").value) || 0); if (g < 500 || g > 8000) { toast("Pick a goal between 500 and 8000 ml"); return true; } S.profile.waterGoal = g; mark("profile"); closeSheet(); render(true); toast("Goal: " + litres(g) + " L"); return true; }
+  if (a === "wgauto") { delete S.profile.waterGoal; mark("profile"); closeSheet(); render(true); return true; }
+  return false;
+}
 function viewFood() {
   var d = UI.fdate || todayStr(), items = foodDay(d), t = totals(items), g = targets();
   var isToday = d === todayStr(), left = g.p - t.p;
@@ -2275,6 +2422,8 @@ function sheetBody() {
       '<p class="label">Meal</p>' + mealChips(meal) + '<button class="btn solid" type="button" data-act="fquick">Add to ' + esc(meal) + '</button>'};
   }
   if (sh.mode === "targets") return {title: "Your targets", body: targetsBody()};
+  if (sh.mode === "water") return waterAmtBody();
+  if (sh.mode === "wgoal") return waterGoalBody();
   return {title: "", body: ""};
 }
 function comboTotals() {
@@ -2289,7 +2438,7 @@ function renderSheet() {
   el.innerHTML = '<div class="sheet-back" data-act="sclose"></div><div class="sheet-in" role="dialog" aria-modal="true" aria-label="' + esc(b.title) + '"><div class="sheet-head">' +
     (b.back ? '<button type="button" class="iconbtn" data-act="sback" aria-label="Back">‹</button>' : '<span></span>') + '<h3>' + esc(b.title) + '</h3><button type="button" class="iconbtn" data-act="sclose" aria-label="Close">×</button></div><div class="sheet-body">' + b.body + '</div></div>';
   el.setAttribute("data-mode", UI.sheet.mode);
-  el.className = "sheet" + (["finish","daypick","dayview","exhist","plannew","planedit","exadd","profile"].indexOf(UI.sheet.mode) >= 0 ? " wk" : "");
+  el.className = "sheet" + (["finish","daypick","dayview","exhist","plannew","planedit","exadd","profile"].indexOf(UI.sheet.mode) >= 0 ? " wk" : UI.sheet.mode === "water" || UI.sheet.mode === "wgoal" ? " wt" : "");
   el.hidden = false; document.body.classList.add("locked");
   if (same) el.querySelector(".sheet-body").scrollTop = sc;
 }
@@ -2327,6 +2476,7 @@ function bestPicks() {
 function logEntry(entry, meal, d) {
   d = d || UI.fdate || todayStr();
   if (!S.food[d]) S.food[d] = {items: []};
+  S.food[d].items = S.food[d].items || [];
   entry.t = Date.now() + Math.floor(Math.random() * 1000); entry.meal = meal;
   S.food[d].items.push(entry);
 }
@@ -2367,7 +2517,7 @@ function foodClick(a, b) {
   if (a === "adel") {
     if (!sh.confirmDel) { sh.confirmDel = true; if ($("famt")) sh.amt = readAmt(); renderSheet(); return true; }
     S.food[d].items = foodDay(d).filter(function (q) { return q.t !== sh.editT; });
-    if (!S.food[d].items.length) delete S.food[d];
+    tidyFoodDay(d);
     mark("food", d); closeSheet(); render(true); toast("Removed"); return true;
   }
   if (a === "esave") {
@@ -2463,12 +2613,13 @@ function foodWeek() {
 
 function render(keepScroll) {
   var y = window.scrollY;
-  var v = UI.tab === "today" ? viewToday() : UI.tab === "food" ? viewFood() : UI.tab === "plans" ? viewPlans() : UI.tab === "progress" ? viewProgress() : viewGuide();
+  var v = UI.tab === "today" ? viewToday() : UI.tab === "food" ? viewFood() : UI.tab === "water" ? viewWater() : UI.tab === "plans" ? viewPlans() : UI.tab === "progress" ? viewProgress() : viewGuide();
   $("view").innerHTML = v;
   $("eyebrow").textContent = PLANS[S.profile.plan].n + " plan";
   Array.prototype.forEach.call(document.querySelectorAll("#nav button"), function (b) { b.setAttribute("aria-selected", b.getAttribute("data-tab") === UI.tab); });
   var gbtn = $("guideBtn"); if (gbtn) gbtn.setAttribute("aria-pressed", UI.tab === "guide");
   window.scrollTo(0, keepScroll ? y : 0);
+  if (UI.tab === "water") animWater(); else UI.wLevel = null;
 }
 
 /* ---------- Toast and rest timer ---------- */
@@ -2531,7 +2682,7 @@ document.addEventListener("click", function (ev) {
   var a = b.getAttribute("data-act"), id = b.getAttribute("data-ex");
   if (a !== "clear") UI.confirmClear = false;
   if (a !== "import") UI.confirmImport = false;
-  if (planClick(a, b) || histClick(a, b) || foodClick(a, b)) return;
+  if (planClick(a, b) || histClick(a, b) || waterClick(a, b) || foodClick(a, b)) return;
   if (a === "tab") { UI.tab = b.getAttribute("data-tab"); if (UI.sheet) closeSheet(); render(false); saveUI(); }
   else if (a === "extab") { UI.extab = UI.extab || {}; UI.extab[id] = b.getAttribute("data-v"); saveUI(); render(true); }
   else if (a === "daypick") { openSheet({mode: "daypick"}); }
