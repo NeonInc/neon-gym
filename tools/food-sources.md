@@ -350,3 +350,218 @@ Per-100 g macros for generic FatSecret dishes were scaled from the full-macro se
  *   https://www.fatsecret.co.nz/calories-nutrition/food/hummus
  */
 ```
+
+## Staples, sauces & spreads, dairy, protein extras, veg and fruit
+
+```
+// Staples, sauces & spreads, dairy, protein extras, veg, fruit (s2-)
+// Bread & starch
+// Sauces & spreads
+// Dairy & shakes
+// Meat & eggs
+// Veg
+// Fruit
+/*
+SOURCES
+SA brand labels (fatsecret.co.za entries, per 100 g/ml unless stated):
+- Tomato sauce (All Gold): https://www.fatsecret.co.za/calories-nutrition/all-gold/tomato-sauce/100g
+- Chutney (Mrs H.S. Ball's): https://www.fatsecret.co.za/calories-nutrition/mrs-h-s-balls/original-recipe-chutney/100g
+- Sweet chilli (Mrs H.S. Ball's): https://www.fatsecret.co.za/calories-nutrition/mrs-h-s-balls/sweet-chilli-sauce/100g
+- Nando's medium peri-peri (UK bottle label): https://mcgrocer.com/products/nandos-medium-peri-peri-sauce-1l-1
+  (SA hot: https://fatsecret.co.za/calories-nutrition/nandos/peri-peri-sauce-hot/100g)
+- BBQ (All Gold): https://www.fatsecret.co.za/calories-nutrition/all-gold/barbeque-sauce/100g
+- Hellmann's lite mayo: https://www.fatsecret.co.za/calories-nutrition/hellmanns/lite-mayonnaise/1-tbsp
+- C&B tangy mayo lite: https://www.fatsecret.co.za/calories-nutrition/crosse-blackwell/tangy-mayonnaise-lite/100g
+- Ina Paarman roast beef gravy: https://www.fatsecret.co.za/calories-nutrition/ina-paarmans/roast-beef-gravy/100ml
+- Woolworths cheese sauce: https://www.fatsecret.co.za/calories-nutrition/woolworths/cheese-sauce/100g
+- Woolworths mushroom sauce: https://www.fatsecret.co.za/calories-nutrition/woolworths/mushroom-sauce/100ml
+- Woolworths pepper sauce: https://www.fatsecret.co.za/calories-nutrition/woolworths/pepper-sauce/100ml
+- Ina Paarman French dressing: https://www.fatsecret.co.za/calories-nutrition/ina-paarmans/french-dressing/100ml
+- Ina Paarman reduced-oil Greek dressing: https://www.fatsecret.co.za/calories-nutrition/ina-paarmans/reduced-oil-greek-dressing/100ml
+- Nutella (15 g tbsp): https://www.fatsecret.com.au/calories-nutrition/nutella/hazelnut-spread-with-cocoa/1-tbsp
+- Marmite (SA/FR, Open Food Facts): https://world.openfoodfacts.org/product/60050168/yeast-extract-marmite
+- Bovril (8 g serving): https://www.fatsecret.co.za/calories-nutrition/bovril/beefy/1-serving
+- Lancewood cream cheese: https://www.fatsecret.co.za/calories-nutrition/lancewood/medium-fat-cream-cheese/100g
+- Woolworths white tortilla wrap (44 g): https://www.fatsecret.co.za/calories-nutrition/woolworths/white-tortilla-wraps/1-wrap
+- Sasko Low GI whole wheat (55 g slice): https://www.fatsecret.co.za/calories-nutrition/sasko/low-gi-whole-wheat-brown-bread/1-slice
+- Sasko Low GI seeded (55 g slice): https://www.fatsecret.co.za/calories-nutrition/sasko/low-gi-seeded-whole-wheat-brown-bread/1-slice
+- Tastic parboiled (dry): https://www.fatsecret.co.za/calories-nutrition/tastic/long-grain-parboiled-rice/100g
+- Tastic basmati (dry): https://www.fatsecret.co.za/calories-nutrition/tastic/basmati-rice/100g
+- Maggi 2-minute chicken (68 g): https://www.fatsecret.co.za/calories-nutrition/maggi/2-minute-noodles-chicken-flavour/1-serving
+  (cheese 73 g pack: https://mobile.fatsecret.co.za/calories-nutrition/maggi/2-minute-noodles-cheese-flavour/1-packet)
+- Provita (4 biscuits 23 g): https://www.fatsecret.co.za/calories-nutrition/bakers/provita/4-biscuits
+- Salticrax: https://www.fatsecret.co.za/calories-nutrition/bakers/salticrax/100g
+- Clover cream: https://www.fatsecret.co.za/calories-nutrition/clover/cream/100ml
+- Clover sour cream: https://www.fatsecret.co.za/calories-nutrition/clover/sour-cream/100ml
+- Clover feta: https://www.fatsecret.co.za/calories-nutrition/clover/feta-plain/100g
+- Lancewood mozzarella: https://www.fatsecret.co.za/calories-nutrition/lancewood/medium-fat-mozzarella/100g
+- Lancewood gouda: https://www.fatsecret.co.za/calories-nutrition/lancewood/gouda-cheese/100g
+- Clover Authentikos Greek yoghurt: https://www.fatsecret.co.za/calories-nutrition/clover/authentikos-greek-yogurt/100g
+- Clover fat free milk: https://www.fatsecret.co.za/calories-nutrition/clover/fat-free-milk/100ml
+- Woolworths organic oat drink: https://www.fatsecret.co.za/calories-nutrition/woolworths/organic-oat-drink/100ml
+- Woolworths almond milk unsweetened: https://www.fatsecret.co.za/calories-nutrition/woolworths/almond-milk-unsweetened/100ml
+- Nutriday: https://www.fatsecret.co.za/calories-nutrition/nutriday/yogurt/100g
+- Clover Yogi Sip (300 ml = 261 kcal): https://www.fatsecret.co.za/calories-nutrition/clover/yogi-sip/1-serving
+- Nestle condensed milk: https://www.fatsecret.co.za/calories-nutrition/nestle/full-cream-sweetened-condensed-milk/100g
+- Lucky Star tuna in water: https://www.fatsecret.co.za/calories-nutrition/lucky-star/light-meat-tuna-chunks-in-water/100g
+- Lucky Star tuna in oil: https://www.fatsecret.co.za/calories-nutrition/lucky-star/light-meat-tuna-chunks-in-vegetable-oil/100g
+- Lucky Star pilchards (Open Food Facts label): https://za-af.openfoodfacts.org/product/6001115001535/pilchards-in-tomato-sauce-lucky-star
+  (fatsecret Lucky Star/Koo agree: 105 kcal, 17 g P, 5.1 g F; label kcal is low for those macros)
+- Enterprise sliced sandwich ham: https://www.fatsecret.co.za/calories-nutrition/enterprise/sliced-sandwich-ham/100g
+  (slice weight 28 g from USDA ham slice: https://www.uhhospitals.org/health-information/health-and-wellness-library/article/nutritionfacts-v1/ham-sliced-regular-approximately-11-fat-1-slice)
+- Rainbow crumbed chicken strips: https://www.fatsecret.co.za/calories-nutrition/rainbow/crumbed-chicken-strips/100g
+- Woolworths beef stir fry: https://www.fatsecret.co.za/calories-nutrition/woolworths/beef-stir-fry/100g
+- Eskort pork bangers: https://www.fatsecret.co.za/calories-nutrition/eskort/pork-bangers/100g
+- Woolworths red kidney beans in brine: https://www.fatsecret.co.za/calories-nutrition/woolworths/red-kidney-beans-in-brine/100g
+  (Koo: https://www.fatsecret.co.za/calories-nutrition/koo/red-kidney-beans/100g)
+- Imana soya mince (200 g prepared serving): https://www.fatsecret.co.za/calories-nutrition/imana/soya-mince/1-serving
+
+Generic (USDA FoodData Central via mirrors):
+- Brown rice cooked (FDC 169704): https://getfoodfacts.com/nutrition/brown-rice
+- Basmati cooked (fatsecret generic): https://www.fatsecret.co.za/calories-nutrition/generic/basmati-rice-(cooked)
+- Parboiled rice cooked (FDC 169708): https://getfoodfacts.com/food/rice-white-long-grain-parboiled-enriched-cooked-169708
+- Pasta dry (FDC 169736): https://getfoodfacts.com/food/pasta-dry-enriched-169736
+- Couscous cooked (FDC 169700): https://getfoodfacts.com/food/couscous-cooked-169700
+- Quinoa cooked (FDC 168917): https://getfoodfacts.com/food/quinoa-cooked-168917
+- Pita white (FDC 174915): https://getfoodfacts.com/nutrition/pita-bread
+- Rice cakes (FDC 170250): https://getfoodfacts.com/food/snacks-rice-cakes-brown-rice-plain-unsalted-170250
+- Mustard yellow: https://triagemethod.com/tools/human-nutrition-explorer/food/mustard-prepared-yellow.html
+- Soy sauce (1 tbsp): https://www.uhhospitals.org/health-information/health-and-wellness-library/nutrition-facts/article/nutritionfacts-v1/soy-sauce-made-from-soy-and-wheat-shoyu-1-tbsp
+- Hot sauce: https://www.recipal.com/ingredients/1298-nutrition-facts-calories-protein-carbs-fat-sauce-ready-to-serve-pepper-or-hot
+- Parmesan grated: https://triagemethod.com/tools/human-nutrition-explorer/food/cheese-parmesan-grated.html
+- Sardines in oil: https://triagemethod.com/tools/human-nutrition-explorer/food/fish-sardine-atlantic-canned-in-oil-drained-solids-with-bone.html
+- Chicken wing roasted: https://www.recipal.com/ingredients/922-nutrition-facts-calories-protein-carbs-fat-chicken-broilers-or-fryers-wing-meat-and-skin-cooked-roasted
+- Lentils boiled: https://triagemethod.com/tools/human-nutrition-explorer/food/lentils-mature-seeds-cooked-boiled-without-salt.html
+- Chickpeas canned drained: https://triagemethod.com/tools/human-nutrition-explorer/food/chickpeas-mature-seeds-canned-drained-solids.html
+- Tofu firm: https://www.recipal.com/ingredients/4730-nutrition-facts-calories-protein-carbs-fat-tofu-firm-prepared-with-calcium-sulfate-and-magnesium-chloride-nigari
+- Tomato (FDC 170457): https://getfoodfacts.com/food/tomatoes-red-ripe-raw-year-round-average-170457
+- Cucumber (FDC 168409): https://getfoodfacts.com/food/cucumber-with-peel-raw-168409
+- Lettuce iceberg: https://www.recipal.com/ingredients/3041-nutrition-facts-calories-protein-carbs-fat-lettuce-iceberg-includes-crisphead-types-raw
+- Onion (FDC 170000), carrot (FDC 170393): https://getfoodfacts.com/nutrition/onions , https://getfoodfacts.com/nutrition/carrots
+- Broccoli boiled (FDC 169967): https://getfoodfacts.com/food/broccoli-cooked-boiled-drained-without-salt-169967
+- Cauliflower boiled (FDC 170397): https://getfoodfacts.com/food/cauliflower-cooked-boiled-drained-without-salt-170397
+- Spinach boiled (FDC 168463): https://getfoodfacts.com/food/spinach-cooked-boiled-drained-without-salt-168463
+- Green beans frozen cooked (FDC 2709853): https://getfoodfacts.com/food/green-beans-frozen-cooked-no-added-fat-2709853
+- Peas frozen boiled (per cup 160 g): https://www.bodbot.com/Nutrition/Foods/11313/peas-green-frozen-cooked-boiled-drained-without-salt
+- Mixed veg frozen boiled (FDC 170472): https://getfoodfacts.com/food/vegetables-mixed-frozen-cooked-boiled-drained-without-salt-170472
+- Mushrooms raw (per cup 70 g): https://www.bodbot.com/Nutrition/Foods/11260/mushrooms-white-raw
+- Sweetcorn canned drained: https://www.recipal.com/ingredients/2976-nutrition-facts-calories-protein-carbs-fat-corn-sweet-yellow-canned-whole-kernel-drained-solids
+- Green pepper (per medium 119 g): https://www.uhhospitals.org/health-information/health-and-wellness-library/article/nutritionfacts-v1/peppers-sweet-green-raw-1-medium-approx-2-34-long-2-12-dia
+- Cabbage raw (FDC 169975): https://getfoodfacts.com/food/cabbage-raw-169975
+- Beetroot pickled (FDC 170480): https://getfoodfacts.com/food/beets-pickled-canned-solids-and-liquids-170480
+- Pear (FDC 169118): https://getfoodfacts.com/food/pears-raw-169118
+- Watermelon (FDC 167765): https://getfoodfacts.com/food/watermelon-raw-167765
+- Strawberries (FDC 167762): https://getfoodfacts.com/food/strawberries-raw-167762
+- Pineapple, peach, plum, litchi, guava, kiwi, blueberries (USDA values + portion weights):
+  https://triagemethod.com/tools/human-nutrition-explorer/food/pineapple-raw-all-varieties.html
+  https://triagemethod.com/tools/human-nutrition-explorer/food/peaches-yellow-raw.html
+  https://triagemethod.com/tools/human-nutrition-explorer/food/plums-raw.html
+  https://triagemethod.com/tools/human-nutrition-explorer/food/litchis-raw.html
+  https://triagemethod.com/tools/human-nutrition-explorer/food/guavas-common-raw.html
+  https://triagemethod.com/tools/human-nutrition-explorer/food/kiwifruit-green-raw.html
+  https://triagemethod.com/tools/human-nutrition-explorer/food/blueberries-raw.html
+
+CHECK NOTES (kcal vs 4P+4C+9F outside 15%):
+- Veg (tomato, cucumber, lettuce, broccoli, cauliflower, spinach, green beans, mushrooms, sweetcorn,
+  green pepper, cabbage) and watermelon run 15-30% under 4/4/9: USDA carbs include fibre and USDA uses
+  lower specific energy factors for vegetables. Values kept as published.
+- Hot sauce: tiny numbers, rounding (11 vs 12.8).
+- Pilchards: label says 104 kcal but 17 g protein + 5.1 g fat implies ~130. Kept label values.
+*/
+```
+
+## Spirits, mixed drinks, beer, wine, mixers, hot drinks and cereals
+
+```
+// Drinks & alcohol (round 2), plus a few breakfast/snack gaps
+
+/*
+SOURCES (checked 2026-10-17)
+
+Spirits (no labels): generic per-ABV values. USDA SR Legacy "Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey)":
+86 proof (43%) = 105 kcal per 1.5 fl oz jigger (44.4 ml) -> 237 kcal/100 ml; 80 proof (40%) = 97 kcal/jigger -> 219 kcal/100 ml.
+Cross-check: 43 ml ethanol x 0.789 g/ml x 7 kcal/g = 237 kcal. FatSecret SA Klipdrift 1 shot 30 ml = 69 kcal (230/100 ml).
+- https://www.fatsecret.co.za/calories-nutrition/klipdrift/brandy/1-shot
+ABV checks on SA retailer pages:
+- Klipdrift Premium 43%: https://www.woolworths.co.za/prod/WCellar/Spirits/Brandy-Cognac/Klipdrift-Premium-Brandy-750-ml/_/A-6001496010010
+- Johnnie Walker Red (SA) 43%: https://www.shoprite.co.za/All-Departments/Drinks/Spirits-and-Liqueurs/Whisky/Johnnie-Walker-Red-Label-Blended-Scotch-Whisky-Bottles-12-x-750ml/p/10131182PK1
+- Smirnoff 1818 40%: https://www.woolworths.co.za/prod/WCellar/Spirits/Vodka/Smirnoff-1818-Original-Vodka-750-ml/_/A-6001398119545
+- Gordon's London Dry (SA) 43%: https://www.woolworths.co.za/prod/WCellar/Spirits/Gin/Gordons-London-Dry-Gin-750-ml/_/A-5000289937825
+- Jose Cuervo Especial (SA) 43%: https://www.woolworths.co.za/prod/WCellar/Spirits/Tequila-Mezcal/Jose-Cuervo-Especial-Gold-Tequila-750-ml/_/A-7501035042148
+- Red Heart rum 43%: https://www.spiritradar.com/rum-db/united-rum-merchants-red-heart-jamaica-special-reserve-43-percent-750ml
+- Captain Morgan Original Spiced Gold (SA) 35%: https://www.woolworths.co.za/prod/_/A-6001398122095
+Labelled liqueurs/spirits (per 100 ml):
+- Amarula official: 1200 kJ / 287 kcal, P 2.1, carbs 21 (sugar 18.7), fat 10.9, 17%: https://amarula.com/?p=364
+- Jägermeister 35%: 1043 kJ / 250 kcal, carbs 14.2 (sugar 13.2): https://www.kifli.hu/en-HU/102661-jagermeister
+- Captain Morgan Spiced Gold 35%: 840 kJ / 201 kcal, carbs 1.3: https://www.kifli.hu/en-HU/26995-captain-morgan-spiced-gold-spicy-jamaican-rum-spirits-35
+  and https://www.rewe.de/shop/p/captain-morgan-original-spiced-gold-1-5l/2121939
+
+Mixed drinks built from parts: 25 ml brandy/gin at 43% (59 kcal) + 200 ml Coca-Cola Original (180 kJ, 11 g carbs per 100 ml,
+https://www.coca-cola.com/za/en/brands/brand-coca-cola-drinks/product-coca-cola-original) or 200 ml Schweppes tonic (157 kJ, 9 g)
+/ Schweppes tonic No Sugar (9 kJ) / Coke No Sugar (1 kJ).
+
+SAB local brands page (per 100 ml): Castle Milk Stout 6% 260 kJ / 62 kcal, carbs 2; Lion Lager 4% 151 kJ / 36 kcal, carbs 2;
+Flying Fish 4.5% 268 kJ / 64 kcal, carbs 8 (sugar 5.6); Brutal Fruit Spritzer 5% 251 kJ / 60 kcal, carbs 7.5:
+- https://www.sab.co.za/our-brands/local-brands
+Beer & cider labels:
+- Heineken 176 kJ / 42 kcal, carbs 3.0, protein 0.4: https://www.nbplc.com/our-brands/heineken/
+  (cross-check NZ label 176 kJ, carbs 3.2: https://www.woolworths.co.nz/shop/product-details/72923/heineken-original-beer-lager-330ml)
+- Heineken 0.0 21 kcal, carbs 4.8: https://www.fatsecret.co.za/calories-nutrition/heineken/00/100ml?frc=True
+- Corona Extra 4.5% 176 kJ / 42 kcal, carbs 4, P 0.3, F 0.1: https://www.rewe.de/shop/p/corona-extra-0-33l/3601890
+- Stella Artois 4.6% 165 kJ / 39 kcal, carbs 3.2, P 0.4: https://www.ocado.com/products/stella-artois-belgian-lager-beer-bottles/603209011
+- Windhoek Draught 33 kcal, carbs 3: https://www.fatsecret.co.za/calories-nutrition/windhoek/draught/100ml
+  Windhoek Lager 112 kcal per 330 ml: https://www.fatsecret.co.za/calories-nutrition/windhoek/lager/1-bottle
+- Castle Double Malt 45 kcal, carbs 3: https://www.fatsecret.co.za/calories-nutrition/castle/double-malt/100ml?frc=True
+- Castle Free 23 kcal, carbs 6: https://www.fatsecret.co.za/calories-nutrition/castle/castle-free/100ml
+  (0.0% ABV: https://www.woolworths.co.za/prod/_/A-6003326015868)
+- Savanna Light 132 kcal, carbs 12 per 330 ml: https://www.fatsecret.co.za/calories-nutrition/savanna/light-cider/1-serving
+- Savanna Alcohol Free 53 kcal, carbs 13.2 per 330 ml: https://www.fatsecret.co.za/calories-nutrition/savanna/alcohol-free/1-serving
+- Hunter's Gold 207 kJ, sugar 5.6 g per 100 ml: https://www.nbplc.com/our-brands/hunters-cider/
+  (4.5% ABV: https://www.checkers.co.za/All-Departments/Drinks/Beer-and-Cider/Cider/Hunter%27s-Gold-Cider-Can-440ml/p/10450253EA)
+Wine:
+- Rosé: USDA SR Legacy 171908 "Alcoholic beverages, wine, rose" 83 kcal, P 0.36, carbs 3.8 per 100 g:
+  https://getfoodfacts.com/food/alcoholic-beverages-wine-rose-171908
+- Sweet sherry: USDA SR Legacy 173176 "Wine, dessert, sweet" 160 kcal, P 0.2, carbs 13.7 per 100 g:
+  https://getfoodfacts.com/food/alcoholic-beverage-wine-dessert-sweet-173176 ; OBS 17%:
+  https://www.checkers.co.za/All-Departments/Drinks/Wine/Sherry-and-Port/Sweet-Sherry/Sedgwick%27s-Old-Brown-Sherry-Bottle-750ml/p/10131019EA
+- Sparkling Brut generic 83 kcal/100 ml, carbs ~2.7: https://www.fatsecret.co.za/calories-nutrition/generic/sparkling-wine
+- Tassenberg 13%, 322 kJ / 78 kcal, carbs 1.4: https://nambrew.com/alcohol-and-health/nutritional-information/
+- Calculated (ABV x 0.789 x 7 + residual sugar x 4), ABV and sugar from Checkers/Shoprite pages:
+  4th Street Natural Sweet Red 7.53%, 71 g/L: https://www.checkers.co.za/All-Departments/Drinks/Wine/Red-Wine/Red-Wine-Blends/4th-Street-Natural-Sweet-Red-Wine-Bottle-750ml/p/10363937EA
+  Four Cousins Natural Sweet Rosé 7.5%, 78 g/L: https://www.checkers.co.za/All-Departments/Drinks/Wine/Ros%C3%A9-Wine/Sweet-Ros%C3%A9-Wine/Four-Cousins-Natural-Sweet-Ros%C3%A9-Bottle-1-5L/p/10168711EA
+  Four Cousins Skinny Sweet Rosé 9%, 30 g/L: https://www.checkers.co.za/All-Departments/Drinks/Wine/Ros%C3%A9-Wine/Sweet-Ros%C3%A9-Wine/Four-Cousins-Skinny-Sweet-Ros%C3%A9-Wine-Bottles-12-x-750ml-/p/10258429PK1
+  JC le Roux Le Domaine 8%, 75 g/L: https://www.checkers.co.za/All-Departments/Drinks/Wine/Champagne-and-Sparkling-Wine/White-Sparkling-Wine/J-C-Le-Roux-Le-Domaine-Premium-Sparkling-White-Wine-Bottles-6-x-750ml/p/10145891PK2
+  JC le Roux Light Sauvignon Blanc can 5%, 6-6.4 g/L: https://www.shoprite.co.za/All-Departments/Drinks/Wine/Champagne-and-Sparkling-Wine/White-Sparkling-Wine/J-C-Le-Roux-Light-Sauvignon-Blanc-Sparkling-Wine-Can-250ml/p/10845652EA
+
+Coca-Cola South Africa labels (per 100 ml, kJ / 4.184 = kcal):
+- Schweppes: Tonic 157 kJ 9 g; Tonic No Sugar 9 kJ; Floral Pink Tonic 131 kJ 8 g; Soda Water 0; Lemonade 131 kJ 8 g;
+  Ginger Ale 123 kJ 7 g; Dry Lemon 53 kJ 3.1 g: https://www.coca-cola.com/za/en/brands/schweppes
+- Grapetiser red 221 kJ 13 g, white 227 kJ 13 g: https://www.coca-cola.com/za/en/brands/appletiser
+- Sparletta Pine Nut 60 kJ sugar 3.6 g, Sparberry 63 kJ sugar 3.6 g: https://www.coca-cola.com/za/en/brands/sparletta
+- Coca-Cola No Sugar Light Taste 1 kJ: https://www.coca-cola.com/za/en/brands/brand-coca-cola-drinks/product-coca-cola-no-sugar-light
+Other soft/energy drinks:
+- Pepsi 27 kcal 7 g; Pepsi Max 0 kcal: https://www.fatsecret.co.za/calories-nutrition/search?q=Pepsi
+- Lipton Ice Tea 34 kcal 8.2 g (peach 170 kcal per 500 ml): https://www.fatsecret.co.za/calories-nutrition/search?q=Lipton
+- Fuze Tea Lemon 43 kcal 11 g per 250 ml: https://www.fatsecret.co.za/calories-nutrition/search?q=Fuze+Tea
+- Vitaminwater Power-C 114 kcal 27 g per 500 ml: https://www.fatsecret.co.za/calories-nutrition/search?q=Glaceau
+- Score 27 kcal 6.1 g: https://www.fatsecret.co.za/calories-nutrition/score/energy-drink/100ml
+- Dragon 16 kcal 4 g: https://www.fatsecret.co.za/calories-nutrition/dragon-energy/energy-drink/100ml
+- Monster Ultra White 10 kJ / 2 kcal, carbs 0.9: https://hr.coca-colahellenic.com/en/our-24-7-portfolio/brands-a-z/monster-energy/monster-ultra-white
+Hot drinks (built from parts):
+- Instant coffee prepared: USDA SR Legacy 174130, 2 kcal, P 0.1, carbs 0.34 per 100 g:
+  https://getfoodfacts.com/food/beverages-coffee-instant-regular-prepared-with-water-174130
+- Milk = app's "Milk, full cream" (64 kcal, P 3.3, C 4.8, F 3.4 per 100 ml); sugar = app's 1 tsp 4 g (16 kcal).
+- Milo powder 20 g (4 tsp): 84 kcal, P 2.3, C 13, F 2.1: https://www.fatsecret.co.za/calories-nutrition/search?q=Milo
+Breakfast:
+- Rice Krispies 397 kcal, P 7.1, C 82, F 2.9 per 100 g: https://www.fatsecret.co.za/calories-nutrition/kelloggs/rice-krispies/100g
+- Coco Pops 1 cup 30 g = 104 kcal, P 2.1, C 23, F 0.4: https://www.fatsecret.co.za/calories-nutrition/kelloggs/coco-pops/1-cup
+- Bokomo Luxury Toasted Nut Muesli 384 kcal, P 9.7, C 55, F 14.1 per 100 g: https://www.fatsecret.co.za/calories-nutrition/bokomo/luxury-toasted-nut-muesli/100g
+- Nature Valley Oats & Honey 42 g: 192 kcal, P 3.4, C 27.1, F 7.2: https://www.fatsecret.co.za/calories-nutrition/nature-valley/oats-honey-crunchy-granola-bars/1-serving
+  (cross-check UK label 467 kcal/100 g: https://www.ocado.com/products/nature-valley-crunchy-oats-honey-cereal-bars/455312011)
+- Jungle Energy Bar Nuts 40 g: 195 kcal, P 3.2, C 20, F 10.9: https://www.fatsecret.co.za/calories-nutrition/jungle/energy-bar-nuts/1-bar
+
+SKIPPED (no reliable label found or sources disagreed): Smirnoff Spin/Storm (FatSecret entries identical and don't add up),
+Klipdrift & Cola premix, Bernini, Redd's, Esprit, Hooch, Strawberry Lips, Amstel, Carling Pink, Twizza (kcal vs carbs mismatch),
+Coo-ee, Valpré flavoured water, Nesquik, Horlicks, Kellogg's All-Bran Flakes and Bokomo Bran Flakes (energy didn't match macros).
+*/
+```
