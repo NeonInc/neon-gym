@@ -709,7 +709,14 @@ var DAYS = {
   BT: {n: "Back & Triceps", hint: "Back, triceps", core: "bird-dog",
        ex: [["lat-pulldown",3],["chest-row",3],["seated-row",2],["pushdown",3],["overhead-ext",2],["core",2]]},
   SA: {n: "Shoulders & Arms", hint: "Shoulders, biceps, triceps",
-       ex: [["shoulder-press",3],["cable-lateral",3],["rear-pec",2],["preacher-curl",2],["hammer-curl",2],["pushdown",2],["overhead-ext",2]]}
+       ex: [["shoulder-press",3],["cable-lateral",3],["rear-pec",2],["preacher-curl",2],["hammer-curl",2],["pushdown",2],["overhead-ext",2]]},
+  /* Arnold split: chest+back, shoulders+arms, legs, each twice a week. Chest and back moves alternate so they can be supersetted. */
+  ACB: {n: "Chest & Back", hint: "Chest, back (alternate them)",
+       ex: [["incline-db-press",3],["lat-pulldown",3],["chest-press",3],["chest-row",3],["cable-fly",2],["straight-arm",2]]},
+  ASA: {n: "Arnold Shoulders & Arms", hint: "Shoulders, biceps, triceps",
+       ex: [["db-shoulder-press",3],["db-lateral",3],["rear-pec",2],["ez-curl",3],["pushdown",3],["hammer-curl",2],["overhead-ext",2]]},
+  ALG: {n: "Arnold Legs", hint: "Quads, hamstrings, calves", core: "dead-bug",
+       ex: [["hack-squat",3],["seated-curl",3],["leg-press",2],["leg-ext",3],["calf-raise",4],["core",2]]}
 };
 var PLANS = {
   fb:   {n: "Full Body", stage: "Stage 1 · start here", when: "Weeks 1–12", days: "3 days", perWeek: 3, sched: "Mon · Wed · Fri. Alternate A and B: A B A, then B A B.", cycle: ["A","B"],
@@ -719,9 +726,11 @@ var PLANS = {
   ppl:  {n: "Push / Pull / Legs", stage: "Stage 2 or 3", when: "When you want shorter, focused sessions", days: "3 or 6 days", perWeek: 3, sched: "Rotate Push → Pull → Legs on Mon · Wed · Fri. Later: 6 days, twice through.", cycle: ["PU","PL","LG"],
          why: "Push is chest, shoulders and triceps. Pull is back and biceps. Legs is the lower body. At 3 days a week each muscle is trained about once a week, so it suits 6 days better."},
   pair: {n: "Body-part pairs", stage: "Stage 3", when: "Once you know the machines well", days: "4 days", perWeek: 4, sched: "Mon Chest & Biceps · Tue Legs · Thu Back & Triceps · Fri Shoulders & Arms", cycle: ["CB","LG","BT","SA"],
-         why: "The classic gym pairings: a big muscle first, a small one after. Each muscle is mainly trained once a week, so every session goes deeper on it."}
+         why: "The classic gym pairings: a big muscle first, a small one after. Each muscle is mainly trained once a week, so every session goes deeper on it."},
+  arnold: {n: "Arnold Split", stage: "Stage 3 · advanced", when: "After 6+ months of steady training", days: "6 days", perWeek: 6, sched: "Mon Chest & Back · Tue Shoulders & Arms · Wed Legs · repeat Thu to Sat · Sun rest", cycle: ["ACB","ASA","ALG"],
+         why: "Arnold Schwarzenegger's high-volume split: chest with back, shoulders with arms, then legs, each twice a week. Alternate a chest and a back exercise to save time. Machine and dumbbell versions here; new to it? Run it once through (3 days) first."}
 };
-var PLAN_ORDER = ["fb","ul","ppl","pair"];
+var PLAN_ORDER = ["fb","ul","ppl","pair","arnold"];
 var WARMUP = ["3–5 min easy bike or incline walk","10 shoulder circles or band pull-aparts, 10 bodyweight squats, 10 hip bridges","Ramp-up on your first exercise: about 50% of working weight × 8, then about 75% × 4"];
 
 /* ---------- Helpers ---------- */
@@ -1107,7 +1116,7 @@ function dayCard(d, tag) {
 function dayPickBody() {
   var p = PLANS[S.profile.plan], nd = nextDay();
   var h = '<p class="label">' + esc(p.n) + ' · your plan</p><div class="daycards">' + p.cycle.map(function (d) { return dayCard(d, d === nd ? "Next up" : ""); }).join("") + '</div>';
-  var groups = [["Full body", ["A","B"]], ["Upper / Lower", ["UP","LO"]], ["Push / Pull / Legs", ["PU","PL","LG"]], ["Body-part pairs", ["CB","BT","SA"]]];
+  var groups = [["Full body", ["A","B"]], ["Upper / Lower", ["UP","LO"]], ["Push / Pull / Legs", ["PU","PL","LG"]], ["Body-part pairs", ["CB","BT","SA"]], ["Arnold split", ["ACB","ASA","ALG"]]];
   groups.forEach(function (g) {
     var ds = g[1].filter(function (d) { return p.cycle.indexOf(d) < 0; });
     if (ds.length) h += '<p class="label">' + esc(g[0]) + '</p><div class="daycards">' + ds.map(function (d) { return dayCard(d, ""); }).join("") + '</div>';
@@ -1439,7 +1448,7 @@ function viewPlans() {
   var h = '<div class="sec"><div><p class="label">' + esc(PLANS[S.profile.plan].n) + ' is your plan</p><h2>Choose your <em>split.</em></h2><p class="sub">Your plan decides which workout comes up next. You can still pick any workout on any day with Change.</p></div>';
   h += myPlansSection();
   h += '<p class="label">Ready-made plans</p>';
-  h += '<div class="card"><p><b>The path:</b> Full Body for about 3 months. Then pick what fits your week: Upper / Lower for 4 days, Push / Pull / Legs for shorter focused sessions, or Body-part pairs once you know the machines.</p><p class="small">When the total sets per muscle are the same, full body and split routines build about the same muscle. The numbers under each plan are the hard sets each muscle gets per week. 6 or more is a good start; around 10 or more is the target once you are past the beginner months. Presses and rows also work shoulders and arms on top of these.</p></div>';
+  h += '<div class="card"><p><b>The path:</b> Full Body for about 3 months. Then pick what fits your week: Upper / Lower for 4 days, Push / Pull / Legs for shorter focused sessions, or Body-part pairs once you know the machines. The Arnold split is the big one: 6 days, high volume, for later.</p><p class="small">When the total sets per muscle are the same, full body and split routines build about the same muscle. The numbers under each plan are the hard sets each muscle gets per week. 6 or more is a good start; around 10 or more is the target once you are past the beginner months. Presses and rows also work shoulders and arms on top of these.</p></div>';
   PLAN_ORDER.forEach(function (pid, i) {
     var p = PLANS[pid], act = S.profile.plan === pid, k = "plan-" + pid;
     h += '<section class="plan' + (act ? " active" : "") + '"><div class="top"><span class="pnum">' + pad(i + 1) + ' · <span class="stage">' + esc(p.stage) + '</span></span>' + (act ? '<span class="badge cur">Current</span>' : "") + '</div><h3>' + esc(p.n) + '</h3>' +

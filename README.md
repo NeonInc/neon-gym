@@ -17,6 +17,7 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
   - Upper / Lower, 4 days
   - Push / Pull / Legs
   - Body-part pairs: Chest & Biceps, Legs, Back & Triceps, Shoulders & Arms
+  - Arnold split: Chest & Back, Shoulders & Arms, Legs, each twice a week (6 days)
 
   Each plan shows the weekly hard sets per muscle. You can also pick any workout on any day.
 
