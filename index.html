@@ -506,6 +506,42 @@ h3 { font-size: 27px; line-height: 1; letter-spacing: .01em; }
 .timer { border-color: var(--accent); }
 .timer .tt { font-size: 36px; }
 @media (min-width: 560px) { h2 { font-size: 64px; } }
+/* ---- Fasting ---- */
+:root { --fast: #a78bfa; }
+.fastcard { border-color: rgba(167, 139, 250, .35); background: linear-gradient(160deg, rgba(167, 139, 250, .1), var(--surface) 60%); }
+.fchead { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.fastcard .label, .fastcard .fstage b { color: var(--fast); }
+.fchg { margin-top: 0; border-color: rgba(167, 139, 250, .5); background: rgba(167, 139, 250, .1); color: var(--fast); }
+.fbody { display: flex; align-items: center; gap: 16px; }
+.fring { position: relative; width: 132px; flex: none; }
+.fring svg { width: 100%; display: block; }
+.fring circle { fill: none; stroke-width: 7; }
+.fring .rt { stroke: var(--surface-2); }
+.fring .rv { stroke-linecap: round; transition: stroke-dasharray .6s; }
+.flab { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.flab b { font-family: var(--font-display); font-weight: 400; font-size: 30px; line-height: 1; font-variant-numeric: tabular-nums; }
+.flab span { font-size: 12px; color: var(--muted); }
+.fring.done .flab b { color: var(--fast); }
+.finfo { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.finfo p { margin: 0; display: flex; flex-direction: column; }
+.finfo b { font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1; }
+.fstage { border-left: 3px solid var(--fast); padding: 4px 0 4px 10px; }
+.fstage p { margin: 2px 0 0; }
+.flinks { display: flex; gap: 16px; flex-wrap: wrap; }
+.fastcard .link, .sheet.ft .link { color: var(--fast); }
+.btn.fbtn, .sheet .btn.fbtn { background: var(--fast); border-color: var(--fast); color: #120a24; }
+.fpill { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--fast); border: 1px solid rgba(167, 139, 250, .5); background: rgba(167, 139, 250, .1); border-radius: 6px; padding: 0 9px; height: 32px; font-variant-numeric: tabular-nums; }
+.fplans { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.fplan { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--field); }
+.fplan b { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1; }
+.fplan > span { font-size: 13px; }
+.fplan.adv b::after { content: " ·adv"; font-family: var(--font-mono); font-size: 10px; color: var(--warn); vertical-align: middle; }
+.fplan[aria-pressed="true"] { border-color: var(--fast); background: rgba(167, 139, 250, .12); }
+.fplan[aria-pressed="true"] b { color: var(--fast); }
+.fsafe { border: 1px solid var(--line-2); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.fsafe ul { margin: 0; padding-left: 18px; font-size: 14px; }
+.sheet.ft .check input { accent-color: var(--fast); }
+@media (max-width: 380px) { .fring { width: 112px; } .flab b { font-size: 25px; } }
 /* ---- Water ---- */
 :root { --water: #4cc9f0; --water-deep: #1f8fd6; }
 .nav button.wnav { color: color-mix(in srgb, var(--water) 70%, var(--muted)); }
@@ -556,7 +592,7 @@ svg.chart .wg { stroke: var(--water); stroke-width: 1.5; stroke-dasharray: 4 3; 
     <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#c8f542"/><path d="M18 32h28" stroke="#0b0c0e" stroke-width="5" stroke-linecap="round"/><rect x="12" y="22" width="8" height="20" rx="2" fill="#0b0c0e"/><rect x="44" y="22" width="8" height="20" rx="2" fill="#0b0c0e"/><rect x="7" y="26" width="4" height="12" rx="1.5" fill="#0b0c0e"/><rect x="53" y="26" width="4" height="12" rx="1.5" fill="#0b0c0e"/></svg>
     <div><div class="brand-t">NEON GYM</div><div class="brand-s" id="eyebrow">Full Body plan</div></div>
   </div>
-  <div class="hbtns"><button type="button" class="hguide" id="guideBtn" data-act="tab" data-tab="guide" aria-label="Guide: how the plan works" title="Guide"><svg viewBox="0 0 24 24"><path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 1-4-4z"/><path d="M9 9h6M9 13h6"/></svg></button><button type="button" class="avatar" id="profileBtn" data-act="profile" aria-label="Profile and settings" aria-haspopup="dialog"></button></div>
+  <div class="hbtns"><button type="button" class="fpill" id="fastPill" data-act="fastopen" hidden aria-label="Fasting timer"></button><button type="button" class="hguide" id="guideBtn" data-act="tab" data-tab="guide" aria-label="Guide: how the plan works" title="Guide"><svg viewBox="0 0 24 24"><path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 1-4-4z"/><path d="M9 9h6M9 13h6"/></svg></button><button type="button" class="avatar" id="profileBtn" data-act="profile" aria-label="Profile and settings" aria-haspopup="dialog"></button></div>
 </header>
 <main id="view"></main>
 <div id="sheet" class="sheet" hidden></div>
@@ -1525,6 +1561,7 @@ function profileBody() {
   h += '<p class="label">You</p><div class="plist">' +
     '<button class="prow tap" type="button" data-act="sheet" data-m="targets"><span><b>Body and goal</b><span class="small">' + esc(meTxt) + '</span></span></button>' +
     '<button class="prow tap" type="button" data-act="sheet" data-m="targets"><span><b>Daily targets</b><span class="small">' + tg.kcal + ' kcal · ' + tg.p + ' g protein</span></span></button>' +
+    '<button class="prow tap" type="button" data-act="fastsheet"><span><b>Fasting</b><span class="small">' + (fastS().on ? esc(fastS().plan) + (fasting() ? " · fasting now" : " · eating window") : "Off · tap to learn more") + '</span></span></button>' +
     '<button class="prow tap" type="button" data-act="ptab" data-tab="plans"><span><b>Plan</b><span class="small">' + esc(p.n) + ' · ' + p.perWeek + ' days a week</span></span></button></div>';
   var nW = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length, nF = Object.keys(S.food).filter(function (d) { return foodDay(d).length; }).length, nB = Object.keys(S.body).length;
   h += '<p class="label">Your data</p><div class="plist"><div class="prow"><span>Logged</span><span class="v">' + nW + ' workout' + (nW === 1 ? "" : "s") + ' · ' + nF + ' food day' + (nF === 1 ? "" : "s") + ' · ' + nB + ' weigh-in' + (nB === 1 ? "" : "s") + '</span></div></div>';
@@ -2122,6 +2159,107 @@ fd("d2-coco-pops", "Coco Pops (Kellogg's)", "Breakfast", "100 g", 347, 7, 76.7, 
 fd("d2-muesli", "Muesli, toasted nut (Bokomo Luxury)", "Breakfast", "100 g", 384, 9.7, 55, 14.1, [["45 g serving", .45], ["60 g bowl", .6], ["30 g topping", .3]], "Log the milk or yoghurt separately.", "muesli bokomo luxury toasted nut granola cereal");
 fd("d2-nature-valley", "Nature Valley Crunchy bar, Oats & Honey", "Breakfast", "1 pack 42 g", 192, 3.4, 27.1, 7.2, [["1 pack (2 bars)", 1], ["1 bar", .5]], "Each pack has 2 bars.", "nature valley crunchy granola bar oats honey cereal bar");
 fd("d2-jungle-bar", "Jungle Energy Bar, nuts", "Breakfast", "1 bar 40 g", 195, 3.2, 20, 10.9, [["1 bar", 1]], "", "jungle energy bar oats cereal bar nuts");
+// Restaurants and cafés (Mugg & Bean, Kauai, Spur, Ocean Basket, Nando's, Steers, Burger King, Starbucks...)
+fd("r-mb-blueberry-muffin", "Blueberry muffin (Mugg & Bean)", "Restaurants", "1 muffin", 532, 15, 48, 31, [["1 muffin", 1], ["half", .5]], "Muffin only, no butter or preserves.", "mugg and bean m&b mugg & bean muffin blueberry");
+fd("r-mb-chocchip-muffin", "Choc-chip muffin (Mugg & Bean)", "Restaurants", "1 muffin", 619, 16, 56, 37, [["1 muffin", 1], ["half", .5]], "Muffin only, no butter or preserves.", "mugg and bean m&b mugg & bean muffin choc chip chocolate");
+fd("r-mb-triplechoc-muffin", "Triple chocolate muffin (Mugg & Bean)", "Restaurants", "1 muffin", 671, 15, 60, 41, [["1 muffin", 1], ["half", .5]], "Muffin only, no butter or preserves.", "mugg and bean m&b mugg & bean muffin triple chocolate");
+fd("r-mb-bran-muffin", "Bran muffin (Mugg & Bean)", "Restaurants", "1 muffin", 933, 19, 109, 45, [["1 muffin", 1], ["half", .5]], "Muffin only. With butter & preserves about 1265 kcal.", "mugg and bean m&b mugg & bean muffin bran");
+fd("r-mb-bacon-cheddar-muffin", "Bacon & cheddar muffin (Mugg & Bean)", "Restaurants", "1 muffin", 677, 28, 57, 37, [["1 muffin", 1], ["half", .5]], "Savoury back bacon & cheddar muffin.", "mugg and bean m&b mugg & bean muffin savoury bacon cheddar cheese");
+fd("r-mb-classic-breakfast", "Classic breakfast, rye toast (Mugg & Bean)", "Restaurants", "1 meal", 1137, 32, 65, 81, [["1 meal", 1], ["half", .5]], "Full plate with rye toast.", "mugg and bean m&b mugg & bean breakfast classic eggs bacon toast");
+fd("r-mb-farm-breakfast", "SA farm breakfast, rye (Mugg & Bean)", "Restaurants", "1 meal", 1766, 53, 48, 152, [["1 meal", 1], ["half", .5]], "Big farm breakfast with rye toast.", "mugg and bean m&b mugg & bean south african farm breakfast boerewors eggs");
+fd("r-mb-hearty-grill", "Hearty grill breakfast, rye (Mugg & Bean)", "Restaurants", "1 meal", 1226, 71, 59, 78, [["1 meal", 1], ["half", .5]], "With rye toast.", "mugg and bean m&b mugg & bean breakfast hearty grill steak eggs");
+fd("r-mb-eggs-benedict", "SA eggs Benedict, single (Mugg & Bean)", "Restaurants", "1 meal", 782, 36, 39, 53, [["1 meal", 1]], "Single portion. Double about 1373 kcal.", "mugg and bean m&b mugg & bean eggs benedict hollandaise breakfast");
+fd("r-mb-breakfast-bagel", "Breakfast bagel (Mugg & Bean)", "Restaurants", "1 bagel", 846, 32, 82, 42, [["1 bagel", 1], ["half", .5]], "", "mugg and bean m&b mugg & bean bagel breakfast egg bacon");
+fd("r-mb-lowcarb-breakfast", "Low-carb breakfast (Mugg & Bean)", "Restaurants", "1 meal", 594, 28, 5, 50, [["1 meal", 1]], "No toast.", "mugg and bean m&b mugg & bean low carb keto banting breakfast eggs bacon");
+fd("r-mb-avo-toast", "Avo on toast, wholewheat (Mugg & Bean)", "Restaurants", "1 meal", 275, 7, 20, 17, [["1 meal", 1]], "", "mugg and bean m&b mugg & bean avo avocado toast breakfast");
+fd("r-mb-beef-burger", "Beef burger (Mugg & Bean)", "Restaurants", "1 burger", 1328, 65, 76, 83, [["1 burger", 1], ["half", .5]], "As served; side not stated.", "mugg and bean m&b mugg & bean burger beef");
+fd("r-mb-chicken-burger", "Chicken burger (Mugg & Bean)", "Restaurants", "1 burger", 690, 30, 56, 37, [["1 burger", 1], ["half", .5]], "As served; side not stated.", "mugg and bean m&b mugg & bean burger chicken");
+fd("r-mb-caesar-regular", "Chicken Caesar salad (Mugg & Bean)", "Restaurants", "1 salad", 663, 58, 22, 37, [["regular", 1], ["light portion", .68]], "Regular size. Light size is 450 kcal.", "mugg and bean m&b mugg & bean salad chicken caesar");
+fd("r-mb-greek-salad", "Greek salad, light (Mugg & Bean)", "Restaurants", "1 salad", 355, 10, 36, 18, [["1 salad", 1]], "Light size.", "mugg and bean m&b mugg & bean salad greek feta");
+fd("r-mb-chicken-mayo-toastie", "Chicken mayo toastie, white (Mugg & Bean)", "Restaurants", "1 sandwich", 924, 46, 77, 45, [["1 sandwich", 1], ["half", .5]], "Toasted sandwich on white bread.", "mugg and bean m&b mugg & bean toastie toasted sandwich chicken mayo");
+fd("r-mb-bacon-egg-toastie", "Bacon & egg toastie, white (Mugg & Bean)", "Restaurants", "1 sandwich", 904, 33, 73, 51, [["1 sandwich", 1], ["half", .5]], "Back bacon & egg, white bread.", "mugg and bean m&b mugg & bean toastie toasted sandwich bacon egg");
+fd("r-mb-cappuccino", "Cappuccino (Mugg & Bean)", "Restaurants", "1 cup", 190, 8, 17, 10, [["Easy (regular)", 1], ["Serious (large)", 1.71]], "Easy size, full cream milk. Serious is 325 kcal.", "mugg and bean m&b mugg & bean coffee cappuccino easy serious");
+fd("r-mb-latte", "Caffè latte (Mugg & Bean)", "Restaurants", "1 cup", 210, 11, 16, 11, [["1 cup", 1]], "", "mugg and bean m&b mugg & bean coffee latte caffe");
+fd("r-mb-hot-chocolate", "Hot chocolate (Mugg & Bean)", "Restaurants", "1 cup", 323, 11, 43, 12, [["1 cup", 1]], "", "mugg and bean m&b mugg & bean hot chocolate cocoa");
+fd("r-mb-applepie-shake", "Apple pie milkshake (Mugg & Bean)", "Restaurants", "1 glass", 703, 9, 83, 37, [["1 glass", 1]], "", "mugg and bean m&b mugg & bean milkshake shake apple pie");
+fd("r-mb-cheesecake", "Baked cheesecake, slice (Mugg & Bean)", "Restaurants", "1 slice", 654, 14, 60, 40, [["1 slice", 1], ["half", .5]], "", "mugg and bean m&b mugg & bean cheesecake dessert cake");
+fd("r-kauai-pb-bomb", "Peanut Butter Bomb smoothie (Kauai)", "Restaurants", "1 cup 350 ml", 467, 25.9, 38, 23.2, [["350 ml", 1], ["500 ml", 1.64]], "500 ml is 764 kcal.", "kauai smoothie peanut butter bomb protein");
+fd("r-kauai-mocha-protein", "Mocha Protein smoothie (Kauai)", "Restaurants", "1 cup 350 ml", 431, 21.9, 44, 18.3, [["350 ml", 1], ["500 ml", 1.46]], "500 ml is 631 kcal.", "kauai smoothie mocha protein coffee");
+fd("r-kauai-ultimate-protein", "Ultimate Protein smoothie (Kauai)", "Restaurants", "1 cup 350 ml", 370, 23, 42, 13, [["350 ml", 1], ["500 ml (approx.)", 1.43]], "", "kauai smoothie ultimate protein");
+fd("r-kauai-salted-caramel", "Salted Caramel smoothie (Kauai)", "Restaurants", "1 cup 350 ml", 463, 17.4, 35, 28.3, [["350 ml", 1], ["500 ml (approx.)", 1.43]], "", "kauai smoothie salted caramel");
+fd("r-kauai-strawberry-stinger", "Strawberry Stinger smoothie (Kauai)", "Restaurants", "1 cup 350 ml", 198, 2.1, 45, 1.7, [["350 ml", 1], ["500 ml (approx.)", 1.43]], "Fruit smoothie, almost no fat.", "kauai smoothie strawberry stinger fruit");
+fd("r-kauai-bbq-chicken-wrap", "BBQ chicken wrap (Kauai)", "Restaurants", "1 wrap 314 g", 630, 33.8, 46, 34.4, [["1 wrap", 1], ["half", .5]], "", "kauai wrap bbq chicken");
+fd("r-kauai-princess-wrap", "Princess wrap (Kauai)", "Restaurants", "1 wrap", 765, 33.8, 51, 49.1, [["1 wrap", 1], ["half", .5]], "Regular wrap. Low-carb wrap is 699 kcal.", "kauai wrap princess chicken");
+fd("r-kauai-prince-wrap", "Prince wrap (Kauai)", "Restaurants", "1 wrap", 837, 38.8, 53, 54.4, [["1 wrap", 1], ["half", .5]], "Regular wrap.", "kauai wrap prince chicken");
+fd("r-kauai-teriyaki-wrap", "Teriyaki chicken wrap (Kauai)", "Restaurants", "1 wrap", 764, 37, 51, 45, [["1 wrap", 1], ["half", .5]], "", "kauai wrap teriyaki chicken");
+fd("r-kauai-feta-crunch-wrap", "Chicken feta crunch wrap (Kauai)", "Restaurants", "1 wrap", 509, 31, 48, 15, [["1 wrap", 1], ["half", .5]], "", "kauai wrap chicken feta crunch");
+fd("r-kauai-protein-bfast-wrap", "Protein breakfast wrap (Kauai)", "Restaurants", "1 wrap", 693, 36.2, 47, 40.2, [["1 wrap", 1], ["half", .5]], "", "kauai wrap protein breakfast egg");
+fd("r-kauai-steak-quesadilla", "Steak & avo quesadilla (Kauai)", "Restaurants", "1 meal", 698, 44.5, 46, 37.5, [["1 meal", 1], ["half", .5]], "Regular wrap.", "kauai quesadilla steak avo avocado");
+fd("r-kauai-teriyaki-poke", "Teriyaki chicken poke bowl (Kauai)", "Restaurants", "1 bowl", 849, 36.9, 60, 51.3, [["1 bowl", 1], ["half", .5]], "", "kauai bowl poke teriyaki chicken");
+fd("r-spur-beef-burger", "Original beef burger + chips, 100 g (Spur)", "Restaurants", "100 g", 203, 8.6, 16, 10.9, [["100 g", 1], ["300 g", 3], ["500 g", 5]], "Spur gives per-100 g values only. With chips & onion rings.", "spur burger beef original chips onion rings");
+fd("r-spur-beef-burger-only", "Original beef burger only, 100 g (Spur)", "Restaurants", "100 g", 208, 13.3, 15, 10.2, [["100 g", 1], ["200 g", 2], ["300 g", 3]], "Spur gives per-100 g values only. Burger without sides.", "spur burger beef original plain");
+fd("r-spur-cheese-burger", "Cheese burger + chips, 100 g (Spur)", "Restaurants", "100 g", 207, 9.1, 16, 11.4, [["100 g", 1], ["300 g", 3], ["500 g", 5]], "Spur gives per-100 g values only. With chips & onion rings.", "spur burger cheese cheeseburger beef chips");
+fd("r-spur-chicken-burger", "Grilled chicken burger + chips, 100 g (Spur)", "Restaurants", "100 g", 180, 7.6, 16, 8.8, [["100 g", 1], ["300 g", 3], ["500 g", 5]], "Spur gives per-100 g values only. With chips & onion rings.", "spur burger chicken grilled chips");
+fd("r-spur-rib-burger", "Rib burger + chips, 100 g (Spur)", "Restaurants", "100 g", 227, 9, 17, 13, [["100 g", 1], ["300 g", 3], ["500 g", 5]], "Spur gives per-100 g values only. With chips & onion rings.", "spur burger rib pork chips");
+fd("r-spur-ribs-400", "Rack of ribs + chips, 100 g (Spur)", "Restaurants", "100 g", 220, 10.9, 11, 14.2, [["100 g", 1], ["400 g", 4], ["600 g", 6]], "Spur gives per-100 g values only. 400 g rack, chips & onion rings.", "spur ribs pork rack bbq chips");
+fd("r-spur-ribs-wings", "Ribs & buffalo wings combo, 100 g (Spur)", "Restaurants", "100 g", 175, 12.6, 7, 10.2, [["100 g", 1], ["400 g", 4], ["600 g", 6]], "Spur gives per-100 g values only. Grill basting, chips & onion rings.", "spur ribs wings buffalo combo chips");
+fd("r-spur-greek-salad", "Greek salad, 100 g (Spur)", "Restaurants", "100 g", 65, 0.9, 3, 5.1, [["100 g", 1], ["200 g", 2], ["300 g", 3]], "Spur gives per-100 g values only. Full-size salad.", "spur salad greek feta");
+fd("r-spur-chicken-avo-salad", "Chicken, avo & bacon salad (Spur)", "Restaurants", "1 salad 300 g", 457, 38.9, 14.7, 24, [["1 salad", 1], ["half", .5]], "", "spur salad chicken avo avocado bacon");
+fd("r-spur-buffalo-wings", "Buffalo wings, half portion (Spur)", "Restaurants", "1 portion 293 g", 595, 40.1, 17.9, 41.3, [["half portion", 1], ["full portion", 2]], "", "spur buffalo wings chicken starter");
+fd("r-nandos-half-chicken", "½ chicken, per 100 g (Nando's)", "Restaurants", "100 g", 223, 26, 0, 13.2, [["100 g", 1], ["200 g", 2], ["300 g", 3]], "Chicken only, weigh without bone.", "nandos peri peri half chicken flame grilled");
+fd("r-nandos-chicken-burger", "Chicken burger, per 100 g (Nando's)", "Restaurants", "100 g", 168, 15, 12, 5, [["100 g", 1], ["200 g", 2], ["300 g", 3]], "Burger only.", "nandos peri peri chicken burger prego");
+fd("r-nandos-grande-burger", "Grande cheese burger (Nando's)", "Restaurants", "1 burger 350 g", 579, 39.9, 57, 20.2, [["1 burger", 1]], "Burger only.", "nandos grande cheese burger chicken");
+fd("r-nandos-winglets", "Winglets, per 100 g (Nando's)", "Restaurants", "100 g", 234, 26.5, 1, 12.5, [["100 g", 1], ["200 g", 2], ["300 g", 3]], "Meat weight, no bone.", "nandos peri peri wings winglets chicken");
+fd("r-nandos-hot-pot", "Hot pot with spicy rice (Nando's)", "Restaurants", "1 meal 420 g", 642, 33.6, 54.6, 29.4, [["1 meal", 1]], "", "nandos hot pot spicy rice chicken");
+fd("r-nandos-boujee-bowl", "Corn & pepper boujee bowl, strips (Nando's)", "Restaurants", "1 bowl 330 g", 415, 39.6, 39.6, 9.9, [["1 bowl", 1]], "Roasted corn & red pepper, chicken strips.", "nandos boujee bowl chicken strips corn red pepper");
+fd("r-nandos-roll", "Portuguese roll (Nando's)", "Restaurants", "1 roll", 193, 6.2, 37, 1.7, [["1 roll", 1]], "Plain roll.", "nandos portuguese roll bread side");
+fd("r-bk-whopper", "Whopper (Burger King)", "Restaurants", "1 burger", 566, 33.4, 50.9, 25.2, [["1 burger", 1]], "Burger only.", "burger king bk whopper beef");
+fd("r-bk-whopper-cheese", "Whopper with cheese (Burger King)", "Restaurants", "1 burger", 646, 38.2, 52.9, 31.4, [["1 burger", 1]], "Burger only.", "burger king bk whopper cheese beef");
+fd("r-bk-double-whopper-cheese", "Double Whopper with cheese (Burger King)", "Restaurants", "1 burger", 815, 61, 52.9, 40, [["1 burger", 1]], "Burger only.", "burger king bk double whopper cheese beef");
+fd("r-bk-chicken-sandwich", "Original chicken sandwich (Burger King)", "Restaurants", "1 burger", 592, 25.8, 50, 30.6, [["1 burger", 1]], "Burger only.", "burger king bk original chicken sandwich burger");
+fd("r-bk-wings-6", "Chicken wings, 6 pc (Burger King)", "Restaurants", "1 portion", 423, 49.9, 0.5, 24.6, [["6 wings", 1]], "", "burger king bk chicken wings");
+fd("r-ob-fish-chips", "Famous fish & chips (Ocean Basket)", "Restaurants", "1 meal", 654, 37.8, 52.4, 32.1, [["1 meal", 1], ["half", .5]], "Fried hake with chips.", "ocean basket ob fish and chips hake fried");
+fd("r-ob-grilled-fish", "Grilled fish, 200 g (Ocean Basket)", "Restaurants", "1 portion 200 g", 182, 32, 0, 6, [["1 portion", 1]], "Fish only, no sides.", "ocean basket ob grilled fish hake");
+fd("r-ob-kingklip", "Grilled kingklip (Ocean Basket)", "Restaurants", "1 portion", 643, 79.5, 4, 34.3, [["1 portion", 1]], "Sides not included.", "ocean basket ob grilled kingklip fish");
+fd("r-ob-calamari", "Grilled calamari (Ocean Basket)", "Restaurants", "1 portion", 349, 34.5, 7.2, 19.4, [["1 portion", 1]], "Sides not included.", "ocean basket ob calamari grilled squid");
+fd("r-ob-prawns-12", "Prince prawns, 12 (Ocean Basket)", "Restaurants", "1 portion", 424, 50, 1, 24, [["12 prawns", 1], ["6 prawns", .5]], "12 prawns, no sides.", "ocean basket ob prawns prince grilled");
+fd("r-ob-platter-one", "Seafood platter for one (Ocean Basket)", "Restaurants", "1 platter", 1125, 87.1, 22.9, 74.7, [["1 platter", 1]], "", "ocean basket ob seafood platter one");
+fd("r-ob-salmon-salad", "Seared salmon salad (Ocean Basket)", "Restaurants", "1 salad 300 g", 333, 18.1, 22.2, 21.2, [["1 salad", 1]], "", "ocean basket ob salmon salad seared");
+fd("r-ob-chips", "Chips, full portion (Ocean Basket)", "Restaurants", "1 portion", 458, 6.5, 52.7, 22.2, [["full portion", 1], ["half portion", .5]], "", "ocean basket ob chips fries side");
+fd("r-cc-margherita", "Margherita pizza (Col'Cacchio)", "Pizza", "1 pizza", 916, 37.7, 108.6, 34.5, [["whole pizza", 1], ["half", .5], ["1 slice (of 8)", .125]], "Whole pizza.", "colcacchio col cacchio col'cacchio pizza margherita margarita");
+fd("r-cc-ruspante", "Ruspante pizza (Col'Cacchio)", "Pizza", "1 pizza", 1023, 51.4, 112.3, 37.3, [["whole pizza", 1], ["half", .5], ["1 slice (of 8)", .125]], "Whole pizza.", "colcacchio col cacchio col'cacchio pizza ruspante chicken");
+fd("r-cc-carb-conscious", "Carb-conscious margherita (Col'Cacchio)", "Pizza", "1 pizza", 329, 18, 14.2, 20.3, [["whole pizza", 1], ["half", .5]], "Low-carb base.", "colcacchio col cacchio col'cacchio pizza low carb conscious keto margherita");
+fd("r-wimpy-chicken-mayo", "Chicken mayo toastie (Wimpy)", "Restaurants", "1 sandwich 200 g", 480, 23.7, 32, 27.8, [["1 sandwich", 1]], "", "wimpy toasted toastie chicken mayo mayonnaise sandwich");
+fd("r-wimpy-dagwood", "Dagwood toasted sandwich (Wimpy)", "Restaurants", "1 sandwich", 805, 47.3, 49, 45, [["1 sandwich", 1], ["half", .5]], "", "wimpy dagwood toasted toastie sandwich");
+fd("r-wimpy-chicken-burger", "Chicken fillet burger (Wimpy)", "Restaurants", "1 burger", 412, 28.4, 32, 17.9, [["1 burger", 1]], "Burger only.", "wimpy chicken fillet burger");
+fd("r-wimpy-chicken-wrap", "Creamy mayo grilled chicken wrap (Wimpy)", "Restaurants", "1 wrap", 406, 27.4, 27, 20, [["1 wrap", 1]], "", "wimpy wrap grilled chicken creamy mayo");
+fd("r-steers-cheese-burger", "Cheese burger (Steers)", "Restaurants", "1 burger", 404, 26.4, 30, 19.9, [["1 burger", 1]], "Burger only.", "steers cheeseburger cheese burger beef");
+fd("r-steers-bacon-cheese", "Bacon & cheese burger (Steers)", "Restaurants", "1 burger", 769, 39, 74, 37, [["1 burger", 1]], "Burger only.", "steers bacon cheese burger beef");
+fd("r-steers-phanda", "Cheesy BBQ Double Phanda (Steers)", "Restaurants", "1 burger", 454, 27, 35, 25, [["1 burger", 1]], "Burger only.", "steers phanda double cheesy bbq burger");
+fd("r-steers-chicken-burger", "Chicken burger (Steers)", "Restaurants", "1 burger", 570, 36, 72.5, 9.2, [["1 burger", 1]], "Burger only.", "steers chicken burger");
+fd("r-steers-quarter-chicken", "Quarter chicken (Steers)", "Restaurants", "1 quarter", 400, 32.5, 7.7, 20, [["1 quarter", 1], ["half chicken", 2]], "Chicken only. Listed kcal is ~17% above its macros.", "steers flame grilled quarter chicken");
+fd("r-steers-choc-shake", "Chocolate milkshake (Steers)", "Restaurants", "1 cup 250 ml", 348, 6.6, 48, 14.6, [["1 cup", 1]], "", "steers milkshake shake chocolate");
+fd("r-fw-hake-chips", "Fried hake & chips, medium (Fishaways)", "Restaurants", "1 meal", 862, 26.9, 58.6, 56.8, [["1 meal", 1], ["half", .5]], "Medium hake with chips.", "fishaways fish and chips hake fried medium");
+fd("r-fw-grilled-hake", "Grilled hake, medium (Fishaways)", "Restaurants", "1 portion 200 g", 210, 20.1, 1.6, 13.7, [["1 portion", 1]], "Fish only.", "fishaways grilled hake fish");
+fd("r-fw-grilled-hake-rice", "Grilled hake & rice, large (Fishaways)", "Restaurants", "1 meal", 508, 36.4, 45.6, 19.6, [["1 meal", 1]], "", "fishaways grilled hake rice large");
+fd("r-fw-hake-wrap", "Hake wrap (Fishaways)", "Restaurants", "1 wrap", 505, 20.5, 63.6, 18.3, [["1 wrap", 1]], "", "fishaways hake fish wrap");
+fd("r-sb-cappuccino", "Cappuccino, grande (Starbucks)", "Restaurants", "1 cup 473 ml", 140, 9, 14, 5, [["grande", 1], ["tall (approx.)", .75]], "Grande 473 ml.", "starbucks coffee cappuccino grande");
+fd("r-sb-hot-chocolate", "Hot chocolate, grande (Starbucks)", "Restaurants", "1 cup 473 ml", 370, 14, 43, 16, [["grande", 1], ["tall (approx.)", .75]], "Grande 473 ml.", "starbucks hot chocolate grande");
+fd("r-sb-caramel-frapp", "Caramel Frappuccino, grande (Starbucks)", "Restaurants", "1 cup", 370, 4, 57, 15, [["grande", 1]], "Grande.", "starbucks frappuccino frappe caramel iced");
+fd("r-sb-feta-wrap", "Spinach, feta & egg white wrap (Starbucks)", "Restaurants", "1 wrap 159 g", 290, 20, 34, 8, [["1 wrap", 1]], "", "starbucks wrap spinach feta egg white breakfast");
+fd("r-sb-chicken-toastie", "Chicken mayo seeded toastie (Starbucks)", "Restaurants", "1 sandwich", 655, 34, 33, 40.9, [["1 sandwich", 1]], "", "starbucks toastie toasted sandwich chicken mayo seeded");
+fd("r-vida-vanilla-iced", "Vanilla iced caffè (Vida e Caffè)", "Restaurants", "1 cup 300 ml", 245, 9.8, 27, 10.9, [["1 cup", 1]], "", "vida e caffe vida coffee iced vanilla");
+fd("r-vida-choc-biscuit", "Chocolate chunk biscuit (Vida e Caffè)", "Restaurants", "1 biscuit 75 g", 325, 4, 44, 14.1, [["1 biscuit", 1], ["half", .5]], "", "vida e caffe vida cookie biscuit chocolate chunk");
+fd("r-kk-original-glazed", "Original glazed doughnut (Krispy Kreme)", "Restaurants", "1 doughnut 49 g", 190, 2, 21, 11, [["1 doughnut", 1], ["2 doughnuts", 2]], "", "krispy kreme doughnut donut original glazed");
+fd("r-kk-choc-iced", "Chocolate iced glazed doughnut (Krispy Kreme)", "Restaurants", "1 doughnut 63 g", 240, 3, 33, 11, [["1 doughnut", 1], ["2 doughnuts", 2]], "", "krispy kreme doughnut donut chocolate iced glazed");
+fd("r-sa-green-curry", "Green curry (Simply Asia)", "Restaurants", "1 meal", 635, 45.5, 46.5, 25.6, [["1 meal", 1], ["half", .5]], "", "simply asia thai green curry chicken");
+fd("r-sa-cashew-stirfry", "Cashew nut stir-fry (Simply Asia)", "Restaurants", "1 meal", 708, 37.8, 40.1, 41.8, [["1 meal", 1], ["half", .5]], "", "simply asia cashew nut stir fry chicken");
+fd("r-sa-tom-yum-ramen", "Tom yum ramen, chicken (Simply Asia)", "Restaurants", "1 bowl 400 g", 959, 48.3, 115.6, 31.3, [["1 bowl", 1], ["half", .5]], "", "simply asia tom yum ramen noodles chicken soup");
+fd("r-sa-red-noodles", "Red sauce noodles (Simply Asia)", "Restaurants", "1 box 500 g", 873, 40, 59, 40, [["1 box", 1], ["half", .5]], "Listed kcal is ~15% above its macros.", "simply asia red sauce noodles box");
+fd("r-sa-chicken-satay", "Chicken satay (Simply Asia)", "Restaurants", "1 portion", 322, 32.6, 4.6, 18.2, [["1 portion", 1]], "", "simply asia chicken satay skewers peanut");
+fd("r-pedros-chicken-wrap", "Chicken wrap (Pedros)", "Restaurants", "1 wrap", 490, 20, 48, 25, [["1 wrap", 1]], "", "pedros chicken wrap");
+fd("r-pedros-strips-chips", "Chicken strips & chips (Pedros)", "Restaurants", "1 meal", 710, 34, 57, 40, [["1 meal", 1]], "", "pedros chicken strips chips");
+fd("r-pedros-strips-rice", "Chicken strips & spicy rice (Pedros)", "Restaurants", "1 meal", 580, 32, 48, 27, [["1 meal", 1]], "", "pedros chicken strips spicy rice");
 var FOOD_BY = {}; FOODS.forEach(function (x) { FOOD_BY[x.id] = x; });
 var COMBOS = [
   {id: "c-yog-crunch", n: "Yoghurt & Futurelife Crunch", desc: "175 g low fat plain yoghurt, 40 g Futurelife Crunch", parts: [["yog-lowfat", 1.75], ["futurelife-crunch", .4]]},
@@ -2140,7 +2278,7 @@ COMBOS.forEach(function (cb) {
   cb.parts.forEach(function (pt) { var x = FOOD_BY[pt[0]]; ["kcal","p","c","f"].forEach(function (k) { t[k] += x[k] * pt[1]; }); });
   cb.kcal = Math.round(t.kcal); cb.p = Math.round(t.p); cb.c = Math.round(t.c); cb.f = Math.round(t.f);
 });
-var FCATS = ["Top protein","Combos","Everyday meals","Breakfast","Dairy & shakes","Meat & eggs","Bread & starch","Meals & sides","SA favourites","Takeaways","Pizza","Chips & nuts","Bars & sweets","Fruit","Veg","Sauces & spreads","Drinks","Extras","My foods"];
+var FCATS = ["Top protein","Combos","Everyday meals","Breakfast","Dairy & shakes","Meat & eggs","Bread & starch","Meals & sides","SA favourites","Takeaways","Restaurants","Pizza","Chips & nuts","Bars & sweets","Fruit","Veg","Sauces & spreads","Drinks","Extras","My foods"];
 var MEALS = ["Breakfast","Lunch","Dinner","Snacks"];
 var TOP_PROTEIN = ["whey-usn","biltong","chicken-breast","egg","amasi","yog-hp","cottage","mince","futurelife-hp","trust-bar","rotisserie","steak"];
 var DEF_TARGETS = {kcal: 2900, p: 160, c: 390, f: 75};
@@ -2321,12 +2459,216 @@ function waterClick(a, b) {
   if (a === "wgauto") { delete S.profile.waterGoal; mark("profile"); closeSheet(); render(true); return true; }
   return false;
 }
+/* ---------- Fasting (opt-in). State in profile so it syncs: profile.fast = {on, plan, h, start, consent}; profile.fastLog = [{s, e, h}]
+   Research and sources: tools/fasting-research.md. Fat loss comes from the calorie deficit; fasting is only a structure for it. */
+var FAST_PLANS = [["12:12", 12, "Easy start: mostly the overnight fast"], ["14:10", 14, "A step up"], ["16:8", 16, "The most studied window"], ["18:6", 18, "Harder; fit 2–3 protein meals in"], ["20:4", 20, "Advanced: hard to fit enough protein"], ["23:1", 23, "One meal a day: advanced, hardest to keep up"]];
+var FAST_STAGES = [[0, "Digesting", "Your last meal is being absorbed."], [4, "Settling", "Insulin falls back to baseline; your liver keeps blood sugar steady."],
+  [12, "Using stored fuel", "Liver glycogen runs lower (roughly 10–14 h+ in studies) and your body leans more on fat."],
+  [18, "Ketones rising", "Ketones climb slowly. In one lab study people at rest reached light ketosis after about 21 h on average."],
+  [24, "Long fast", "Fasts over 24 h aren't supported by this app. Eat something, or talk to a doctor first."]];
+var FAST_COL = "#a78bfa";
+function fastS() { return S.profile.fast || {}; }
+function fasting() { var f = fastS(); return !!(f.on && f.start); }
+function hm(ms) { var m = Math.max(0, Math.floor(ms / 60000)); return Math.floor(m / 60) + " h " + pad(m % 60) + " m"; }
+function hms(ms) { var s = Math.max(0, Math.floor(ms / 1000)); return Math.floor(s / 3600) + ":" + pad(Math.floor(s / 60) % 60) + ":" + pad(s % 60); }
+function clock(t) { return new Date(t).toTimeString().slice(0, 5); }
+function dayWord(t) { var d = new Date(t), n = new Date(); return d.toDateString() === n.toDateString() ? "" : (new Date(n.getTime() + 864e5).toDateString() === d.toDateString() ? " tomorrow" : " " + WD[d.getDay()]); }
+function fastStage(h) { var st = FAST_STAGES[0]; FAST_STAGES.forEach(function (x) { if (h >= x[0]) st = x; }); return st; }
+function localDay(t) { var d = new Date(t); return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+function fastLog() { return S.profile.fastLog || []; }
+function fastStreak() {
+  var log = fastLog(), days = {}, n = 0, t = dnum(todayStr());
+  log.forEach(function (x) { if (x.e - x.s >= x.h * 36e5 - 6e4) days[localDay(x.e)] = 1; });
+  if (!days[dstr(t)]) t--;
+  while (days[dstr(t)]) { n++; t--; }
+  return n;
+}
+function fastBlocked() {
+  var me = S.profile.me || {};
+  if (me.age && me.age < 18) return "Fasting isn't recommended under 18, so the timer is switched off.";
+  if (me.w && me.h && me.w / Math.pow(me.h / 100, 2) < 18.5) return "Your weight is in the underweight range, where fasting isn't recommended, so the timer is switched off.";
+  return "";
+}
+function fastRing(pct, col) {
+  var R = 44, C = 2 * Math.PI * R;
+  return '<svg viewBox="0 0 100 100" aria-hidden="true"><circle class="rt" cx="50" cy="50" r="' + R + '"/><circle class="rv" cx="50" cy="50" r="' + R + '" stroke="' + col + '" stroke-dasharray="' + (C * Math.min(1, pct)).toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 50 50)"/></svg>';
+}
+/* Card at the top of the Food tab */
+function fastCard() {
+  var f = fastS(); if (!f.on) return "";
+  var h = '<div class="card fastcard"><div class="fchead"><div><p class="label">Fasting · ' + esc(f.plan || "16:8") + '</p>';
+  if (!f.start) {
+    var last = fastLog()[fastLog().length - 1];
+    h += '<h3>Eating window</h3></div><button type="button" class="chg fchg" data-act="fastsheet">Plan</button></div>';
+    h += '<p class="small">' + (last ? 'Last fast ' + hm(last.e - last.s) + (last.e - last.s >= last.h * 36e5 - 6e4 ? ' ✓' : '') + ', ended ' + clock(last.e) + dayWord(last.e) + '. Window open for <b data-fastopen="' + last.e + '">' + hm(Date.now() - last.e) + '</b>.' : 'Start the timer after your last meal of the day.') + '</p>';
+    h += '<div class="btnrow"><button class="btn solid fbtn" type="button" data-act="faststart">Start fast</button><button class="btn quiet" type="button" data-act="fastearlier">Started earlier…</button></div>';
+    return h + '</div>';
+  }
+  var el = Date.now() - f.start, goal = f.h * 36e5, end = f.start + goal, st = fastStage(el / 36e5), done = el >= goal;
+  h += '<h3>' + (done ? "Goal reached" : "Fasting") + '</h3></div><button type="button" class="chg fchg" data-act="fastsheet">Plan</button></div>';
+  h += '<div class="fbody"><div class="fring' + (done ? " done" : "") + '">' + fastRing(el / goal, FAST_COL) + '<div class="flab"><b data-fastel="' + f.start + '">' + hms(el) + '</b><span>of ' + f.h + ' h</span></div></div>' +
+    '<div class="finfo"><p><span class="label">Started</span><b>' + clock(f.start) + dayWord(f.start) + '</b></p><p><span class="label">' + (done ? "Goal hit" : "Ends") + '</span><b>' + clock(end) + dayWord(end) + '</b></p>' +
+    '<p class="small" data-fastleft="' + end + '">' + (done ? "+" + hm(el - goal) + " past your goal" : hm(end - Date.now()) + " to go") + '</p></div></div>';
+  h += '<div class="fstage"><b>' + esc(st[1]) + '</b> <span class="small">(roughly)</span><p class="small">' + esc(st[2]) + '</p></div>';
+  h += '<div class="btnrow"><button class="btn ' + (done ? "solid fbtn" : "quiet") + '" type="button" data-act="fastend">' + (done ? "End fast" : sheetConfirm("fastend") ? "Tap again to end now" : "End fast early") + '</button><button class="btn quiet" type="button" data-act="fastearlier">Edit start</button></div>';
+  h += '<div class="flinks"><button type="button" class="link" data-act="fastnotify">' + (fastNotifyOn() ? "Reminders on" : "Notify me") + '</button><button type="button" class="link" data-act="fastics">Add end to calendar</button></div>';
+  return h + '</div>';
+}
+var FASTCONF = {};
+function sheetConfirm(k) { return FASTCONF[k] && Date.now() - FASTCONF[k] < 4000; }
+/* Setup / plan sheet */
+function fastSetupBody() {
+  var f = fastS(), blocked = fastBlocked(), pick = (UI.sheet && UI.sheet.plan) || f.plan || "14:10", ok = UI.sheet && UI.sheet.okSafe;
+  var h = '<p class="small">Intermittent fasting means eating inside a time window each day. It doesn\'t burn extra fat by itself: in studies it works about as well as ordinary calorie control, mainly because people eat less. Use it if a fixed window makes eating less easier for you.</p>';
+  if (blocked) return {title: "Fasting", body: h + '<p class="note">' + esc(blocked) + '</p>'};
+  h += '<p class="label">Pick a window</p><div class="fplans">' + FAST_PLANS.map(function (p) {
+    return '<button type="button" class="fplan' + (p[1] >= 20 ? " adv" : "") + '" data-act="fastpick" data-p="' + p[0] + '" aria-pressed="' + (pick === p[0]) + '"><b>' + p[0] + '</b><span>' + p[1] + ' h fast · ' + (24 - p[1]) + ' h eating</span><span class="small">' + esc(p[2]) + '</span></button>';
+  }).join("") + '</div>';
+  var ph = (FAST_PLANS.filter(function (p) { return p[0] === pick; })[0] || [0, 16])[1];
+  if (ph >= 18) h += '<p class="note"><b>Long windows:</b> it\'s hard to fit enough protein in. Aim for 2–3 protein-rich meals in your window (about 0.25 g per kg each) so you keep your muscle.</p>';
+  if (!f.consent) {
+    h += '<div class="fsafe"><p class="label">Not for you if</p><ul><li>You\'re under 18, pregnant or breastfeeding</li><li>You have or had an eating disorder</li><li>You have type 1 diabetes, or take insulin, sulfonylureas or SGLT2 tablets (ask your doctor)</li><li>You\'re underweight, or take medicine that must be taken with food</li><li>You have a heart or other long-term condition and haven\'t checked with your doctor</li></ul>' +
+      '<label class="check"><input type="checkbox" id="fastok"' + (ok ? " checked" : "") + '> None of these apply to me</label></div>';
+  }
+  h += '<p class="small">During the fast: water, black coffee and plain tea are fine. Milk, juice and shakes break it. Feeling faint, very dizzy or unwell? Stop and eat.</p>';
+  h += '<button class="btn solid fbtn" type="button" data-act="fastsave">' + (f.on ? "Save" : "Turn on fasting") + '</button>';
+  if (f.on) {
+    var log = fastLog().slice(-10).reverse();
+    h += '<p class="label">Recent fasts · streak ' + fastStreak() + ' day' + (fastStreak() === 1 ? "" : "s") + '</p>' + (log.length ? '<div class="dvlist">' + log.map(function (x) {
+      var hit = x.e - x.s >= x.h * 36e5 - 6e4;
+      return '<div class="dvrow"><span class="nm"><span>' + WD[new Date(x.e).getDay()] + ' ' + fmtD(localDay(x.e)) + '</span><span class="small">' + clock(x.s) + ' → ' + clock(x.e) + '</span></span><span class="dvsets">' + hm(x.e - x.s) + (hit ? ' ✓' : ' / ' + x.h + ' h') + '</span></div>';
+    }).join("") + '</div>' : '<p class="empty">No fasts finished yet.</p>');
+    h += '<button type="button" class="link center del" data-act="fastoff">' + (sheetConfirm("fastoff") ? "Tap again to turn fasting off" : "Turn fasting off") + '</button>';
+  }
+  h += '<p class="small">Long-term effects of fasting aren\'t well studied. General guidance, not medical advice.</p>';
+  return {title: f.on ? "Your fasting plan" : "Intermittent fasting", body: h};
+}
+function fastEarlierBody() {
+  var f = fastS(), base = f.start || Date.now(), d = new Date(base);
+  var v = pad(d.getHours()) + ":" + pad(d.getMinutes());
+  return {title: f.start ? "Edit start time" : "When did you start?", body: '<p class="small">Your fast starts after your last meal or snack.</p><div class="row3"><label class="fl">Day<select class="field" id="fsday"><option value="0">Today</option><option value="1"' + (new Date(base).toDateString() !== new Date().toDateString() ? " selected" : "") + '>Yesterday</option></select></label><label class="fl">Time<input class="field" id="fstime" type="time" value="' + v + '"></label></div>' +
+    '<button class="btn solid fbtn" type="button" data-act="fastsetstart">' + (f.start ? "Save" : "Start fast") + '</button>'};
+}
+/* ---- Notifications (installed app): one status notification at the start; Android updates it in place ---- */
+var IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+function fastNotifyOn() { return !!fastS().notify && "Notification" in window && Notification.permission === "granted"; }
+function swReg() { return "serviceWorker" in navigator && navigator.serviceWorker.controller ? navigator.serviceWorker.ready : Promise.reject(); }
+function showFastNote(first) {
+  var f = fastS(); if (!fasting() || !fastNotifyOn()) return;
+  if (IS_IOS && !first) return;
+  var end = f.start + f.h * 36e5;
+  swReg().then(function (reg) {
+    var o = {body: "Started " + clock(f.start) + " · ends " + clock(end) + dayWord(end) + " · " + (Date.now() < end ? hm(end - Date.now()) + " to go" : "goal reached"), icon: "icon-192.png", badge: "badge-96.png", data: {kind: "fast"}};
+    if (!IS_IOS) { o.tag = "fast"; o.renotify = false; o.silent = true; o.timestamp = end; o.actions = [{action: "end", title: "End fast"}, {action: "open", title: "Open"}]; }
+    return reg.showNotification("Fasting · " + (f.plan || f.h + " h"), o);
+  }).catch(function () {});
+  if (navigator.setAppBadge) navigator.setAppBadge(1).catch(function () {});
+}
+function clearFastNote() {
+  swReg().then(function (reg) { return reg.getNotifications({tag: "fast"}); }).then(function (ns) { ns.forEach(function (n) { n.close(); }); }).catch(function () {});
+  if (navigator.clearAppBadge) navigator.clearAppBadge().catch(function () {});
+}
+function fastDoneNote() {
+  if (!fastNotifyOn()) return;
+  swReg().then(function (reg) { return reg.showNotification("Fast complete", {body: "Nice work. Your eating window is open. Start with a protein-rich meal.", icon: "icon-192.png", badge: "badge-96.png", tag: "fast-done"}); }).catch(function () {});
+}
+function icsFor(start, end, title) {
+  var z = function (t) { return new Date(t).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); };
+  return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Neon Inc//Neon Gym//EN", "BEGIN:VEVENT", "UID:fast-" + start + "@neongym", "DTSTAMP:" + z(Date.now()), "DTSTART:" + z(end), "DTEND:" + z(end + 15 * 6e4), "SUMMARY:" + title, "DESCRIPTION:Fast started " + clock(start) + ". Your eating window is open.",
+    "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + title, "TRIGGER:PT0M", "END:VALARM", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+}
+var fastTimer = null, fastWasDone = false;
+function fastTick() {
+  var f = fastS();
+  Array.prototype.forEach.call(document.querySelectorAll("[data-fastel]"), function (el) { el.textContent = hms(Date.now() - +el.getAttribute("data-fastel")); });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-fastleft]"), function (el) { var e = +el.getAttribute("data-fastleft"); el.textContent = Date.now() < e ? hm(e - Date.now()) + " to go" : "+" + hm(Date.now() - e) + " past your goal"; });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-fastopen]"), function (el) { el.textContent = hm(Date.now() - +el.getAttribute("data-fastopen")); });
+  var pill = $("fastPill");
+  if (pill) { pill.hidden = !fasting(); if (fasting()) pill.textContent = hms(Date.now() - f.start); }
+  if (fasting()) {
+    var done = Date.now() >= f.start + f.h * 36e5;
+    if (done && !fastWasDone) { fastWasDone = true; if (UI.tab === "food") render(true); toast("Fast goal reached. Nice work."); fastDoneNote(); try { if (navigator.vibrate) navigator.vibrate([120, 80, 120]); } catch (e) {} }
+    if (!done) fastWasDone = false;
+  }
+}
+function fastStartTimer() {
+  var f = fastS(); fastWasDone = fasting() && Date.now() >= f.start + f.h * 36e5;
+  if (!fastTimer) fastTimer = setInterval(fastTick, 1000);
+  fastTick();
+}
+function fastClick(a, b) {
+  var f = S.profile.fast = S.profile.fast || {}, sh = UI.sheet;
+  if (a === "fastsheet") { openSheet({mode: "fast", plan: f.plan}); return true; }
+  if (a === "fastpick") { sh.plan = b.getAttribute("data-p"); sh.okSafe = $("fastok") ? $("fastok").checked : sh.okSafe; renderSheet(); return true; }
+  if (a === "fastsave") {
+    if (fastBlocked()) return true;
+    if (!f.consent) { if (!($("fastok") && $("fastok").checked)) { toast("Tick the box if none of these apply to you"); return true; } f.consent = Date.now(); }
+    var p = FAST_PLANS.filter(function (x) { return x[0] === (sh.plan || "14:10"); })[0] || FAST_PLANS[1];
+    var wasOn = f.on; f.on = true; f.plan = p[0]; f.h = p[1];
+    mark("profile"); closeSheet(); UI.tab = "food"; UI.fdate = todayStr(); render(false); fastStartTimer(); showFastNote(false);
+    toast(wasOn ? "Plan: " + p[0] : "Fasting on. Start the timer after your last meal."); return true;
+  }
+  if (a === "fastoff") {
+    if (!sheetConfirm("fastoff")) { FASTCONF.fastoff = Date.now(); renderSheet(); return true; }
+    f.on = false; delete f.start; mark("profile"); clearFastNote(); closeSheet(); render(true); fastTick(); toast("Fasting turned off"); return true;
+  }
+  if (a === "faststart") { f.start = Date.now(); mark("profile"); render(true); fastStartTimer(); showFastNote(true); toast("Fast started. Ends " + clock(f.start + f.h * 36e5) + dayWord(f.start + f.h * 36e5) + "."); return true; }
+  if (a === "fastearlier") { openSheet({mode: "fastedit"}); return true; }
+  if (a === "fastsetstart") {
+    var tm = ($("fstime").value || "").split(":"), dd = new Date(); dd.setDate(dd.getDate() - +$("fsday").value); dd.setHours(+tm[0] || 0, +tm[1] || 0, 0, 0);
+    var t = dd.getTime();
+    if (!tm[0] || t > Date.now() + 6e4) { toast("Pick a time that's already passed"); return true; }
+    if (Date.now() - t > 36 * 36e5) { toast("That's more than 36 hours ago"); return true; }
+    var first = !f.start; f.start = t; mark("profile"); closeSheet(); render(true); fastStartTimer(); showFastNote(first); toast("Start set to " + clock(t)); return true;
+  }
+  if (a === "fastend") {
+    if (!fasting()) return true;
+    var done = Date.now() >= f.start + f.h * 36e5;
+    if (!done && !sheetConfirm("fastend")) { FASTCONF.fastend = Date.now(); render(true); return true; }
+    endFast(); return true;
+  }
+  if (a === "fastnotify") {
+    if (!("Notification" in window) || !("serviceWorker" in navigator)) { toast(IS_IOS ? "Add the app to your Home Screen first (Share → Add to Home Screen)" : "This browser can't show notifications"); return true; }
+    if (IS_IOS && !(navigator.standalone || matchMedia("(display-mode: standalone)").matches)) { toast("On iPhone, add the app to your Home Screen first (Share → Add to Home Screen)"); return true; }
+    if (!navigator.serviceWorker.controller) { toast("Reminders work in the installed app at neoninc.github.io/neon-gym"); return true; }
+    if (fastNotifyOn()) { f.notify = false; mark("profile"); clearFastNote(); render(true); toast("Fasting reminders off"); return true; }
+    Notification.requestPermission().then(function (p) {
+      if (p !== "granted") { toast("Notifications are blocked. Allow them in your browser settings."); return; }
+      f.notify = true; mark("profile"); render(true); showFastNote(true); toast("You'll get a notification while you fast");
+    });
+    return true;
+  }
+  if (a === "fastics") {
+    if (!fasting()) return true;
+    var end = f.start + f.h * 36e5, blob = new Blob([icsFor(f.start, end, "Fast complete (Neon Gym)")], {type: "text/calendar"}), url = URL.createObjectURL(blob), ln = document.createElement("a");
+    ln.href = url; ln.download = "fast-ends-" + clock(end).replace(":", "") + ".ics"; document.body.appendChild(ln); ln.click(); ln.remove(); setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    toast("Open the file to add an alarm at " + clock(end)); return true;
+  }
+  return false;
+}
+function endFast() {
+  var f = fastS(); if (!f.start) return;
+  var log = S.profile.fastLog = S.profile.fastLog || [], el = Date.now() - f.start, hit = el >= f.h * 36e5 - 6e4;
+  if (el > 30 * 6e4) log.push({s: f.start, e: Date.now(), h: f.h});
+  if (log.length > 90) log.splice(0, log.length - 90);
+  delete f.start; mark("profile"); clearFastNote(); render(true); fastTick();
+  toast(el <= 30 * 6e4 ? "Fast cancelled" : (hit ? "Fast done: " : "Fast ended at ") + hm(el) + ". Start with a protein-rich meal.");
+}
+/* Notification buttons ("End fast" / "Open") talk to the page */
+if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("message", function (e) {
+  var m = e.data || {};
+  if (m.type === "fast-end" && fasting()) endFast();
+  if (m.type === "fast-end" || m.type === "fast-open") { UI.tab = "food"; UI.fdate = todayStr(); closeSheet(); render(false); }
+});
+/* While the app is open on Android, keep the notification text roughly right */
+setInterval(function () { if (fasting() && !IS_IOS && document.visibilityState === "visible") showFastNote(false); }, 10 * 60 * 1000);
 function viewFood() {
   var d = UI.fdate || todayStr(), items = foodDay(d), t = totals(items), g = targets();
   var isToday = d === todayStr(), left = g.p - t.p;
   var dt = new Date(dnum(d) * 864e5), dn = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][dt.getUTCDay()];
   var h = '<div class="sec food">';
   h += '<div class="fdate"><button type="button" class="iconbtn" data-act="fday" data-d="-1" aria-label="Previous day">‹</button><div><p class="label">' + (isToday ? "Today" : dn) + '</p><h2>' + (isToday ? "Food" : fmtD(d)) + '</h2></div><button type="button" class="iconbtn" data-act="fday" data-d="1" aria-label="Next day"' + (isToday ? " disabled" : "") + '>›</button></div>';
+  if (isToday) h += fastCard();
   h += '<div class="card fsum"><div class="rings">' + ring(t.p, g.p, "Protein", "g", "rp") + ring(t.kcal, g.kcal, "Calories", "kcal", "rk") + '</div>' +
     '<div class="cf"><span>Carbs <b>' + r0(t.c) + '</b> / ' + g.c + ' g</span><span>Fat <b>' + r0(t.f) + '</b> / ' + g.f + ' g</span><button type="button" class="link" data-act="sheet" data-m="targets">Targets</button></div>' +
     (items.length ? (left > 5 ? '<p class="tip"><b>' + r0(left) + ' g protein to go.</b> e.g. ' + esc(proteinIdeas(left)) + '</p>' : '<p class="tip good"><b>Protein target hit.</b></p>') : "") + '</div>';
@@ -2340,6 +2682,7 @@ function viewFood() {
       }).join("") + '</section>';
   }).join("");
   if (!items.length) h += '<p class="small center">Tap <b>+ Add</b> on a meal, search a food and type how much you had.</p>';
+  if (!fastS().on) h += '<button type="button" class="link center" data-act="fastsheet">Try intermittent fasting</button>';
   return h + '</div>';
 }
 
@@ -2452,6 +2795,8 @@ function sheetBody() {
   }
   if (sh.mode === "targets") return {title: "Your targets", body: targetsBody()};
   if (sh.mode === "water") return waterAmtBody();
+  if (sh.mode === "fast") return fastSetupBody();
+  if (sh.mode === "fastedit") return fastEarlierBody();
   if (sh.mode === "wgoal") return waterGoalBody();
   return {title: "", body: ""};
 }
@@ -2467,7 +2812,7 @@ function renderSheet() {
   el.innerHTML = '<div class="sheet-back" data-act="sclose"></div><div class="sheet-in" role="dialog" aria-modal="true" aria-label="' + esc(b.title) + '"><div class="sheet-head">' +
     (b.back ? '<button type="button" class="iconbtn" data-act="sback" aria-label="Back">‹</button>' : '<span></span>') + '<h3>' + esc(b.title) + '</h3><button type="button" class="iconbtn" data-act="sclose" aria-label="Close">×</button></div><div class="sheet-body">' + b.body + '</div></div>';
   el.setAttribute("data-mode", UI.sheet.mode);
-  el.className = "sheet" + (["finish","daypick","dayview","exhist","plannew","planedit","exadd","profile"].indexOf(UI.sheet.mode) >= 0 ? " wk" : UI.sheet.mode === "water" || UI.sheet.mode === "wgoal" ? " wt" : "");
+  el.className = "sheet" + (["finish","daypick","dayview","exhist","plannew","planedit","exadd","profile"].indexOf(UI.sheet.mode) >= 0 ? " wk" : UI.sheet.mode === "water" || UI.sheet.mode === "wgoal" ? " wt" : UI.sheet.mode === "fast" || UI.sheet.mode === "fastedit" ? " ft" : "");
   el.hidden = false; document.body.classList.add("locked");
   if (same) el.querySelector(".sheet-body").scrollTop = sc;
 }
@@ -2713,7 +3058,8 @@ document.addEventListener("click", function (ev) {
   var a = b.getAttribute("data-act"), id = b.getAttribute("data-ex");
   if (a !== "clear") UI.confirmClear = false;
   if (a !== "import") UI.confirmImport = false;
-  if (planClick(a, b) || histClick(a, b) || waterClick(a, b) || foodClick(a, b)) return;
+  if (planClick(a, b) || histClick(a, b) || waterClick(a, b) || fastClick(a, b) || foodClick(a, b)) return;
+  if (a === "fastopen") { UI.tab = "food"; UI.fdate = todayStr(); if (UI.sheet) closeSheet(); render(false); saveUI(); return; }
   if (a === "tab") { UI.tab = b.getAttribute("data-tab"); if (UI.sheet) closeSheet(); render(false); saveUI(); }
   else if (a === "extab") { UI.extab = UI.extab || {}; UI.extab[id] = b.getAttribute("data-v"); saveUI(); render(true); }
   else if (a === "daypick") { openSheet({mode: "daypick"}); }
@@ -2825,6 +3171,8 @@ restoreUI();
 setSync("local");
 paintAvatar();
 render(false);
+fastStartTimer();
+if (/[?&#]fastend=1/.test(location.href) && fasting()) endFast();
 connect();
 if ("serviceWorker" in navigator && document.querySelector('link[rel="manifest"]')) {
   try { navigator.serviceWorker.register("sw.js").catch(function () {}); } catch (e) {}

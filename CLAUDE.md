@@ -19,3 +19,6 @@ Neon Gym is live at https://neoninc.github.io/neon-gym/ and is one tile on the N
 - Food values: one `fd(...)` line per food in `src/app.html`; note where new values came from in `tools/food-sources.md`.
 - Water is stored per day inside that day's food doc (`S.food[d].water = [{ml, t}]`), so it syncs with food.
   A food doc can hold only water: use `tidyFoodDay(d)` instead of deleting a day when its items run out.
+- Fasting state lives in the profile (`profile.fast = {on, plan, h, start, consent, notify}`, `profile.fastLog`). The service worker
+  handles the fasting notification buttons (`notificationclick` in `sw.js`). A web app can't show a live countdown in the
+  notification shade; an alert at fast end with the app closed would need Web Push from a server (see tools/fasting-research.md).

@@ -565,3 +565,89 @@ Klipdrift & Cola premix, Bernini, Redd's, Esprit, Hooch, Strawberry Lips, Amstel
 Coo-ee, Valpré flavoured water, Nesquik, Horlicks, Kellogg's All-Bran Flakes and Bokomo Bran Flakes (energy didn't match macros).
 */
 ```
+
+## Restaurants and cafés
+
+```
+// Mugg & Bean
+// Kauai
+// Spur (official nutritional analysis, per 100 g of the whole plate)
+// Nando's
+// Burger King SA
+// Ocean Basket
+// Col'Cacchio
+// Wimpy
+// Steers
+// Fishaways
+// Starbucks
+// Vida e Caffè
+// Krispy Kreme
+// Simply Asia
+// Pedros
+
+/*
+SOURCES (checked 2026-10-21)
+
+Official brand data:
+- Spur Steak Ranches nutritional analysis PDFs (per 100 g of the full plate; kJ converted at 4.184):
+  r-spur-beef-burger (Original Spur Beef Burger, Chips & Onion Rings 849 kJ), r-spur-beef-burger-only (Standard 869 kJ),
+  r-spur-cheese-burger (Beef Cheese Burger 868 kJ), r-spur-chicken-burger (Original Grilled Chicken Burger 752 kJ),
+  r-spur-rib-burger (Rib Burger 951 kJ):
+  https://spursteakranches.com/uploads/menu_category/19707S-Nutritional-Analysis-24-Burgers-FA.pdf
+  r-spur-ribs-400 (Rack of Ribs 400 g 919 kJ), r-spur-ribs-wings (Ribs & Buffalo Wings Combo, Grill Basting 732 kJ):
+  https://spursteakranches.com/uploads/menu_category/19707S-Nutritional-Analysis-24-Ribs-Grills-Combos-FA.pdf
+  r-spur-greek-salad (Greek Salad, Full 271 kJ):
+  https://spursteakranches.com/uploads/menu_category/19707S-Nutritional-Analysis-24-Shareables-Salads-FA.pdf
+
+FatSecret South Africa brand entries (base https://www.fatsecret.co.za/calories-nutrition/):
+- Mugg & Bean (mugg-bean/...): blueberry-muffin, choc-chip-muffin, triple-chocolate-muffin, bran-muffin (+ bran-muffin-(preserves) 1265 kcal),
+  back-bacon-cheddar-muffin, classic-breakfast-(rye), south-african-farm-breakfast-(rye),
+  hearty-grill-breakfast-(rye), south-african-eggs-benedict-(single) (+ (double) 1373 kcal), breakfast-bagel, low-carb-breakfast,
+  avo-on-toast-(wholewheat), beef-burger, chicken-burger, chicken-caesar-salad-(regular) (+ (light) 450 kcal), greek-salad-(light),
+  chicken-mayo-toasted-sandwich-(white), back-bacon-egg-toasted-sandwich-(white),
+  cappuccino-easy (+ cappuccino-serious 325 kcal), caff%C3%A8-latte, hot-chocolate, apple-pie-milkshake, baked-cheesecake
+  (all /1-serving), e.g. https://www.fatsecret.co.za/calories-nutrition/mugg-bean/blueberry-muffin/1-serving
+- Kauai (kauai/...): peanut-butter-bomb-smoothie-(350ml) and -(500ml), mocha-protein-smoothie-(350ml) (500 ml 631 kcal on brand page),
+  ultimate-protein-smoothie-(350ml), salted-caramel-smoothie-(350ml), strawberry-stinger-smoothie-(350ml),
+  bbq-chicken-wrap/1-wrap, princess-wrap-(regular-wrap) (+ (low-carb-wrap) 699 kcal), prince-wrap-(regular-wrap),
+  teriyaki-chicken-wrap, chicken-feta-crunch-wrap, protein-breakfast-wrap/1-wrap, steak-avo-quesadilla-(regular-wrap), teriyaki-chicken-poke-bowl (others /1-serving)
+  e.g. https://www.fatsecret.co.za/calories-nutrition/kauai/peanut-butter-bomb-smoothie-(350ml)/1-serving
+- Spur (spur-steak-ranches/...): r-spur-chicken-avo-salad chicken-avo-bacon-salad/1-serving; r-spur-buffalo-wings buffalo-wings/1-2-serving
+- Nando's (nandos/...): r-nandos-half-chicken 1-2-chicken/100g; r-nandos-chicken-burger chicken-burger/1-burger (per 100 g);
+  r-nandos-grande-burger grande-cheese-burger/1-serving; r-nandos-winglets 6-regular-winglets/100g;
+  r-nandos-hot-pot hot-pot-with-spicy-rice/1-serving; r-nandos-boujee-bowl roasted-corn-red-pepper-boujee-bowl-with-chicken-strips/1-serving;
+  r-nandos-roll portuguese-roll/1-roll
+- Burger King (burger-king/...): whopper/1-serving, whopper-with-cheese/1-serving, double-whopper-with-cheese/1-serving,
+  original-chicken-sandwich/1-serving, 6pc-chicken-wings/1-serving
+- Ocean Basket (ocean-basket/...): famous-fish-chips/1-serving, grilled-fish/1-serving, grilled-kingklip/1-serving, calamari-grilled/1-serving,
+  prince-prawns/12-prawns, seafood-platter-for-one/1-serving, seared-salmon-salad/1-serving,
+  chips-(full-portion)/1-serving
+- Col'Cacchio (colcacchio/...): margherita-pizza, ruspante-pizza, carb-conscious-margherita-pizza (all /1-serving)
+- Wimpy (wimpy/...): chicken-mayonnaise-toasted-sandwich/1-sandwich, dagwood-toasted-sandwich/1-serving, chicken-fillet-burger/1-burger,
+  creamy-mayo-grilled-chicken-wrap/1-wrap
+- Steers (steers/...): cheese-burger-beef/1-burger, bacon-and-cheese-burger/1-serving, cheesy-bbq-double-phanda/1-burger, chicken-burger/1-burger,
+  quarter-chicken/1-serving, chocolate-milkshake/1-milkshake
+- Fishaways (fishaways/...): fried-medium-hake-and-chips/1-serving, grilled-medium-hake/1-serving, large-grilled-hake-rice/1-serving,
+  hake-wrap/1-serving
+- Starbucks (starbucks/...): cappuccino-(grande)/1-serving, hot-chocolate/1-serving, caramel-frappuccino-(grande)/1-serving,
+  spinach-feta-egg-white-wrap/1-wrap, chicken-mayo-seeded-bread-toastie/1-serving
+  ("tall (approx.)" portions are a 0.75 volume ratio, not a published value)
+- Vida e Caffè (vida-e-caff%C3%A8/...): vanilla-iced-caff%C3%A8/1-serving, chocolate-chunk-biscuit/1-serving
+- Krispy Kreme (krispy-kreme/...): original-glazed-doughnut/1-doughnut, chocolate-iced-glazed-doughnut/1-doughnut
+  (same as Krispy Kreme's published values)
+- Simply Asia (simply-asia/...): green-curry/1-serving, cashew-nut-stir-fry/1-serving, tom-yum-ramen-chicken/1-serving, red-sauce-noodles/1-box,
+  chicken-satay/1-serving
+- Pedros (pedros/...): chicken-wrap/1-wrap, strips-and-chips/1-serving, strips-and-spicy-rice/1-serving
+
+Notes:
+- Outliers kept: r-steers-quarter-chicken (listed 400 kcal vs 341 from macros, +17%), r-sa-red-noodles (873 vs 756, +15%).
+- Kauai 500 ml multipliers: Peanut Butter Bomb 764/467 = 1.64, Mocha Protein 631/431 = 1.46 (FatSecret 500 ml entries);
+  others "500 ml (approx.)" = 500/350 volume ratio.
+- Mugg & Bean caesar "light portion" = 450/663 = 0.68; cappuccino "Serious" = 325/190 = 1.71.
+- Skipped (no credible source or values that don't add up): RocoMamas, Panarottis, John Dory's, Hungry Lion, Galito's (sauce only),
+  Seattle Coffee Co, Woolworths Café, Tashas, News Café, Bootlegger, Chicken Licken (user-entered looking values);
+  Nando's chicken livers (48 g carbs/100 g) and double chicken burger (147 g protein); Ocean Basket fish & calamari (269 g protein);
+  Simply Asia chicken pad thai and Wimpy bacon & egg toastie (kcal far above macros); Fishaways hake pot (kcal far below macros);
+  Kauai bowls other than the poke bowl (FatSecret entries archived); Burger King fries (values look like a much smaller portion).
+*/
+```
