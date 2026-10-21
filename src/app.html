@@ -1556,7 +1556,7 @@ function profileBody() {
     '<button class="btn" type="button" data-act="export">Copy backup code</button>' +
     '<textarea class="field" id="impcode" placeholder="Paste a backup code here" aria-label="Backup code"></textarea>' +
     '<button class="btn quiet" type="button" data-act="import">' + (UI.confirmImport ? "Tap again to replace this log" : "Load backup code") + '</button></div></details>';
-  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
+  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version __BUILD__' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
   return {title: "Profile", body: h};
 }
 
@@ -2520,6 +2520,7 @@ function fastSetupBody() {
   h += '<button class="btn solid fbtn" type="button" data-act="fastsave">' + (f.on ? "Save" : "Turn on fasting") + '</button>';
   if (f.on) {
     var log = fastLog().slice(-10).reverse();
+    if (fastNotifyOn()) h += '<button type="button" class="btn quiet" data-act="fasttest">Preview the "fast complete" notification</button>';
     h += '<p class="label">Recent fasts · streak ' + fastStreak() + ' day' + (fastStreak() === 1 ? "" : "s") + '</p>' + (log.length ? '<div class="dvlist">' + log.map(function (x) {
       var hit = x.e - x.s >= x.h * 36e5 - 6e4;
       return '<div class="dvrow"><span class="nm"><span>' + WD[new Date(x.e).getDay()] + ' ' + fmtD(localDay(x.e)) + '</span><span class="small">' + clock(x.s) + ' → ' + clock(x.e) + '</span></span><span class="dvsets">' + hm(x.e - x.s) + (hit ? ' ✓' : ' / ' + x.h + ' h') + '</span></div>';
@@ -2662,6 +2663,12 @@ function fastClick(a, b) {
       if (p !== "granted") { toast("Notifications are blocked. Allow them in your browser settings."); return; }
       f.notify = true; mark("profile"); render(true); showFastNote(true); schedulePush(); toast(PUSH_URL ? "You'll get a notification while you fast, and one when it's done" : "You'll get a notification while you fast");
     });
+    return true;
+  }
+  if (a === "fasttest") {
+    var tf = {start: Date.now() - (f.h || 16) * 36e5, h: f.h || 16, plan: f.plan}, tx = fastDoneText(tf);
+    swReg().then(function (reg) { return reg.showNotification(tx.title, {body: tx.body, icon: "icon-192.png", badge: "badge-96.png", image: "fast-done.png", tag: "fast-test", vibrate: [120, 60, 120], actions: [{action: "log", title: "Log a meal"}, {action: "open", title: "Open"}]}); })
+      .then(function () { toast("Sent. Pull down your notifications to see it."); }, function () { toast("Couldn't show it. Reopen the app and try again."); });
     return true;
   }
   if (a === "fastics") {

@@ -4,6 +4,8 @@ root = pathlib.Path(__file__).resolve().parent.parent
 src = (root / "src" / "app.html").read_text(encoding="utf-8")
 title = re.search(r"<title>(.*?)</title>", src).group(1)
 body = re.sub(r"<title>.*?</title>\n?", "", src, count=1)
+import datetime
+body = body.replace("__BUILD__", datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=2))).strftime("%Y.%m.%d %H:%M"))
 head = f"""<!DOCTYPE html>
 <html lang="en">
 <head>

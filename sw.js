@@ -1,11 +1,13 @@
 /* Neon Gym service worker: network first, cached copy when the gym has no signal */
-const CACHE = "neon-gym-v18";
+const CACHE = "neon-gym-v19";
 const CORE = ["./", "index.html", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
-  e.respondWith(fetch(e.request).then(r => {
+  /* Same-site files are revalidated every time (cheap 304s), so a new version shows up on the next open instead of up to 10 minutes later */
+  const same = new URL(e.request.url).origin === location.origin;
+  e.respondWith(fetch(same ? new Request(e.request, { cache: "no-cache" }) : e.request).then(r => {
     if (r.ok && (new URL(e.request.url).origin === location.origin || e.request.url.includes("fonts.g"))) {
       const copy = r.clone(); caches.open(CACHE).then(c => c.put(e.request, copy));
     }
