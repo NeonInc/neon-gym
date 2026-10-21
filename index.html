@@ -2553,14 +2553,24 @@ function fastEarlierBody() {
 var IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 function fastNotifyOn() { return !!fastS().notify && "Notification" in window && Notification.permission === "granted"; }
 function swReg() { return "serviceWorker" in navigator && navigator.serviceWorker.controller ? navigator.serviceWorker.ready : Promise.reject(); }
+/* Notification wording, kept short so it reads well on a lock screen */
+function fastNoteText(f) {
+  var end = f.start + f.h * 36e5, left = end - Date.now(), st = fastStage((Date.now() - f.start) / 36e5);
+  return {title: left > 0 ? "Fasting · " + hm(left) + " to go" : "Fasting · goal reached",
+    body: clock(f.start) + dayWord(f.start) + " → " + clock(end) + dayWord(end) + " · " + (f.plan || f.h + " h") + " plan\nNow: " + st[1].toLowerCase() + ". Water, black coffee and tea are fine."};
+}
+function fastDoneText(f) {
+  var end = f.start + f.h * 36e5, close = end + (24 - f.h) * 36e5;
+  return {title: "Fast complete · " + f.h + " h ✓", body: "You fasted " + clock(f.start) + " → " + clock(end) + ". Eating window open until " + clock(close) + ".\nStart with protein: eggs, chicken, yoghurt or a shake."};
+}
 function showFastNote(first) {
   var f = fastS(); if (!fasting() || !fastNotifyOn()) return;
   if (IS_IOS && !first) return;
   var end = f.start + f.h * 36e5;
   swReg().then(function (reg) {
-    var o = {body: "Started " + clock(f.start) + " · ends " + clock(end) + dayWord(end) + " · " + (Date.now() < end ? hm(end - Date.now()) + " to go" : "goal reached"), icon: "icon-192.png", badge: "badge-96.png", data: {kind: "fast"}};
-    if (!IS_IOS) { o.tag = "fast"; o.renotify = false; o.silent = true; o.timestamp = end; o.actions = [{action: "end", title: "End fast"}, {action: "open", title: "Open"}]; }
-    return reg.showNotification("Fasting · " + (f.plan || f.h + " h"), o);
+    var tx = fastNoteText(f), o = {body: tx.body, icon: "icon-192.png", badge: "badge-96.png", data: {kind: "fast"}};
+    if (!IS_IOS) { o.tag = "fast"; o.renotify = false; o.silent = true; o.timestamp = end; o.actions = [{action: "end", title: "End fast now"}, {action: "open", title: "Open timer"}]; }
+    return reg.showNotification(tx.title, o);
   }).catch(function () {});
   if (navigator.setAppBadge) navigator.setAppBadge(1).catch(function () {});
 }
@@ -2571,7 +2581,8 @@ function clearFastNote() {
 function fastDoneNote() {
   if (!fastNotifyOn()) return;
   var f = fastS(); if (f.start && pushAt() === f.start + f.h * 36e5) return;
-  swReg().then(function (reg) { return reg.showNotification("Fast complete", {body: "Nice work. Your eating window is open. Start with a protein-rich meal.", icon: "icon-192.png", badge: "badge-96.png", tag: "fast-done"}); }).catch(function () {});
+  var tx = fastDoneText(f);
+  swReg().then(function (reg) { return reg.showNotification(tx.title, {body: tx.body, icon: "icon-192.png", badge: "badge-96.png", image: "fast-done.png", tag: "fast-done", vibrate: [120, 60, 120], actions: [{action: "log", title: "Log a meal"}, {action: "open", title: "Open"}]}); }).catch(function () {});
 }
 function icsFor(start, end, title) {
   var z = function (t) { return new Date(t).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); };
@@ -2596,7 +2607,7 @@ function schedulePush() {
   var f = fastS(); if (!fasting() || !f.notify || !pushOk()) return;
   var end = f.start + f.h * 36e5; if (end < Date.now() + 40e3) return;
   pushSub().then(function (sub) {
-    return fetch(PUSH_URL + "/fast", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({sub: sub.toJSON(), at: end, title: "Fast complete", body: (f.plan || f.h + " h") + " fast done. Your eating window is open; start with a protein-rich meal.", url: location.href.split("?")[0].split("#")[0]})});
+    return fetch(PUSH_URL + "/fast", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({sub: sub.toJSON(), at: end, title: fastDoneText(f).title, body: fastDoneText(f).body, url: location.href.split("?")[0].split("#")[0]})});
   }).then(function (r) { if (r && r.ok) setPushAt(end); }).catch(function () {});
 }
 function cancelPush() {

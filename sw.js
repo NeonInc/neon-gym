@@ -1,5 +1,5 @@
 /* Neon Gym service worker: network first, cached copy when the gym has no signal */
-const CACHE = "neon-gym-v17";
+const CACHE = "neon-gym-v18";
 const CORE = ["./", "index.html", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
@@ -28,7 +28,8 @@ self.addEventListener("push", e => {
   let d = {}; try { d = e.data ? e.data.json() : {}; } catch (_) {}
   e.waitUntil((async () => {
     (await self.registration.getNotifications({ tag: "fast" })).forEach(n => n.close());
-    await self.registration.showNotification(d.title || "Fast complete", { body: d.body || "Nice work. Your eating window is open.", icon: "icon-192.png", badge: "badge-96.png", tag: d.tag || "fast-done", data: { kind: "fast-done" } });
+    await self.registration.showNotification(d.title || "Fast complete ✓", { body: d.body || "Nice work. Your eating window is open.", icon: "icon-192.png", badge: "badge-96.png", image: "fast-done.png",
+      tag: d.tag || "fast-done", renotify: true, vibrate: [120, 60, 120], actions: [{ action: "log", title: "Log a meal" }, { action: "open", title: "Open" }], data: { kind: "fast-done" } });
     if (self.navigator.clearAppBadge) self.navigator.clearAppBadge().catch(() => {});
   })());
 });
