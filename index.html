@@ -2511,7 +2511,7 @@ function fastCard() {
     '<p class="small" data-fastleft="' + end + '">' + (done ? "+" + hm(el - goal) + " past your goal" : hm(end - Date.now()) + " to go") + '</p></div></div>';
   h += '<div class="fstage"><b>' + esc(st[1]) + '</b> <span class="small">(roughly)</span><p class="small">' + esc(st[2]) + '</p></div>';
   h += '<div class="btnrow"><button class="btn ' + (done ? "solid fbtn" : "quiet") + '" type="button" data-act="fastend">' + (done ? "End fast" : sheetConfirm("fastend") ? "Tap again to end now" : "End fast early") + '</button><button class="btn quiet" type="button" data-act="fastearlier">Edit start</button></div>';
-  h += '<div class="flinks"><button type="button" class="link" data-act="fastnotify">' + (fastNotifyOn() ? "Reminders on" : "Notify me") + '</button><button type="button" class="link" data-act="fastics">Add end to calendar</button></div>';
+  h += '<div class="flinks"><button type="button" class="link" data-act="fastnotify">' + (fastNotifyOn() ? "Reminders on" : "Notify me") + '</button>' + (window.claude ? "" : '<button type="button" class="link" data-act="fastics">Add end to calendar</button>') + '</div>';
   return h + '</div>';
 }
 var FASTCONF = {};
