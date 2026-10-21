@@ -1,0 +1,19 @@
+# Deploys push-worker/ (the "fast complete" notification sender) to Cloudflare Workers.
+# Needs two repository secrets: CLOUDFLARE_API_TOKEN ("Edit Cloudflare Workers" template) and CLOUDFLARE_ACCOUNT_ID.
+name: Deploy push worker
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["push-worker/**"]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: push-worker
+          wranglerVersion: "4.151.3"

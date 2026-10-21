@@ -21,4 +21,5 @@ Neon Gym is live at https://neoninc.github.io/neon-gym/ and is one tile on the N
   A food doc can hold only water: use `tidyFoodDay(d)` instead of deleting a day when its items run out.
 - Fasting state lives in the profile (`profile.fast = {on, plan, h, start, consent, notify}`, `profile.fastLog`). The service worker
   handles the fasting notification buttons (`notificationclick` in `sw.js`). A web app can't show a live countdown in the
-  notification shade; an alert at fast end with the app closed would need Web Push from a server (see tools/fasting-research.md).
+  notification shade; the "fast complete" alert with the app closed comes from Web Push sent by the Cloudflare Worker in `push-worker/`
+  (deployed by `.github/workflows/push-worker.yml`; the app's `PUSH_URL` points at it, empty = off).

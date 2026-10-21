@@ -2556,12 +2556,41 @@ function clearFastNote() {
 }
 function fastDoneNote() {
   if (!fastNotifyOn()) return;
+  var f = fastS(); if (f.start && pushAt() === f.start + f.h * 36e5) return;
   swReg().then(function (reg) { return reg.showNotification("Fast complete", {body: "Nice work. Your eating window is open. Start with a protein-rich meal.", icon: "icon-192.png", badge: "badge-96.png", tag: "fast-done"}); }).catch(function () {});
 }
 function icsFor(start, end, title) {
   var z = function (t) { return new Date(t).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); };
   return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Neon Inc//Neon Gym//EN", "BEGIN:VEVENT", "UID:fast-" + start + "@neongym", "DTSTAMP:" + z(Date.now()), "DTSTART:" + z(end), "DTEND:" + z(end + 15 * 6e4), "SUMMARY:" + title, "DESCRIPTION:Fast started " + clock(start) + ". Your eating window is open.",
     "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + title, "TRIGGER:PT0M", "END:VALARM", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+}
+/* ---- "Fast complete" alert with the app closed: Web Push sent by the neon-gym-push Cloudflare Worker (push-worker/). Empty = off. ---- */
+var PUSH_URL = "";
+function pushOk() { return !!PUSH_URL && "PushManager" in window && "serviceWorker" in navigator && !!navigator.serviceWorker.controller && "Notification" in window && Notification.permission === "granted"; }
+function pushSub() {
+  return navigator.serviceWorker.ready.then(function (reg) {
+    return reg.pushManager.getSubscription().then(function (sub) {
+      if (sub) return sub;
+      return fetch(PUSH_URL + "/vapid").then(function (r) { return r.json(); }).then(function (v) { return reg.pushManager.subscribe({userVisibleOnly: true, applicationServerKey: unb64(v.key)}); });
+    });
+  });
+}
+function unb64(str) { var b = atob(str.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((str.length + 3) % 4)), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
+function pushAt() { try { return +localStorage.getItem("neongym.fastpush") || 0; } catch (e) { return 0; } }
+function setPushAt(v) { try { if (v) localStorage.setItem("neongym.fastpush", v); else localStorage.removeItem("neongym.fastpush"); } catch (e) {} }
+function schedulePush() {
+  var f = fastS(); if (!fasting() || !f.notify || !pushOk()) return;
+  var end = f.start + f.h * 36e5; if (end < Date.now() + 40e3) return;
+  pushSub().then(function (sub) {
+    return fetch(PUSH_URL + "/fast", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({sub: sub.toJSON(), at: end, title: "Fast complete", body: (f.plan || f.h + " h") + " fast done. Your eating window is open; start with a protein-rich meal.", url: location.href.split("?")[0].split("#")[0]})});
+  }).then(function (r) { if (r && r.ok) setPushAt(end); }).catch(function () {});
+}
+function cancelPush() {
+  if (!pushAt() || !PUSH_URL) { setPushAt(0); return; }
+  setPushAt(0);
+  navigator.serviceWorker.ready.then(function (reg) { return reg.pushManager.getSubscription(); }).then(function (sub) {
+    if (sub) return fetch(PUSH_URL + "/cancel", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({sub: sub.toJSON()})});
+  }).catch(function () {});
 }
 var fastTimer = null, fastWasDone = false;
 function fastTick() {
@@ -2591,21 +2620,21 @@ function fastClick(a, b) {
     if (!f.consent) { if (!($("fastok") && $("fastok").checked)) { toast("Tick the box if none of these apply to you"); return true; } f.consent = Date.now(); }
     var p = FAST_PLANS.filter(function (x) { return x[0] === (sh.plan || "14:10"); })[0] || FAST_PLANS[1];
     var wasOn = f.on; f.on = true; f.plan = p[0]; f.h = p[1];
-    mark("profile"); closeSheet(); UI.tab = "food"; UI.fdate = todayStr(); render(false); fastStartTimer(); showFastNote(false);
+    mark("profile"); closeSheet(); UI.tab = "food"; UI.fdate = todayStr(); render(false); fastStartTimer(); showFastNote(false); if (fasting()) schedulePush();
     toast(wasOn ? "Plan: " + p[0] : "Fasting on. Start the timer after your last meal."); return true;
   }
   if (a === "fastoff") {
     if (!sheetConfirm("fastoff")) { FASTCONF.fastoff = Date.now(); renderSheet(); return true; }
-    f.on = false; delete f.start; mark("profile"); clearFastNote(); closeSheet(); render(true); fastTick(); toast("Fasting turned off"); return true;
+    f.on = false; delete f.start; mark("profile"); clearFastNote(); cancelPush(); closeSheet(); render(true); fastTick(); toast("Fasting turned off"); return true;
   }
-  if (a === "faststart") { f.start = Date.now(); mark("profile"); render(true); fastStartTimer(); showFastNote(true); toast("Fast started. Ends " + clock(f.start + f.h * 36e5) + dayWord(f.start + f.h * 36e5) + "."); return true; }
+  if (a === "faststart") { f.start = Date.now(); mark("profile"); render(true); fastStartTimer(); showFastNote(true); schedulePush(); toast("Fast started. Ends " + clock(f.start + f.h * 36e5) + dayWord(f.start + f.h * 36e5) + "."); return true; }
   if (a === "fastearlier") { openSheet({mode: "fastedit"}); return true; }
   if (a === "fastsetstart") {
     var tm = ($("fstime").value || "").split(":"), dd = new Date(); dd.setDate(dd.getDate() - +$("fsday").value); dd.setHours(+tm[0] || 0, +tm[1] || 0, 0, 0);
     var t = dd.getTime();
     if (!tm[0] || t > Date.now() + 6e4) { toast("Pick a time that's already passed"); return true; }
     if (Date.now() - t > 36 * 36e5) { toast("That's more than 36 hours ago"); return true; }
-    var first = !f.start; f.start = t; mark("profile"); closeSheet(); render(true); fastStartTimer(); showFastNote(first); toast("Start set to " + clock(t)); return true;
+    var first = !f.start; f.start = t; mark("profile"); closeSheet(); render(true); fastStartTimer(); showFastNote(first); schedulePush(); toast("Start set to " + clock(t)); return true;
   }
   if (a === "fastend") {
     if (!fasting()) return true;
@@ -2617,10 +2646,10 @@ function fastClick(a, b) {
     if (!("Notification" in window) || !("serviceWorker" in navigator)) { toast(IS_IOS ? "Add the app to your Home Screen first (Share → Add to Home Screen)" : "This browser can't show notifications"); return true; }
     if (IS_IOS && !(navigator.standalone || matchMedia("(display-mode: standalone)").matches)) { toast("On iPhone, add the app to your Home Screen first (Share → Add to Home Screen)"); return true; }
     if (!navigator.serviceWorker.controller) { toast("Reminders work in the installed app at neoninc.github.io/neon-gym"); return true; }
-    if (fastNotifyOn()) { f.notify = false; mark("profile"); clearFastNote(); render(true); toast("Fasting reminders off"); return true; }
+    if (fastNotifyOn()) { f.notify = false; mark("profile"); clearFastNote(); cancelPush(); render(true); toast("Fasting reminders off"); return true; }
     Notification.requestPermission().then(function (p) {
       if (p !== "granted") { toast("Notifications are blocked. Allow them in your browser settings."); return; }
-      f.notify = true; mark("profile"); render(true); showFastNote(true); toast("You'll get a notification while you fast");
+      f.notify = true; mark("profile"); render(true); showFastNote(true); schedulePush(); toast(PUSH_URL ? "You'll get a notification while you fast, and one when it's done" : "You'll get a notification while you fast");
     });
     return true;
   }
@@ -2637,7 +2666,7 @@ function endFast() {
   var log = S.profile.fastLog = S.profile.fastLog || [], el = Date.now() - f.start, hit = el >= f.h * 36e5 - 6e4;
   if (el > 30 * 6e4) log.push({s: f.start, e: Date.now(), h: f.h});
   if (log.length > 90) log.splice(0, log.length - 90);
-  delete f.start; mark("profile"); clearFastNote(); render(true); fastTick();
+  delete f.start; mark("profile"); clearFastNote(); cancelPush(); render(true); fastTick();
   toast(el <= 30 * 6e4 ? "Fast cancelled" : (hit ? "Fast done: " : "Fast ended at ") + hm(el) + ". Start with a protein-rich meal.");
 }
 /* Notification buttons ("End fast" / "Open") talk to the page */

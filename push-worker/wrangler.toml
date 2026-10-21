@@ -1,0 +1,14 @@
+# Neon Gym push sender: sends the "fast complete" notification when the app is closed.
+# Deployed by .github/workflows/push-worker.yml (needs the CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repo secrets).
+name = "neon-gym-push"
+main = "worker.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+[[durable_objects.bindings]]
+name = "FASTS"
+class_name = "Fast"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Fast"]
