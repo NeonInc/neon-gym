@@ -1597,7 +1597,7 @@ function viewGuide() {
   h += fold("prog", "How to progress", '<ol><li>Pick a weight where you hit the bottom of the rep range with 2–3 reps left.</li><li>Each session, add reps with the same weight.</li><li>When every set reaches the top of the range with good form, add the smallest weight step.</li><li>Reps drop back down. Build up again.</li><li>Miss reps 2–3 sessions in a row? Check sleep and food first.</li><li>Every 8th week, or when run down, do a lighter week.</li></ol>');
   h += fold("first", "Your first 12 weeks", '<ul><li><b>Weeks 1–2:</b> learn the machines. Leave 3–4 reps in reserve. Save your seat settings.</li><li><b>Weeks 3–8:</b> push to 1–3 reps left. Weights go up quickly because you are learning the movements.</li><li><b>Week 8:</b> lighter week, then check weight, waist and photos.</li><li><b>Weeks 9–12:</b> keep progressing. After week 12, look at the Plans tab and pick your next step.</li></ul><p class="small">The first year is the fastest for muscle gain. Visible changes usually show around weeks 8–12.</p>');
   h += fold("splits", "Splits explained", '<ul><li><b>Full Body:</b> everything each session, 3 days.</li><li><b>Upper / Lower:</b> upper body one day, legs the next, 4 days.</li><li><b>Push:</b> chest, shoulders, triceps. <b>Pull:</b> back, biceps. <b>Legs:</b> quads, hamstrings, glutes, calves.</li><li><b>Body-part pairs:</b> chest &amp; biceps, back &amp; triceps, shoulders &amp; arms, legs. Big muscle first, small muscle after.</li></ul><p class="small">When total weekly sets are the same, these build about the same muscle. Training a muscle twice a week makes it easier to fit enough sets in.</p>');
-  h += fold("food", "Food for lean gains", '<ul><li><b>Calories:</b> your target is ' + tg.kcal + ' a day. Work it out for your body in Food → Targets. A lean gain is roughly 10% above maintenance.</li><li><b>Gain rate:</b> research for beginners suggests 0.25–0.5% of body weight a week. The lower end keeps your waist lean' + (me.w ? ": about " + gb[0] + "–" + gb[1] + " kg a week for you" : "") + '.</li><li><b>Track it:</b> the Food tab counts calories and protein, with South African products built in.</li><li><b>Protein:</b> ' + tg.p + ' g a day, split over 3–4 meals. Studies show muscle gains level off around 1.6 g per kg; aim for 1.6–2.2 g per kg, and the higher end when losing fat.</li><li><b>Fat:</b> about ' + tg.f + ' g. <b>Carbs:</b> the rest, about ' + tg.c + ' g.</li><li><b>Adjust:</b> flat for 2–3 weeks, add 150–200 kcal. Over 0.4 kg a week or waist up 2 cm, cut 150–200 kcal.</li></ul>' +
+  h += fold("food", "Food for lean gains", '<ul><li><b>Calories:</b> your target is ' + tg.kcal + ' a day. Work it out for your body in Food → Targets. A lean gain is roughly 10% above maintenance.</li><li><b>Gain rate:</b> research for beginners suggests 0.25–0.5% of body weight a week. The lower end keeps your waist lean' + (me.w ? ": about " + gb[0] + "–" + gb[1] + " kg a week for you" : "") + '.</li><li><b>Track it:</b> the Food tab counts calories and protein, with South African products built in.</li><li><b>Protein:</b> ' + tg.p + ' g a day, split over 3–4 meals. Studies show muscle gains level off around 1.6 g per kg; aim for 1.6–2.2 g per kg (1.6–2.4 when losing fat). Carrying extra fat? Count by your weight at a healthy BMI, not your full weight; the calculator does this for you.</li><li><b>Fat:</b> about ' + tg.f + ' g. <b>Carbs:</b> the rest, about ' + tg.c + ' g.</li><li><b>Adjust:</b> flat for 2–3 weeks, add 150–200 kcal. Over 0.4 kg a week or waist up 2 cm, cut 150–200 kcal.</li></ul>' +
     '<p><b>Cheap, easy protein (no fish, no veg needed):</b></p><ul><li>Eggs: 3 eggs ≈ 18 g</li><li>Chicken breast or thighs: 150 g cooked ≈ 40 g</li><li>Beef mince: 150 g cooked ≈ 35 g</li><li>Biltong: 50 g ≈ 25 g (a good snack)</li><li>Milk or maas: 500 ml ≈ 17 g</li><li>Plain or high-protein yoghurt, cottage cheese</li><li>Peanut butter on bread for extra calories</li><li>Whey protein: 1 scoop ≈ 20–25 g, an easy fix on low days</li></ul><p class="small">For vitamins, blend fruit and some spinach into a smoothie with milk and oats. You won\'t taste the spinach. Oranges and other fruit count too.</p>');
   h += fold("rec", "Recovery and cardio", '<ul><li>Sleep 7–9 hours.</li><li>Walk 6–8k steps on rest days.</li><li>Two easy cardio sessions a week, 20–30 min, at a pace where you can talk. No hard intervals before leg days.</li><li>Soreness is normal. Joint pain is a stop sign.</li></ul>');
   h += fold("picks", "Best protein picks (SA shops)", bestPicks());
@@ -2133,18 +2133,24 @@ var DEF_TARGETS = {kcal: 2900, p: 160, c: 390, f: 75};
 
 /* Per-person targets: Mifflin-St Jeor BMR x activity factor, adjusted for the goal; protein by g/kg (ISSN 1.4–2.0+, higher when cutting) */
 var ACT = [[1.2, "Mostly sitting", "Desk job, little or no exercise"], [1.375, "Light", "Desk job + 1–3 workouts a week"], [1.55, "Moderate", "Desk job + 3–5 workouts a week, or an active job"], [1.725, "Very active", "6–7 hard sessions a week, or a physical job + training"], [1.9, "Extra active", "Physical job + hard training most days"]];
-var GOALS = {lose: {n: "Lose fat", adj: -0.2, pk: 2.2, band: [-1.0, -0.5]}, maintain: {n: "Maintain", adj: 0, pk: 1.8, band: [-0.15, 0.15]}, lean: {n: "Lean muscle gain", adj: 0.1, pk: 2.0, band: [0.25, 0.4]}, gain: {n: "Faster gain", adj: 0.15, pk: 1.8, band: [0.4, 0.6]}};
+/* Protein: g per kg of a reference weight (your weight, capped at the weight for BMI 25), as [low, target, high].
+   Lose 1.6–2.4 (Hector & Phillips 2018), maintain from 1.6 (Morton 2018), gains 1.6–2.2 (Morton 2018; Iraki 2019).
+   With body fat % known, g per kg of lean mass instead (lose 2.3–3.0: Helms 2014; ISSN 2017). Sources: tools/targets-research.md */
+var GOALS = {lose: {n: "Lose fat", adj: -0.2, pk: 2.0, pr: [1.6, 2.0, 2.4], pf: [2.3, 2.6, 3.0], band: [-1.0, -0.5]}, maintain: {n: "Maintain", adj: 0, pk: 1.6, pr: [1.4, 1.6, 2.0], pf: [1.9, 2.1, 2.6], band: [-0.15, 0.15]}, lean: {n: "Lean muscle gain", adj: 0.1, pk: 1.8, pr: [1.6, 1.8, 2.2], pf: [1.9, 2.2, 2.6], band: [0.25, 0.4]}, gain: {n: "Faster gain", adj: 0.15, pk: 1.8, pr: [1.6, 1.8, 2.2], pf: [1.9, 2.2, 2.6], band: [0.4, 0.6]}};
 var GOAL_ORDER = ["lean", "maintain", "lose", "gain"];
 function r5(v) { return Math.round(v / 5) * 5; }
 function calcTargets(me) {
   if (!me || !me.w || !me.h || !me.age) return null;
   var bmr = 10 * me.w + 6.25 * me.h - 5 * me.age + (me.sex === "f" ? -161 : 5);
   var tdee = bmr * (ACT[me.act] || ACT[2])[0], g = GOALS[me.goal] || GOALS.lean;
-  var kcal = Math.round(tdee * (1 + g.adj) / 50) * 50;
-  kcal = Math.max(kcal, me.sex === "f" ? 1200 : 1500);
-  var bmi = me.w / Math.pow(me.h / 100, 2), pw = bmi > 30 ? 25 * Math.pow(me.h / 100, 2) : me.w;
-  var pr = r5(g.pk * pw), fat = r5(Math.max(kcal * 0.25 / 9, 0.6 * me.w)), carb = r5(Math.max(0, (kcal - pr * 4 - fat * 9) / 4));
-  return {bmr: Math.round(bmr), tdee: Math.round(tdee / 10) * 10, kcal: kcal, p: pr, c: carb, f: fat, bmi: bmi, pw: Math.round(pw)};
+  var raw = tdee * (1 + g.adj);
+  if (g.adj < 0) raw = Math.max(raw, tdee - me.w * 11, bmr); /* lose no faster than ~1% of body weight a week, and not below resting burn */
+  var kcal = Math.max(Math.round(raw / 50) * 50, me.sex === "f" ? 1200 : 1500);
+  var bmi = me.w / Math.pow(me.h / 100, 2), ref = Math.min(me.w, 25 * Math.pow(me.h / 100, 2)), bf = num(me.bf), basis, rng;
+  if (bf && bf >= 3 && bf <= 60) { var ffm = me.w * (1 - bf / 100); rng = g.pf.map(function (x) { return r5(x * ffm); }); basis = "lean mass (" + Math.round(ffm) + " kg at " + bf + "% body fat)"; }
+  else { rng = g.pr.map(function (x) { return r5(x * ref); }); basis = ref < me.w ? "a healthy-weight reference (" + Math.round(ref) + " kg, BMI 25 for your height)" : "your body weight"; }
+  var pr = rng[1], fat = r5(Math.max(kcal * 0.25 / 9, 0.6 * ref)), carb = r5(Math.max(0, (kcal - pr * 4 - fat * 9) / 4));
+  return {bmr: Math.round(bmr), tdee: Math.round(tdee / 10) * 10, kcal: kcal, p: pr, pLo: rng[0], pHi: rng[2], basis: basis, c: carb, f: fat, bmi: bmi, pw: Math.round(ref), kgwk: r1((kcal - tdee) * 7 / 7700)};
 }
 function goalBand(bw) { var me = S.profile.me || {}, g = GOALS[me.goal] || GOALS.lean; return [r1(bw * g.band[0] / 100), r1(bw * g.band[1] / 100), g, me.goal || "lean"]; }
 function targets() { var t = S.profile.targets || {}; return {kcal: t.kcal || DEF_TARGETS.kcal, p: t.p || DEF_TARGETS.p, c: t.c || DEF_TARGETS.c, f: t.f || DEF_TARGETS.f}; }
@@ -2461,13 +2467,15 @@ function targetsBody() {
   var h = '<p class="small">For whoever uses the app on this phone. It estimates daily calories and protein from size, activity and goal.</p>';
   h += '<p class="label">Sex</p><div class="chips"><button class="chip" type="button" data-act="mesex" data-v="m" aria-pressed="' + (me.sex !== "f") + '">Male</button><button class="chip" type="button" data-act="mesex" data-v="f" aria-pressed="' + (me.sex === "f") + '">Female</button></div>';
   h += '<div class="row3"><label class="fl">Age<input class="field" id="meage" type="text" inputmode="numeric" value="' + esc(me.age || "") + '" placeholder="26"></label><label class="fl">Height (cm)<input class="field" id="meh" type="text" inputmode="numeric" value="' + esc(me.h || "") + '" placeholder="184"></label><label class="fl">Weight (kg)<input class="field" id="mew" type="text" inputmode="decimal" value="' + esc(me.w || "") + '" placeholder="80"></label></div>';
+  h += '<label class="fl">Body fat % (optional)<input class="field" id="mebf" type="text" inputmode="decimal" value="' + esc(me.bf || "") + '" placeholder="Leave empty if you don\'t know"></label>';
   h += '<label class="fl">How active are you?<select class="field" id="meact">' + ACT.map(function (a, i) { return '<option value="' + i + '"' + ((me.act == null ? 2 : me.act) === i ? " selected" : "") + '>' + a[1] + ': ' + a[2] + '</option>'; }).join("") + '</select></label>';
   h += '<label class="fl">Goal<select class="field" id="megoal">' + GOAL_ORDER.map(function (k) { return '<option value="' + k + '"' + ((me.goal || "lean") === k ? " selected" : "") + '>' + GOALS[k].n + '</option>'; }).join("") + '</select></label>';
   h += '<button class="btn" type="button" data-act="mecalc">Calculate</button>';
   if (c) {
     h += '<div class="calc"><p class="small">Burns about <b>' + c.tdee + ' kcal</b> a day (resting ' + c.bmr + ' kcal × activity). For <b>' + esc(GOALS[me.goal || "lean"].n.toLowerCase()) + '</b>:</p>' +
       '<div class="vol"><div><span>Calories</span><b>' + c.kcal + '</b></div><div><span>Protein g</span><b>' + c.p + '</b></div><div><span>Carbs g</span><b>' + c.c + '</b></div><div><span>Fat g</span><b>' + c.f + '</b></div></div>' +
-      '<p class="small">Protein is ' + (GOALS[me.goal || "lean"].pk) + ' g per kg' + (c.bmi > 30 ? ' of a healthy target weight (' + c.pw + ' kg)' : '') + '. Fat is about a quarter of calories, carbs fill the rest. An estimate, usually within about 10%; your weight trend on Stats fine-tunes it.</p>' +
+      '<p class="small"><b>Protein ' + c.p + ' g</b>, anything from ' + c.pLo + '–' + c.pHi + ' g works. Based on ' + esc(c.basis) + '.' + (c.pw < me.w && !num(me.bf) ? ' If you lift and are fairly lean, add your body fat % for a better number.' : '') + '</p>' +
+      '<p class="small">' + (c.kgwk ? 'Expect about ' + (c.kgwk > 0 ? '+' : '') + c.kgwk + ' kg a week. ' : '') + 'Fat is about a quarter of calories, carbs fill the rest. An estimate, usually within about 10%; your weight trend on Stats fine-tunes it.</p>' +
       '<button class="btn solid" type="button" data-act="meuse">Use these targets</button></div>';
   }
   h += '<details class="fold" data-k="fmanual"' + (UI.open.fmanual ? " open" : "") + '><summary>Set targets by hand</summary><div class="in">' +
@@ -2592,7 +2600,7 @@ function foodClick(a, b) {
 }
 function readMe() {
   var me = Object.assign({}, S.profile.me || {}), g = function (id) { var el = $(id); return el ? num(el.value) : null; };
-  if ($("meage")) { me.age = g("meage"); me.h = g("meh"); me.w = g("mew"); me.act = +$("meact").value; me.goal = $("megoal").value; }
+  if ($("meage")) { me.age = g("meage"); me.h = g("meh"); me.w = g("mew"); me.act = +$("meact").value; me.goal = $("megoal").value; var bf = g("mebf"); if (bf && bf >= 3 && bf <= 60) me.bf = bf; else delete me.bf; }
   if (!me.sex) me.sex = "m";
   return me;
 }
