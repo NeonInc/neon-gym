@@ -2565,7 +2565,7 @@ function icsFor(start, end, title) {
     "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + title, "TRIGGER:PT0M", "END:VALARM", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
 }
 /* ---- "Fast complete" alert with the app closed: Web Push sent by the neon-gym-push Cloudflare Worker (push-worker/). Empty = off. ---- */
-var PUSH_URL = "";
+var PUSH_URL = "https://neon-gym-push.neoninc-support.workers.dev";
 function pushOk() { return !!PUSH_URL && "PushManager" in window && "serviceWorker" in navigator && !!navigator.serviceWorker.controller && "Notification" in window && Notification.permission === "granted"; }
 function pushSub() {
   return navigator.serviceWorker.ready.then(function (reg) {
