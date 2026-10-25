@@ -651,3 +651,438 @@ Notes:
   Kauai bowls other than the poke bowl (FatSecret entries archived); Burger King fries (values look like a much smaller portion).
 */
 ```
+
+## Batch: Pretoria spots, SA chains, supermarket, brand sauces, biltong, drinks, frozen (Oct 2026)
+
+1,031 items. Values marked "Estimate:" in their note are built from the menu portion and USDA/label averages, because the place publishes no nutrition.
+Duplicates between batches were dropped. Corrections applied to existing items: Fanta Orange (Coca-Cola SA 93 kJ), Weet-Bix (biscuit 20 g),
+Debonairs slices (official guide), Nando's medium peri-peri (SA label), generic mayo renamed to full-fat style, Woolworths mushroom sauce renamed generic, biltong note.
+
+### foods-pta-cafes.js
+```
+/* SOURCES
+- Lucky Bread Company, 20 16th Street Hazelwood (The Village): Uber Eats: lucky-bread-company-hazelwood, the-lucky-bread-company-menlyn-maine, -brooklyn-mall (Oct 2026)
+- Aroma Gourmet Coffee Roastery, 9 Firwood Ave Hazelwood: Uber Eats: aroma-coffee-roastery-hazelwood breakfast + lunch menus (Oct 2026)
+- Platō Coffee (chain; nearest branch Menlo Park): Uber Eats: plato-coffee-ferndale-on-republic-planet-fitness (menu text; same chain menu). plato.coffee/pages/our-menu is an image.
+- Bakehouse, 18 Firwood Ave Hazelwood: Uber Eats: bakehouse-hazelwood (Oct 2026)
+- Freddo Café, 18 Oaktree Ave Hazelwood: Uber Eats: freddo-cafe/Zehef83KXkayWetneTDxmw (Hazelwood); drinks from freddo-cafe/y5vACsk9Xq6KGHbYcgJaUw (same brand menu)
+- 23 on Hazelwood, 23 Hazelwood Rd: Menu PDF May 2026: https://23onhazelwood.co.za/wp-content/uploads/2026/05/23-on-Hazelwood-Menu-May-2026.pdf ; Uber Eats: 23-on-hazelwood (most liked)
+- La Coco C, 198 Long Ave Waterkloof (kcal published on the menu): Uber Eats: la-coco-c-waterkloof, la-coco-c (Shere), la-coco-c Stellenbosch, Paarl (Oct 2026). kcal = menu "KCAL" figures.
+- Peaches, 15 16th Street Hazelwood: Menu V1.15 (Final), copy on Studocu (2024/25): https://www.studocu.com/en-za/document/varsity-college/psychology-1a/peaches-menu-version-115-final/125557600 . Uber Eats page could not be read.
+
+Ingredient values used for the estimates (per 100 g unless noted):
+- USDA FoodData Central (SR Legacy): egg (whole, fried, scrambled), breads (sourdough/French, white, rye, multigrain, hard roll, English muffin, egg bread, pita, bagel), butter croissant, flour, butter, oil, cheddar, mozzarella, feta, parmesan, cream cheese, brie, mayonnaise, mustard, avocado, tomato, mushrooms, onion, lettuce/rocket, chicken breast/meat roasted, battered fried chicken breast, sliced ham, smoked salmon, corned beef brisket, lamb leg roast, ground lamb, chicken liver, hummus, falafel, fast-food fries, Greek & plain yoghurt, homemade granola, fruit, dates, honey, maple syrup, sugar, jam, cream, condensed milk, espresso, chocolate, nuts, sesame, ice cream, waffle/French toast recipes, buttermilk biscuit (scone), brownie recipe, cheesecake, oats, rice. https://fdc.nal.usda.gov/
+- fatsecret generic (foods.fatsecret.com): hollandaise 417 kcal/100 g, pesto 534, chutney 149, cheese sauce 174, halloumi 333, chicken tenders 293, creamed spinach 74, hash brown patty 143 kcal, egg tart 225 kcal/tart, prosciutto 18 kcal/slice, mascarpone (Cello label) 393.
+- Labels: Nutella, Lotus Biscoff spread.
+- Existing app values reused: avb-bacon-rasher, milk-full, steak, mince, boerewors, pb, whey-usn, avb-sous, sa-coleslaw, av-salad-greek, avb-chicken-braai.
+*/
+```
+
+### foods-pta-restaurants.js
+```
+/* SOURCES
+
+MENUS USED (portion sizes, what comes with each dish)
+- Smoke (SMOKE Pretoria, 16 Firwood Ave, The Village/Hazelwood; smokecapital.co.za). Taken to be the "Smoke City" asked for:
+  it's the only smokehouse called Smoke in Hazelwood. Menu items/sizes (brisket 300 g, pork ribs 700 g) from
+  https://briefly.co.za/facts-lifehacks/services/221093-smoke-pretoria-menu-prices-brunch-mains-desserts (Jul 2025).
+  The current June 2026 PDF https://smokecapital.co.za/wp-content/uploads/2026/07/FOOD-SMOKE-June-2026.pdf is image-only (couldn't read it).
+- The Rock Hazelwood: Dineplan sample menu (7 Feb 2024) https://www.dineplan.com/restaurant/the-rock-hazelwood/menu (burgers 180 g patty, hake 180 g/300 g)
+- Pachas (Club Centre, Dely Rd): Mr D menu https://www.mrd.com/delivery/restaurant/pachas-restaurant-hazelwood/15026 (mains with creamed spinach, butternut, starch)
+- Cowfish: the Pretoria branch is now at Lynnwood Bridge (the old 11 Hazelwood Rd site is now Alfie's Italian Cafe).
+  Mr D menu https://www.mrd.com/delivery/restaurant/cowfish-lynwood-bridge-lynnwood-manor/21227 (160 g patties, ribs 500 g, rump 300 g)
+- Alfie's Pizzeria & Deli (13 Firwood Ave): https://www.alfies.co.za/Pizzeria-Menu-2024.pdf (picana 300 g)
+- Alfie's Italian Cafe (11 Hazelwood Rd), asked for as "Alfie's Italian Bistro": https://www.alfies.co.za/alfies-menu.pdf
+  (rib-eye 500 g bone-in, fillet 250 g, Fiorentina min 600 g)
+- Capito (The Club, Hazelwood): https://capito.co.za/assets/Capito-Food-Menu-May-2023.pdf (newest menu online; tomahawk 750 g, fillet 250 g, rump 300 g)
+- Lotus Thai: moved from 19 Dely Rd Hazelwood to 975 Arcadia St, Hatfield (https://www.lotusthai.co.za/lotus-thai-cuisine/).
+  Mr D menu https://www.mrd.com/delivery/restaurant/lotus-thai-hatfield/33611 (6 spring rolls, 6 prawns)
+- Moo Moo Wine Bar & Grill (Menlyn, Brooklyn and others; small chain): https://www.moo-moo.co.za/order-online
+  (+ /GRILLS-&-MAINS-c53897112, /RIBS-c54194080, /ESPETADA-c54169132, /STREET-FOOD-c54113108, /SMALL-PLATES-c158460760)
+- Prosopa (Waterkloof Heights): https://prosopa.co.za/downloads/Prosopa-Menu.pdf (ribeye 300 g, fillet 250 g)
+- Buffelsfontein Beesboerdery (Greenlyn, Menlo Park): https://www.beesboerdery.co.za/wp-content/uploads/2026/09/Beesboerdery-Spyskaart-2026.pdf
+  (kruisskyf 200/350 g, beeshaas 200/350 g, ribbes 550 g, T-been 500 g, lam 3 x 100 g, 250 g burgers)
+- Hinterland (The Club, Hazelwood): https://hinterland.restaurant/wp-content/uploads/2025/12/HL_MainMenu_Nov22_NoPrices.pdf
+  (steaks 250/350 g, rib-eye on the bone 600 g, T-bone 500/700 g, 180 g burger)
+
+SKIPPED (no current menu found, so no menu was guessed)
+- Farmers Fowl: no restaurant by this name found in Pretoria.
+- Padbok Thai (Cherry Lane, Brooklyn): listed as permanently closed (wanderlog.com/place/details/2633056).
+- Mezetaki Pretoria (27 Maroelana St, Hazelwood): the group's site (mezetaki.co.za/our-greek-restaurants/) lists only Senderwood now;
+  latest Hazelwood reviews Sep 2024; no Hazelwood menu online.
+- Taso's Bar & Grill (Firwood & 16th St): open (reviews to May 2026) but no menu published anywhere readable (only a TripAdvisor photo).
+
+COMPONENT VALUES per 100 g (dish values = sum of components x grams in the note)
+- Steaks, USDA via fatsecret search (foods.fatsecret.com/calories-nutrition/search?q=...):
+  rump = beef top sirloin 1/8" fat broiled 243 kcal; sirloin = top loin 1/8" broiled (224 kcal/3 oz); fillet = tenderloin lean 0" broiled (164 kcal/3 oz);
+  rib-eye = rib eye small end 0" broiled (70 kcal/oz); T-bone/tomahawk = FNDDS beef steak lean & fat 252 kcal.
+- Brisket: USDA brisket point 1/4" braised (222 kcal/3 oz). Pork ribs: FNDDS pork spareribs barbecued with sauce 310 kcal
+  (https://foods.fatsecret.com/calories-nutrition/generic/pork-spareribs-barbecued-with-sauce). Beef ribs: FNDDS beef shortribs barbecued with sauce 381 kcal
+  (https://foods.fatsecret.com/calories-nutrition/generic/beef-shortribs-barbecued-with-sauce).
+- Lamb shank: USDA lamb foreshank 1/8" braised 243 kcal. Oxtail: FNDDS beef stew meat cooked (86 kcal/oz). Pork neck: USDA pork shoulder roasted 292 kcal.
+  Pork belly: USDA raw belly 518 kcal/100 g, ~30% of fat assumed rendered. Lamb chops: app 'lamb-chop'. Roast chicken: app 'rotisserie' (= USDA).
+- Crumbed chicken/veal: USDA chicken breast breaded & fried 303 kcal. Wings: USDA wing meat+skin roasted.
+- Calamari fried: USDA squid fried 175 kcal; grilled: USDA raw squid by raw weight. Battered hake: FNDDS battered fried fish fillet 206 kcal.
+  White fish grilled: USDA cod cooked. Salmon: USDA farmed Atlantic cooked. Prawns: USDA shrimp cooked.
+- Burgers: USDA 80/20 patty broiled (209 kcal per 77 g patty); bun = app 'avb-roll-white'; cheddar/mozzarella/mayo/butter = app lines; bacon USDA pan-fried; gouda, feta, egg fried, ham USDA.
+- Chips = app 'slap-chips'; mash = app 'sa-mash'; rice = app 'rice'; potatoes, sweet potato, veg, spinach, butternut, broccoli, peas, carrots, salad veg, olives: USDA.
+- Cheese sauce: FNDDS cheese sauce 174 kcal (also used for creamy mushroom/pepper/biltong sauce). Cream: USDA heavy cream. BBQ sauce, teriyaki: USDA.
+- Pizza: USDA 14" cheese pizza 264 kcal/100 g; meat pizzas USDA 14" pepperoni pizza 276 kcal/100 g. Neapolitan ~30 cm pizza assumed ~380 g.
+- Pasta: FNDDS pasta with meat sauce 129 kcal; FNDDS fettuccine alfredo 208 kcal (used for creamy/cheese pastas and gnocchi); USDA spaghetti cooked.
+- Thai: FNDDS Thai green curry 144 kcal, Thai red curry 139 kcal (red/panang/massaman), pad Thai 170 kcal, vegetable spring roll 63 kcal per roll.
+- Greek: FNDDS moussaka 120 kcal; FNDDS beef gyro in pita 151 kcal (souvlaki pita); baklava 428 kcal (generic).
+- Peri-peri livers: app 'sa-livers'. Bobotie: fatsecret.co.za generic 194 kcal. Chicken curry: app 'sa-chicken-curry'.
+- Desserts (fatsecret generic): tiramisu 283, creme brulee 336 (404 kcal ramekin), cheesecake USDA 321, panna cotta 223;
+  malva = average of Woolworths/SPAR/The Menu/Snowflake labels on fatsecret.co.za (317 kcal).
+- California roll: FNDDS 126 kcal/100 g (33 kcal per piece).
+*/
+```
+
+### foods-chains.js
+```
+/* SOURCES
+ - Debonairs (rc-debs-*): official Nutritional & Allergen Guide, https://debonairspizza.co.za/nutritional-and-allergen-guide/ (whole-pizza kJ, protein, fat, carbs; Medium/Large rows; kcal = kJ / 4.184).
+   Pizzawraps, wings and Death by Chocolate list no carbs; carbs = (kcal - 4p - 9f) / 4. Small-size rows (no carbs, one clearly broken BBQ Beef Small row) and cocktail griller rows (energy below their own macros) skipped.
+ - Spur (rc-spur-*): official Spur nutritional analysis PDF (per 100 g), https://res.cloudinary.com/spur-group/image/upload/uploads/resource/menupage/01JT81Z5Y351ARRM9GVPY8R7VD.pdf
+ - KFC (rc-kfc-*): fatsecret.co.za KFC brand entries, https://www.fatsecret.co.za/calories-nutrition/search?q=KFC (pages 1-8). kfc.co.za blocks fetching (robots).
+   Skipped: Fries (Regular) 343 kcal (22% off its macros), Mini Twister (16% off), Large Gravy (odd serving), Sprinkle Pops, Simba KFC chips.
+ - Nando's (rc-nandos-*): fatsecret.co.za Nando's brand entries (Nando's SA lists per 100 g), https://www.fatsecret.co.za/calories-nutrition/search?q=Nandos (pages 1-8).
+   Skipped as broken: "Livers and a Nando's Roll" (per-serving values labelled per 100 g), "Boujee bowl with halloumi" (594 kcal per 100 g), Nandinos strips/winglets & chips (1 g carbs with chips), Grande Salad (Veg) (10 kcal vs macros).
+ - Burger King (rc-bk-*): fatsecret.co.za Burger King brand entries, https://www.fatsecret.co.za/calories-nutrition/search?q=Burger+King (pages 1-5).
+   Skipped: BK fries S/M/L (136/167/250 kcal look far too low), Cappuccino tall and Bar One Fusion (kcal 27-31% off macros), soft drinks.
+ - Steers (rc-steers-*): fatsecret.co.za Steers brand entries, https://www.fatsecret.co.za/calories-nutrition/search?q=Steers (pages 1-7). steers.co.za nutrition guide loads dynamically and could not be read.
+   Skipped as broken: all Steers chips entries (e.g. small chips 621 kcal with 56 g fat), Cheesy BBQ Triple (kcal 27% below macros), "Original King Steer per 100 g 1033 kcal", Milkshake 250 ml (28% off), conflicting Prince burger values (296 vs 668).
+ - Kauai (rc-kauai-*): fatsecret.co.za Kauai brand entries, https://www.fatsecret.co.za/calories-nutrition/search?q=Kauai (pages 1-10).
+   Skipped: Peanut Butter Berry 350 ml and Iced Matcha Latte (kcal ~28% off macros), Avo Steak Salad (27% off), Iced Cappuccino 350 ml (308 g protein typo).
+ - Ocean Basket (rc-ob-*): fatsecret.co.za Ocean Basket brand entries, https://www.fatsecret.co.za/calories-nutrition/search?q=Ocean+Basket (pages 1-4).
+   Skipped as broken: Fish and Calamari (269.5 g protein), Two Way Platter, Med Veg Bowl (504 kcal/100 g), Salmon Platter Sushi (580 kcal/100 g), Lemon Garlic Mussels and Grilled Calamari per 100 g (>20% off macros).
+ - Simply Asia (rc-sa-*): fatsecret.co.za Simply Asia brand entries, https://www.fatsecret.co.za/calories-nutrition/search?q=Simply+Asia (pages 1-3).
+   Skipped as broken: Chicken Pad Thai (670 kcal vs ~436 from macros), 6-Piece Combo Platter, Chocolate Spring Rolls, Thai Consommé, Roasted Chilli Paste Stir Fry ("per 100 g" 797 kcal).
+ - Pedros: fatsecret.co.za Pedros entries, https://www.fatsecret.co.za/calories-nutrition/search?q=Pedros. Quarter Chicken Paella (14 g protein) and Chicken Livers & Roll (labelled per 100 g) skipped. Quarter chicken / burger are estimates.
+ - Pizza Hut SA (rc-ph-*): no SA nutrition published (pizzahut.co.za unreachable, nothing on fatsecret.co.za). Estimates use Debonairs' official Medium/Large values for the closest pizza.
+   Menu: https://briefly.co.za/facts-lifehacks/services/209183-pizza-hut-menu-latest-prices-mzansi-quick-guide/ (Feb 2025).
+ - RocoMamas (estimates): menu https://rocomamas.com/za/menu (patty sizes from menu descriptions). No nutrition published; no fatsecret entries.
+ - Hudsons (estimates): menu items from https://www.eatout.co.za/article/review-hudsons-kloof-proves-great-burgers-will-never-go-fashion/ and https://yourneighbourhood.co.za/hudsons-burger-joint-in-hazelwood/ . No nutrition published.
+ - Doppio Zero (estimates): menu https://briefly.co.za/facts-lifehacks/services/199326-doppio-menu-prices-south-africa-updated/ . No nutrition published; no fatsecret entries.
+ - Woolworths Café (estimates): menu PDF https://www.woolworths.co.za/images/elasticera/New_Site/Corporate/woolworths_wcafe_allday_menu_2026 (prints no nutrition).
+ - Seattle Coffee Co (estimates): https://www.seattlecoffeecompany.co.za/ publishes no menu nutrition; no fatsecret entries.
+ - Estimate components are the app's existing generic foods: avb-roll-white, mince, cheddar, s2-gouda, s2-mozzarella, s2-feta, avb-bacon-rasher, mayo, egg, avo,
+   chicken-breast, slap-chips, avb-onion-rings, fried-wings, bread-white, butter, av-burger-chicken-crumbed, sa-coleslaw, avb-milkshake, s2-bbq-allgold, s2-onion, oil,
+   s2-cream-cheese, avb-bagel-cream-cheese, avb-breakfast-full, av-cheeseburger, av-spaghetti-carbonara, av-lasagne, av-butter-chicken-rice, av-toasted-chicken-mayo,
+   av-burger-chicken-grilled, rotisserie, dr-cappuccino, avb-latte, avb-flat-white, avb-hot-chocolate, avb-frappe, avb-croissant-plain, avb-muffin-chocolate, pasta;
+   plus Col'Cacchio (r-cc-*) and Mugg & Bean (r-mb-eggs-benedict) values already in the app. Raw-to-cooked beef: 150 g raw ~ 110 g cooked.
+ - Domino's: NOT included. Domino's South Africa was liquidated by Taste Holdings in 2020 and has not returned
+   (https://businesstech.co.za/news/business/381887/taste-liquidates-dominos-in-south-africa-770-jobs-affected/ ; BusinessTech, 12 Dec 2024: https://businesstech.co.za/news/business/803884/5-nostalgic-franchises-that-have-disappeared-across-south-africa/).
+*/
+/* CORRECTIONS (from Debonairs' official guide, large = 8 slices, medium = 6 slices as in the existing notes):
+ - pz-debs-meaty -> 1 slice (large): 227 kcal, protein 13.8, carbs 23.6, fat 8.7  (Something Meaty large 7606.79 kJ, p110.4 c189.16 f69.61 / 8)
+ - pz-debs-hawaiian -> 1 slice (large): 195 kcal, protein 12.0, carbs 23.8, fat 6.1  (Hawaiian large 6523.57 kJ, p95.68 c190.28 f49.02 / 8)
+ - pz-debs-margherita -> 1 slice (medium, was "standard"): 131 kcal, protein 6.3, carbs 17.8, fat 3.9  (Margherita medium 3277.04 kJ, p37.61 c106.7 f23.43 / 6)
+ - pz-debs-triple-chicken -> rename "Creamy Chicken Triple-Decker, 1 slice"; 330 kcal, protein 14.9, carbs 39.8, fat 12.0  (large 11042.98 kJ, p118.82 c318.1 f95.84 / 8)
+ - pz-debs-triple-meat: official large 11824.39 kJ / 8 = 353 kcal, p17.7 c41.5 f12.7 (existing 354/18.5/39.2/13.7 is close; optional update)
+ - pz-debs-regina: Regina is no longer on Debonairs' guide (consider removing).
+ Noted, not changed: kfc-twister (294 kcal) vs fatsecret "Sweet Chilli Twister" 479 kcal; r-steers-chicken-burger (570 kcal) vs fatsecret "Chicken Burger" 280 / "Original Chicken Burger" 250.
+*/
+```
+
+### foods-supermarket.js
+```
+/* SOURCES (fatsecret.co.za entries are label data entered from SA packs; each line's values were read from the search-result summary for that brand/item)
+Bread & starch:
+  Albany: https://www.fatsecret.co.za/calories-nutrition/search?q=Albany%20Superior , https://www.fatsecret.co.za/calories-nutrition/search?q=Albany%20rolls , https://www.fatsecret.co.za/calories-nutrition/search?q=Albany%20Best%20of%20Both
+  Sasko: https://www.fatsecret.co.za/calories-nutrition/search?q=Sasko%20bread
+  Blue Ribbon: https://www.fatsecret.co.za/calories-nutrition/search?q=Blue%20Ribbon%20bread
+  Woolworths breads/rolls: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20bread , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20rolls , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20bun , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20muffin (English muffin)
+  Pick n Pay: https://www.fatsecret.co.za/calories-nutrition/search?q=Pick%20n%20Pay%20bread
+  Checkers: https://www.fatsecret.co.za/calories-nutrition/search?q=Checkers%20bread
+  Spar: https://www.fatsecret.co.za/calories-nutrition/search?q=Spar%20bread
+  Wraps/pitas: https://www.fatsecret.co.za/calories-nutrition/search?q=wraps%20tortilla , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20wrap , https://www.fatsecret.co.za/calories-nutrition/search?q=pita%20bread
+Breakfast:
+  Kellogg's: https://www.fatsecret.co.za/calories-nutrition/search?q=Kellogg%27s (pages 1-2)
+  Bokomo (corn flakes, Otees, Weet-Bix Protein, Maltabella, wholewheat rusks): https://www.fatsecret.co.za/calories-nutrition/search?q=Bokomo (pages 1-2)
+  ProNutro: https://www.fatsecret.co.za/calories-nutrition/search?q=Pronutro (pages 1-2)
+  Jungle oats / Oat So Easy / oat bran: https://www.fatsecret.co.za/calories-nutrition/search?q=Jungle%20oats (pages 1-2); Jungle muesli: https://www.fatsecret.co.za/calories-nutrition/search?q=Jungle%20muesli
+  Woolworths granola/muesli: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20granola , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20muesli
+  Futurelife: https://www.fatsecret.co.za/calories-nutrition/search?q=Futurelife
+  Spar mabele: https://www.fatsecret.co.za/calories-nutrition/search?q=Spar%20meal
+  Rusks: https://www.fatsecret.co.za/calories-nutrition/search?q=Ouma%20rusks , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20rusks , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20muesli (homestyle muesli rusk), https://www.fatsecret.co.za/calories-nutrition/search?q=Checkers%20bread (Checkers rusks)
+Dairy & shakes:
+  Fage (official UK labels): https://uk.fage/yoghurts/fage-total-0 , https://uk.fage/yoghurts/fage-total-2 , https://uk.fage/yoghurts/fage-total-5
+  Clover yoghurt: https://www.fatsecret.co.za/calories-nutrition/search?q=Clover%20yoghurt ; Clover milk/Nolac: https://www.fatsecret.co.za/calories-nutrition/search?q=Clover%20milk ; Tussers: https://www.fatsecret.co.za/calories-nutrition/search?q=Clover%20cheese ; Super M: https://www.fatsecret.co.za/calories-nutrition/search?q=Clover%20Super%20M
+  Danone (DanPro, Activia, buttermilk): https://www.fatsecret.co.za/calories-nutrition/search?q=Danone (pages 1-2)
+  Woolworths yoghurt/milk/high protein/cottage: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20greek%20yoghurt , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20double%20cream%20yoghurt , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20drinking%20yoghurt , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20high%20protein , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20milk , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20cheese , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20yoghurt (full cream plain, fat free plain, low fat strawberry)
+  Steri Stumpie: https://www.fatsecret.co.za/calories-nutrition/search?q=Clover%20Steri%20Stumpie ; Parmalat Protein+: https://www.fatsecret.co.za/calories-nutrition/search?q=Parmalat (page 2)
+  Melrose: https://www.fatsecret.co.za/calories-nutrition/search?q=Melrose ; Lancewood: https://www.fatsecret.co.za/calories-nutrition/search?q=Lancewood
+  Protein powders: https://www.fatsecret.co.za/calories-nutrition/search?q=Nutritech , https://www.fatsecret.co.za/calories-nutrition/search?q=Evox , https://www.fatsecret.co.za/calories-nutrition/search?q=USN
+Sauces & spreads:
+  Rama: https://www.fatsecret.co.za/calories-nutrition/rama/original-60-fat-spread/100g (70% version: https://www.fatsecret.co.za/calories-nutrition/rama/original-70-fat-spread/100g)
+  Flora: https://www.fatsecret.co.za/calories-nutrition/search?q=Flora%20margarine ; Clover butter/Butro: https://www.fatsecret.co.za/calories-nutrition/search?q=Clover%20butter
+  Black Cat: https://www.fatsecret.co.za/calories-nutrition/search?q=Black%20Cat (pages 1-2)
+  Woolworths hummus: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20hummus ; pasta sauces: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20pasta%20sauce
+  All Gold: https://www.fatsecret.co.za/calories-nutrition/search?q=All%20Gold
+Meat & eggs:
+  Eskort: https://www.fatsecret.co.za/calories-nutrition/search?q=Eskort ; Enterprise: https://www.fatsecret.co.za/calories-nutrition/search?q=Enterprise
+  Woolworths deli: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20ham , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20sliced%20chicken , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20salami , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20roast%20chicken , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20eggs
+  PnP deli/chicken: https://www.fatsecret.co.za/calories-nutrition/search?q=Pick%20n%20Pay%20chicken , https://www.fatsecret.co.za/calories-nutrition/search?q=Pick%20n%20Pay%20sandwich (sandwich ham)
+  Spar chicken: https://www.fatsecret.co.za/calories-nutrition/search?q=Spar%20chicken
+  Rotisserie: Woolworths entries at https://www.fatsecret.co.za/calories-nutrition/search?q=rotisserie%20chicken ; Checkers/PnP/Spar = ESTIMATE from USDA FoodData Central SR Legacy "Chicken, broilers or fryers, leg, meat and skin, cooked, roasted" (232 kcal, 26.0 P, 13.5 F) and "...breast, meat and skin, cooked, roasted" (197 kcal, 29.8 P, 7.8 F)
+  Chicken strips: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20chicken%20strips , Spar/PnP links above
+  Biltong: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20biltong , https://www.fatsecret.co.za/calories-nutrition/search?q=Checkers%20biltong , https://www.fatsecret.co.za/calories-nutrition/search?q=Pick%20n%20Pay%20biltong
+  Bull Brand: https://www.fatsecret.co.za/calories-nutrition/search?q=Bull%20Brand
+Meals & sides:
+  Woolworths meals: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20lasagne , ...%20cottage%20pie , ...%20chicken%20a%20la%20king , ...%20spaghetti%20bolognaise , ...%20bobotie , ...%20chicken%20pie , ...%20sushi , ...%20nuts (cashew nut chicken), ...%20hummus (booster bowl), ...%20cheese (mac cheese)  [all https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20...]
+  Woolworths sandwiches/wraps: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20chicken%20mayo%20sandwich , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20roast%20chicken , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20sandwich , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20wrap
+  Woolworths deli salads: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20pasta%20salad , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20salad
+  Pick n Pay: https://www.fatsecret.co.za/calories-nutrition/search?q=Pick%20n%20Pay%20lasagne , https://www.fatsecret.co.za/calories-nutrition/search?q=Pick%20n%20Pay%20cottage%20pie , https://www.fatsecret.co.za/calories-nutrition/search?q=Pick%20n%20Pay%20sandwich , https://www.fatsecret.co.za/calories-nutrition/search?q=Pick%20n%20Pay%20chicken , https://www.fatsecret.co.za/calories-nutrition/search?q=Pick%20n%20Pay%20salad
+  Checkers: https://www.fatsecret.co.za/calories-nutrition/search?q=Checkers%20Simple%20Truth , https://www.fatsecret.co.za/calories-nutrition/search?q=Checkers%20chicken , https://www.fatsecret.co.za/calories-nutrition/search?q=Checkers%20salad , https://www.fatsecret.co.za/calories-nutrition/search?q=Checkers%20sandwich
+  Spar: https://www.fatsecret.co.za/calories-nutrition/search?q=Spar%20chicken
+  Tinned: https://www.fatsecret.co.za/calories-nutrition/search?q=Koo , https://www.fatsecret.co.za/calories-nutrition/search?q=Rhodes , https://www.fatsecret.co.za/calories-nutrition/search?q=Rhodes%20pasta%20sauce
+Bars & sweets:
+  https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20muffin , https://www.fatsecret.co.za/calories-nutrition/search?q=Spar%20muffin , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20croissant , https://www.fatsecret.co.za/calories-nutrition/search?q=Pick%20n%20Pay%20croissant , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20scones , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20bun , https://www.fatsecret.co.za/calories-nutrition/search?q=Checkers%20bread (hot cross bun)
+  Bars: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20high%20protein , https://www.fatsecret.co.za/calories-nutrition/search?q=Pronutro , https://www.fatsecret.co.za/calories-nutrition/search?q=Nutritech , https://www.fatsecret.co.za/calories-nutrition/search?q=USN , https://www.fatsecret.co.za/calories-nutrition/search?q=Futurelife
+Chips & nuts: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20nuts , https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths%20cashews
+Extras: https://www.fatsecret.co.za/calories-nutrition/search?q=Snowflake%20flour
+Not added (no published values found): in-store bakery muffins at Checkers/PnP (generic muffins already exist), Checkers/PnP/Spar hot-deli chicken strips (packaged Spar/Woolworths/PnP strips added instead).
+*/
+/* CORRECTIONS:
+weetbix -> base "1 biscuit 20 g", 71 kcal, 2.5 P, 12.5 C, 0.6 F. Two Bokomo Weet-Bix entries on fatsecret.co.za list "2 biscuits (40 g) = 141 kcal, 5 P, 25 C, 1.1 F" (and 354 kcal/100 g). The current line (47 kcal per biscuit) implies a ~13 g biscuit, which looks too light. Please confirm against a current pack before changing. Source: https://www.fatsecret.co.za/calories-nutrition/bokomo/weet-bix-regular/2-biscuits
+pronutro -> no change needed, but note the current "ProNutro Wholewheat Original" label is 175 kcal / 10.2 P / 24 C / 2.3 F per 50 g (added as sm-pn-wholewheat); the existing line matches the older "Pronutro Original (Bokomo)" entry.
+*/
+```
+
+### foods-sauces-biltong.js
+```
+/* CORRECTIONS:
+- s2-periperi-nandos -> 1 tbsp 15 g: 8 kcal, 0.1 P, 0.2 C, 0.6 F; note "Per SA label." (SA Medium label is 52 kcal / 214 kJ per 100 g,
+  P 0.6, C 1, F 4.3: https://www.nandos.co.za/eat/products/medium-peri-peri-sauce ; existing used the UK label, 7 kcal).
+- s2-mushroom-sauce-ww (127 kcal, 2.2 P, 6.0 C, 10.2 F per 100 ml) is identical to Ina Paarman's Mushroom Sauce on fatsecret
+  (https://mobile.fatsecret.co.za/calories-nutrition/ina-paarmans/mushroom-sauce/100ml). The Woolworths page shows no values,
+  so this could be mis-attributed. Suggest renaming it to Ina Paarman or checking a Woolworths label (sc-paarman-mushroom now covers Ina Paarman).
+- mayo (generic, 94 kcal per 14 g = 671 kcal/100 g) matches full-fat US/UK mayo (e.g. Hellmann's Original 685/100 g), but everyday SA mayos
+  are about 30% lower: Nola Original 477, C&B Tangy 455, Hellmann's Creamy 489 per 100 g. Suggest either renaming it to
+  "Mayonnaise, full-fat (US/UK style)" or changing to the SA typical: 1 tbsp 14 g: 67 kcal, 0.1 P, 1.1 C, 7.3 F.
+- biltong (lean 249 / 52.2 / 1.4 / 3.8): NO number change needed. It matches lean dry biltong labels: Takis Sliced Traditional
+  250 kcal / 49.3 P / 2.1 C / 4.9 F (https://www.fatsecret.co.za/calories-nutrition/takis/sliced-traditional-biltong/100g), Checkers 267 / 53.3 / 0 / 6.7,
+  fatsecret generic 250 / 52 / 0.2 / 5. But "typical" supermarket sliced biltong is somewhat fattier, about 265-310 kcal and 7-13 g fat
+  (PnP 274/9.5 g fat, Kauai 268/11 g, Cape Deli 304/12.7 g). Wet biltong is ~206 kcal (Woolworths moist). Suggest a better note:
+  "Lean, dry biltong. Shop sliced biltong is ~270-310 kcal per 100 g; fatty biltong ~380+."
+- droewors (PnP 475 / 36.3 / 6 / 34.3): confirmed against the PnP listing (https://www.fatsecret.co.za/calories-nutrition/pick-n-pay/droewors/100g).
+  It is at the high end; other SA labels: Woolworths beef 451 / 37.7 / 6 / 30.9, Woolworths free-range beef 405 / 41.8 / 3 / 25.5,
+  DELi 381 / 42.3 / 2 / 22.6. No change needed.
+- s2-tomato-sauce-allgold (16 kcal / 15 g = 107/100 g) agrees with fatsecret All Gold 109/100 g. No change.
+*/
+/* SOURCES
+Wimpy retail labels (Checkers product pages):
+  https://www.checkers.co.za/All-Departments/Food/Food-Cupboard/Table-Condiments-and-Dressings/Tomato-Sauce/Wimpy-Tomato-Sauce-500ml/p/10206743EA (409 kJ)
+  https://www.checkers.co.za/All-Departments/Food/Food-Cupboard/Table-Condiments-and-Dressings/Mustard%2C-Mint-and-Jellies/Wimpy-Mustard-Sauce-500ml/p/10206742EA (434 kJ)
+  Burger relish: https://www.fatsecret.co.za/calories-nutrition/wimpy/burger-relish/100g
+  (Wimpy only sells tomato & mustard sauce in retail. No BBQ/peri/cheese/mayo retail Wimpy sauce found.)
+Spur: retail range & pack sizes from https://www.spursauces.co.za/documents/pdf/Spur%20Retail%20Trade%20Presenter%20April%2025.pdf (no nutrition in it).
+  Cheese sauce label: https://www.somethingfromhome.co.nz/products/spur-sauce-cheese-200ml (530 kJ per 100 ml)
+  Others (fatsecret "Spur Steak Ranches", individual pages checked):
+  https://www.fatsecret.co.za/calories-nutrition/spur-steak-ranches/durky-sauce/100ml
+  https://www.fatsecret.co.za/calories-nutrition/spur-steak-ranches/bbq-sauce/1-serving
+  https://www.fatsecret.co.za/calories-nutrition/spur-steak-ranches/durkynaise/100ml
+  https://www.fatsecret.co.za/calories-nutrition/spur-steak-ranches/sweet-chilli-dressing/100ml
+  https://www.fatsecret.co.za/calories-nutrition/spur-steak-ranches/salad-french-fry-dressing/100ml
+  https://www.fatsecret.co.za/calories-nutrition/spur-steak-ranches/spurs-tangy-vinaigrette/100ml (from the Spur search listing)
+  https://www.fatsecret.co.za/calories-nutrition/spur-steak-ranches/cheddamelt-sauce/100g
+  https://www.fatsecret.co.za/calories-nutrition/spur-steak-ranches/mushroom-sauce/100g
+  https://www.fatsecret.co.za/calories-nutrition/spur-steak-ranches/pepper-sauce/100ml
+  (No Spur monkey gland or basting values found. The 2025 retail range has no monkey gland, and the bastings have no published values.)
+Steers (fatsecret, Steers brand; 12 ml = dispenser serving):
+  https://www.fatsecret.co.za/calories-nutrition/steers/peri-peri-sauce/1-serving
+  https://www.fatsecret.co.za/calories-nutrition/steers/monkey-gland-sauce/1-serving
+  https://www.fatsecret.co.za/calories-nutrition/steers/prego-sauce/1-serving
+  https://www.fatsecret.co.za/calories-nutrition/steers/rave-sauce/1-serving
+  https://www.fatsecret.co.za/calories-nutrition/steers/burger-relish-sauce/1-serving
+  https://www.fatsecret.co.za/calories-nutrition/steers/sweet-chilli-sauce/1-serving
+  https://www.fatsecret.co.za/calories-nutrition/steers/garlic-sauce/1-serving
+  https://www.fatsecret.co.za/calories-nutrition/steers/barbeque-sauce/100ml
+  https://www.fatsecret.co.za/calories-nutrition/steers/mustard/100ml
+  https://www.fatsecret.co.za/calories-nutrition/steers/tomato-sauce/100ml (from the Steers search listing)
+  https://www.fatsecret.co.za/calories-nutrition/steers/chicken-marinade/100ml
+  https://www.fatsecret.co.za/calories-nutrition/steers/steakmaker-marinade/100ml
+  (Left out Spicy Tikka: listed 81 kcal vs ~61 from its macros.)
+Nando's SA official product pages (per 100 g / 20 g serving):
+  https://www.nandos.co.za/eat/products (index) and /eat/products/{lemon-and-herb-peri-peri-sauce, mild-peri-peri-sauce, hot-peri-peri-sauce,
+  xhot-peri-peri-sauce, xx-hot-peri-peri-sauce, garlic-peri-peri-sauce, wild-herb-peri-peri-sauce, mozam-paprika-peri-peri-sauce,
+  bushveld-braai-peri-peri-sauce, honey-and-soy-peri-peri-sauce, prego-sauce, pepper-sauce, creamy-garlic-sauce,
+  perinaise-original-creamy-dressing, perinaise-lite-creamy-dressing, garlic-perinaise-creamy-dressing, perinaise-hot-creamy-dressing,
+  vusa-perinaise-creamy-dressing, nandos-umlilo}
+All Gold (fatsecret):
+  https://www.fatsecret.co.za/calories-nutrition/all-gold/light-tomato-sauce/1-serving (31 kcal/100 g; agrees with
+  https://www.fatsecret.co.za/calories-nutrition/all-gold/70-less-sugar-tomato-sauce/1-serving 5 kcal/16 g)
+  https://www.fatsecret.co.za/calories-nutrition/all-gold/hot-spicy-tomato-sauce/100g
+  https://www.fatsecret.co.za/calories-nutrition/all-gold/mustard-sauce/100ml
+  https://www.fatsecret.co.za/calories-nutrition/all-gold/tomato-paste/100g
+  https://www.fatsecret.co.za/calories-nutrition/all-gold/braai-relish/100g
+  (All Gold makes no chutney.)
+Mrs H.S. Ball's (fatsecret): https://www.fatsecret.co.za/calories-nutrition/mrs-h-s-balls/{hot-chutney/100g, extra-hot-chutney/100g,
+  light-chutney/100g, peach-chutney/100ml (27 kcal per 15 g serving listed), chilli-chutney/1-serving}
+Crosse & Blackwell (fatsecret): https://www.fatsecret.co.za/calories-nutrition/crosse-blackwell/{tangy-mayonnaise/100g, creamy-mayonnaise/100g,
+  burger-mayonnaise/1-tbsp, trim-mayonnaise/100g, salad-cream/100g, sandwich-spread/1-tbsp}
+  (Retailer pages, e.g. Checkers 10128012EA, show no values.)
+Hellmann's: https://www.fatsecret.co.za/calories-nutrition/hellmanns/original-mayonnaise/100g , .../hellmanns/creamy-mayonnaise/100g
+Nola: https://mobile.fatsecret.co.za/calories-nutrition/nola/{original-mayonnaise/100g, lite-mayonnaise/1-tablespoon,
+  sweet-creamy-reduced-oil-mayonnaise/100g, hot-street-style-reduced-oil-mayonnaise/100g, sandwich-spread/100g}
+Heinz ketchup: https://www.countrychoice.co.uk/grocery/condiments/ketchup/heinz-tomato-ketchup-342g/p/28167 (435 kJ / 102 kcal)
+Knorr brown onion gravy (dry): https://www.fatsecret.co.za/calories-nutrition/knorr/brown-onion-gravy/100g (from search listing).
+  The 32 g portion is the common SA gravy sachet size (e.g. Woolworths onion gravy powder 32 g, made with 1 cup water).
+Ina Paarman (fatsecret): https://mobile.fatsecret.co.za/calories-nutrition/ina-paarmans/{cheese-sauce/1-serving (50 ml, scaled x2),
+  pepper-sauce/1-serving (50 ml, scaled x2), mushroom-sauce/100ml, roast-chicken-gravy/100ml, roast-onion-gravy/100ml,
+  honey-mustard-creamy-salad-dressing/1-serving, caesar-salad-dressing/1-serving, blue-cheese-salad-dressing/1-serving}
+Woolworths (fatsecret): https://www.fatsecret.co.za/calories-nutrition/woolworths/{tomato-sauce/100g, tartare-sauce/100g, hoisin-sauce/100ml,
+  peri-peri-mayonnaise/100g, reduced-oil-tangy-mayonnaise/100g, mint-sauce/1-serving}
+Wellington's: https://www.fatsecret.co.za/calories-nutrition/wellingtons/sweet-chilli-sauce/1-tbsp
+NOT ADDED (no SA nutrition found): KFC SA dips/sauces, McDonald's SA dips (mcdonalds.co.za blocks fetching), Debonairs/Domino's dips,
+  Kauai dressings, Galito's (only one fatsecret entry, 46 kcal vs ~59 from its macros). Bull Brand is canned meat, not a sauce.
+  Tabasco is covered by the existing s2-hot-sauce. Robertsons/Aromat have negligible kcal.
+
+BILTONG / DROEWORS (fatsecret.co.za individual pages; search listings sometimes differ from the item page, so only page values were used):
+  https://www.fatsecret.co.za/calories-nutrition/pick-n-pay/sliced-beef-biltong/100g
+  https://mobile.fatsecret.co.za/calories-nutrition/kauai/sliced-free-range-biltong/100g (40 g serving scaled)
+  https://www.fatsecret.co.za/calories-nutrition/checkers/beef-biltong/1-serving (30 g: 80 kcal, 16 P, 0 C, 2 F)
+  https://www.fatsecret.co.za/calories-nutrition/woolworths/moist-sliced-biltong/100g
+  https://www.fatsecret.co.za/calories-nutrition/woolworths/free-range-beef-biltong-sliced-smoked/100g (basis for bl-fatty)
+  https://www.fatsecret.co.za/calories-nutrition/woolworths/beef-biltong-snapsticks/100g
+  https://www.fatsecret.co.za/calories-nutrition/pnp/biltong-snapstix/100g
+  https://www.fatsecret.co.za/calories-nutrition/takis/biltong-stokkies/1-serving (40 g: 121 kcal, 26.6 P, 1.2 C, 1.1 F)
+  https://www.fatsecret.co.za/calories-nutrition/takis/chilli-stokkies/1-packet
+  https://www.fatsecret.co.za/calories-nutrition/cracklys/chilli-bites/100g
+  https://www.fatsecret.co.za/calories-nutrition/kalahari/kudu-biltong-sliced/100g
+  https://www.fatsecret.co.za/calories-nutrition/pnp/sliced-game-biltong/100g
+  https://www.fatsecret.co.za/calories-nutrition/cape-deli/ostrich-biltong/100g
+  https://mobile.fatsecret.co.za/calories-nutrition/woolworths/chicken-biltong/100g
+  https://www.fatsecret.co.za/calories-nutrition/woolworths/beef-biltong-crisps/100g
+  https://www.fatsecret.co.za/calories-nutrition/woolworths/beef-dro%C3%ABwors/100g
+  https://www.fatsecret.co.za/calories-nutrition/woolworths/venison-droewors/100g
+  Dry vs moist biltong moisture (21-25% vs 35-43%): https://agritrop.cirad.fr/576658/
+  Fatty biltong cross-check (AU "Beef Biltong - Fatty", 288 kcal, 11 g fat): https://thejerkyco.com.au/products/beef-biltong-fatty
+
+CHECK NOTES (kcal vs 4P+4C+9F):
+- Nando's XHot (65 vs ~56) and Garlic peri-peri (59 vs ~51) are label kcal, ~15% above their macros (chilli fibre / rounding). Kept as on label.
+- C&B Tangy mayo 455 vs ~504 from its macros (-10%), Kalahari kudu 257 vs ~291 (-12%), Crackly's chilli bites 301 vs ~264 (+14%): within 15%, kept.
+*/
+```
+
+### foods-drinks3.js
+```
+/* CORRECTIONS:
+dr-fanta -> kcal 22, protein 0, carbs 5.7, fat 0. Coca-Cola SA now lists Fanta Orange at 93 kJ and 5.7 g sugar per 100 ml
+  (https://www.coca-cola.com/za/en/brands/fanta). Existing value (16 kcal, 3.9 g) looks like an older recipe.
+Checked and OK: dr-sprite (53 kJ), d2-tonic (157 kJ), d2-lemonade (131 kJ), d2-ginger-ale (123 kJ), d2-tonic-pink (131 kJ),
+  d2-dry-lemon (53 kJ), Sparletta Creme Soda/Iron Brew/Pine-Nut/Sparberry (60-63 kJ), dr-powerade (133 kJ, 8 g),
+  dr-monster (1006 kJ, 60 g per 500 ml), cola (OFF ZA 440 ml: 187 kJ, 11 g).
+*/
+/* SOURCES
+Coca-Cola SA brand pages (Fanta, Sprite, Powerade, Schweppes, Sparletta, Charged):
+  https://www.coca-cola.com/za/en/brands/fanta
+  https://www.coca-cola.com/za/en/brands/sprite
+  https://www.coca-cola.com/za/en/brands/powerade
+  https://www.coca-cola.com/za/en/brands/schweppes
+  https://www.coca-cola.com/za/en/brands/sparletta
+  https://www.coca-cola.com/za/en/brands/charged
+  https://www.coca-cola.com/za/en/media-center/new-sparkling-caffeinated-beverage-launch (Charged 500 ml can)
+Twizza orange: https://world.openfoodfacts.org/product/6009880412563/twizza-orange
+Mountain Dew: https://www.fatsecret.co.za/calories-nutrition/pepsi/mountain-dew/100ml
+Jive: https://www.fatsecret.co.za/calories-nutrition/jive/iron-brew/100ml
+Monster ZA (product pages, per 500 ml):
+  https://www.monsterenergy.com/en-za/energy-drinks/juiced-monster/monster-mucho-loco/
+  https://www.monsterenergy.com/en-za/energy-drinks/juiced-monster/pipeline-punch/
+  https://www.monsterenergy.com/en-za/energy-drinks/juiced-monster/monster-pacific-punch/
+  https://www.monsterenergy.com/en-za/energy-drinks/juiced-monster/monster-mariposa/
+  https://www.monsterenergy.com/en-za/energy-drinks/juiced-monster/juiced-aussie-lemonade/
+  https://www.monsterenergy.com/en-za/energy-drinks/juiced-monster/juiced-monster-viking-berry/ (+ https://www.fatsecret.co.za/calories-nutrition/monster/energy-viking-berry/100ml)
+  https://www.monsterenergy.com/en-za/energy-drinks/monster-energy/reserve-white-pineapple/
+  https://www.monsterenergy.com/en-za/energy-drinks/monster-ultra/zero-sugar-ultra-fiesta/
+  https://www.monsterenergy.com/en-za/energy-drinks/monster-ultra/zero-sugar-ultra-watermelon/
+  https://www.monsterenergy.com/en-za/energy-drinks/monster-energy/the-original-green-monster-energy/ (check of dr-monster)
+Red Bull ZA: https://www.redbull.com/za-en/energydrink (range), .../products/red-bull-red-edition, red-bull-summer-edition,
+  red-bull-peach-edition, red-bull-cherry-edition, red-bull-apricot-edition (27 g sugar / 250 ml), red-bull-sugarfree (250/355/473 ml), red-bull-xero
+  kcal: https://www.fatsecret.co.za/calories-nutrition/red-bull/sugar-free/100ml, https://www.fatsecret.co.za/calories-nutrition/red-bull/xero/1-serving
+Switch: https://www.fatsecret.co.za/calories-nutrition/switch/energy-drink/100ml, .../switch/sugar-free-energy-drink/100ml,
+  500 ml can: https://www.fatsecret.co.za/calories-nutrition/switch/jelly-babies-energy-drink/1-can, https://www.pricecheck.co.za/offers/258266258/Switch+Energy+Drink+Mandrin+Pear+Cherry+500ML
+Reboost: https://www.fatsecret.co.za/calories-nutrition/search?q=Reboost (500 ml: .../reboost/pineapple-spike/1-serving)
+Dragon sugar free: https://www.fatsecret.co.za/calories-nutrition/dragon-energy/sugar-free/100ml
+Energade Zero / Lite: https://www.fatsecret.co.za/calories-nutrition/energade/energade-zero/100ml, .../energade/tropical-lite/100ml, .../energade/blueberry-lite/100ml
+Aquelle: https://www.fatsecret.co.za/calories-nutrition/search?q=Aquelle
+Bonaqua Pump: https://www.fatsecret.co.za/calories-nutrition/search?q=Bonaqua
+BOS sugar free: https://www.fatsecret.co.za/calories-nutrition/bos/sugar-free-rooibos-ice-tea-(lemon)/100ml
+Kombucha: https://www.fatsecret.co.za/calories-nutrition/generic/kombucha, https://www.fatsecret.co.za/calories-nutrition/woolworths/kombucha-rooibos/100ml
+Liqui-Fruit (official, per 100 ml + pack sizes): https://liquifruit.co.za/product-range/ and product pages
+  clear-apple, berry-blaze, breakfast-punch, cranberry-cooler, mango-orange, orange, red-grape, tropical, passion-power,
+  sparkling-apple, sparkling-strawberry-lemonade
+Ceres: https://www.fatsecret.co.za/calories-nutrition/search?q=Ceres (apple, orange, peach, whispers of summer, medley of fruits, secrets of the valley)
+Clover Krush: https://www.clover.co.za/?p=2074 (apple), https://clover.co.za/?p=2085 (mango), https://clover.co.za/?p=2077 (berries),
+  https://clover.co.za/?p=2103 (6 fruits & fibre), https://www.clover.co.za/?p=2121 (UHT orange)
+Woolworths juices: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths+juice
+Tropika: https://clover.co.za/?p=2033 (pineapple, sizes), https://www.fatsecret.co.za/calories-nutrition/search?q=Tropika
+Super M: https://www.clover.co.za/?p=2180 (strawberry), https://clover.co.za/?p=8748 (vanilla), https://www.clover.co.za/?p=14446 (mini chocolate, sizes),
+  https://www.checkers.co.za/All-Departments/Drinks/Dairy-Drinks/Milkshakes/Clover-Super-M-Peanut-Butter-Flavoured-Milk-6-x-300ml/p/10861875PK2
+Steri Stumpie: https://www.fatsecret.co.za/calories-nutrition/search?q=Steri+Stumpie
+Mageu Number One: https://www.fatsecret.co.za/calories-nutrition/search?q=Mageu
+Nescafe Gold sachets: https://www.fatsecret.co.za/calories-nutrition/nescafe/gold-cappuccino/1-packet, .../nescafe/gold-double-decadent/1-sachet
+Frisco / Friscochino: https://www.fatsecret.co.za/calories-nutrition/frisco/original/100g, .../frisco/friscochino/1-sachet
+Woolworths iced coffee: https://www.fatsecret.co.za/calories-nutrition/woolworths/iced-coffee-original/100ml (300 ml bottle: .../woolworths/iced-coffee-vanilla/1-bottle)
+USN x Super M protein shake: https://za.usn.global/products/usn-super-m-protein-shake, https://www.fatsecret.co.za/calories-nutrition/clover/usn-protein-shake/100ml
+Woolworths high-protein milk: https://www.fatsecret.co.za/calories-nutrition/woolworths/high-protein-low-fat-chocolate-flavoured-milk/1-serving
+Steri Stumpie Plus Protein: https://www.fatsecret.co.za/calories-nutrition/steri-stumpie/plus-protein-chocolate/1-bottle
+Parmalat Protein+: https://www.fatsecret.co.za/calories-nutrition/parmalat/protein-strawberry-flavoured-low-fat-milk/1-serving
+
+NOT ADDED (no reliable SA data or not sold): Coca-Cola Vanilla/Cherry (not in SA range), Pepsi Twist, Coo-ee mocktails (no label data found),
+  Nesquik RTD (discontinued in SA in 2023), Milo RTD (not confirmed as sold in SA), Lucozade, Red Square, Boom, Halls,
+  Minute Maid (current SA range unclear), Monster Ultra Rosa/Strawberry Dreams and Zero Sugar (Monster ZA pages lack full panel),
+  Nutritech/PVM RTD shakes (no data found). Lipton sugar-free (fatsecret values inconsistent).
+*/
+```
+
+### foods-frozen.js
+```
+/* SOURCES (label values as listed on fatsecret.co.za brand search pages, per 100 g or per stated serving; converted to per 100 g/ml):
+- Dr. Oetker (Ristorante, Ital Pizza Classic/Familia/Lite, Foldover, mini pizza, pizza donuts):
+  https://www.fatsecret.co.za/calories-nutrition/search?q=Dr.+Oetker+pizza (pages 1-4)
+  https://www.fatsecret.co.za/calories-nutrition/search?q=Ristorante
+  https://www.fatsecret.co.za/calories-nutrition/dr-oetker/ital-pizza-classic-margherita/100g
+  Ristorante sold in SA: https://www.checkers.co.za/All-Departments/Food/Frozen-Food/Frozen-Pizza-and-Garlic-Bread/Frozen-Pizza/Dr-Oetker-Ristorante-Mozzarella-Frozen-Pizza-355g-/p/10853867EA
+  Familia box weights: https://www.pricecheck.co.za/offers/237475071/Ital+Pizza+Familia+Frozen+Chicken+%26+Jalape+O+Pizza+529G
+                       https://www.pricecheck.co.za/offers/245220072/Dr.+Oetker+Ital+Pizza+Familia+Frozen+Spicy+Pepperoni+Pizza+380G
+- McCain (chips, wedges, smiles, shotz, veggie burger, meals, sides): https://www.fatsecret.co.za/calories-nutrition/search?q=McCain (pages 1-8)
+- Woolworths frozen (roast potatoes, mash, spinach, cauli rice, butter chicken, pulled beef pie, hake, nuggets, berries, lollies, frozen yoghurt):
+  https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths+frozen (pages 1-5)
+- Woolworths pizzas: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths+pizza (pages 1-2)
+- Woolworths crumbed chicken: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths+crumbed+chicken
+- Woolworths fish fingers / fish cakes: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths+Frozen+fish
+- Woolworths patties: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths+burger+patties
+- Woolworths spring rolls: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths+spring+rolls
+- Woolworths garlic baguette: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths+garlic+bread
+- Woolworths oven chips: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths+chips+oven
+- Woolworths ice cream: https://www.fatsecret.co.za/calories-nutrition/search?q=Woolworths+ice+cream
+- Woolworths crumbed calamari: https://www.fatsecret.co.za/calories-nutrition/search?q=calamari+crumbed
+- Pick n Pay frozen (waffles, curry, a la king, pizza base, chicken fillets): https://www.fatsecret.co.za/calories-nutrition/search?q=Pick+n+Pay+frozen
+- Hash browns (PnP, Wimpy retail): https://www.fatsecret.co.za/calories-nutrition/search?q=hash+browns
+- Checkers southern fried strips: https://www.fatsecret.co.za/calories-nutrition/search?q=Checkers+Housebrand
+- I&J: https://www.fatsecret.co.za/calories-nutrition/search?q=I%26J (pages 1-6)
+- Sea Harvest: https://www.fatsecret.co.za/calories-nutrition/search?q=Sea+Harvest (pages 1-3)
+- Fry's: https://www.fatsecret.co.za/calories-nutrition/search?q=Fry%27s (pages 1-3)
+- Country Fair: https://www.fatsecret.co.za/calories-nutrition/search?q=Country+Fair (pages 1-2)
+- Rainbow: https://www.fatsecret.co.za/calories-nutrition/search?q=Rainbow+chicken (pages 1-2)
+- Pieman's: https://www.fatsecret.co.za/calories-nutrition/search?q=Pieman%27s
+- Ola / Magnum: https://www.fatsecret.co.za/calories-nutrition/search?q=Ola (pages 1-3), https://www.fatsecret.co.za/calories-nutrition/search?q=Magnum
+- Dairymaid: https://www.fatsecret.co.za/calories-nutrition/search?q=Dairymaid
+- Haagen-Dazs: https://www.fatsecret.co.za/calories-nutrition/search?q=Haagen-Dazs
+- Ben & Jerry's Cookie Dough (UK label, per 100 g): https://www.onestop.co.uk/wp-content/uploads/Ben-and-Jerrys-Ice-Cream-Cookie-Dough-465-ml-399251.pdf
+
+NOT ADDED (already in the app or no reliable data):
+- Already exist: Rainbow nuggets & crumbed strips (nuggets, s2-chicken-strips), Eskort pork bangers (s2-pork-bangers), Magnum Classic (sw-magnum),
+  Woolworths pepper steak pie (pie), Pieman's sausage roll, Checkers beef / Woolies chicken samoosas, Woolies battered hake,
+  I&J Flame Grills hake (sa-hake-grilled), Woolies margherita pizza, generic frozen peas / mixed veg.
+- No label data found: Casa di Mama / Feliciana (not seen in SA), Ola Feast & Fruttare, Mydeal, Like Meat, Quorn, Goodlife, Dewfresh,
+  Enterprise frozen, Bull Brand patties, Mr. Pie, Beyond/Impossible (SA pack values not confirmed).
+- Skipped McCain veg mixes where label kcal and macros disagree by >15% (carbs on the SA label exclude fibre): garden peas, mixed veg,
+  stir-fry mixes, broccoli, classic roast veg, rustic veg; chilli garlic potato bites (carbs look wrong).
+
+PORTION NOTES: Whole-pizza weights for Ital Pizza Classic/Familia (other than the two PriceCheck boxes) were not found, so those use 100-300 g portions.
+Portion weights marked "≈" or "approximate" in the note are typical pack weights, not printed on the source.
+*/
+```
