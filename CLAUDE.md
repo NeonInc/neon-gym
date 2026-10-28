@@ -21,8 +21,11 @@ Neon Gym is live at https://neoninc.github.io/neon-gym/ and is one tile on the N
 - Exercises: one `x(...)` line each; add search words as `{k: "..."}` and put it in a `SLOTS` group so Swap offers it.
   Search (`exSearch`) uses `EX_SYN` (muscle words, matched only against muscles) and `EX_ALIAS` (spellings, matched anywhere).
 - Themes are CSS-only: `:root[data-theme="..."]` blocks set the colour variables; `THEMES` in the script lists them for the
-  Profile picker. Use the variables (`--accent`, `--food`, `--water`, `--fast` and their `-ink`), never raw hex, in new CSS.
+  Profile picker. Mono also sets `data-style="clean"` (Inter font, black and white). Use the variables (`--accent`, `--food`, `--water`, `--fast` and their `-ink`), never raw hex, in new CSS.
   The theme is `profile.theme` (synced) plus `localStorage['neongym.theme']` so the page paints in the right colours at once.
+- My meals: `profile.myMeals = [{id: "mm-…", n, parts: [{fid, n, portion, amt, mode, kcal, p, c, f}], serves, savedAt}]` (deleted ones get
+  `deleted: true`). `foodLookup("mm-…")` turns one into a food with base "1 serving", so logging, editing and quick-add reuse the normal food code.
+- Food screen colours: `--prot` (protein, yellow), `--cal`/`--cal2` (calories, silver gradient), `--carb`, `--fat`; `--food` is the orange for buttons.
 - Water is stored per day inside that day's food doc (`S.food[d].water = [{ml, t}]`), so it syncs with food.
   A food doc can hold only water: use `tidyFoodDay(d)` instead of deleting a day when its items run out.
 - Fasting state lives in the profile (`profile.fast = {on, plan, h, start, consent, notify}`, `profile.fastLog`). The service worker
