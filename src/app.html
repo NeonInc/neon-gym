@@ -607,8 +607,8 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .row .t { font-size: 22px; }
 .row .m { gap: 2px 10px; }
 .stack { gap: 6px; }
-.addbtn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; border: 1px dashed var(--line-2); border-radius: 8px; background: transparent; color: var(--muted); font-weight: 700; width: 100%; }
-.addbtn:hover { color: var(--accent); border-color: var(--accent); }
+.exaddbtn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; border: 1px dashed var(--line-2); border-radius: 8px; background: transparent; color: var(--muted); font-weight: 700; width: 100%; }
+.exaddbtn:hover { color: var(--accent); border-color: var(--accent); }
 .foot { font-size: 12px; color: var(--muted); margin: 4px 0 0; text-align: center; }
 .exq { position: relative; }
 .exq input { padding-left: 38px; }
@@ -1228,7 +1228,7 @@ function viewToday() {
   var used = list.map(function (it) { return it.id; });
   h += '<div class="stack">' + list.map(function (it) { return exRow(it, sess, key, used); }).join("") + '</div>';
   h += '<button class="btn finbtn" type="button" data-act="finish"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-11"/></svg>Finish workout</button>';
-  h += '<button class="addbtn" type="button" data-act="exaddopen">+ Add an exercise</button>';
+  h += '<button class="exaddbtn" type="button" data-act="exaddopen">+ Add an exercise</button>';
   h += '<p class="foot">Tap the box when an exercise is done, or the name to log sets. Pain in a joint or your back means stop and use Swap. General guidance, not medical advice.</p>';
   if (sess) h += '<button class="btn quiet" type="button" data-act="clear">' + (UI.confirmClear ? "Tap again to clear today's " + esc(DAYS[day].n) + " log" : "Clear today's " + esc(DAYS[day].n) + " log") + '</button>';
   return h + '</div>';
