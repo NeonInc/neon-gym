@@ -508,7 +508,7 @@ h3 { font-size: 27px; line-height: 1; letter-spacing: .01em; }
 .timer .tt { font-size: 36px; }
 @media (min-width: 560px) { h2 { font-size: 64px; } }
 /* ---- Fasting ---- */
-:root { --fast: #8f73f6; --carb: #6d8ef0; --fat: #4cc38a; }
+:root { --fast: #8f73f6; --carb: #6d8ef0; --fat: #4cc38a; --prot: #ffc928; --cal: #f4f4f6; --cal2: #8d9097; }
 .fastcard { border-color: color-mix(in srgb, var(--fast) 35%, transparent); background: linear-gradient(160deg, color-mix(in srgb, var(--fast) 10%, transparent), var(--surface) 60%); }
 .fchead { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .fastcard .label, .fastcard .fstage b { color: var(--fast); }
@@ -589,7 +589,7 @@ svg.chart .wg { stroke: var(--water); stroke-width: 1.5; stroke-dasharray: 4 3; 
 :root { --food-ink: #160b03; --water-ink: #04131a; --fast-ink: #120a24; color-scheme: dark; }
 :root[data-theme="ember"] { --accent: #ff6b4a; --accent-ink: #1a0602; --good: #ff6b4a; --food: #ffbe4d; --food-ink: #1a1200; --fast: #c084fc; }
 :root[data-theme="ocean"] { --accent: #3fd6bd; --accent-ink: #02140f; --good: #3fd6bd; --food: #ff8f7a; --food-ink: #1f0603; --water: #5ab0ff; --water-deep: #2f74d0; --fast: #c3a6ff; }
-:root[data-theme="daylight"] { color-scheme: light; --bg: #f2f3ef; --surface: #ffffff; --surface-2: #eceee8; --field: #f7f8f5; --line: #e1e3dc; --line-2: #cdd1c8; --ink: #121418; --muted: #5f646c;
+:root[data-theme="daylight"] { --prot: #d99a00; --cal: #5f646c; --cal2: #2b2e33; --carb: #4f6fd6; --fat: #2f9e6c; color-scheme: light; --bg: #f2f3ef; --surface: #ffffff; --surface-2: #eceee8; --field: #f7f8f5; --line: #e1e3dc; --line-2: #cdd1c8; --ink: #121418; --muted: #5f646c;
   --accent: #4f8a10; --accent-ink: #ffffff; --good: #4f8a10; --food: #e2600f; --food-ink: #ffffff; --water: #0a8ccf; --water-deep: #0868a8; --water-ink: #ffffff; --fast: #7c4ddb; --fast-ink: #ffffff; --warn: #b86e00;
   --eq-machine: #0b7fbf; --eq-cable: #7a4fd6; --eq-dumbbell: #b86e00; --eq-barbell: #d33b3b; --eq-smith: #138a66; --eq-body: #4a4f57; }
 :root[data-theme="daylight"] .sheet-back { background: rgba(20, 22, 26, .35); }
@@ -819,6 +819,21 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .fuel .tip b { color: var(--ink); }
 .fuel .tip.good b { color: var(--food); }
 [data-style="clean"] .fgo { box-shadow: none; }
+/* food colours: yellow protein, silver calories (like the reference) */
+.fuelring circle[data-to="0"] { stroke-linecap: butt; }
+.fuelring .cg1 { stop-color: var(--cal); } .fuelring .cg2 { stop-color: var(--cal2); }
+.fuelring .fv1 { stroke: url(#calg); filter: none; }
+.fuelring .fv1.over { stroke: var(--warn); }
+.fuelring .fv2 { stroke: var(--prot); filter: none; }
+.fctr span, .fctr b.hit { color: var(--prot); }
+.fb.bp { --c: var(--prot); } .fb.bk { --c: var(--cal); }
+.mbar i, .fmb i { background: var(--prot); }
+.fmi .mp b { color: var(--prot); }
+.wd .wv, .wd.hit .wv { stroke: var(--prot); } .wd.hit svg .wt { fill: color-mix(in srgb, var(--prot) 14%, transparent); }
+.fuel .tip.good b { color: var(--prot); }
+.fuel { background: var(--surface); }
+[data-style="clean"] { --prot: #f5f5f7; --cal: #8e8e93; --cal2: #5a5a5f; }
+[data-style="clean"][data-theme="daylight"] { --prot: #111113; --cal: #6e6e73; --cal2: #3a3a3c; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -1923,7 +1938,6 @@ function profileBody() {
     '<button class="prow tap" type="button" data-act="fastsheet"><span><b>Fasting</b><span class="small">' + (fastS().on ? esc(fastS().plan) + (fasting() ? " · fasting now" : " · eating window") : "Off · tap to learn more") + '</span></span></button>' +
     '<button class="prow tap" type="button" data-act="ptab" data-tab="plans"><span><b>Plan</b><span class="small">' + esc(p.n) + ' · ' + p.perWeek + ' days a week</span></span></button></div>';
   var nW = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length, nF = Object.keys(S.food).filter(function (d) { return foodDay(d).length; }).length, nB = Object.keys(S.body).length;
-  h += '<p class="label">Preview</p><div class="pvs">' + PREVIEWS.map(function (pv) { return '<button class="pv" type="button" data-act="preview" data-v="' + pv[0] + '" aria-pressed="' + (previewMode() === pv[0]) + '"><b>' + pv[1] + '</b><small>' + pv[2] + '</small></button>'; }).join("") + '</div>';
   h += '<p class="label">Theme</p>' + themePicker() + '<p class="small">Saved with your account, so it follows you to other phones.</p>';
   h += '<p class="label">Your data</p><div class="plist"><div class="prow"><span>Logged</span><span class="v">' + nW + ' workout' + (nW === 1 ? "" : "s") + ' · ' + nF + ' food day' + (nF === 1 ? "" : "s") + ' · ' + nB + ' weigh-in' + (nB === 1 ? "" : "s") + '</span></div></div>';
   h += '<details class="fold" data-k="backup"' + (UI.open.backup ? " open" : "") + '><summary>Back up or move your log</summary><div class="in">' +
@@ -1931,7 +1945,7 @@ function profileBody() {
     '<button class="btn" type="button" data-act="export">Copy backup code</button>' +
     '<textarea class="field" id="impcode" placeholder="Paste a backup code here" aria-label="Backup code"></textarea>' +
     '<button class="btn quiet" type="button" data-act="import">' + (UI.confirmImport ? "Tap again to replace this log" : "Load backup code") + '</button></div></details>';
-  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.28 19:37' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
+  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.28 19:49' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
   return {title: "Profile", body: h};
 }
 
@@ -4124,9 +4138,8 @@ if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("mess
 setInterval(function () { if (fasting() && !IS_IOS && document.visibilityState === "visible") showFastNote(false); }, 10 * 60 * 1000);
 /* ---------- New food screen (preview): one fuel ring + bars, quick-add chips, slim meal cards, sticky mini summary ---------- */
 /* Preview switch (Profile): live = the current site, p1 = new food screen, p2 = p1 + clean monochrome style + week strip */
-var PREVIEWS = [["live", "Live look", "What the site has now"], ["p1", "New look", "New food screen, week strip, My meals"]];
-function previewMode() { try { return localStorage.getItem("neongym.preview") === "live" ? "live" : "p1"; } catch (e) { return "p1"; } }
-function foodNew() { return previewMode() !== "live"; }
+/* The new food screen is the only one now; viewFood() keeps the old layout only as a fallback */
+function foodNew() { return true; }
 function cleanOn() { return themeOk(S.profile.theme) === "mono"; }
 function fastStrip() {
   var f = fastS(); if (!f.on) return "";
@@ -4176,7 +4189,7 @@ function fuelRing(t, g) {
   var C1 = 2 * Math.PI * 45, C2 = 2 * Math.PI * 35, pk = g.kcal ? Math.min(1, t.kcal / g.kcal) : 0, pp = g.p ? Math.min(1, t.p / g.p) : 0;
   var prev = UI.fuelPrev || {k: pk, p: pp}, left = g.p - t.p, kl = g.kcal - t.kcal;
   UI.fuelNext = {k: pk, p: pp};
-  return '<button type="button" class="fuelring" data-act="sheet" data-m="targets" aria-label="Daily targets"><svg viewBox="0 0 100 100" aria-hidden="true">' +
+  return '<button type="button" class="fuelring" data-act="sheet" data-m="targets" aria-label="Daily targets"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="calg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="cg1"/><stop offset="1" class="cg2"/></linearGradient></defs>' +
     '<circle class="ft1" cx="50" cy="50" r="45"/><circle class="fv1' + (t.kcal > g.kcal * 1.05 ? " over" : "") + '" cx="50" cy="50" r="45" data-c="' + C1.toFixed(1) + '" data-to="' + pk + '" stroke-dasharray="' + (C1 * prev.k).toFixed(1) + ' ' + C1.toFixed(1) + '" transform="rotate(-90 50 50)"/>' +
     '<circle class="ft2" cx="50" cy="50" r="35"/><circle class="fv2" cx="50" cy="50" r="35" data-c="' + C2.toFixed(1) + '" data-to="' + pp + '" stroke-dasharray="' + (C2 * prev.p).toFixed(1) + ' ' + C2.toFixed(1) + '" transform="rotate(-90 50 50)"/></svg>' +
     '<span class="fctr">' + (left > 0.5 ? '<b data-count="' + r0(left) + '" data-from="' + (UI.fuelPrevLeft != null ? UI.fuelPrevLeft : r0(left)) + '">' + r0(left) + '</b><span>g protein to go</span>' : '<b class="hit">✓</b><span>Protein hit</span>') +
@@ -4776,7 +4789,6 @@ document.addEventListener("click", function (ev) {
   if (a === "fedit" && UI.noClick && Date.now() - UI.noClick < 400) return;
   if (a === "undo") { var u = UI.undo; UI.undo = null; $("toast").hidden = true; if (u) u(); return; }
   if (a === "fminitop") { window.scrollTo({top: 0, behavior: "smooth"}); return; }
-  if (a === "preview") { try { localStorage.setItem("neongym.preview", b.getAttribute("data-v")); } catch (e) {} UI.fuelPrev = null; curTheme = null; render(true); renderSheet(); return; }
   if (a === "fxdel") { delEntry(UI.fdate || todayStr(), +b.getAttribute("data-t")); return; }
   if (a === "fastx") { UI.open.fastmin = !UI.open.fastmin; saveUI(); render(true); return; }
   if (a === "fset") { UI.fdate = b.getAttribute("data-d"); render(true); return; }
