@@ -22,11 +22,11 @@
   --eq-barbell: #ff6b6b;
   --eq-smith: #4fd1a5;
   --eq-body: #d5d8dc;
-  --accent: #c8f542;
+  --accent: #bde35a;
   --accent-ink: #0b0c0e;
   --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent);
-  --food: #ff8a3d;
-  --good: #c8f542;
+  --food: #ffa630;
+  --good: #bde35a;
   --warn: #ffb547;
   --font-brand: "Bebas Neue", "Arial Narrow", sans-serif;
   --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
@@ -494,7 +494,7 @@ h3 { font-size: 27px; line-height: 1; letter-spacing: .01em; }
 .timer .tt { font-size: 36px; }
 @media (min-width: 560px) { h2 { font-size: 64px; } }
 /* ---- Fasting ---- */
-:root { --fast: #a78bfa; }
+:root { --fast: #8f73f6; --carb: #6d8ef0; --fat: #4cc38a; }
 .fastcard { border-color: color-mix(in srgb, var(--fast) 35%, transparent); background: linear-gradient(160deg, color-mix(in srgb, var(--fast) 10%, transparent), var(--surface) 60%); }
 .fchead { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .fastcard .label, .fastcard .fstage b { color: var(--fast); }
@@ -530,7 +530,7 @@ h3 { font-size: 27px; line-height: 1; letter-spacing: .01em; }
 .sheet.ft .check input { accent-color: var(--fast); }
 @media (max-width: 380px) { .fring { width: 112px; } .flab b { font-size: 25px; } }
 /* ---- Water ---- */
-:root { --water: #4cc9f0; --water-deep: #1f8fd6; }
+:root { --water: #4fb7ea; --water-deep: #2a86cf; }
 .nav button.wnav { color: color-mix(in srgb, var(--water) 70%, var(--muted)); }
 .nav button.wnav[aria-selected="true"] { color: var(--water); background: transparent; box-shadow: inset 0 2px 0 var(--water); border-radius: 0; }
 .water h2 em { color: var(--water); }
@@ -573,8 +573,8 @@ svg.chart .wg { stroke: var(--water); stroke-width: 1.5; stroke-dasharray: 4 3; 
 @media (max-width: 380px) { .wbottle { width: 96px; } .wbig { font-size: 60px; } .nav button { font-size: 10px; letter-spacing: .02em; } }
 /* ---- Themes: two main colours each (accent = workout, food = food tab). Volt is the default ---- */
 :root { --food-ink: #160b03; --water-ink: #04131a; --fast-ink: #120a24; color-scheme: dark; }
-:root[data-theme="ember"] { --accent: #ff5a36; --accent-ink: #1a0602; --good: #ff5a36; --food: #ffc145; --food-ink: #1a1200; --fast: #c084fc; }
-:root[data-theme="ocean"] { --accent: #2ee6c5; --accent-ink: #02140f; --good: #2ee6c5; --food: #ff7a6b; --food-ink: #1f0603; --water: #5ab0ff; --water-deep: #2f74d0; --fast: #c3a6ff; }
+:root[data-theme="ember"] { --accent: #ff6b4a; --accent-ink: #1a0602; --good: #ff6b4a; --food: #ffbe4d; --food-ink: #1a1200; --fast: #c084fc; }
+:root[data-theme="ocean"] { --accent: #3fd6bd; --accent-ink: #02140f; --good: #3fd6bd; --food: #ff8f7a; --food-ink: #1f0603; --water: #5ab0ff; --water-deep: #2f74d0; --fast: #c3a6ff; }
 :root[data-theme="daylight"] { color-scheme: light; --bg: #f2f3ef; --surface: #ffffff; --surface-2: #eceee8; --field: #f7f8f5; --line: #e1e3dc; --line-2: #cdd1c8; --ink: #121418; --muted: #5f646c;
   --accent: #4f8a10; --accent-ink: #ffffff; --good: #4f8a10; --food: #e2600f; --food-ink: #ffffff; --water: #0a8ccf; --water-deep: #0868a8; --water-ink: #ffffff; --fast: #7c4ddb; --fast-ink: #ffffff; --warn: #b86e00;
   --eq-machine: #0b7fbf; --eq-cable: #7a4fd6; --eq-dumbbell: #b86e00; --eq-barbell: #d33b3b; --eq-smith: #138a66; --eq-body: #4a4f57; }
@@ -627,8 +627,8 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .fuelring circle { fill: none; stroke-width: 7; }
 .fuelring .ft1, .fuelring .ft2 { stroke: var(--surface-2); }
 .fuelring .fv1, .fuelring .fv2 { stroke-linecap: round; transition: stroke-dasharray .7s cubic-bezier(.2, .8, .2, 1); }
-.fuelring .fv1 { stroke: var(--accent); filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 45%, transparent)); }
-.fuelring .fv2 { stroke: var(--food); filter: drop-shadow(0 0 6px color-mix(in srgb, var(--food) 45%, transparent)); }
+.fuelring .fv1 { stroke: var(--accent); filter: drop-shadow(0 0 4px color-mix(in srgb, var(--accent) 22%, transparent)); }
+.fuelring .fv2 { stroke: var(--food); filter: drop-shadow(0 0 4px color-mix(in srgb, var(--food) 22%, transparent)); }
 .fuelring .fv1.over { stroke: var(--warn); }
 .fctr { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-variant-numeric: tabular-nums; }
 .fctr b { font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: .9; color: var(--ink); }
@@ -641,7 +641,7 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .fbt b { color: var(--ink); font-size: 14px; }
 .fbb { height: 6px; border-radius: 99px; background: var(--surface-2); overflow: hidden; margin-top: 4px; }
 .fbb i { display: block; height: 100%; border-radius: 99px; background: var(--c, var(--food)); transition: width .6s cubic-bezier(.2, .8, .2, 1); }
-.fb.bp { --c: var(--food); } .fb.bk { --c: var(--accent); } .fb.bc { --c: var(--water); } .fb.bf { --c: var(--fast); }
+.fb.bp { --c: var(--food); } .fb.bk { --c: var(--accent); } .fb.bc { --c: var(--carb); } .fb.bf { --c: var(--fat); }
 .fb.over { --c: var(--warn); } .fb.over .fbt b { color: var(--warn); }
 .fuel .tip { font-size: 13px; border-top: 1px solid var(--line); padding-top: 10px; }
 .qadd { display: flex; flex-direction: column; gap: 8px; }
@@ -786,6 +786,25 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .mpe { flex: 1; min-width: 0; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 0; min-height: 52px; border: 0; background: none; color: inherit; text-align: left; }
 .mpe .nm { min-width: 0; display: flex; flex-direction: column; }
 .mpx { width: 36px; height: 36px; flex: none; border-radius: 50%; border: 1px solid var(--line-2); background: none; color: var(--muted); font-size: 18px; }
+/* food items as rounded boxes; small fasting buttons */
+.meal2 .fsw { border-top: 0; border-radius: 12px; margin: 0 0 6px; }
+.frow { position: relative; z-index: 1; display: flex; align-items: center; background: var(--surface-2); border-radius: 12px; touch-action: pan-y; transition: transform .16s ease-out; }
+.fsw.swiping .frow { transition: none; }
+.meal2 .fsw .fentry { background: transparent; flex: 1; min-width: 0; padding: 10px 4px 10px 14px; min-height: 58px; transition: none; }
+.meal2 .fentry .nm b { font-size: 15px; font-weight: 700; }
+.meal2 .fentry .nm .small { font-size: 12.5px; }
+.fx { flex: none; width: 34px; height: 34px; margin-right: 6px; border: 0; border-radius: 50%; background: none; color: var(--muted); font-size: 18px; line-height: 1; }
+.fx:hover, .fx:focus-visible { background: var(--surface); color: var(--ink); }
+.meal2 .mbar { margin-bottom: 10px; }
+.meal2:not(.empty) { padding-bottom: 8px; }
+.fpills { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.fgo { border: 0; border-radius: 999px; background: var(--fast); color: var(--fast-ink); font-weight: 800; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; min-height: 44px; padding: 0 24px; box-shadow: 0 6px 20px color-mix(in srgb, var(--fast) 30%, transparent); }
+.fgo:active { transform: scale(.97); }
+.fearly { color: var(--fast); font-size: 14px; font-weight: 600; padding: 0; min-height: 44px; }
+.fplan { border: 1px solid var(--line-2); background: none; color: var(--muted); border-radius: 999px; font-size: 12px; font-weight: 700; min-height: 28px; padding: 0 10px; }
+.fuel .tip b { color: var(--ink); }
+.fuel .tip.good b { color: var(--food); }
+[data-style="clean"] .fgo { box-shadow: none; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -3718,6 +3737,10 @@ function macrosFor(x, amt, mode) { var k = factorFor(x, amt, mode); return {kcal
 function makeEntry(x, amt, mode) { var m = macrosFor(x, amt, mode); return {n: x.n, portion: amtLabel(x, amt, mode), kcal: m.kcal, p: m.p, c: m.c, f: m.f, fid: x.id, amt: amt, mode: mode}; }
 
 /* ---------- Food tab ---------- */
+function proteinIdeasE(left) {
+  var em = {"150 g chicken breast": " 🍗", "1 scoop whey": " 🥤", "50 g biltong": " 🥩", "3 eggs": " 🥚", "500 ml amasi": " 🥛", "175 g high-protein yoghurt": " 🥣"};
+  return proteinIdeas(left).split(" + ").map(function (t) { return t + (em[t] || ""); }).join(" + ");
+}
 function proteinIdeas(left) {
   if (left <= 5) return "";
   var opts = [["150 g chicken breast", 46], ["1 scoop whey", 23.6], ["50 g biltong", 26], ["3 eggs", 19], ["500 ml amasi", 16.5], ["175 g high-protein yoghurt", 16.5]];
@@ -4093,11 +4116,8 @@ function foodNew() { return previewMode() !== "live"; }
 function cleanOn() { return themeOk(S.profile.theme) === "mono"; }
 function fastStrip() {
   var f = fastS(); if (!f.on) return "";
-  if (UI.open.fastx) return '<div class="fastwrap">' + fastCard() + '<button type="button" class="link fless" data-act="fastx">Show less</button></div>';
-  if (!f.start) {
-    var last = fastLog()[fastLog().length - 1];
-    return '<div class="fstrip"><button type="button" class="fsx" data-act="fastx" aria-label="Show fasting details"><span class="fdot"></span><span class="fst"><b>Eating window</b><span class="small">' + esc(f.plan || "16:8") + (last ? ' · open <span data-fastopen="' + last.e + '">' + hm(Date.now() - last.e) + '</span>' : ' · start after your last meal') + '</span></span></button><button type="button" class="fsgo" data-act="faststart">Start fast</button></div>';
-  }
+  if (!f.start) return '<div class="fpills"><button type="button" class="fgo" data-act="faststart">Start fast</button><button type="button" class="link fearly" data-act="fastearlier">Started earlier…</button><button type="button" class="fplan" data-act="fastsheet" aria-label="Fasting plan">' + esc(f.plan || "16:8") + '</button></div>';
+  if (!UI.open.fastmin) return '<div class="fastwrap">' + fastCard() + '<button type="button" class="link fless" data-act="fastx">Show less</button></div>';
   var el = Date.now() - f.start, goal = f.h * 36e5, end = f.start + goal, done = el >= goal;
   return '<div class="fstrip on' + (done ? " done" : "") + '"><button type="button" class="fsx" data-act="fastx" aria-label="Show fasting details"><span class="fmr">' + fastRing(el / goal, FAST_COL) + '</span><span class="fst"><b>' + (done ? "Fast goal reached" : "Fasting") + ' · <span data-fastel="' + f.start + '">' + hms(el) + '</span></b><span class="small" data-fastleft="' + end + '">' + (done ? "+" + hm(el - goal) + " past your goal" : hm(end - Date.now()) + " to go") + '</span></span><span class="fchev" aria-hidden="true">›</span></button></div>';
 }
@@ -4160,7 +4180,7 @@ function mealNew(d, ml, items) {
     if (its.length >= 2) h += '<button type="button" class="mksave" data-act="mealfrom" data-meal="' + ml + '">Save as my meal</button>';
     h += '<div class="mbar" aria-hidden="true"><i style="width:' + Math.min(100, g.p ? mt.p / g.p * 100 : 0).toFixed(1) + '%"></i></div>';
     h += its.map(function (it) {
-      return '<div class="fsw"><span class="fdel" aria-hidden="true">Delete</span><button type="button" class="fentry sw" data-act="fedit" data-t="' + it.t + '"><span class="nm"><span>' + esc(it.n) + '</span><span class="small">' + esc(it.portion || "") + '</span></span><span class="fmac"><b>' + r1(it.p) + ' g</b><span>' + r0(it.kcal) + ' kcal</span></span></button></div>';
+      return '<div class="fsw"><span class="fdel" aria-hidden="true">Delete</span><div class="frow"><button type="button" class="fentry sw" data-act="fedit" data-t="' + it.t + '"><span class="nm"><b>' + esc(shortName(it.n)) + '</b><span class="small">' + esc(it.portion || "") + '</span></span><span class="fmac"><b>' + r1(it.p) + ' g</b><span>' + r0(it.kcal) + ' kcal</span></span></button><button type="button" class="fx" data-act="fxdel" data-t="' + it.t + '" aria-label="Remove ' + esc(it.n) + '">×</button></div></div>';
     }).join("");
   } else {
     var y = foodDay(dstr(dnum(d) - 1)).filter(function (it) { return (it.meal || "Snacks") === ml; });
@@ -4176,7 +4196,7 @@ function viewFoodNew() {
   if (false) h += '<div class="fdate"><button type="button" class="iconbtn" data-act="fday" data-d="-1" aria-label="Previous day">‹</button><div><p class="label">' + (isToday ? "Today" : dn) + '</p><h2>' + (isToday ? "Food" : fmtD(d)) + '</h2></div><button type="button" class="iconbtn" data-act="fday" data-d="1" aria-label="Next day"' + (isToday ? " disabled" : "") + '>›</button></div>';
   if (isToday) h += fastStrip();
   h += '<div class="card fuel"><div class="fuelrow">' + fuelRing(t, g) + '<div class="fbars">' + fbar("Protein", t.p, g.p, "g", "bp") + fbar("Calories", t.kcal, g.kcal, "", "bk") + fbar("Carbs", t.c, g.c, "g", "bc") + fbar("Fat", t.f, g.f, "g", "bf") + '</div></div>' +
-    (items.length && left > 5 ? '<p class="tip"><b>Ideas:</b> ' + esc(proteinIdeas(left)) + '</p>' : "") + '</div>';
+    (items.length ? (left > 5 ? '<p class="tip"><b>' + r0(left) + ' g protein to go.</b> e.g. ' + esc(proteinIdeasE(left)) + '</p>' : '<p class="tip good"><b>Protein target hit 💪</b> Nice work today.</p>') : '<p class="tip">Log your first meal and the ring starts filling. Aim for <b>' + g.p + ' g protein</b> today.</p>') + '</div>';
   h += quickChips(d);
   h += MEALS.map(function (ml) { return mealNew(d, ml, items); }).join("");
   if (!fastS().on) h += '<button type="button" class="link center quiet-link" data-act="fastsheet">Intermittent fasting</button>';
@@ -4214,8 +4234,8 @@ document.addEventListener("pointerdown", function (ev) { var b = ev.target.close
 document.addEventListener("pointermove", function (ev) {
   if (!SW) return;
   var dx = ev.clientX - SW.x, dy = ev.clientY - SW.y;
-  if (!SW.on) { if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) { SW = null; return; } if (dx < -12 && Math.abs(dx) > Math.abs(dy)) { SW.on = true; SW.b.parentNode.classList.add("swiping"); } else return; }
-  SW.dx = Math.min(0, dx); SW.b.style.transform = "translateX(" + SW.dx + "px)"; SW.b.parentNode.classList.toggle("armed", SW.dx < -90);
+  if (!SW.on) { if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) { SW = null; return; } if (dx < -12 && Math.abs(dx) > Math.abs(dy)) { SW.on = true; SW.b.parentNode.parentNode.classList.add("swiping"); } else return; }
+  SW.dx = Math.min(0, dx); SW.b.parentNode.style.transform = "translateX(" + SW.dx + "px)"; SW.b.parentNode.parentNode.classList.toggle("armed", SW.dx < -90);
 });
 function swEnd() {
   if (!SW) return; var s0 = SW; SW = null;
@@ -4224,16 +4244,18 @@ function swEnd() {
   if (s0.dx < -90) {
     var d = UI.fdate || todayStr(), tt = +s0.b.getAttribute("data-t"), arr = foodDay(d), ix = arr.map(function (q) { return q.t; }).indexOf(tt);
     if (ix < 0) return;
-    var gone = arr[ix]; s0.b.style.transform = "translateX(-110%)";
-    setTimeout(function () {
-      S.food[d].items = foodDay(d).filter(function (q) { return q.t !== tt; }); tidyFoodDay(d); mark("food", d); render(true);
-      toast("Removed " + shortName(gone.n), function () { if (!S.food[d]) S.food[d] = {items: []}; S.food[d].items = foodDay(d).concat([gone]).sort(function (a, b) { return a.t - b.t; }); mark("food", d); render(true); });
-      try { if (navigator.vibrate) navigator.vibrate(20); } catch (e) {}
-    }, 160);
-  } else { s0.b.style.transform = ""; s0.b.parentNode.classList.remove("swiping", "armed"); }
+    var gone = arr[ix]; s0.b.parentNode.style.transform = "translateX(-110%)";
+    setTimeout(function () { delEntry(d, tt); }, 160);
+  } else { s0.b.parentNode.style.transform = ""; s0.b.parentNode.parentNode.classList.remove("swiping", "armed"); }
 }
 document.addEventListener("pointerup", swEnd);
-document.addEventListener("pointercancel", function () { if (SW) { SW.b.style.transform = ""; SW.b.parentNode.classList.remove("swiping", "armed"); SW = null; } });
+function delEntry(d, tt) {
+  var gone = foodDay(d).filter(function (q) { return q.t === tt; })[0]; if (!gone) return;
+  S.food[d].items = foodDay(d).filter(function (q) { return q.t !== tt; }); tidyFoodDay(d); mark("food", d); render(true);
+  toast("Removed " + shortName(gone.n), function () { if (!S.food[d]) S.food[d] = {items: []}; S.food[d].items = foodDay(d).concat([gone]).sort(function (a, b) { return a.t - b.t; }); mark("food", d); render(true); });
+  try { if (navigator.vibrate) navigator.vibrate(20); } catch (e) {}
+}
+document.addEventListener("pointercancel", function () { if (SW) { SW.b.parentNode.style.transform = ""; SW.b.parentNode.parentNode.classList.remove("swiping", "armed"); SW = null; } });
 function viewFood() {
   if (foodNew()) return viewFoodNew();
   var d = UI.fdate || todayStr(), items = foodDay(d), t = totals(items), g = targets();
@@ -4638,7 +4660,7 @@ function foodWeek() {
 }
 
 /* ---------- Themes (Profile → Theme). Colours live in CSS under :root[data-theme]. ---------- */
-var THEMES = [["volt", "Volt", "Lime + orange", "#c8f542", "#ff8a3d", "#0b0c0e"], ["ocean", "Ocean", "Aqua + coral", "#2ee6c5", "#ff7a6b", "#0b0c0e"], ["ember", "Ember", "Red + amber", "#ff5a36", "#ffc145", "#0b0c0e"],
+var THEMES = [["volt", "Volt", "Lime + orange", "#bde35a", "#ffa630", "#0b0c0e"], ["ocean", "Ocean", "Aqua + coral", "#3fd6bd", "#ff8f7a", "#0b0c0e"], ["ember", "Ember", "Red + amber", "#ff6b4a", "#ffbe4d", "#0b0c0e"],
   ["mono", "Mono", "Clean black + white", "#f5f5f7", "#6e6e73", "#000000"], ["daylight", "Daylight", "Light mode", "#4f8a10", "#e2600f", "#f2f3ef"]];
 var curTheme = null;
 function themeOk(v) { return THEMES.some(function (t) { return t[0] === v; }) ? v : "volt"; }
@@ -4741,7 +4763,8 @@ document.addEventListener("click", function (ev) {
   if (a === "undo") { var u = UI.undo; UI.undo = null; $("toast").hidden = true; if (u) u(); return; }
   if (a === "fminitop") { window.scrollTo({top: 0, behavior: "smooth"}); return; }
   if (a === "preview") { try { localStorage.setItem("neongym.preview", b.getAttribute("data-v")); } catch (e) {} UI.fuelPrev = null; curTheme = null; render(true); renderSheet(); return; }
-  if (a === "fastx") { UI.open.fastx = !UI.open.fastx; saveUI(); render(true); return; }
+  if (a === "fxdel") { delEntry(UI.fdate || todayStr(), +b.getAttribute("data-t")); return; }
+  if (a === "fastx") { UI.open.fastmin = !UI.open.fastmin; saveUI(); render(true); return; }
   if (a === "fset") { UI.fdate = b.getAttribute("data-d"); render(true); return; }
   if (a === "fweek") { var nw = Math.min(dnum(todayStr()), dnum(UI.fdate || todayStr()) + +b.getAttribute("data-d")); UI.fdate = dstr(nw); render(true); return; }
   if (a === "qmeal") { var dq = UI.fdate || todayStr(), cm = quickMeal(dq); UI.qmeal = MEALS[(MEALS.indexOf(cm) + 1) % MEALS.length]; render(true); return; }
