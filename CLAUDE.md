@@ -18,6 +18,11 @@ Neon Gym is live at https://neoninc.github.io/neon-gym/ and is one tile on the N
   the save state from `setSync()`. Backup codes are in that sheet too.
 - Food values: one `fd(...)` line per food in `src/app.html`; note where new values came from in `tools/food-sources.md`.
   Restaurant-style categories (`PLACE_CATS`) get place chips from the name's trailing `(Place)`, so keep that format. Values that aren't published start their note with "Estimate:".
+- Exercises: one `x(...)` line each; add search words as `{k: "..."}` and put it in a `SLOTS` group so Swap offers it.
+  Search (`exSearch`) uses `EX_SYN` (muscle words, matched only against muscles) and `EX_ALIAS` (spellings, matched anywhere).
+- Themes are CSS-only: `:root[data-theme="..."]` blocks set the colour variables; `THEMES` in the script lists them for the
+  Profile picker. Use the variables (`--accent`, `--food`, `--water`, `--fast` and their `-ink`), never raw hex, in new CSS.
+  The theme is `profile.theme` (synced) plus `localStorage['neongym.theme']` so the page paints in the right colours at once.
 - Water is stored per day inside that day's food doc (`S.food[d].water = [{ml, t}]`), so it syncs with food.
   A food doc can hold only water: use `tidyFoodDay(d)` instead of deleting a day when its items run out.
 - Fasting state lives in the profile (`profile.fast = {on, plan, h, start, consent, notify}`, `profile.fastLog`). The service worker
