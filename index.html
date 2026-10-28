@@ -636,6 +636,72 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .thm span { display: flex; flex-direction: column; min-width: 0; line-height: 1.2; }
 .thm b { font-size: 14px; }
 .thm small { font-size: 11.5px; color: var(--muted); }
+/* ---- New food screen (preview) ---- */
+.food2 { gap: 12px; }
+.fuel { padding: 16px; gap: 12px; background: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--food) 9%, transparent), transparent 60%), var(--surface); }
+.fuelrow { display: grid; grid-template-columns: 156px 1fr; gap: 16px; align-items: center; }
+.fring { position: relative; width: 156px; height: 156px; padding: 0; border: 0; background: none; color: inherit; }
+.fring svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.fring circle { fill: none; stroke-width: 7; }
+.fring .ft1, .fring .ft2 { stroke: var(--surface-2); }
+.fring .fv1, .fring .fv2 { stroke-linecap: round; transition: stroke-dasharray .7s cubic-bezier(.2, .8, .2, 1); }
+.fring .fv1 { stroke: var(--accent); filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 45%, transparent)); }
+.fring .fv2 { stroke: var(--food); filter: drop-shadow(0 0 6px color-mix(in srgb, var(--food) 45%, transparent)); }
+.fring .fv1.over { stroke: var(--warn); }
+.fctr { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-variant-numeric: tabular-nums; }
+.fctr b { font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: .9; color: var(--ink); }
+.fctr b.hit { color: var(--food); }
+.fctr span { font-size: 11px; color: var(--food); font-weight: 700; max-width: 80px; line-height: 1.15; margin-top: 2px; }
+.fctr small { font-size: 10.5px; color: var(--muted); margin-top: 3px; white-space: nowrap; }
+.fbars { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.fbt { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fbt > span:first-child { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+.fbt b { color: var(--ink); font-size: 14px; }
+.fbb { height: 6px; border-radius: 99px; background: var(--surface-2); overflow: hidden; margin-top: 4px; }
+.fbb i { display: block; height: 100%; border-radius: 99px; background: var(--c, var(--food)); transition: width .6s cubic-bezier(.2, .8, .2, 1); }
+.fb.bp { --c: var(--food); } .fb.bk { --c: var(--accent); } .fb.bc { --c: var(--water); } .fb.bf { --c: var(--fast); }
+.fb.over { --c: var(--warn); } .fb.over .fbt b { color: var(--warn); }
+.fuel .tip { font-size: 13px; border-top: 1px solid var(--line); padding-top: 10px; }
+.qadd { display: flex; flex-direction: column; gap: 8px; }
+.qhead { display: flex; justify-content: space-between; align-items: center; }
+.qmeal { border: 0; background: none; color: var(--food); font-weight: 700; font-size: 13px; padding: 4px 0; min-height: 32px; }
+.qchips { gap: 8px; }
+.qchip { flex: none; display: flex; flex-direction: column; align-items: flex-start; gap: 1px; max-width: 170px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--surface); text-align: left; transition: transform .1s, border-color .15s; }
+.qchip:active { transform: scale(.96); border-color: var(--food); }
+.qchip b { font-size: 13.5px; font-weight: 700; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qchip span { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.qchip em { font-style: normal; color: var(--food); font-weight: 700; }
+.meal2 { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 4px 14px 6px; }
+.meal2.empty { padding-block: 2px; }
+.mh2 { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 56px; }
+.mh2 > div { display: flex; flex-direction: column; min-width: 0; }
+.mh2 b { font-family: var(--font-display); font-weight: 400; font-size: 22px; line-height: 1.05; letter-spacing: .01em; }
+.meal2.empty .mh2 { min-height: 52px; }
+.meal2.empty .mh2 b { color: var(--muted); }
+.plus { width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--food); color: var(--food-ink); display: grid; place-items: center; flex: none; box-shadow: 0 4px 14px color-mix(in srgb, var(--food) 30%, transparent); transition: transform .1s; }
+.plus:active { transform: scale(.92); }
+.plus svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; fill: none; }
+.meal2.empty .plus { background: color-mix(in srgb, var(--food) 14%, transparent); color: var(--food); box-shadow: none; }
+.mbar { height: 3px; border-radius: 99px; background: var(--surface-2); overflow: hidden; margin: 0 0 4px; }
+.mbar i { display: block; height: 100%; background: var(--food); border-radius: 99px; }
+.fsw { position: relative; overflow: hidden; border-top: 1px solid var(--line); }
+.fsw .fentry { position: relative; z-index: 1; border-top: 0; background: var(--surface); touch-action: pan-y; transition: transform .16s ease-out; }
+.fsw.swiping .fentry { transition: none; }
+.fdel { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-end; padding-right: 16px; background: color-mix(in srgb, var(--eq-barbell) 22%, var(--surface)); color: var(--eq-barbell); font-weight: 800; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+.fsw.armed .fdel { background: var(--eq-barbell); color: #fff; }
+.repeat { display: flex; align-items: center; gap: 8px; width: 100%; margin: 0 0 8px; padding: 8px 10px; border: 1px dashed var(--line-2); border-radius: 10px; background: transparent; color: var(--muted); font-size: 13px; text-align: left; }
+.repeat svg { width: 16px; height: 16px; flex: none; stroke: var(--food); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.repeat span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fmini { position: fixed; top: var(--hh, 64px); left: 0; right: 0; z-index: 8; max-width: 640px; margin: 0 auto; padding: 8px 16px 0; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; cursor: pointer; }
+.fmini.show { opacity: 1; transform: none; pointer-events: auto; }
+.fmi { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-bottom: 7px; }
+.fmi b { font-family: var(--font-display); font-weight: 400; font-size: 20px; color: var(--ink); }
+.fmi .mp b { color: var(--food); }
+.fmb { height: 2px; margin: 0 -16px; background: var(--surface-2); }
+.fmb i { display: block; height: 100%; background: var(--food); transition: width .4s; }
+.toast.hasundo { display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; padding: 6px 6px 6px 14px; }
+.tundo { border: 0; background: color-mix(in srgb, var(--food) 16%, transparent); color: var(--food); font-weight: 800; border-radius: 8px; min-height: 34px; padding: 0 14px; }
+@media (max-width: 370px) { .fuelrow { grid-template-columns: 136px 1fr; gap: 12px; } .fring { width: 136px; height: 136px; } .fctr b { font-size: 32px; } .fctr span { font-size: 10px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -648,6 +714,7 @@ header.top.scrolled { border-bottom-color: var(--line); }
   <div class="hbtns"><button type="button" class="finpill" id="finPill" data-act="finish" hidden aria-label="Finish workout"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-11"/></svg>Finish</button><button type="button" class="fpill" id="fastPill" data-act="fastopen" hidden aria-label="Fasting timer"></button><button type="button" class="hguide" id="guideBtn" data-act="tab" data-tab="guide" aria-label="Guide: how the plan works" title="Guide"><svg viewBox="0 0 24 24"><path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 1-4-4z"/><path d="M9 9h6M9 13h6"/></svg></button><button type="button" class="avatar" id="profileBtn" data-act="profile" aria-label="Profile and settings" aria-haspopup="dialog"></button></div>
 </header>
 <main id="view"></main>
+<div id="fmini" class="fmini" role="button" tabindex="-1" data-act="fminitop" aria-label="Back to the food summary"></div>
 <div id="sheet" class="sheet" hidden></div>
 
 <div class="dock"><div class="dock-in">
@@ -1739,6 +1806,7 @@ function profileBody() {
     '<button class="prow tap" type="button" data-act="fastsheet"><span><b>Fasting</b><span class="small">' + (fastS().on ? esc(fastS().plan) + (fasting() ? " · fasting now" : " · eating window") : "Off · tap to learn more") + '</span></span></button>' +
     '<button class="prow tap" type="button" data-act="ptab" data-tab="plans"><span><b>Plan</b><span class="small">' + esc(p.n) + ' · ' + p.perWeek + ' days a week</span></span></button></div>';
   var nW = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length, nF = Object.keys(S.food).filter(function (d) { return foodDay(d).length; }).length, nB = Object.keys(S.body).length;
+  h += '<p class="label">Food screen · preview</p><div class="chips"><button class="chip" type="button" data-act="foodui" data-v="new" aria-pressed="' + foodNew() + '">New look</button><button class="chip" type="button" data-act="foodui" data-v="old" aria-pressed="' + !foodNew() + '">Old look</button></div>';
   h += '<p class="label">Theme</p>' + themePicker() + '<p class="small">Saved with your account, so it follows you to other phones.</p>';
   h += '<p class="label">Your data</p><div class="plist"><div class="prow"><span>Logged</span><span class="v">' + nW + ' workout' + (nW === 1 ? "" : "s") + ' · ' + nF + ' food day' + (nF === 1 ? "" : "s") + ' · ' + nB + ' weigh-in' + (nB === 1 ? "" : "s") + '</span></div></div>';
   h += '<details class="fold" data-k="backup"' + (UI.open.backup ? " open" : "") + '><summary>Back up or move your log</summary><div class="in">' +
@@ -1746,7 +1814,7 @@ function profileBody() {
     '<button class="btn" type="button" data-act="export">Copy backup code</button>' +
     '<textarea class="field" id="impcode" placeholder="Paste a backup code here" aria-label="Backup code"></textarea>' +
     '<button class="btn quiet" type="button" data-act="import">' + (UI.confirmImport ? "Tap again to replace this log" : "Load backup code") + '</button></div></details>';
-  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.28 19:00' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
+  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.28 19:06' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
   return {title: "Profile", body: h};
 }
 
@@ -3923,7 +3991,131 @@ if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("mess
 });
 /* While the app is open on Android, keep the notification text roughly right */
 setInterval(function () { if (fasting() && !IS_IOS && document.visibilityState === "visible") showFastNote(false); }, 10 * 60 * 1000);
+/* ---------- New food screen (preview): one fuel ring + bars, quick-add chips, slim meal cards, sticky mini summary ---------- */
+function foodNew() { try { return localStorage.getItem("neongym.foodui") !== "old"; } catch (e) { return true; } }
+function shortName(n) { var t = String(n).replace(/\s*\([^()]*\)\s*$/, ""), c = t.split(","); return c[0].length >= 4 ? c[0] : t; }
+function fmtK(v) { v = Math.round(v); return Math.abs(v) >= 1000 ? (v < 0 ? "-" : "") + Math.floor(Math.abs(v) / 1000) + "," + String(Math.abs(v) % 1000).padStart(3, "0") : String(v); }
+function usualFoods(d) {
+  var cnt = {}, last = {}, order = [], days = Object.keys(S.food).filter(function (k) { return k <= d; }).sort().reverse().slice(0, 21);
+  days.forEach(function (k, di) {
+    foodDay(k).slice().reverse().forEach(function (it) {
+      if (!it.fid || !foodLookup(it.fid) || it.amt == null) return;
+      if (!cnt[it.fid]) { cnt[it.fid] = 0; last[it.fid] = it; order.push(it.fid); }
+      cnt[it.fid] += 1 + (21 - di) / 42;
+    });
+  });
+  var out = order.sort(function (a, b) { return cnt[b] - cnt[a]; }).slice(0, 8).map(function (fid) { var it = last[fid]; return {x: foodLookup(fid), amt: it.amt, mode: it.mode}; });
+  if (out.length < 4) TOP_PROTEIN.forEach(function (id) {
+    var x = FOOD_BY[id]; if (!x || out.length >= 8 || out.some(function (o) { return o.x.id === id; })) return;
+    var md = modesFor(x)[0]; out.push({x: x, amt: portionAmt(x, (x.portions || [["", 1]])[0][1], md), mode: md, starter: true});
+  });
+  return out;
+}
+function quickMeal(d) { return UI.qmeal || (d === todayStr() ? defaultMeal() : "Snacks"); }
+function quickChips(d) {
+  var list = usualFoods(d), meal = quickMeal(d), starter = list.length && list[0].starter;
+  return '<div class="qadd"><div class="qhead"><p class="label">' + (starter ? "Popular picks" : "Your usuals") + '</p><button type="button" class="qmeal" data-act="qmeal">to ' + esc(meal) + ' <span aria-hidden="true">▾</span></button></div>' +
+    '<div class="hscroll qchips">' + list.map(function (o) {
+      var m = macrosFor(o.x, o.amt, o.mode);
+      return '<button type="button" class="qchip" data-act="qadd" data-id="' + esc(o.x.id) + '" data-amt="' + o.amt + '" data-mode="' + esc(o.mode) + '"><b>' + esc(shortName(o.x.n)) + '</b><span>' + esc(amtLabel(o.x, o.amt, o.mode)) + ' · <em>' + r1(m.p) + ' g</em></span></button>';
+    }).join("") + '</div></div>';
+}
+function fuelRing(t, g) {
+  var C1 = 2 * Math.PI * 45, C2 = 2 * Math.PI * 35, pk = g.kcal ? Math.min(1, t.kcal / g.kcal) : 0, pp = g.p ? Math.min(1, t.p / g.p) : 0;
+  var prev = UI.fuelPrev || {k: pk, p: pp}, left = g.p - t.p, kl = g.kcal - t.kcal;
+  UI.fuelNext = {k: pk, p: pp};
+  return '<button type="button" class="fring" data-act="sheet" data-m="targets" aria-label="Daily targets"><svg viewBox="0 0 100 100" aria-hidden="true">' +
+    '<circle class="ft1" cx="50" cy="50" r="45"/><circle class="fv1' + (t.kcal > g.kcal * 1.05 ? " over" : "") + '" cx="50" cy="50" r="45" data-c="' + C1.toFixed(1) + '" data-to="' + pk + '" stroke-dasharray="' + (C1 * prev.k).toFixed(1) + ' ' + C1.toFixed(1) + '" transform="rotate(-90 50 50)"/>' +
+    '<circle class="ft2" cx="50" cy="50" r="35"/><circle class="fv2" cx="50" cy="50" r="35" data-c="' + C2.toFixed(1) + '" data-to="' + pp + '" stroke-dasharray="' + (C2 * prev.p).toFixed(1) + ' ' + C2.toFixed(1) + '" transform="rotate(-90 50 50)"/></svg>' +
+    '<span class="fctr">' + (left > 0.5 ? '<b data-count="' + r0(left) + '" data-from="' + (UI.fuelPrevLeft != null ? UI.fuelPrevLeft : r0(left)) + '">' + r0(left) + '</b><span>g protein to go</span>' : '<b class="hit">✓</b><span>Protein hit</span>') +
+    '<small>' + fmtK(Math.abs(kl)) + ' kcal ' + (kl >= 0 ? "left" : "over") + '</small></span></button>';
+}
+function fbar(lab, v, goal, unit, cls) {
+  var pct = goal ? Math.min(100, v / goal * 100) : 0, over = v > goal * 1.05;
+  return '<div class="fb ' + cls + (over ? " over" : "") + '"><div class="fbt"><span>' + lab + '</span><span><b>' + fmtK(v) + '</b> / ' + fmtK(goal) + (unit ? " " + unit : "") + '</span></div><div class="fbb"><i style="width:' + pct.toFixed(1) + '%"></i></div></div>';
+}
+function mealNew(d, ml, items) {
+  var its = items.filter(function (it) { return (it.meal || "Snacks") === ml; }), mt = totals(its), g = targets();
+  var h = '<section class="meal2' + (its.length ? "" : " empty") + '"><div class="mh2"><div><b>' + ml + '</b><span class="small">' + (its.length ? r1(mt.p) + ' g protein · ' + r0(mt.kcal) + ' kcal' : "Nothing yet") + '</span></div>' +
+    '<button type="button" class="plus" data-act="sheet" data-m="add" data-meal="' + ml + '" aria-label="Add food to ' + ml + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>';
+  if (its.length) {
+    h += '<div class="mbar" aria-hidden="true"><i style="width:' + Math.min(100, g.p ? mt.p / g.p * 100 : 0).toFixed(1) + '%"></i></div>';
+    h += its.map(function (it) {
+      return '<div class="fsw"><span class="fdel" aria-hidden="true">Delete</span><button type="button" class="fentry sw" data-act="fedit" data-t="' + it.t + '"><span class="nm"><span>' + esc(it.n) + '</span><span class="small">' + esc(it.portion || "") + '</span></span><span class="fmac"><b>' + r1(it.p) + ' g</b><span>' + r0(it.kcal) + ' kcal</span></span></button></div>';
+    }).join("");
+  } else {
+    var y = foodDay(dstr(dnum(d) - 1)).filter(function (it) { return (it.meal || "Snacks") === ml; });
+    if (y.length) h += '<button type="button" class="repeat" data-act="mrepeat" data-meal="' + ml + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 4v5h-5M20 12a8 8 0 0 1-14 5.3M4 20v-5h5"/></svg><span>Same as yesterday · ' + esc(y.slice(0, 2).map(function (it) { return shortName(it.n); }).join(", ")) + (y.length > 2 ? " +" + (y.length - 2) : "") + '</span></button>';
+  }
+  return h + '</section>';
+}
+function viewFoodNew() {
+  var d = UI.fdate || todayStr(), items = foodDay(d), t = totals(items), g = targets(), isToday = d === todayStr(), left = g.p - t.p;
+  var dt = new Date(dnum(d) * 864e5), dn = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][dt.getUTCDay()];
+  var h = '<div class="sec food food2">';
+  h += '<div class="fdate"><button type="button" class="iconbtn" data-act="fday" data-d="-1" aria-label="Previous day">‹</button><div><p class="label">' + (isToday ? "Today" : dn) + '</p><h2>' + (isToday ? "Food" : fmtD(d)) + '</h2></div><button type="button" class="iconbtn" data-act="fday" data-d="1" aria-label="Next day"' + (isToday ? " disabled" : "") + '>›</button></div>';
+  if (isToday) h += fastCard();
+  h += '<div class="card fuel"><div class="fuelrow">' + fuelRing(t, g) + '<div class="fbars">' + fbar("Protein", t.p, g.p, "g", "bp") + fbar("Calories", t.kcal, g.kcal, "", "bk") + fbar("Carbs", t.c, g.c, "g", "bc") + fbar("Fat", t.f, g.f, "g", "bf") + '</div></div>' +
+    (items.length && left > 5 ? '<p class="tip"><b>Ideas:</b> ' + esc(proteinIdeas(left)) + '</p>' : "") + '</div>';
+  h += quickChips(d);
+  h += MEALS.map(function (ml) { return mealNew(d, ml, items); }).join("");
+  if (!fastS().on) h += '<button type="button" class="link center" data-act="fastsheet">Try intermittent fasting</button>';
+  return h + '</div>';
+}
+function fminiPaint() {
+  var el = $("fmini"); if (!el) return;
+  var on = UI.tab === "food" && foodNew();
+  if (!on) { el.classList.remove("show"); el.innerHTML = ""; return; }
+  var d = UI.fdate || todayStr(), t = totals(foodDay(d)), g = targets();
+  el.innerHTML = '<div class="fmi"><span class="mp"><b>' + r0(t.p) + '</b> / ' + g.p + ' g protein</span><span class="mk"><b>' + fmtK(t.kcal) + '</b> / ' + fmtK(g.kcal) + ' kcal</span></div><div class="fmb"><i style="width:' + Math.min(100, g.p ? t.p / g.p * 100 : 0).toFixed(1) + '%"></i></div>';
+  var card = document.querySelector(".fuel");
+  if (UI.fio) { UI.fio.disconnect(); UI.fio = null; }
+  if (!card || !window.IntersectionObserver) return;
+  var hh = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--hh"), 10) || 64;
+  UI.fio = new IntersectionObserver(function (es) { es.forEach(function (e) { el.classList.toggle("show", !e.isIntersecting && e.boundingClientRect.top < hh); }); }, {rootMargin: "-" + hh + "px 0px 0px 0px", threshold: 0});
+  UI.fio.observe(card);
+}
+function animFuel() {
+  var cs = document.querySelectorAll(".fring circle[data-to]");
+  requestAnimationFrame(function () { requestAnimationFrame(function () {
+    Array.prototype.forEach.call(cs, function (c) { var C = +c.getAttribute("data-c"); c.setAttribute("stroke-dasharray", (C * +c.getAttribute("data-to")).toFixed(1) + " " + C); });
+  }); });
+  var b = document.querySelector(".fring [data-count]");
+  if (b) {
+    var from = +b.getAttribute("data-from"), to = +b.getAttribute("data-count"), t0 = performance.now();
+    if (from !== to) (function step(now) { var k = Math.min(1, (now - t0) / 500), e = 1 - Math.pow(1 - k, 3); b.textContent = Math.round(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); })(t0); setTimeout(function () { b.textContent = to; }, 700);
+    UI.fuelPrevLeft = to;
+  } else UI.fuelPrevLeft = 0;
+  UI.fuelPrev = UI.fuelNext;
+}
+/* swipe a logged food left to delete it (with Undo) */
+var SW = null;
+document.addEventListener("pointerdown", function (ev) { var b = ev.target.closest && ev.target.closest(".fentry.sw"); if (!b || ev.button > 0) return; SW = {b: b, x: ev.clientX, y: ev.clientY, dx: 0, on: false}; });
+document.addEventListener("pointermove", function (ev) {
+  if (!SW) return;
+  var dx = ev.clientX - SW.x, dy = ev.clientY - SW.y;
+  if (!SW.on) { if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) { SW = null; return; } if (dx < -12 && Math.abs(dx) > Math.abs(dy)) { SW.on = true; SW.b.parentNode.classList.add("swiping"); } else return; }
+  SW.dx = Math.min(0, dx); SW.b.style.transform = "translateX(" + SW.dx + "px)"; SW.b.parentNode.classList.toggle("armed", SW.dx < -90);
+});
+function swEnd() {
+  if (!SW) return; var s0 = SW; SW = null;
+  if (!s0.on) return;
+  UI.noClick = Date.now();
+  if (s0.dx < -90) {
+    var d = UI.fdate || todayStr(), tt = +s0.b.getAttribute("data-t"), arr = foodDay(d), ix = arr.map(function (q) { return q.t; }).indexOf(tt);
+    if (ix < 0) return;
+    var gone = arr[ix]; s0.b.style.transform = "translateX(-110%)";
+    setTimeout(function () {
+      S.food[d].items = foodDay(d).filter(function (q) { return q.t !== tt; }); tidyFoodDay(d); mark("food", d); render(true);
+      toast("Removed " + shortName(gone.n), function () { if (!S.food[d]) S.food[d] = {items: []}; S.food[d].items = foodDay(d).concat([gone]).sort(function (a, b) { return a.t - b.t; }); mark("food", d); render(true); });
+      try { if (navigator.vibrate) navigator.vibrate(20); } catch (e) {}
+    }, 160);
+  } else { s0.b.style.transform = ""; s0.b.parentNode.classList.remove("swiping", "armed"); }
+}
+document.addEventListener("pointerup", swEnd);
+document.addEventListener("pointercancel", function () { if (SW) { SW.b.style.transform = ""; SW.b.parentNode.classList.remove("swiping", "armed"); SW = null; } });
 function viewFood() {
+  if (foodNew()) return viewFoodNew();
   var d = UI.fdate || todayStr(), items = foodDay(d), t = totals(items), g = targets();
   var isToday = d === todayStr(), left = g.p - t.p;
   var dt = new Date(dnum(d) * 864e5), dn = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][dt.getUTCDay()];
@@ -4288,11 +4480,17 @@ function render(keepScroll) {
   applyTheme(S.profile.theme);
   window.scrollTo(0, keepScroll ? y : 0);
   if (UI.tab === "water") animWater(); else UI.wLevel = null;
+  if (UI.tab === "food" && foodNew()) animFuel();
+  fminiPaint();
 }
 
 /* ---------- Toast and rest timer ---------- */
 var toastT = null;
-function toast(t) { var el = $("toast"); el.textContent = t; el.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { el.hidden = true; }, 2200); }
+function toast(t, undo) {
+  var el = $("toast"); UI.undo = undo || null;
+  if (undo) el.innerHTML = '<span>' + esc(t) + '</span><button type="button" class="tundo" data-act="undo">Undo</button>'; else el.textContent = t;
+  el.classList.toggle("hasundo", !!undo); el.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { el.hidden = true; UI.undo = null; }, undo ? 4500 : 2200);
+}
 var T = {end: 0, iv: null, fired: false};
 function startRest(sec) { T.end = Date.now() + sec * 1000; T.fired = false; $("timerBar").hidden = false; $("timerBar").classList.remove("go"); if (!T.iv) T.iv = setInterval(tick, 250); tick(); saveUI(); }
 function hideTimer() { $("timerBar").hidden = true; clearInterval(T.iv); T.iv = null; if (T.end > Date.now()) { T.end = 0; saveUI(); } }
@@ -4349,6 +4547,26 @@ document.addEventListener("click", function (ev) {
   var b = ev.target.closest("[data-act]");
   if (!b || b.disabled) return;
   var a = b.getAttribute("data-act"), id = b.getAttribute("data-ex");
+  if (a === "fedit" && UI.noClick && Date.now() - UI.noClick < 400) return;
+  if (a === "undo") { var u = UI.undo; UI.undo = null; $("toast").hidden = true; if (u) u(); return; }
+  if (a === "fminitop") { window.scrollTo({top: 0, behavior: "smooth"}); return; }
+  if (a === "foodui") { try { localStorage.setItem("neongym.foodui", b.getAttribute("data-v")); } catch (e) {} UI.fuelPrev = null; renderSheet(); render(true); return; }
+  if (a === "qmeal") { var dq = UI.fdate || todayStr(), cm = quickMeal(dq); UI.qmeal = MEALS[(MEALS.indexOf(cm) + 1) % MEALS.length]; render(true); return; }
+  if (a === "qadd") {
+    var dA = UI.fdate || todayStr(), xq = foodLookup(b.getAttribute("data-id")); if (!xq) return;
+    var eq = makeEntry(xq, +b.getAttribute("data-amt"), b.getAttribute("data-mode")), mq = quickMeal(dA);
+    logEntry(eq, mq, dA); mark("food", dA); render(true);
+    try { if (navigator.vibrate) navigator.vibrate(15); } catch (e) {}
+    toast("Added " + shortName(xq.n) + " to " + mq, function () { S.food[dA].items = foodDay(dA).filter(function (q) { return q.t !== eq.t; }); tidyFoodDay(dA); mark("food", dA); render(true); });
+    return;
+  }
+  if (a === "mrepeat") {
+    var dR = UI.fdate || todayStr(), mlR = b.getAttribute("data-meal"), added = [];
+    foodDay(dstr(dnum(dR) - 1)).filter(function (it) { return (it.meal || "Snacks") === mlR; }).forEach(function (it) { var c = JSON.parse(JSON.stringify(it)); delete c.t; logEntry(c, mlR, dR); added.push(c.t); });
+    mark("food", dR); render(true);
+    toast("Copied yesterday's " + mlR.toLowerCase(), function () { S.food[dR].items = foodDay(dR).filter(function (q) { return added.indexOf(q.t) < 0; }); tidyFoodDay(dR); mark("food", dR); render(true); });
+    return;
+  }
   if (a !== "clear") UI.confirmClear = false;
   if (a !== "import") UI.confirmImport = false;
   if (planClick(a, b) || histClick(a, b) || waterClick(a, b) || fastClick(a, b) || foodClick(a, b)) return;
