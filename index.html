@@ -587,12 +587,8 @@ svg.chart .wg { stroke: var(--water); stroke-width: 1.5; stroke-dasharray: 4 3; 
 @media (max-width: 380px) { .wbottle { width: 96px; } .wbig { font-size: 60px; } .nav button { font-size: 10px; letter-spacing: .02em; } }
 /* ---- Themes: two main colours each (accent = workout, food = food tab). Volt is the default ---- */
 :root { --food-ink: #160b03; --water-ink: #04131a; --fast-ink: #120a24; color-scheme: dark; }
-:root[data-theme="miami"] { --accent: #ff4fa3; --accent-ink: #1a0410; --good: #ff4fa3; --food: #2ee6d6; --food-ink: #021a18; --water: #6aa8ff; --water-deep: #3b6fd6; --fast: #ffd166; --fast-ink: #1f1600; }
 :root[data-theme="ember"] { --accent: #ff5a36; --accent-ink: #1a0602; --good: #ff5a36; --food: #ffc145; --food-ink: #1a1200; --fast: #c084fc; }
 :root[data-theme="ocean"] { --accent: #2ee6c5; --accent-ink: #02140f; --good: #2ee6c5; --food: #ff7a6b; --food-ink: #1f0603; --water: #5ab0ff; --water-deep: #2f74d0; --fast: #c3a6ff; }
-:root[data-theme="violet"] { --accent: #a78bfa; --accent-ink: #0f0820; --good: #a78bfa; --food: #ff6fb5; --food-ink: #1f0612; --fast: #7ee0a0; --fast-ink: #04170c; }
-:root[data-theme="gold"] { --accent: #ffd23f; --accent-ink: #1a1400; --good: #ffd23f; --food: #ff6b6b; --food-ink: #1f0505; }
-:root[data-theme="mono"] { --accent: #f2f2ec; --accent-ink: #0b0c0e; --good: #f2f2ec; --food: #ffb547; --food-ink: #1a1000; --fast: #c9b8ff; }
 :root[data-theme="daylight"] { color-scheme: light; --bg: #f2f3ef; --surface: #ffffff; --surface-2: #eceee8; --field: #f7f8f5; --line: #e1e3dc; --line-2: #cdd1c8; --ink: #121418; --muted: #5f646c;
   --accent: #4f8a10; --accent-ink: #ffffff; --good: #4f8a10; --food: #e2600f; --food-ink: #ffffff; --water: #0a8ccf; --water-deep: #0868a8; --water-ink: #ffffff; --fast: #7c4ddb; --fast-ink: #ffffff; --warn: #b86e00;
   --eq-machine: #0b7fbf; --eq-cable: #7a4fd6; --eq-dumbbell: #b86e00; --eq-barbell: #d33b3b; --eq-smith: #138a66; --eq-body: #4a4f57; }
@@ -640,14 +636,14 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .food2 { gap: 12px; }
 .fuel { padding: 16px; gap: 12px; background: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--food) 9%, transparent), transparent 60%), var(--surface); }
 .fuelrow { display: grid; grid-template-columns: 156px 1fr; gap: 16px; align-items: center; }
-.fring { position: relative; width: 156px; height: 156px; padding: 0; border: 0; background: none; color: inherit; }
-.fring svg { width: 100%; height: 100%; display: block; overflow: visible; }
-.fring circle { fill: none; stroke-width: 7; }
-.fring .ft1, .fring .ft2 { stroke: var(--surface-2); }
-.fring .fv1, .fring .fv2 { stroke-linecap: round; transition: stroke-dasharray .7s cubic-bezier(.2, .8, .2, 1); }
-.fring .fv1 { stroke: var(--accent); filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 45%, transparent)); }
-.fring .fv2 { stroke: var(--food); filter: drop-shadow(0 0 6px color-mix(in srgb, var(--food) 45%, transparent)); }
-.fring .fv1.over { stroke: var(--warn); }
+.fuelring { position: relative; width: 156px; height: 156px; padding: 0; border: 0; background: none; color: inherit; }
+.fuelring svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.fuelring circle { fill: none; stroke-width: 7; }
+.fuelring .ft1, .fuelring .ft2 { stroke: var(--surface-2); }
+.fuelring .fv1, .fuelring .fv2 { stroke-linecap: round; transition: stroke-dasharray .7s cubic-bezier(.2, .8, .2, 1); }
+.fuelring .fv1 { stroke: var(--accent); filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 45%, transparent)); }
+.fuelring .fv2 { stroke: var(--food); filter: drop-shadow(0 0 6px color-mix(in srgb, var(--food) 45%, transparent)); }
+.fuelring .fv1.over { stroke: var(--warn); }
 .fctr { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-variant-numeric: tabular-nums; }
 .fctr b { font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: .9; color: var(--ink); }
 .fctr b.hit { color: var(--food); }
@@ -701,9 +697,9 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .fmb i { display: block; height: 100%; background: var(--food); transition: width .4s; }
 .toast.hasundo { display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; padding: 6px 6px 6px 14px; }
 .tundo { border: 0; background: color-mix(in srgb, var(--food) 16%, transparent); color: var(--food); font-weight: 800; border-radius: 8px; min-height: 34px; padding: 0 14px; }
-@media (max-width: 370px) { .fuelrow { grid-template-columns: 136px 1fr; gap: 12px; } .fring { width: 136px; height: 136px; } .fctr b { font-size: 32px; } .fctr span { font-size: 10px; } }
+@media (max-width: 370px) { .fuelrow { grid-template-columns: 136px 1fr; gap: 12px; } .fuelring { width: 136px; height: 136px; } .fctr b { font-size: 32px; } .fctr span { font-size: 10px; } }
 /* ---- Preview 2: clean monochrome style (data-style="clean"); works with the dark themes and with Daylight ---- */
-.pvs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.pvs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
 .pv { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 9px 10px; min-height: 58px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--field); text-align: left; }
 .pv b { font-size: 13.5px; } .pv small { font-size: 11px; color: var(--muted); line-height: 1.25; }
 .pv[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
@@ -768,8 +764,8 @@ header.top.scrolled { border-bottom-color: var(--line); }
 [data-style="clean"] .eqt::before { display: none; }
 [data-style="clean"] .eqt { font-weight: 500; }
 [data-style="clean"] .fuel { background: var(--surface); }
-[data-style="clean"] .fring .fv1 { stroke: var(--muted); filter: none; }
-[data-style="clean"] .fring .fv2 { stroke: var(--ink); filter: none; }
+[data-style="clean"] .fuelring .fv1 { stroke: var(--muted); filter: none; }
+[data-style="clean"] .fuelring .fv2 { stroke: var(--ink); filter: none; }
 [data-style="clean"] .fb.bp { --c: var(--ink); } [data-style="clean"] .fb.bk { --c: var(--muted); } [data-style="clean"] .fb.bc { --c: color-mix(in srgb, var(--muted) 70%, var(--surface-2)); } [data-style="clean"] .fb.bf { --c: color-mix(in srgb, var(--muted) 45%, var(--surface-2)); }
 [data-style="clean"] .fb.over { --c: var(--warn); }
 [data-style="clean"] .plus { box-shadow: none; }
@@ -779,10 +775,35 @@ header.top.scrolled { border-bottom-color: var(--line); }
 [data-style="clean"] .dock { border-top-color: var(--line); }
 [data-style="clean"] .fctr small { font-size: 10px; } [data-style="clean"] .fctr span { font-size: 10.5px; max-width: 86px; }
 @media (max-width: 400px) { [data-style="clean"] header.top:has(.finpill:not([hidden])) .brand-t { font-size: 16px; } [data-style="clean"] .fctr b { font-size: 28px; } }
+/* compact fasting bar, My meals */
+.fstrip { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 6px 8px 6px 12px; }
+.fstrip.on { border-color: color-mix(in srgb, var(--fast) 35%, transparent); }
+.fsx { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; border: 0; background: none; color: inherit; text-align: left; padding: 4px 0; min-height: 44px; }
+.fdot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--fast); flex: none; }
+.fst { display: flex; flex-direction: column; min-width: 0; }
+.fst b { font-size: 14px; font-variant-numeric: tabular-nums; }
+.fstrip.on .fst b { color: var(--fast); }
+.fmr { width: 34px; height: 34px; flex: none; }
+.fmr svg { width: 100%; height: 100%; display: block; }
+.fmr circle { fill: none; stroke-width: 10; } .fmr .rt { stroke: var(--surface-2); } .fmr .rv { stroke-linecap: round; }
+.fchev { color: var(--muted); font-size: 22px; padding: 0 6px; }
+.fsgo { flex: none; border: 1px solid color-mix(in srgb, var(--fast) 50%, transparent); background: color-mix(in srgb, var(--fast) 12%, transparent); color: var(--fast); font-weight: 700; font-size: 13px; border-radius: 10px; min-height: 36px; padding: 0 12px; }
+.fastwrap { display: flex; flex-direction: column; gap: 4px; }
+.fless { align-self: center; color: var(--fast); }
+.quiet-link { color: var(--muted) !important; font-weight: 600; font-size: 13px; }
+.mksave { border: 0; background: none; color: var(--food); font-weight: 700; font-size: 12.5px; padding: 0 0 6px; min-height: 0; }
+.mkmeal { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px; margin: 6px 0; border: 1px dashed color-mix(in srgb, var(--food) 55%, transparent); border-radius: 12px; background: color-mix(in srgb, var(--food) 7%, transparent); text-align: left; color: inherit; }
+.mkmeal svg { width: 34px; height: 34px; flex: none; border-radius: 50%; background: var(--food); stroke: var(--food-ink); stroke-width: 2.6; stroke-linecap: round; padding: 8px; fill: none; }
+.mkmeal > span { display: flex; flex-direction: column; }
+.mparts { display: flex; flex-direction: column; }
+.mpart { display: flex; align-items: center; gap: 6px; border-top: 1px solid var(--line); }
+.mpe { flex: 1; min-width: 0; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 0; min-height: 52px; border: 0; background: none; color: inherit; text-align: left; }
+.mpe .nm { min-width: 0; display: flex; flex-direction: column; }
+.mpx { width: 36px; height: 36px; flex: none; border-radius: 50%; border: 1px solid var(--line-2); background: none; color: var(--muted); font-size: 18px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
-<script>try { var nt = localStorage.getItem("neongym.theme"); if (nt && nt !== "volt") document.documentElement.setAttribute("data-theme", nt); if (localStorage.getItem("neongym.preview") === "p2") document.documentElement.setAttribute("data-style", "clean"); } catch (e) {}</script>
+<script>try { var nt = localStorage.getItem("neongym.theme"); if (nt && nt !== "volt") document.documentElement.setAttribute("data-theme", nt); if (nt === "mono") document.documentElement.setAttribute("data-style", "clean"); } catch (e) {}</script>
 <header class="top">
   <div class="brand">
     <svg viewBox="0 0 64 64" aria-hidden="true"><rect class="lg" width="64" height="64" rx="12"/><path class="lb" d="M18 32h28" stroke-width="5" stroke-linecap="round"/><rect class="lb" x="12" y="22" width="8" height="20" rx="2"/><rect class="lb" x="44" y="22" width="8" height="20" rx="2"/><rect class="lb" x="7" y="26" width="4" height="12" rx="1.5"/><rect class="lb" x="53" y="26" width="4" height="12" rx="1.5"/></svg>
@@ -1883,15 +1904,15 @@ function profileBody() {
     '<button class="prow tap" type="button" data-act="fastsheet"><span><b>Fasting</b><span class="small">' + (fastS().on ? esc(fastS().plan) + (fasting() ? " · fasting now" : " · eating window") : "Off · tap to learn more") + '</span></span></button>' +
     '<button class="prow tap" type="button" data-act="ptab" data-tab="plans"><span><b>Plan</b><span class="small">' + esc(p.n) + ' · ' + p.perWeek + ' days a week</span></span></button></div>';
   var nW = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length, nF = Object.keys(S.food).filter(function (d) { return foodDay(d).length; }).length, nB = Object.keys(S.body).length;
-  h += '<p class="label">Try the new look</p><div class="pvs">' + PREVIEWS.map(function (pv) { return '<button class="pv" type="button" data-act="preview" data-v="' + pv[0] + '" aria-pressed="' + (previewMode() === pv[0]) + '"><b>' + pv[1] + '</b><small>' + pv[2] + '</small></button>'; }).join("") + '</div>';
-  h += '<p class="label">Theme</p>' + (cleanOn() ? '<p class="small">Preview 2 uses its own black-and-white colours. Pick Daylight for the light version of it.</p>' : "") + themePicker() + '<p class="small">Saved with your account, so it follows you to other phones.</p>';
+  h += '<p class="label">Preview</p><div class="pvs">' + PREVIEWS.map(function (pv) { return '<button class="pv" type="button" data-act="preview" data-v="' + pv[0] + '" aria-pressed="' + (previewMode() === pv[0]) + '"><b>' + pv[1] + '</b><small>' + pv[2] + '</small></button>'; }).join("") + '</div>';
+  h += '<p class="label">Theme</p>' + themePicker() + '<p class="small">Saved with your account, so it follows you to other phones.</p>';
   h += '<p class="label">Your data</p><div class="plist"><div class="prow"><span>Logged</span><span class="v">' + nW + ' workout' + (nW === 1 ? "" : "s") + ' · ' + nF + ' food day' + (nF === 1 ? "" : "s") + ' · ' + nB + ' weigh-in' + (nB === 1 ? "" : "s") + '</span></div></div>';
   h += '<details class="fold" data-k="backup"' + (UI.open.backup ? " open" : "") + '><summary>Back up or move your log</summary><div class="in">' +
     '<p class="small">' + (u ? "Your log is already saved in your account. " : "") + 'Copy a backup code and keep it in your notes, or paste a code from another phone to load it here.</p>' +
     '<button class="btn" type="button" data-act="export">Copy backup code</button>' +
     '<textarea class="field" id="impcode" placeholder="Paste a backup code here" aria-label="Backup code"></textarea>' +
     '<button class="btn quiet" type="button" data-act="import">' + (UI.confirmImport ? "Tap again to replace this log" : "Load backup code") + '</button></div></details>';
-  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.28 19:12' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
+  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.28 19:25' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
   return {title: "Profile", body: h};
 }
 
@@ -3692,8 +3713,18 @@ function amtLabel(x, amt, mode) {
   if (mode === "g" || mode === "ml") return r1(amt) + " " + mode;
   var u = unitInfo(x); return r1(amt) + " " + plural(amt, u.name);
 }
+function myMeals() { return (S.profile.myMeals || []).filter(function (m) { return !m.deleted; }); }
+function mealTotals(parts) { var t = {kcal: 0, p: 0, c: 0, f: 0}; (parts || []).forEach(function (pt) { t.kcal += +pt.kcal || 0; t.p += +pt.p || 0; t.c += +pt.c || 0; t.f += +pt.f || 0; }); return t; }
+function mealLookup(fid) {
+  var m = myMeals().filter(function (q) { return q.id === fid; })[0]; if (!m) return null;
+  var serves = Math.max(1, +m.serves || 1), t = mealTotals(m.parts);
+  return {id: m.id, n: m.n, cat: "My meals", base: "1 serving", kcal: t.kcal / serves, p: t.p / serves, c: t.c / serves, f: t.f / serves, mymeal: true, a: "my meal",
+    portions: [["1 serving", 1], ["½ serving", .5], ["1½ servings", 1.5], ["2 servings", 2]],
+    note: (serves > 1 ? "Makes " + serves + " servings. " : "") + "Made from " + m.parts.map(function (pt) { return shortName(pt.n) + " " + (pt.portion || ""); }).join(" + ") + "."};
+}
 function foodLookup(fid) {
   if (!fid) return null;
+  if (fid.indexOf("mm-") === 0) return mealLookup(fid);
   if (fid.indexOf("my-") === 0) { var m = (S.profile.myFoods || []).filter(function (q) { return q.id === fid; })[0]; return m ? {id: m.id, n: m.n, base: "1 portion", kcal: m.kcal, p: m.p, c: m.c, f: m.f, portions: [["1 portion", 1], ["½ portion", .5], ["2 portions", 2]], my: true} : null; }
   return FOOD_BY[fid] || null;
 }
@@ -4070,14 +4101,19 @@ if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("mess
 setInterval(function () { if (fasting() && !IS_IOS && document.visibilityState === "visible") showFastNote(false); }, 10 * 60 * 1000);
 /* ---------- New food screen (preview): one fuel ring + bars, quick-add chips, slim meal cards, sticky mini summary ---------- */
 /* Preview switch (Profile): live = the current site, p1 = new food screen, p2 = p1 + clean monochrome style + week strip */
-var PREVIEWS = [["live", "Live look", "What the site has now"], ["p1", "Preview 1", "New food screen"], ["p2", "Preview 2", "Clean monochrome + week strip"]];
-function previewMode() { try { var v = localStorage.getItem("neongym.preview"); if (v === "live" || v === "p1" || v === "p2") return v; return localStorage.getItem("neongym.foodui") === "old" ? "live" : "p1"; } catch (e) { return "p1"; } }
+var PREVIEWS = [["live", "Live look", "What the site has now"], ["p1", "New look", "New food screen, week strip, My meals"]];
+function previewMode() { try { return localStorage.getItem("neongym.preview") === "live" ? "live" : "p1"; } catch (e) { return "p1"; } }
 function foodNew() { return previewMode() !== "live"; }
-function cleanOn() { return previewMode() === "p2"; }
-function applyPreview() {
-  var r = document.documentElement, on = cleanOn();
-  if (on) r.setAttribute("data-style", "clean"); else r.removeAttribute("data-style");
-  var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", on ? (themeOk(S.profile.theme) === "daylight" ? "#f5f5f7" : "#000000") : (THEMES.filter(function (t) { return t[0] === themeOk(S.profile.theme); })[0] || THEMES[0])[5]);
+function cleanOn() { return themeOk(S.profile.theme) === "mono"; }
+function fastStrip() {
+  var f = fastS(); if (!f.on) return "";
+  if (UI.open.fastx) return '<div class="fastwrap">' + fastCard() + '<button type="button" class="link fless" data-act="fastx">Show less</button></div>';
+  if (!f.start) {
+    var last = fastLog()[fastLog().length - 1];
+    return '<div class="fstrip"><button type="button" class="fsx" data-act="fastx" aria-label="Show fasting details"><span class="fdot"></span><span class="fst"><b>Eating window</b><span class="small">' + esc(f.plan || "16:8") + (last ? ' · open <span data-fastopen="' + last.e + '">' + hm(Date.now() - last.e) + '</span>' : ' · start after your last meal') + '</span></span></button><button type="button" class="fsgo" data-act="faststart">Start fast</button></div>';
+  }
+  var el = Date.now() - f.start, goal = f.h * 36e5, end = f.start + goal, done = el >= goal;
+  return '<div class="fstrip on' + (done ? " done" : "") + '"><button type="button" class="fsx" data-act="fastx" aria-label="Show fasting details"><span class="fmr">' + fastRing(el / goal, FAST_COL) + '</span><span class="fst"><b>' + (done ? "Fast goal reached" : "Fasting") + ' · <span data-fastel="' + f.start + '">' + hms(el) + '</span></b><span class="small" data-fastleft="' + end + '">' + (done ? "+" + hm(el - goal) + " past your goal" : hm(end - Date.now()) + " to go") + '</span></span><span class="fchev" aria-hidden="true">›</span></button></div>';
 }
 function weekStrip(d) {
   var mon = monNum(d), td = dnum(todayStr()), g = targets(), C = 2 * Math.PI * 15;
@@ -4120,7 +4156,7 @@ function fuelRing(t, g) {
   var C1 = 2 * Math.PI * 45, C2 = 2 * Math.PI * 35, pk = g.kcal ? Math.min(1, t.kcal / g.kcal) : 0, pp = g.p ? Math.min(1, t.p / g.p) : 0;
   var prev = UI.fuelPrev || {k: pk, p: pp}, left = g.p - t.p, kl = g.kcal - t.kcal;
   UI.fuelNext = {k: pk, p: pp};
-  return '<button type="button" class="fring" data-act="sheet" data-m="targets" aria-label="Daily targets"><svg viewBox="0 0 100 100" aria-hidden="true">' +
+  return '<button type="button" class="fuelring" data-act="sheet" data-m="targets" aria-label="Daily targets"><svg viewBox="0 0 100 100" aria-hidden="true">' +
     '<circle class="ft1" cx="50" cy="50" r="45"/><circle class="fv1' + (t.kcal > g.kcal * 1.05 ? " over" : "") + '" cx="50" cy="50" r="45" data-c="' + C1.toFixed(1) + '" data-to="' + pk + '" stroke-dasharray="' + (C1 * prev.k).toFixed(1) + ' ' + C1.toFixed(1) + '" transform="rotate(-90 50 50)"/>' +
     '<circle class="ft2" cx="50" cy="50" r="35"/><circle class="fv2" cx="50" cy="50" r="35" data-c="' + C2.toFixed(1) + '" data-to="' + pp + '" stroke-dasharray="' + (C2 * prev.p).toFixed(1) + ' ' + C2.toFixed(1) + '" transform="rotate(-90 50 50)"/></svg>' +
     '<span class="fctr">' + (left > 0.5 ? '<b data-count="' + r0(left) + '" data-from="' + (UI.fuelPrevLeft != null ? UI.fuelPrevLeft : r0(left)) + '">' + r0(left) + '</b><span>g protein to go</span>' : '<b class="hit">✓</b><span>Protein hit</span>') +
@@ -4135,6 +4171,7 @@ function mealNew(d, ml, items) {
   var h = '<section class="meal2' + (its.length ? "" : " empty") + '"><div class="mh2"><div><b>' + ml + '</b><span class="small">' + (its.length ? r1(mt.p) + ' g protein · ' + r0(mt.kcal) + ' kcal' : "Nothing yet") + '</span></div>' +
     '<button type="button" class="plus" data-act="sheet" data-m="add" data-meal="' + ml + '" aria-label="Add food to ' + ml + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>';
   if (its.length) {
+    if (its.length >= 2) h += '<button type="button" class="mksave" data-act="mealfrom" data-meal="' + ml + '">Save as my meal</button>';
     h += '<div class="mbar" aria-hidden="true"><i style="width:' + Math.min(100, g.p ? mt.p / g.p * 100 : 0).toFixed(1) + '%"></i></div>';
     h += its.map(function (it) {
       return '<div class="fsw"><span class="fdel" aria-hidden="true">Delete</span><button type="button" class="fentry sw" data-act="fedit" data-t="' + it.t + '"><span class="nm"><span>' + esc(it.n) + '</span><span class="small">' + esc(it.portion || "") + '</span></span><span class="fmac"><b>' + r1(it.p) + ' g</b><span>' + r0(it.kcal) + ' kcal</span></span></button></div>';
@@ -4149,14 +4186,14 @@ function viewFoodNew() {
   var d = UI.fdate || todayStr(), items = foodDay(d), t = totals(items), g = targets(), isToday = d === todayStr(), left = g.p - t.p;
   var dt = new Date(dnum(d) * 864e5), dn = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][dt.getUTCDay()];
   var h = '<div class="sec food food2">';
-  if (cleanOn()) h += '<div class="fhead2"><div><p class="label">' + (isToday ? "Today · " + fmtD(d) : dn + " · " + fmtD(d)) + '</p><h2>Food</h2></div>' + (isToday ? "" : '<button type="button" class="chip xs" data-act="fset" data-d="' + todayStr() + '">Today</button>') + '</div>' + weekStrip(d);
-  else h += '<div class="fdate"><button type="button" class="iconbtn" data-act="fday" data-d="-1" aria-label="Previous day">‹</button><div><p class="label">' + (isToday ? "Today" : dn) + '</p><h2>' + (isToday ? "Food" : fmtD(d)) + '</h2></div><button type="button" class="iconbtn" data-act="fday" data-d="1" aria-label="Next day"' + (isToday ? " disabled" : "") + '>›</button></div>';
-  if (isToday) h += fastCard();
+  h += '<div class="fhead2"><div><p class="label">' + (isToday ? "Today · " + fmtD(d) : dn + " · " + fmtD(d)) + '</p><h2>Food</h2></div>' + (isToday ? "" : '<button type="button" class="chip xs" data-act="fset" data-d="' + todayStr() + '">Today</button>') + '</div>' + weekStrip(d);
+  if (false) h += '<div class="fdate"><button type="button" class="iconbtn" data-act="fday" data-d="-1" aria-label="Previous day">‹</button><div><p class="label">' + (isToday ? "Today" : dn) + '</p><h2>' + (isToday ? "Food" : fmtD(d)) + '</h2></div><button type="button" class="iconbtn" data-act="fday" data-d="1" aria-label="Next day"' + (isToday ? " disabled" : "") + '>›</button></div>';
+  if (isToday) h += fastStrip();
   h += '<div class="card fuel"><div class="fuelrow">' + fuelRing(t, g) + '<div class="fbars">' + fbar("Protein", t.p, g.p, "g", "bp") + fbar("Calories", t.kcal, g.kcal, "", "bk") + fbar("Carbs", t.c, g.c, "g", "bc") + fbar("Fat", t.f, g.f, "g", "bf") + '</div></div>' +
     (items.length && left > 5 ? '<p class="tip"><b>Ideas:</b> ' + esc(proteinIdeas(left)) + '</p>' : "") + '</div>';
   h += quickChips(d);
   h += MEALS.map(function (ml) { return mealNew(d, ml, items); }).join("");
-  if (!fastS().on) h += '<button type="button" class="link center" data-act="fastsheet">Try intermittent fasting</button>';
+  if (!fastS().on) h += '<button type="button" class="link center quiet-link" data-act="fastsheet">Intermittent fasting</button>';
   return h + '</div>';
 }
 function fminiPaint() {
@@ -4173,11 +4210,11 @@ function fminiPaint() {
   UI.fio.observe(card);
 }
 function animFuel() {
-  var cs = document.querySelectorAll(".fring circle[data-to]");
+  var cs = document.querySelectorAll(".fuelring circle[data-to]");
   requestAnimationFrame(function () { requestAnimationFrame(function () {
     Array.prototype.forEach.call(cs, function (c) { var C = +c.getAttribute("data-c"); c.setAttribute("stroke-dasharray", (C * +c.getAttribute("data-to")).toFixed(1) + " " + C); });
   }); });
-  var b = document.querySelector(".fring [data-count]");
+  var b = document.querySelector(".fuelring [data-count]");
   if (b) {
     var from = +b.getAttribute("data-from"), to = +b.getAttribute("data-count"), t0 = performance.now();
     if (from !== to) (function step(now) { var k = Math.min(1, (now - t0) / 500), e = 1 - Math.pow(1 - k, 3); b.textContent = Math.round(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); })(t0); setTimeout(function () { b.textContent = to; }, 700);
@@ -4265,19 +4302,22 @@ function placesIn(cat) { var seen = {}, out = []; FOODS.forEach(function (x) { i
 function sheetList() {
   var sh = UI.sheet, q = (sh.q || "").trim().toLowerCase(), cat = sh.cat || "Recent";
   var mine = (S.profile.myFoods || []).map(function (m) { return foodLookup(m.id); });
+  var meals = sh.pick ? [] : myMeals().map(function (m) { return mealLookup(m.id); });
   var comboRow = function (c) { return listRow({n: c.n, pp: c.p, kk: c.kcal}, c.desc, 'data-act="scombo" data-id="' + c.id + '"'); };
   if (q) {
     var words = q.split(/\s+/), hay = function (x) { return (x.n + " " + (x.a || "") + " " + (x.cat || "") + " " + (x.desc || "")).toLowerCase(); };
     var hit = function (x) { var hs = hay(x); return words.every(function (w) { return hs.indexOf(w) >= 0; }); };
     /* Best matches first: name starts with it, then name has every word, then search words, then only the category */
     var rank = function (x) { var nm = x.n.toLowerCase(); return nm.indexOf(q) === 0 ? 0 : words.every(function (w) { return nm.indexOf(w) >= 0; }) ? 1 : words.every(function (w) { return (nm + " " + (x.a || "")).toLowerCase().indexOf(w) >= 0; }) ? 2 : 3; };
-    var list = mine.concat(FOODS).filter(hit).map(function (x, i) { return {x: x, r: rank(x), i: i}; }).sort(function (a, b) { return a.r - b.r || a.i - b.i; }).map(function (o) { return o.x; });
-    var cm = COMBOS.filter(hit);
+    var list = meals.concat(mine).concat(FOODS).filter(hit).map(function (x, i) { return {x: x, r: rank(x), i: i}; }).sort(function (a, b) { return a.r - b.r || a.i - b.i; }).map(function (o) { return o.x; });
+    var cm = sh.pick ? [] : COMBOS.filter(hit);
     if (!list.length && !cm.length) return '<p class="empty">Nothing found. Try another word ("wors", "maas", "wrap") or <button type="button" class="link inline" data-act="sheet" data-m="custom" data-keep="1">add your own</button>.</p>';
     return list.map(function (x) { return foodRowFor(x); }).join("") + cm.map(comboRow).join("");
   }
   if (cat === "Recent") { var rc = recentFoods(); return rc.length ? rc.map(function (r) { return foodRowFor(r.x, r.amt, r.mode); }).join("") : '<p class="empty">Foods you log show up here with the amount you last had, so repeat meals take one tap.</p>'; }
   if (cat === "Combos") return COMBOS.map(comboRow).join("");
+  if (cat === "My meals") return '<button type="button" class="mkmeal" data-act="mealnew"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span><b>Create a meal</b><span class="small">Your own recipe, e.g. chicken wrap with rice. Save it once, add it any day.</span></span></button>' +
+    meals.map(function (x) { return foodRowFor(x); }).join("") + (meals.length ? "" : '<p class="empty">No meals yet. You can also log a few foods, then tap "Save as my meal" on that meal.</p>');
   if (cat === "My foods") return mine.length ? mine.map(function (x) { return foodRowFor(x); }).join("") : '<p class="empty">Nothing saved yet. Use "Add your own" below.</p>';
   var src = cat === "Top protein" ? TOP_PROTEIN.map(function (id) { return FOOD_BY[id]; }) : FOODS.filter(function (x) { return x.cat === cat && (!PLACE_CATS[cat] || !sh.place || placeOf(x) === sh.place); });
   return src.map(function (x) { return foodRowFor(x); }).join("");
@@ -4300,13 +4340,13 @@ function sheetBody() {
   if (sh.mode === "exadd") return exAddBody();
   if (sh.mode === "todayadd") return todayAddBody();
   if (sh.mode === "add") {
-    var cats = ["Recent"].concat(FCATS);
-    return {title: "Add to " + meal, body:
+    var cats = (sh.pick ? ["Recent"] : ["Recent", "My meals"]).concat(FCATS.filter(function (c) { return !(sh.pick && c === "Combos"); }));
+    return {title: sh.pick ? "Add an ingredient" : "Add to " + meal, back: !!sh.pick, body:
       '<div class="spin"><input class="field" id="fsearch" type="search" enterkeyhint="search" placeholder="Search: pizza, chicken, maas, wors…" value="' + esc(sh.q || "") + '" aria-label="Search foods" autocomplete="off">' +
       '<div class="hscroll" id="fcats"' + (sh.q ? " hidden" : "") + '>' + cats.map(function (c) { return '<button class="chip" type="button" data-act="scat" data-c="' + esc(c) + '" aria-pressed="' + ((sh.cat || "Recent") === c) + '">' + esc(c) + '</button>'; }).join("") + '</div>' +
       (PLACE_CATS[sh.cat] && !sh.q ? '<div class="hscroll eqchips" id="fplaces"><button class="chip" type="button" data-act="splace" data-p="" aria-pressed="' + !sh.place + '">All</button>' + placesIn(sh.cat).map(function (p) { return '<button class="chip" type="button" data-act="splace" data-p="' + esc(p) + '" aria-pressed="' + (sh.place === p) + '">' + esc(p) + '</button>'; }).join("") + '</div>' : "") + '</div>' +
       '<div class="flist" id="flist">' + sheetList() + '</div>' +
-      '<button type="button" class="btn quiet" data-act="sheet" data-m="custom" data-keep="1">Can\'t find it? Add your own</button>'};
+      (sh.pick ? "" : '<button type="button" class="btn quiet" data-act="sheet" data-m="custom" data-keep="1">Can\'t find it? Add your own</button>')};
   }
   if (sh.mode === "amount") {
     var x = foodLookup(sh.fid); if (!x) return {title: "Food", body: '<p class="empty">This food is no longer available.</p>'};
@@ -4320,9 +4360,11 @@ function sheetBody() {
     h += '<div class="hscroll">' + (x.portions || []).map(function (pt) { var v = portionAmt(x, pt[1], mode); return '<button class="chip" type="button" data-act="aport" data-v="' + v + '">' + esc(pt[0]) + '</button>'; }).join("") + '</div>';
     h += '<div id="apreview">' + previewTiles(m) + '</div>';
     if (x.note) h += '<p class="small">' + esc(x.note) + '</p>';
+    if (sh.pick) return {title: "How much?", back: true, body: h + '<button class="btn solid" type="button" data-act="apick">' + (sh.pickIdx != null ? "Update ingredient" : "Add to my meal") + '</button>'};
     h += '<p class="label">Meal</p>' + mealChips(meal);
     if (sh.editT) h += '<div class="btnrow"><button class="btn solid" type="button" data-act="asave">Save</button><button class="btn quiet" type="button" data-act="adel">' + (sh.confirmDel ? "Tap again to remove" : "Remove") + '</button></div>';
     else h += '<button class="btn solid" type="button" data-act="aadd">Add to ' + esc(meal) + '</button>';
+    if (x.mymeal) h += '<button type="button" class="link" data-act="mealedit" data-id="' + esc(x.id) + '">Edit this meal</button>';
     if (x.my) h += '<button type="button" class="link" data-act="fdelmy" data-id="' + esc(x.id) + '">' + (sh.confirmMy ? "Tap again to delete from My foods" : "Delete from My foods") + '</button>';
     return {title: sh.editT ? "Edit" : "How much?", back: !sh.editT, body: h};
   }
@@ -4350,11 +4392,76 @@ function sheetBody() {
       '<p class="label">Meal</p>' + mealChips(meal) + '<button class="btn solid" type="button" data-act="fquick">Add to ' + esc(meal) + '</button>'};
   }
   if (sh.mode === "targets") return {title: "Your targets", body: targetsBody()};
+  if (sh.mode === "mealedit") return mealEditBody();
   if (sh.mode === "water") return waterAmtBody();
   if (sh.mode === "fast") return fastSetupBody();
   if (sh.mode === "fastedit") return fastEarlierBody();
   if (sh.mode === "wgoal") return waterGoalBody();
   return {title: "", body: ""};
+}
+function mealEditBody() {
+  var dr = UI.mealDraft, t = mealTotals(dr.parts), sv = Math.max(1, +dr.serves || 1);
+  var h = '<input class="field" id="mname" type="text" placeholder="Name, e.g. Chicken rice wrap" value="' + esc(dr.n || "") + '" aria-label="Meal name" autocomplete="off">';
+  h += '<p class="label">Ingredients</p><div class="mparts">' + (dr.parts.length ? dr.parts.map(function (pt, i) {
+    return '<div class="mpart"><button type="button" class="mpe" data-act="mpedit" data-i="' + i + '"><span class="nm"><b>' + esc(shortName(pt.n)) + '</b><span class="small">' + esc(pt.portion || "") + '</span></span><span class="fmac"><b>' + r1(pt.p) + ' g</b><span>' + r0(pt.kcal) + ' kcal</span></span></button><button type="button" class="mpx" data-act="mpdel" data-i="' + i + '" aria-label="Remove ' + esc(pt.n) + '">×</button></div>';
+  }).join("") : '<p class="empty">Add what goes into it: the wrap, the chicken, the rice, the sauce.</p>') + '</div>';
+  h += '<button type="button" class="exaddbtn" data-act="mpadd">+ Add an ingredient</button>';
+  h += '<p class="label">This makes</p><div class="chips">' + [1, 2, 3, 4, 6].map(function (n) { return '<button class="chip xs" type="button" data-act="mserves" data-v="' + n + '" aria-pressed="' + (sv === n) + '">' + n + (n === 1 ? " serving" : "") + '</button>'; }).join("") + '</div>';
+  if (dr.parts.length) h += '<p class="label">' + (sv > 1 ? "One serving" : "Whole meal") + '</p>' + previewTiles({kcal: t.kcal / sv, p: t.p / sv, c: t.c / sv, f: t.f / sv});
+  h += '<button class="btn solid" type="button" data-act="msave">' + (dr.isNew ? "Save meal" : "Save changes") + '</button>';
+  if (dr.parts.length) h += '<button class="btn quiet" type="button" data-act="msavelog">Save and add to ' + esc(dr.meal || defaultMeal()) + '</button>';
+  if (!dr.isNew) h += '<button type="button" class="link" data-act="mdel">' + (dr.confirmDel ? "Tap again to delete this meal" : "Delete this meal") + '</button>';
+  return {title: dr.isNew ? "Create a meal" : "Edit meal", body: h};
+}
+function partFrom(e) { return {fid: e.fid || "", n: e.n, portion: e.portion || "", amt: e.amt == null ? null : e.amt, mode: e.mode || "", kcal: r1(e.kcal), p: r1(e.p), c: r1(e.c), f: r1(e.f)}; }
+/* My meals: saved in profile.myMeals = [{id, n, parts: [{fid, n, portion, amt, mode, kcal, p, c, f}], serves, savedAt}] */
+function mealClick(a, b) {
+  var dr = UI.mealDraft, sh = UI.sheet, d = UI.fdate || todayStr();
+  var keepName = function () { var n = $("mname"); if (n && dr) dr.n = n.value; };
+  if (a === "mealnew") { UI.mealDraft = {id: uid("mm-"), n: "", parts: [], serves: 1, isNew: true, meal: (sh && sh.meal) || defaultMeal()}; openSheet({mode: "mealedit"}); return true; }
+  if (a === "mealfrom") {
+    var ml = b.getAttribute("data-meal"), its = foodDay(d).filter(function (it) { return (it.meal || "Snacks") === ml; });
+    UI.mealDraft = {id: uid("mm-"), n: "", parts: its.map(partFrom), serves: 1, isNew: true, meal: ml}; openSheet({mode: "mealedit"});
+    setTimeout(function () { var n = $("mname"); if (n) try { n.focus(); } catch (e) {} }, 60); return true;
+  }
+  if (a === "mealedit") {
+    var m = (S.profile.myMeals || []).filter(function (q) { return q.id === b.getAttribute("data-id"); })[0]; if (!m) return true;
+    UI.mealDraft = {id: m.id, n: m.n, parts: JSON.parse(JSON.stringify(m.parts)), serves: m.serves || 1, isNew: false, meal: (sh && sh.meal) || defaultMeal()}; openSheet({mode: "mealedit"}); return true;
+  }
+  if (!dr) return false;
+  if (a === "mpadd") { keepName(); openSheet({mode: "add", pick: true, q: "", cat: "Recent", pickIdx: null}); return true; }
+  if (a === "mpdel") { keepName(); dr.parts.splice(+b.getAttribute("data-i"), 1); renderSheet(); return true; }
+  if (a === "mpedit") {
+    keepName(); var i = +b.getAttribute("data-i"), pt = dr.parts[i], x = foodLookup(pt.fid);
+    if (!x || pt.amt == null) { toast("This one can only be removed"); return true; }
+    openSheet({mode: "amount", pick: true, pickIdx: i, fid: x.id, amt: pt.amt, unit: pt.mode}); return true;
+  }
+  if (a === "mserves") { keepName(); dr.serves = +b.getAttribute("data-v"); renderSheet(); return true; }
+  if (a === "apick") {
+    var xa = foodLookup(sh.fid), amt = readAmt(); if (!amt) { toast("Enter how much goes in"); return true; }
+    var e = partFrom(makeEntry(xa, amt, sh.unit || modesFor(xa)[0]));
+    if (sh.pickIdx != null) dr.parts[sh.pickIdx] = e; else dr.parts.push(e);
+    openSheet({mode: "mealedit"}); toast("Added " + shortName(xa.n)); return true;
+  }
+  if (a === "sback" && sh && sh.pick) { if (sh.mode === "amount" && sh.pickIdx == null) openSheet({mode: "add", pick: true, q: sh.q, cat: sh.cat}); else openSheet({mode: "mealedit"}); return true; }
+  if (a === "sclose" && sh && (sh.mode === "mealedit" || sh.pick) && b.classList.contains("sheet-back")) return true;
+  if (a === "sclose") { UI.mealDraft = null; return false; }
+  if (a === "msave" || a === "msavelog") {
+    keepName(); dr.n = (dr.n || "").trim();
+    if (!dr.n) { toast("Give your meal a name"); var mn = $("mname"); if (mn) mn.focus(); return true; }
+    if (!dr.parts.length) { toast("Add at least one ingredient"); return true; }
+    var list = S.profile.myMeals = S.profile.myMeals || [], rec = {id: dr.id, n: dr.n, parts: dr.parts, serves: Math.max(1, +dr.serves || 1), savedAt: Date.now()};
+    var ix = list.map(function (q) { return q.id; }).indexOf(dr.id); if (ix >= 0) list[ix] = rec; else list.push(rec);
+    mark("profile");
+    if (a === "msavelog") { var x2 = mealLookup(dr.id), en = makeEntry(x2, 1, "n"); logEntry(en, dr.meal || defaultMeal(), d); mark("food", d); }
+    UI.mealDraft = null; closeSheet(); render(true); toast(a === "msavelog" ? "Saved and added " + rec.n : "Saved " + rec.n + " to My meals"); return true;
+  }
+  if (a === "mdel") {
+    if (!dr.confirmDel) { keepName(); dr.confirmDel = true; renderSheet(); return true; }
+    (S.profile.myMeals || []).forEach(function (q) { if (q.id === dr.id) { q.deleted = true; q.savedAt = Date.now(); } });
+    mark("profile"); UI.mealDraft = null; closeSheet(); render(true); toast("Meal deleted"); return true;
+  }
+  return false;
 }
 function comboTotals() {
   var t = {kcal: 0, p: 0, c: 0, f: 0};
@@ -4426,7 +4533,7 @@ function foodClick(a, b) {
   if (a === "smeal") { sh.meal = b.getAttribute("data-meal"); sh.amt = $("famt") ? readAmt() : sh.amt; renderSheet(); return true; }
   if (a === "spick") {
     var x = foodLookup(b.getAttribute("data-id"));
-    openSheet({mode: "amount", meal: sh.meal, q: sh.q, cat: sh.cat, fid: x.id, amt: +b.getAttribute("data-amt"), unit: b.getAttribute("data-mode")});
+    openSheet({mode: "amount", meal: sh.meal, q: sh.q, cat: sh.cat, fid: x.id, amt: +b.getAttribute("data-amt"), unit: b.getAttribute("data-mode"), pick: sh.pick, pickIdx: null});
     setTimeout(function () { var i = $("famt"); if (i) try { i.focus({preventScroll: true}); i.select(); } catch (e) {} }, 60);
     return true;
   }
@@ -4545,15 +4652,15 @@ function foodWeek() {
 }
 
 /* ---------- Themes (Profile → Theme). Colours live in CSS under :root[data-theme]. ---------- */
-var THEMES = [["volt", "Volt", "Lime + orange", "#c8f542", "#ff8a3d", "#0b0c0e"], ["miami", "Miami", "Pink + teal", "#ff4fa3", "#2ee6d6", "#0b0c0e"], ["ember", "Ember", "Red + amber", "#ff5a36", "#ffc145", "#0b0c0e"],
-  ["ocean", "Ocean", "Aqua + coral", "#2ee6c5", "#ff7a6b", "#0b0c0e"], ["violet", "Ultraviolet", "Violet + pink", "#a78bfa", "#ff6fb5", "#0b0c0e"], ["gold", "Gold rush", "Gold + red", "#ffd23f", "#ff6b6b", "#0b0c0e"],
-  ["mono", "Mono", "White + amber", "#f2f2ec", "#ffb547", "#0b0c0e"], ["daylight", "Daylight", "Light, green + orange", "#4f8a10", "#e2600f", "#f2f3ef"]];
+var THEMES = [["volt", "Volt", "Lime + orange", "#c8f542", "#ff8a3d", "#0b0c0e"], ["ocean", "Ocean", "Aqua + coral", "#2ee6c5", "#ff7a6b", "#0b0c0e"], ["ember", "Ember", "Red + amber", "#ff5a36", "#ffc145", "#0b0c0e"],
+  ["mono", "Mono", "Clean black + white", "#f5f5f7", "#6e6e73", "#000000"], ["daylight", "Daylight", "Light mode", "#4f8a10", "#e2600f", "#f2f3ef"]];
 var curTheme = null;
 function themeOk(v) { return THEMES.some(function (t) { return t[0] === v; }) ? v : "volt"; }
 function applyTheme(v) {
   v = themeOk(v); if (v === curTheme) return; curTheme = v;
   var r = document.documentElement;
   if (v === "volt") r.removeAttribute("data-theme"); else r.setAttribute("data-theme", v);
+  if (v === "mono") r.setAttribute("data-style", "clean"); else r.removeAttribute("data-style");
   try { localStorage.setItem("neongym.theme", v); } catch (e) {}
   var m = document.querySelector('meta[name="theme-color"]'), bg = (THEMES.filter(function (t) { return t[0] === v; })[0] || THEMES[0])[5];
   if (m) m.setAttribute("content", bg);
@@ -4574,7 +4681,7 @@ function render(keepScroll) {
   var gbtn = $("guideBtn"); if (gbtn) gbtn.setAttribute("aria-pressed", UI.tab === "guide");
   var fp = $("finPill"), fs = S.sessions[curKey()];
   if (fp) { fp.hidden = UI.tab !== "today" || !!(fs && fs.finished); fp.classList.toggle("go", !!(fs && hasDone(fs))); }
-  applyTheme(S.profile.theme); applyPreview();
+  applyTheme(S.profile.theme);
   window.scrollTo(0, keepScroll ? y : 0);
   if (UI.tab === "water") animWater(); else UI.wLevel = null;
   if (UI.tab === "food" && foodNew()) animFuel();
@@ -4648,6 +4755,7 @@ document.addEventListener("click", function (ev) {
   if (a === "undo") { var u = UI.undo; UI.undo = null; $("toast").hidden = true; if (u) u(); return; }
   if (a === "fminitop") { window.scrollTo({top: 0, behavior: "smooth"}); return; }
   if (a === "preview") { try { localStorage.setItem("neongym.preview", b.getAttribute("data-v")); } catch (e) {} UI.fuelPrev = null; curTheme = null; render(true); renderSheet(); return; }
+  if (a === "fastx") { UI.open.fastx = !UI.open.fastx; saveUI(); render(true); return; }
   if (a === "fset") { UI.fdate = b.getAttribute("data-d"); render(true); return; }
   if (a === "fweek") { var nw = Math.min(dnum(todayStr()), dnum(UI.fdate || todayStr()) + +b.getAttribute("data-d")); UI.fdate = dstr(nw); render(true); return; }
   if (a === "qmeal") { var dq = UI.fdate || todayStr(), cm = quickMeal(dq); UI.qmeal = MEALS[(MEALS.indexOf(cm) + 1) % MEALS.length]; render(true); return; }
@@ -4668,7 +4776,7 @@ document.addEventListener("click", function (ev) {
   }
   if (a !== "clear") UI.confirmClear = false;
   if (a !== "import") UI.confirmImport = false;
-  if (planClick(a, b) || histClick(a, b) || waterClick(a, b) || fastClick(a, b) || foodClick(a, b)) return;
+  if (mealClick(a, b) || planClick(a, b) || histClick(a, b) || waterClick(a, b) || fastClick(a, b) || foodClick(a, b)) return;
   if (a === "fastopen") { UI.tab = "food"; UI.fdate = todayStr(); if (UI.sheet) closeSheet(); render(false); saveUI(); return; }
   if (a === "tab") { UI.tab = b.getAttribute("data-tab"); if (UI.sheet) closeSheet(); render(false); saveUI(); }
   else if (a === "extab") { UI.extab = UI.extab || {}; UI.extab[id] = b.getAttribute("data-v"); saveUI(); render(true); }
