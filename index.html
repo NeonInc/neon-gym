@@ -15,7 +15,7 @@
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600;700&display=swap">
 <style>
 /* Neon Gym · gym look (dark only, by design): near-black, flat cards, lime for actions, orange for food. Bebas Neue headings, Barlow text, mono tags.
    Layout: one narrow column; fixed bottom dock (rest timer + 4 tabs); each exercise is a compact row: tick + name, details in a dropdown. */
@@ -702,10 +702,87 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .toast.hasundo { display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; padding: 6px 6px 6px 14px; }
 .tundo { border: 0; background: color-mix(in srgb, var(--food) 16%, transparent); color: var(--food); font-weight: 800; border-radius: 8px; min-height: 34px; padding: 0 14px; }
 @media (max-width: 370px) { .fuelrow { grid-template-columns: 136px 1fr; gap: 12px; } .fring { width: 136px; height: 136px; } .fctr b { font-size: 32px; } .fctr span { font-size: 10px; } }
+/* ---- Preview 2: clean monochrome style (data-style="clean"); works with the dark themes and with Daylight ---- */
+.pvs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.pv { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 9px 10px; min-height: 58px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--field); text-align: left; }
+.pv b { font-size: 13.5px; } .pv small { font-size: 11px; color: var(--muted); line-height: 1.25; }
+.pv[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.fhead2 { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; }
+.wstrip { display: grid; grid-template-columns: 24px 1fr 24px; align-items: center; gap: 4px; }
+.wsarr { border: 0; background: none; color: var(--muted); font-size: 22px; padding: 0; min-height: 44px; }
+.wsarr:disabled { opacity: .25; }
+.wdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.wd { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; border: 1px solid transparent; border-radius: 12px; background: none; color: var(--muted); position: relative; }
+.wd .wr { position: relative; width: 36px; height: 36px; display: block; }
+.wd svg { width: 36px; height: 36px; display: block; }
+.wd circle { fill: none; stroke-width: 3; }
+.wd .wt { stroke: var(--surface-2); }
+.wd .wv { stroke: var(--food); stroke-linecap: round; }
+.wd .wl { font-size: 10.5px; font-weight: 600; letter-spacing: .04em; }
+.wd .wn { position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.wd.hit .wv { stroke: var(--food); } .wd.hit svg .wt { fill: color-mix(in srgb, var(--food) 14%, transparent); }
+.wd.sel { background: var(--surface); border-color: var(--line-2); }
+.wd.today .wl { color: var(--ink); }
+.wd:disabled { opacity: .35; }
+:root[data-style="clean"] { color-scheme: dark; --bg: #000000; --surface: #0e0e10; --surface-2: #1c1c1f; --field: #09090b; --line: #1d1d20; --line-2: #2c2c30; --ink: #f5f5f7; --muted: #8e8e93;
+  --accent: #f5f5f7; --accent-ink: #000000; --accent-soft: rgba(255, 255, 255, .06); --good: #f5f5f7; --food: #f5f5f7; --food-ink: #000000; --water: #c9ccd1; --water-deep: #7a7e85; --water-ink: #000000; --fast: #b8b8be; --fast-ink: #000000; --warn: #ff9f0a;
+  --eq-machine: #a1a1a6; --eq-cable: #a1a1a6; --eq-dumbbell: #a1a1a6; --eq-barbell: #ff453a; --eq-smith: #a1a1a6; --eq-body: #a1a1a6;
+  --font-brand: "Inter", system-ui, sans-serif; --font-display: "Inter", system-ui, sans-serif; --font-body: "Inter", system-ui, -apple-system, sans-serif; --font-mono: "Inter", system-ui, sans-serif; }
+:root[data-style="clean"][data-theme="daylight"] { color-scheme: light; --bg: #f5f5f7; --surface: #ffffff; --surface-2: #ececef; --field: #fafafa; --line: #e5e5ea; --line-2: #d1d1d6; --ink: #111113; --muted: #6e6e73;
+  --accent: #111113; --accent-ink: #ffffff; --accent-soft: rgba(0, 0, 0, .05); --good: #111113; --food: #111113; --food-ink: #ffffff; --water: #3a3a3c; --water-deep: #1c1c1e; --water-ink: #ffffff; --fast: #48484a; --fast-ink: #ffffff; --warn: #c93400;
+  --eq-machine: #6e6e73; --eq-cable: #6e6e73; --eq-dumbbell: #6e6e73; --eq-smith: #6e6e73; --eq-body: #6e6e73; --eq-barbell: #d70015; }
+[data-style="clean"] body { -webkit-font-smoothing: antialiased; letter-spacing: -.005em; }
+[data-style="clean"] h2, [data-style="clean"] h3, [data-style="clean"] .row .t, [data-style="clean"] .mh2 b, [data-style="clean"] .mhead b, [data-style="clean"] .fctr b, [data-style="clean"] .rlab b, [data-style="clean"] .meter .big,
+[data-style="clean"] .ptiles b, [data-style="clean"] .vol b, [data-style="clean"] .daycard b, [data-style="clean"] .plan h3, [data-style="clean"] .brand-t, [data-style="clean"] .fmi b, [data-style="clean"] .timer .tt, [data-style="clean"] .sheet-head h3,
+[data-style="clean"] .btn.solid, [data-style="clean"] .finbtn, [data-style="clean"] .amtin, [data-style="clean"] .fmac b, [data-style="clean"] .cnt { font-weight: 650; letter-spacing: -.02em; text-transform: none; }
+[data-style="clean"] h2 { font-size: 34px; line-height: 1.05; font-weight: 700; letter-spacing: -.035em; }
+[data-style="clean"] h2 em, [data-style="clean"] h3 em { color: var(--muted); }
+[data-style="clean"] h3 { font-size: 20px; }
+[data-style="clean"] .sheet-head h3 { font-size: 17px; }
+[data-style="clean"] .brand-t { font-size: 19px; letter-spacing: -.02em; }
+[data-style="clean"] .brand-s { color: var(--muted); letter-spacing: .02em; text-transform: none; font-size: 12px; font-weight: 500; }
+[data-style="clean"] .brand svg .lg { fill: var(--ink); } [data-style="clean"] .brand svg .lb { fill: var(--bg); stroke: var(--bg); }
+[data-style="clean"] .label, [data-style="clean"] .sethead, [data-style="clean"] .fbt > span:first-child, [data-style="clean"] .ptiles span { letter-spacing: .04em; font-size: 11.5px; font-weight: 600; }
+[data-style="clean"] .row .t { font-size: 17px; line-height: 1.25; }
+[data-style="clean"] .mh2 b, [data-style="clean"] .mhead b { font-size: 17px; }
+[data-style="clean"] .meal2.empty .mh2 b { color: var(--ink); }
+[data-style="clean"] .fctr b { font-size: 32px; }
+[data-style="clean"] .fctr span { color: var(--ink); font-weight: 600; }
+[data-style="clean"] .rlab b { font-size: 28px; }
+[data-style="clean"] .meter .big { font-size: 28px; }
+[data-style="clean"] .ptiles b { font-size: 20px; }
+[data-style="clean"] .daycard b, [data-style="clean"] .plan h3 { font-size: 18px; }
+[data-style="clean"] .fmi b { font-size: 16px; }
+[data-style="clean"] .fmac b { font-size: 15px; }
+[data-style="clean"] .btn.solid, [data-style="clean"] .finbtn { font-size: 16px; }
+[data-style="clean"] .timer .tt { font-size: 28px; }
+[data-style="clean"] .card, [data-style="clean"] .row, [data-style="clean"] .meal, [data-style="clean"] .meal2, [data-style="clean"] details.fold, [data-style="clean"] .plan, [data-style="clean"] .daycard, [data-style="clean"] .plist, [data-style="clean"] .pday { border-radius: 16px; }
+[data-style="clean"] .btn, [data-style="clean"] .chg, [data-style="clean"] .exaddbtn, [data-style="clean"] .iconbtn, [data-style="clean"] .hguide, [data-style="clean"] .finpill, [data-style="clean"] .qchip, [data-style="clean"] .pv, [data-style="clean"] .thm { border-radius: 12px; }
+[data-style="clean"] .chip { border-radius: 999px; }
+[data-style="clean"] .finpill { letter-spacing: 0; text-transform: none; font-size: 13px; font-weight: 600; }
+[data-style="clean"] .tick { border-radius: 50%; }
+[data-style="clean"] .nav button { font-weight: 600; letter-spacing: .01em; text-transform: none; font-size: 11px; color: var(--muted); }
+[data-style="clean"] .nav button[aria-selected="true"], [data-style="clean"] .nav button.fnav[aria-selected="true"] { color: var(--ink); box-shadow: none; }
+[data-style="clean"] .nav button[aria-selected="true"] svg { stroke: var(--ink); }
+[data-style="clean"] .nav .fnav, [data-style="clean"] .nav .wnav { color: var(--muted); }
+[data-style="clean"] .eqt::before { display: none; }
+[data-style="clean"] .eqt { font-weight: 500; }
+[data-style="clean"] .fuel { background: var(--surface); }
+[data-style="clean"] .fring .fv1 { stroke: var(--muted); filter: none; }
+[data-style="clean"] .fring .fv2 { stroke: var(--ink); filter: none; }
+[data-style="clean"] .fb.bp { --c: var(--ink); } [data-style="clean"] .fb.bk { --c: var(--muted); } [data-style="clean"] .fb.bc { --c: color-mix(in srgb, var(--muted) 70%, var(--surface-2)); } [data-style="clean"] .fb.bf { --c: color-mix(in srgb, var(--muted) 45%, var(--surface-2)); }
+[data-style="clean"] .fb.over { --c: var(--warn); }
+[data-style="clean"] .plus { box-shadow: none; }
+[data-style="clean"] .meal2.empty .plus { background: var(--surface-2); color: var(--ink); }
+[data-style="clean"] .ring .rv { filter: none; }
+[data-style="clean"] .fpill, [data-style="clean"] .fchg { border-radius: 12px; }
+[data-style="clean"] .dock { border-top-color: var(--line); }
+[data-style="clean"] .fctr small { font-size: 10px; } [data-style="clean"] .fctr span { font-size: 10.5px; max-width: 86px; }
+@media (max-width: 400px) { [data-style="clean"] header.top:has(.finpill:not([hidden])) .brand-t { font-size: 16px; } [data-style="clean"] .fctr b { font-size: 28px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
-<script>try { var nt = localStorage.getItem("neongym.theme"); if (nt && nt !== "volt") document.documentElement.setAttribute("data-theme", nt); } catch (e) {}</script>
+<script>try { var nt = localStorage.getItem("neongym.theme"); if (nt && nt !== "volt") document.documentElement.setAttribute("data-theme", nt); if (localStorage.getItem("neongym.preview") === "p2") document.documentElement.setAttribute("data-style", "clean"); } catch (e) {}</script>
 <header class="top">
   <div class="brand">
     <svg viewBox="0 0 64 64" aria-hidden="true"><rect class="lg" width="64" height="64" rx="12"/><path class="lb" d="M18 32h28" stroke-width="5" stroke-linecap="round"/><rect class="lb" x="12" y="22" width="8" height="20" rx="2"/><rect class="lb" x="44" y="22" width="8" height="20" rx="2"/><rect class="lb" x="7" y="26" width="4" height="12" rx="1.5"/><rect class="lb" x="53" y="26" width="4" height="12" rx="1.5"/></svg>
@@ -1806,15 +1883,15 @@ function profileBody() {
     '<button class="prow tap" type="button" data-act="fastsheet"><span><b>Fasting</b><span class="small">' + (fastS().on ? esc(fastS().plan) + (fasting() ? " · fasting now" : " · eating window") : "Off · tap to learn more") + '</span></span></button>' +
     '<button class="prow tap" type="button" data-act="ptab" data-tab="plans"><span><b>Plan</b><span class="small">' + esc(p.n) + ' · ' + p.perWeek + ' days a week</span></span></button></div>';
   var nW = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length, nF = Object.keys(S.food).filter(function (d) { return foodDay(d).length; }).length, nB = Object.keys(S.body).length;
-  h += '<p class="label">Food screen · preview</p><div class="chips"><button class="chip" type="button" data-act="foodui" data-v="new" aria-pressed="' + foodNew() + '">New look</button><button class="chip" type="button" data-act="foodui" data-v="old" aria-pressed="' + !foodNew() + '">Old look</button></div>';
-  h += '<p class="label">Theme</p>' + themePicker() + '<p class="small">Saved with your account, so it follows you to other phones.</p>';
+  h += '<p class="label">Try the new look</p><div class="pvs">' + PREVIEWS.map(function (pv) { return '<button class="pv" type="button" data-act="preview" data-v="' + pv[0] + '" aria-pressed="' + (previewMode() === pv[0]) + '"><b>' + pv[1] + '</b><small>' + pv[2] + '</small></button>'; }).join("") + '</div>';
+  h += '<p class="label">Theme</p>' + (cleanOn() ? '<p class="small">Preview 2 uses its own black-and-white colours. Pick Daylight for the light version of it.</p>' : "") + themePicker() + '<p class="small">Saved with your account, so it follows you to other phones.</p>';
   h += '<p class="label">Your data</p><div class="plist"><div class="prow"><span>Logged</span><span class="v">' + nW + ' workout' + (nW === 1 ? "" : "s") + ' · ' + nF + ' food day' + (nF === 1 ? "" : "s") + ' · ' + nB + ' weigh-in' + (nB === 1 ? "" : "s") + '</span></div></div>';
   h += '<details class="fold" data-k="backup"' + (UI.open.backup ? " open" : "") + '><summary>Back up or move your log</summary><div class="in">' +
     '<p class="small">' + (u ? "Your log is already saved in your account. " : "") + 'Copy a backup code and keep it in your notes, or paste a code from another phone to load it here.</p>' +
     '<button class="btn" type="button" data-act="export">Copy backup code</button>' +
     '<textarea class="field" id="impcode" placeholder="Paste a backup code here" aria-label="Backup code"></textarea>' +
     '<button class="btn quiet" type="button" data-act="import">' + (UI.confirmImport ? "Tap again to replace this log" : "Load backup code") + '</button></div></details>';
-  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.28 19:06' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
+  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.28 19:12' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
   return {title: "Profile", body: h};
 }
 
@@ -3992,7 +4069,26 @@ if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("mess
 /* While the app is open on Android, keep the notification text roughly right */
 setInterval(function () { if (fasting() && !IS_IOS && document.visibilityState === "visible") showFastNote(false); }, 10 * 60 * 1000);
 /* ---------- New food screen (preview): one fuel ring + bars, quick-add chips, slim meal cards, sticky mini summary ---------- */
-function foodNew() { try { return localStorage.getItem("neongym.foodui") !== "old"; } catch (e) { return true; } }
+/* Preview switch (Profile): live = the current site, p1 = new food screen, p2 = p1 + clean monochrome style + week strip */
+var PREVIEWS = [["live", "Live look", "What the site has now"], ["p1", "Preview 1", "New food screen"], ["p2", "Preview 2", "Clean monochrome + week strip"]];
+function previewMode() { try { var v = localStorage.getItem("neongym.preview"); if (v === "live" || v === "p1" || v === "p2") return v; return localStorage.getItem("neongym.foodui") === "old" ? "live" : "p1"; } catch (e) { return "p1"; } }
+function foodNew() { return previewMode() !== "live"; }
+function cleanOn() { return previewMode() === "p2"; }
+function applyPreview() {
+  var r = document.documentElement, on = cleanOn();
+  if (on) r.setAttribute("data-style", "clean"); else r.removeAttribute("data-style");
+  var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", on ? (themeOk(S.profile.theme) === "daylight" ? "#f5f5f7" : "#000000") : (THEMES.filter(function (t) { return t[0] === themeOk(S.profile.theme); })[0] || THEMES[0])[5]);
+}
+function weekStrip(d) {
+  var mon = monNum(d), td = dnum(todayStr()), g = targets(), C = 2 * Math.PI * 15;
+  var h = '<div class="wstrip"><button type="button" class="wsarr" data-act="fweek" data-d="-7" aria-label="Previous week">‹</button><div class="wdays">';
+  for (var i = 0; i < 7; i++) {
+    var n = mon + i, day = dstr(n), fut = n > td, p = fut ? 0 : totals(foodDay(day)).p, pct = g.p ? Math.min(1, p / g.p) : 0;
+    h += '<button type="button" class="wd' + (day === d ? " sel" : "") + (n === td ? " today" : "") + (pct >= 1 ? " hit" : "") + '" data-act="fset" data-d="' + day + '"' + (fut ? " disabled" : "") + ' aria-label="' + WD[new Date(n * 864e5).getUTCDay()] + ' ' + fmtD(day) + ', ' + r0(p) + ' g protein"><span class="wl">' + "MTWTFSS".charAt(i) + '</span>' +
+      '<span class="wr"><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="wt" cx="20" cy="20" r="15"/>' + (pct > 0.01 ? '<circle class="wv" cx="20" cy="20" r="15" stroke-dasharray="' + (C * pct).toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 20 20)"/>' : "") + '</svg><span class="wn">' + new Date(n * 864e5).getUTCDate() + '</span></span></button>';
+  }
+  return h + '</div><button type="button" class="wsarr" data-act="fweek" data-d="7" aria-label="Next week"' + (mon + 7 > td ? " disabled" : "") + '>›</button></div>';
+}
 function shortName(n) { var t = String(n).replace(/\s*\([^()]*\)\s*$/, ""), c = t.split(","); return c[0].length >= 4 ? c[0] : t; }
 function fmtK(v) { v = Math.round(v); return Math.abs(v) >= 1000 ? (v < 0 ? "-" : "") + Math.floor(Math.abs(v) / 1000) + "," + String(Math.abs(v) % 1000).padStart(3, "0") : String(v); }
 function usualFoods(d) {
@@ -4053,7 +4149,8 @@ function viewFoodNew() {
   var d = UI.fdate || todayStr(), items = foodDay(d), t = totals(items), g = targets(), isToday = d === todayStr(), left = g.p - t.p;
   var dt = new Date(dnum(d) * 864e5), dn = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][dt.getUTCDay()];
   var h = '<div class="sec food food2">';
-  h += '<div class="fdate"><button type="button" class="iconbtn" data-act="fday" data-d="-1" aria-label="Previous day">‹</button><div><p class="label">' + (isToday ? "Today" : dn) + '</p><h2>' + (isToday ? "Food" : fmtD(d)) + '</h2></div><button type="button" class="iconbtn" data-act="fday" data-d="1" aria-label="Next day"' + (isToday ? " disabled" : "") + '>›</button></div>';
+  if (cleanOn()) h += '<div class="fhead2"><div><p class="label">' + (isToday ? "Today · " + fmtD(d) : dn + " · " + fmtD(d)) + '</p><h2>Food</h2></div>' + (isToday ? "" : '<button type="button" class="chip xs" data-act="fset" data-d="' + todayStr() + '">Today</button>') + '</div>' + weekStrip(d);
+  else h += '<div class="fdate"><button type="button" class="iconbtn" data-act="fday" data-d="-1" aria-label="Previous day">‹</button><div><p class="label">' + (isToday ? "Today" : dn) + '</p><h2>' + (isToday ? "Food" : fmtD(d)) + '</h2></div><button type="button" class="iconbtn" data-act="fday" data-d="1" aria-label="Next day"' + (isToday ? " disabled" : "") + '>›</button></div>';
   if (isToday) h += fastCard();
   h += '<div class="card fuel"><div class="fuelrow">' + fuelRing(t, g) + '<div class="fbars">' + fbar("Protein", t.p, g.p, "g", "bp") + fbar("Calories", t.kcal, g.kcal, "", "bk") + fbar("Carbs", t.c, g.c, "g", "bc") + fbar("Fat", t.f, g.f, "g", "bf") + '</div></div>' +
     (items.length && left > 5 ? '<p class="tip"><b>Ideas:</b> ' + esc(proteinIdeas(left)) + '</p>' : "") + '</div>';
@@ -4477,7 +4574,7 @@ function render(keepScroll) {
   var gbtn = $("guideBtn"); if (gbtn) gbtn.setAttribute("aria-pressed", UI.tab === "guide");
   var fp = $("finPill"), fs = S.sessions[curKey()];
   if (fp) { fp.hidden = UI.tab !== "today" || !!(fs && fs.finished); fp.classList.toggle("go", !!(fs && hasDone(fs))); }
-  applyTheme(S.profile.theme);
+  applyTheme(S.profile.theme); applyPreview();
   window.scrollTo(0, keepScroll ? y : 0);
   if (UI.tab === "water") animWater(); else UI.wLevel = null;
   if (UI.tab === "food" && foodNew()) animFuel();
@@ -4550,7 +4647,9 @@ document.addEventListener("click", function (ev) {
   if (a === "fedit" && UI.noClick && Date.now() - UI.noClick < 400) return;
   if (a === "undo") { var u = UI.undo; UI.undo = null; $("toast").hidden = true; if (u) u(); return; }
   if (a === "fminitop") { window.scrollTo({top: 0, behavior: "smooth"}); return; }
-  if (a === "foodui") { try { localStorage.setItem("neongym.foodui", b.getAttribute("data-v")); } catch (e) {} UI.fuelPrev = null; renderSheet(); render(true); return; }
+  if (a === "preview") { try { localStorage.setItem("neongym.preview", b.getAttribute("data-v")); } catch (e) {} UI.fuelPrev = null; curTheme = null; render(true); renderSheet(); return; }
+  if (a === "fset") { UI.fdate = b.getAttribute("data-d"); render(true); return; }
+  if (a === "fweek") { var nw = Math.min(dnum(todayStr()), dnum(UI.fdate || todayStr()) + +b.getAttribute("data-d")); UI.fdate = dstr(nw); render(true); return; }
   if (a === "qmeal") { var dq = UI.fdate || todayStr(), cm = quickMeal(dq); UI.qmeal = MEALS[(MEALS.indexOf(cm) + 1) % MEALS.length]; render(true); return; }
   if (a === "qadd") {
     var dA = UI.fdate || todayStr(), xq = foodLookup(b.getAttribute("data-id")); if (!xq) return;
