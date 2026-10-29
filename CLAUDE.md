@@ -31,6 +31,10 @@ Neon Gym is live at https://neoninc.github.io/neon-gym/ and is one tile on the N
   The service worker only shows the rest notification when no app window is visible.
 - Backups: daily snapshots of `S` in IndexedDB `neongym-backups` (store `snaps`, key `owner|date`, last 14 kept, owner = uid or "local";
   other accounts' copies are deleted when someone else signs in). Restores go through `loadData()`, which saves a "before a restore" copy first.
+- Barcodes: `profile.barcodes = [{code, n, unit: "g"|"ml", kcal, p, c, f (per 100), serv, pack, src: "off"|"me", ok, savedAt}]`;
+  `foodLookup("bc-<code>")` gives a food with base "100 g|ml". Lookups go to Open Food Facts (`OFF_URL`); `offParse()` scales
+  per-serving values, prefers kJ when kcal disagrees with the macros, and `bcCheck()` sends anything that doesn't add up to the
+  label form. `ok` = the user confirmed it against the label. Scanning uses the built-in BarcodeDetector or loads `BD_URL` (ZXing).
 - Water is stored per day inside that day's food doc (`S.food[d].water = [{ml, t}]`), so it syncs with food.
   A food doc can hold only water: use `tidyFoodDay(d)` instead of deleting a day when its items run out.
 - Fasting state lives in the profile (`profile.fast = {on, plan, h, start, consent, notify}`, `profile.fastLog`). The service worker

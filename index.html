@@ -895,6 +895,28 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .prline b { color: #f2c230; } .prline .medal { width: 20px; height: 20px; }
 :root[data-theme="daylight"] .prline b, [data-style="clean"][data-theme="daylight"] .prline b { color: #9a6b00; }
 .plq span { min-width: 42px; }
+/* barcode scanner */
+.srow { display: flex; gap: 8px; }
+.srow .field { flex: 1; min-width: 0; }
+.scanbtn { flex: none; width: 48px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--field); color: var(--food); display: grid; place-items: center; }
+.scanbtn svg, .mkmeal svg.bc { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+.scanbox { position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden; background: #000; }
+.scanbox video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.scanframe { position: absolute; inset: 22% 10%; border-radius: 12px; box-shadow: 0 0 0 999px rgba(0, 0, 0, .35); }
+.scanframe::before, .scanframe::after { content: ""; position: absolute; inset: 0; border-radius: 12px; border: 3px solid var(--food); -webkit-mask: linear-gradient(#000 0 0) top left / 22% 22% no-repeat, linear-gradient(#000 0 0) top right / 22% 22% no-repeat, linear-gradient(#000 0 0) bottom left / 22% 22% no-repeat, linear-gradient(#000 0 0) bottom right / 22% 22% no-repeat; mask: linear-gradient(#000 0 0) top left / 22% 22% no-repeat, linear-gradient(#000 0 0) top right / 22% 22% no-repeat, linear-gradient(#000 0 0) bottom left / 22% 22% no-repeat, linear-gradient(#000 0 0) bottom right / 22% 22% no-repeat; }
+.scanframe i { position: absolute; left: 6%; right: 6%; height: 2px; top: 50%; background: var(--food); box-shadow: 0 0 10px var(--food); animation: scanl 1.8s ease-in-out infinite alternate; }
+@keyframes scanl { from { top: 12%; } to { top: 88%; } }
+.scanmsg { margin: 0; text-align: center; font-size: 14px; font-weight: 600; }
+.scanmsg.bad { color: var(--warn); }
+.bcrow { display: flex; gap: 8px; }
+.bcrow .field { flex: 1; min-width: 0; font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+.bcrow .btn { flex: none; width: auto; padding: 0 18px; margin: 0; }
+.bcwait { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px 0; }
+.spinner { width: 36px; height: 36px; border-radius: 50%; border: 3px solid var(--line-2); border-top-color: var(--food); animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.bccheck { border: 1px solid color-mix(in srgb, var(--food) 45%, transparent); background: color-mix(in srgb, var(--food) 8%, transparent); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.bccheck p { margin: 0; font-size: 14px; } .bcvals { font-weight: 700; font-variant-numeric: tabular-nums; }
+.bccheck .btnrow { margin: 0; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -2011,7 +2033,7 @@ function profileBody() {
     (canPush ? '<button class="chip xs" type="button" data-act="restopt" data-k="push" aria-pressed="' + rs.push + '">Alert when the app is closed</button>' : "") + '</div>' +
     '<p class="small">' + (canPush ? "With the alert on, your phone buzzes when rest is over even if you switched apps or locked the screen." + (IS_IOS ? " On iPhone this needs the app added to your Home Screen." : "") : "The timer buzzes and beeps while the app is open.") + '</p>';
   h += backupSection();
-  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.29 13:30' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
+  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.29 15:55' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
   return {title: "Profile", body: h};
 }
 
@@ -3824,6 +3846,7 @@ function mealLookup(fid) {
 function foodLookup(fid) {
   if (!fid) return null;
   if (fid.indexOf("mm-") === 0) return mealLookup(fid);
+  if (fid.indexOf("bc-") === 0) return bcLookup(fid);
   if (fid.indexOf("my-") === 0) { var m = (S.profile.myFoods || []).filter(function (q) { return q.id === fid; })[0]; return m ? {id: m.id, n: m.n, base: "1 portion", kcal: m.kcal, p: m.p, c: m.c, f: m.f, portions: [["1 portion", 1], ["½ portion", .5], ["2 portions", 2]], my: true} : null; }
   return FOOD_BY[fid] || null;
 }
@@ -4403,7 +4426,7 @@ function placeOf(x) { var m = x.n.match(/\(([^()]+)\)\s*$/); return m ? m[1].spl
 function placesIn(cat) { var seen = {}, out = []; FOODS.forEach(function (x) { if (x.cat !== cat) return; var p = placeOf(x); if (p && !/^(generic|average)$/i.test(p) && !seen[p]) { seen[p] = 1; out.push(p); } }); return out.sort(); }
 function sheetList() {
   var sh = UI.sheet, q = (sh.q || "").trim().toLowerCase(), cat = sh.cat || "Recent";
-  var mine = (S.profile.myFoods || []).map(function (m) { return foodLookup(m.id); });
+  var mine = (S.profile.myFoods || []).map(function (m) { return foodLookup(m.id); }).concat(bcList().map(function (b) { return bcLookup("bc-" + b.code); }).filter(Boolean));
   var meals = sh.pick ? [] : myMeals().map(function (m) { return mealLookup(m.id); });
   var comboRow = function (c) { return listRow({n: c.n, pp: c.p, kk: c.kcal}, c.desc, 'data-act="scombo" data-id="' + c.id + '"'); };
   if (q) {
@@ -4418,6 +4441,7 @@ function sheetList() {
   }
   if (cat === "Recent") { var rc = recentFoods(); return rc.length ? rc.map(function (r) { return foodRowFor(r.x, r.amt, r.mode); }).join("") : '<p class="empty">Foods you log show up here with the amount you last had, so repeat meals take one tap.</p>'; }
   if (cat === "Combos") return COMBOS.map(comboRow).join("");
+  if (cat === "Scanned") return '<button type="button" class="mkmeal" data-act="scanopen">' + BARCODE_SVG + '<span><b>Scan a barcode</b><span class="small">Point your camera at the barcode on the pack.</span></span></button>' + bcList().slice().reverse().map(function (b) { return foodRowFor(bcLookup("bc-" + b.code)); }).join("");
   if (cat === "My meals") return '<button type="button" class="mkmeal" data-act="mealnew"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span><b>Create a meal</b><span class="small">Your own recipe, e.g. chicken wrap with rice. Save it once, add it any day.</span></span></button>' +
     meals.map(function (x) { return foodRowFor(x); }).join("") + (meals.length ? "" : '<p class="empty">No meals yet. You can also log a few foods, then tap "Save as my meal" on that meal.</p>');
   if (cat === "My foods") return mine.length ? mine.map(function (x) { return foodRowFor(x); }).join("") : '<p class="empty">Nothing saved yet. Use "Add your own" below.</p>';
@@ -4442,9 +4466,9 @@ function sheetBody() {
   if (sh.mode === "exadd") return exAddBody();
   if (sh.mode === "todayadd") return todayAddBody();
   if (sh.mode === "add") {
-    var cats = (sh.pick ? ["Recent"] : ["Recent", "My meals"]).concat(FCATS.filter(function (c) { return !(sh.pick && c === "Combos"); }));
+    var cats = (sh.pick ? ["Recent"] : ["Recent", "My meals"]).concat(bcList().length ? ["Scanned"] : []).concat(FCATS.filter(function (c) { return !(sh.pick && c === "Combos"); }));
     return {title: sh.pick ? "Add an ingredient" : "Add to " + meal, back: !!sh.pick, body:
-      '<div class="spin"><input class="field" id="fsearch" type="search" enterkeyhint="search" placeholder="Search: pizza, chicken, maas, wors…" value="' + esc(sh.q || "") + '" aria-label="Search foods" autocomplete="off">' +
+      '<div class="spin"><div class="srow"><input class="field" id="fsearch" type="search" enterkeyhint="search" placeholder="Search: pizza, chicken, maas, wors…" value="' + esc(sh.q || "") + '" aria-label="Search foods" autocomplete="off"><button type="button" class="scanbtn" data-act="scanopen" aria-label="Scan a barcode" title="Scan a barcode">' + BARCODE_SVG + '</button></div>' +
       '<div class="hscroll" id="fcats"' + (sh.q ? " hidden" : "") + '>' + cats.map(function (c) { return '<button class="chip" type="button" data-act="scat" data-c="' + esc(c) + '" aria-pressed="' + ((sh.cat || "Recent") === c) + '">' + esc(c) + '</button>'; }).join("") + '</div>' +
       (PLACE_CATS[sh.cat] && !sh.q ? '<div class="hscroll eqchips" id="fplaces"><button class="chip" type="button" data-act="splace" data-p="" aria-pressed="' + !sh.place + '">All</button>' + placesIn(sh.cat).map(function (p) { return '<button class="chip" type="button" data-act="splace" data-p="' + esc(p) + '" aria-pressed="' + (sh.place === p) + '">' + esc(p) + '</button>'; }).join("") + '</div>' : "") + '</div>' +
       '<div class="flist" id="flist">' + sheetList() + '</div>' +
@@ -4466,6 +4490,8 @@ function sheetBody() {
     h += '<p class="label">Meal</p>' + mealChips(meal);
     if (sh.editT) h += '<div class="btnrow"><button class="btn solid" type="button" data-act="asave">Save</button><button class="btn quiet" type="button" data-act="adel">' + (sh.confirmDel ? "Tap again to remove" : "Remove") + '</button></div>';
     else h += '<button class="btn solid" type="button" data-act="aadd">Add to ' + esc(meal) + '</button>';
+    if (x.bc) { var bcr = bcFind(x.id.slice(3)) || {}; if (bcr.src === "off" && !bcr.ok) h = '<div class="bccheck"><p><b>New product: check it once.</b> Does the label say about this per 100 ' + (bcr.unit === "ml" ? "ml" : "g") + '?</p><p class="bcvals">' + r0(bcr.kcal) + ' kcal · ' + r1(bcr.p) + ' g protein · ' + r1(bcr.c) + ' g carbs · ' + r1(bcr.f) + ' g fat</p><div class="btnrow"><button class="btn" type="button" data-act="bcok">Matches my label</button><button class="btn quiet" type="button" data-act="bcedit">Fix values</button></div></div>' + h;
+      else h += '<button type="button" class="link" data-act="bcedit">' + (bcr.ok || bcr.src === "me" ? "✓ Checked against the label · edit" : "Edit label values") + '</button>'; }
     if (x.mymeal) h += '<button type="button" class="link" data-act="mealedit" data-id="' + esc(x.id) + '">Edit this meal</button>';
     if (x.my) h += '<button type="button" class="link" data-act="fdelmy" data-id="' + esc(x.id) + '">' + (sh.confirmMy ? "Tap again to delete from My foods" : "Delete from My foods") + '</button>';
     return {title: sh.editT ? "Edit" : "How much?", back: !sh.editT, body: h};
@@ -4495,6 +4521,9 @@ function sheetBody() {
   }
   if (sh.mode === "targets") return {title: "Your targets", body: targetsBody()};
   if (sh.mode === "mealedit") return mealEditBody();
+  if (sh.mode === "scan") return scanBody();
+  if (sh.mode === "bcwait") return bcWaitBody();
+  if (sh.mode === "bcnew") return bcNewBody();
   if (sh.mode === "water") return waterAmtBody();
   if (sh.mode === "fast") return fastSetupBody();
   if (sh.mode === "fastedit") return fastEarlierBody();
@@ -4572,6 +4601,7 @@ function comboTotals() {
 }
 function renderSheet() {
   var el = $("sheet");
+  if (SC.stream && (!UI.sheet || UI.sheet.mode !== "scan")) stopScan();
   if (!UI.sheet) { el.hidden = true; el.innerHTML = ""; document.body.classList.remove("locked"); return; }
   var b = sheetBody(), keep = el.querySelector(".sheet-body"), sc = keep ? keep.scrollTop : 0, same = el.getAttribute("data-mode") === UI.sheet.mode;
   el.innerHTML = '<div class="sheet-back" data-act="sclose"></div><div class="sheet-in" role="dialog" aria-modal="true" aria-label="' + esc(b.title) + '"><div class="sheet-head">' +
@@ -4580,6 +4610,7 @@ function renderSheet() {
   el.className = "sheet" + (["finish","daypick","dayview","exhist","plannew","planedit","exadd","todayadd","profile"].indexOf(UI.sheet.mode) >= 0 ? " wk" : UI.sheet.mode === "water" || UI.sheet.mode === "wgoal" ? " wt" : UI.sheet.mode === "fast" || UI.sheet.mode === "fastedit" ? " ft" : "");
   el.hidden = false; document.body.classList.add("locked");
   if (same) el.querySelector(".sheet-body").scrollTop = sc;
+  if (UI.sheet.mode === "scan") { var sv = $("scanvid"); if (SC.stream && sv) { sv.srcObject = SC.stream; var pp = sv.play(); if (pp && pp.catch) pp.catch(function () {}); } else setTimeout(startScan, 30); }
 }
 function readAmt() { var v = num(($("famt") || {}).value); return v == null || v < 0 ? 0 : v; }
 function updatePreview() {
@@ -4816,6 +4847,179 @@ function tick() {
   }
 }
 
+/* ---------- Barcode scanner: camera + BarcodeDetector (built into Android Chrome; a small ZXing add-on is loaded for iPhone),
+   product values from Open Food Facts, saved in profile.barcodes so a second scan works offline ---------- */
+var BD_URL = "https://cdn.jsdelivr.net/npm/barcode-detector@3.2.2/dist/iife/ponyfill.js";
+var OFF_URL = "https://world.openfoodfacts.org/api/v2/product/";
+var SC = {stream: null, loop: null, det: null, busy: false};
+function bcList() { return (S.profile.barcodes || []).filter(function (b) { return !b.deleted; }); }
+function bcFind(code) { return bcList().filter(function (b) { return b.code === code; })[0]; }
+function bcLookup(fid) {
+  var b = bcFind(fid.slice(3)); if (!b) return null;
+  var u = b.unit === "ml" ? "ml" : "g", pts = [];
+  if (b.serv > 0) pts.push(["1 serving (" + r1(b.serv) + " " + u + ")", b.serv / 100]);
+  pts.push(["100 " + u, 1]);
+  if (b.pack > 0 && b.pack !== b.serv) pts.push(["whole pack (" + r1(b.pack) + " " + u + ")", b.pack / 100]);
+  return {id: "bc-" + b.code, n: b.n, cat: "Scanned", base: "100 " + u, kcal: +b.kcal || 0, p: +b.p || 0, c: +b.c || 0, f: +b.f || 0, portions: pts, bc: true, a: "scanned barcode " + b.code,
+    note: (b.src === "off" ? "From Open Food Facts, a shared product database. Check it against the label once; tap Edit label values if it's off." : "Your label values.") + " Barcode " + b.code + "."};
+}
+function bcSave(rec) {
+  var list = S.profile.barcodes = S.profile.barcodes || [], ix = list.map(function (b) { return b.code; }).indexOf(rec.code);
+  rec.savedAt = Date.now(); if (ix >= 0) list[ix] = rec; else list.push(rec); mark("profile");
+}
+function bcOpen(code) {
+  var sh = UI.sheet || {}, x = foodLookup("bc-" + code); if (!x) return;
+  var md = modesFor(x)[0];
+  openSheet({mode: "amount", meal: sh.meal || defaultMeal(), q: "", cat: "Recent", fid: x.id, amt: portionAmt(x, (x.portions || [["", 1]])[0][1], md), unit: md, pick: sh.pick, pickIdx: null});
+}
+function loadBD() {
+  if (window.BarcodeDetectionAPI) return Promise.resolve(window.BarcodeDetectionAPI.BarcodeDetector);
+  return new Promise(function (res, rej) { var s = document.createElement("script"); s.src = BD_URL; s.async = true; s.onload = function () { window.BarcodeDetectionAPI ? res(window.BarcodeDetectionAPI.BarcodeDetector) : rej("no api"); }; s.onerror = function () { rej("load"); }; document.head.appendChild(s); });
+}
+var BC_FORMATS = ["ean_13", "ean_8", "upc_a", "upc_e", "code_128"];
+function getDetector() {
+  if (SC.det) return Promise.resolve(SC.det);
+  var native = window.BarcodeDetector && BarcodeDetector.getSupportedFormats ? BarcodeDetector.getSupportedFormats().then(function (f) { return f.indexOf("ean_13") >= 0 ? BarcodeDetector : null; }).catch(function () { return null; }) : Promise.resolve(null);
+  return native.then(function (C) { return C || loadBD(); }).then(function (C) { SC.det = new C({formats: BC_FORMATS}); return SC.det; });
+}
+function scanMsg(t, bad) { var m = $("scanmsg"); if (m) { m.textContent = t; m.classList.toggle("bad", !!bad); } }
+function stopScan() {
+  clearTimeout(SC.loop); SC.loop = null;
+  if (SC.stream) { SC.stream.getTracks().forEach(function (t) { try { t.stop(); } catch (e) {} }); SC.stream = null; }
+}
+function startScan() {
+  var v = $("scanvid"); if (!v || SC.stream) return;
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { scanMsg("This browser can't use the camera. Type the number under the barcode instead.", true); return; }
+  scanMsg("Starting the camera…");
+  navigator.mediaDevices.getUserMedia({video: {facingMode: {ideal: "environment"}, width: {ideal: 1280}, height: {ideal: 720}}, audio: false}).then(function (st) {
+    if (!UI.sheet || UI.sheet.mode !== "scan") { st.getTracks().forEach(function (t) { t.stop(); }); return; }
+    SC.stream = st; v.srcObject = st; v.setAttribute("playsinline", ""); var pl = v.play(); if (pl && pl.catch) pl.catch(function () {});
+    scanMsg("Point the camera at the barcode");
+    return getDetector().then(function (det) {
+      var step = function () {
+        if (!SC.stream) return;
+        if (v.readyState < 2 || SC.busy) { SC.loop = setTimeout(step, 150); return; }
+        SC.busy = true;
+        det.detect(v).then(function (codes) {
+          SC.busy = false;
+          var hit = (codes || []).map(function (c) { return String(c.rawValue || "").replace(/\D/g, ""); }).filter(function (c) { return c.length >= 8 && c.length <= 14; })[0];
+          if (hit) { try { if (navigator.vibrate) navigator.vibrate(60); } catch (e) {} stopScan(); bcLookupCode(hit); return; }
+          SC.loop = setTimeout(step, 180);
+        }).catch(function () { SC.busy = false; SC.loop = setTimeout(step, 400); });
+      };
+      step();
+    }).catch(function () { scanMsg("The scanner couldn't load (no signal?). Type the number under the barcode instead.", true); });
+  }).catch(function (err) {
+    var n = err && err.name;
+    scanMsg(n === "NotAllowedError" || n === "SecurityError" ? "Camera access is blocked. Allow the camera for this site in your browser settings, or type the number below." : n === "NotFoundError" ? "No camera found. Type the number under the barcode instead." : "The camera didn't start. Type the number under the barcode instead.", true);
+  });
+}
+/* Values per 100 g/ml as sold. Falls back to per-serving values scaled up, then checks that they add up. */
+function bcCheck(r) {
+  var why = [];
+  ["kcal", "p", "c", "f"].forEach(function (k) { if (r[k] != null && (!isFinite(r[k]) || r[k] < 0)) why.push("a value is negative or not a number"); });
+  if (r.kcal != null && r.kcal > 950) why.push("more than 950 kcal per 100 " + r.unit);
+  if (r.p != null && r.c != null && r.f != null && r.p + r.c + r.f > 101) why.push("protein + carbs + fat add up to more than 100 g");
+  if (r.kcal != null && r.p != null && r.c != null && r.f != null) {
+    var mk = 4 * r.p + 4 * r.c + 9 * r.f;
+    if (mk > 25 && Math.abs(r.kcal - mk) / Math.max(r.kcal, mk) > 0.25) why.push("the kcal (" + r0(r.kcal) + ") doesn't match the protein, carbs and fat (about " + r0(mk) + " kcal)");
+  }
+  return why.filter(function (w, i, a) { return a.indexOf(w) === i; });
+}
+function offParse(code, j) {
+  var p = j && j.product; if (!p || j.status === 0) return null;
+  var nm = (p.product_name_en || p.product_name || p.generic_name || "").trim(), br = String(p.brands || "").split(",")[0].trim();
+  if (br && nm.toLowerCase().indexOf(br.toLowerCase()) < 0) nm = nm ? nm + " (" + br + ")" : br;
+  var unit = p.product_quantity_unit === "ml" || /\d\s*(ml|cl|l)\b/i.test(p.quantity || "") ? "ml" : "g";
+  var serv = +p.serving_quantity > 0 && +p.serving_quantity < 2000 ? +p.serving_quantity : 0, pack = +p.product_quantity > 0 && +p.product_quantity < 10000 ? +p.product_quantity : 0;
+  var nu = p.nutriments || {}, per = function (k) {
+    var v = nu[k + "_100g"]; if (v != null && v !== "" && isFinite(+v)) return +v;
+    var sv = nu[k + "_serving"]; if (serv && sv != null && sv !== "" && isFinite(+sv)) return +sv / serv * 100;
+    return null;
+  };
+  var kj = per("energy-kj"); if (kj == null && nu["energy_unit"] !== "kcal") kj = per("energy");
+  var kc = per("energy-kcal"), pr = per("proteins"), cb = per("carbohydrates"), ft = per("fat");
+  /* kcal from the label's kJ when the two disagree and the kJ fits the macros better */
+  if (kj != null && pr != null && cb != null && ft != null) {
+    var mk = 4 * pr + 4 * cb + 9 * ft, fromKj = kj / 4.184;
+    if (kc == null || (Math.abs(kc - fromKj) / Math.max(kc, fromKj, 1) > 0.05 && Math.abs(fromKj - mk) < Math.abs(kc - mk))) kc = fromKj;
+  } else if (kc == null && kj != null) kc = kj / 4.184;
+  var rec = {code: code, n: (nm || "Product " + code).slice(0, 60), unit: unit, kcal: kc == null ? null : r1(kc), p: pr == null ? null : r1(pr), c: cb == null ? null : r1(cb), f: ft == null ? null : r1(ft), serv: serv, pack: pack, src: "off"};
+  rec.complete = rec.kcal != null && rec.p != null && rec.c != null && rec.f != null;
+  var dq = (p.data_quality_errors_tags || []).filter(function (t) { return /nutri|energy|protein|fat|carbohydrat|sugar/.test(t); });
+  rec.issues = bcCheck(rec).concat(dq.length ? ["the database itself flags a problem with these values"] : []);
+  return rec;
+}
+function bcLookupCode(code) {
+  code = String(code || "").replace(/\D/g, "");
+  if (code.length < 8 || code.length > 14) { toast("Barcodes have 8 to 14 digits"); return; }
+  if (bcFind(code)) { bcOpen(code); return; }
+  var keep = UI.sheet || {};
+  openSheet({mode: "bcwait", code: code, meal: keep.meal, pick: keep.pick});
+  var ctl = window.AbortController ? new AbortController() : null, to = setTimeout(function () { if (ctl) ctl.abort(); }, 9000);
+  fetch(OFF_URL + code + ".json?fields=product_name,product_name_en,generic_name,brands,quantity,product_quantity,product_quantity_unit,serving_quantity,nutriments,data_quality_errors_tags", ctl ? {signal: ctl.signal} : {})
+    .then(function (r) { if (r.status === 404) return {status: 0}; if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+    .then(function (j) {
+      clearTimeout(to); if (!UI.sheet || UI.sheet.mode !== "bcwait" || UI.sheet.code !== code) return;
+      var rec = offParse(code, j);
+      if (rec && rec.complete && !rec.issues.length) { delete rec.complete; delete rec.issues; rec.ok = false; bcSave(rec); bcOpen(code); toast("Found: " + shortName(rec.n)); return; }
+      openSheet({mode: "bcnew", code: code, meal: keep.meal, pick: keep.pick, pre: rec, why: !rec ? "missing" : rec.complete ? "check" : "partial", issues: rec ? rec.issues : []});
+    })
+    .catch(function () { clearTimeout(to); if (!UI.sheet || UI.sheet.mode !== "bcwait") return; openSheet({mode: "bcnew", code: code, meal: keep.meal, pick: keep.pick, why: "offline"}); });
+}
+var BARCODE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8v8M10 8v8M13 8v8M16 8v8" stroke-width="1.6"/></svg>';
+function scanBody() {
+  var h = '<div class="scanbox"><video id="scanvid" playsinline muted autoplay></video><div class="scanframe"><i></i></div></div><p class="scanmsg" id="scanmsg">Point the camera at the barcode</p>';
+  h += '<p class="label">Or type the number under the barcode</p><div class="bcrow"><input class="field" id="bcnum" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. 6001240100035" aria-label="Barcode number"><button class="btn solid" type="button" data-act="bclook">Look up</button></div>';
+  h += '<p class="small">Product values come from Open Food Facts, a free shared database. Anything it doesn\'t know, you add once from the label and it\'s remembered.</p>';
+  return {title: "Scan a barcode", back: true, body: h};
+}
+function bcWaitBody() { return {title: "Looking it up", back: true, body: '<div class="bcwait"><span class="spinner"></span><p>Finding barcode <b>' + esc(UI.sheet.code) + '</b>…</p></div>'}; }
+function bcNewBody() {
+  var sh = UI.sheet, pre = sh.pre || bcFind(sh.code) || {}, unit = sh.unit || pre.unit || "g", v = function (k) { return pre[k] == null ? "" : pre[k]; };
+  var why = sh.why === "check" ? "Open Food Facts has this product, but its numbers don't add up: " + (sh.issues || []).join("; ") + ". Check them against the label and fix what's wrong." : sh.why === "partial" ? "Open Food Facts knows this product but not all its values. Copy them from the label once and they're saved." : sh.why === "offline" ? "Couldn't reach the product database (no signal?). Enter the label values, or go back and try again later." : sh.why === "edit" ? "Fix any value from the label. It's saved for every future scan." : "This product isn't in the database yet. Copy the values from the label once and the next scan finds it.";
+  var h = '<p class="small">' + why + '</p><p class="small">Barcode <b>' + esc(sh.code) + '</b></p>';
+  h += '<input class="field" id="bcn" type="text" placeholder="Name, e.g. Greek yoghurt (Woolworths)" value="' + esc(v("n")) + '" aria-label="Product name" autocomplete="off">';
+  h += '<p class="label">Label values per 100</p><div class="chips"><button class="chip xs" type="button" data-act="bcunit" data-v="g" aria-pressed="' + (unit === "g") + '">per 100 g</button><button class="chip xs" type="button" data-act="bcunit" data-v="ml" aria-pressed="' + (unit === "ml") + '">per 100 ml</button></div>';
+  h += '<div class="row4"><label class="fl">kcal<input class="field" id="bck" type="text" inputmode="decimal" value="' + esc(v("kcal")) + '"></label><label class="fl">Protein g<input class="field" id="bcp" type="text" inputmode="decimal" value="' + esc(v("p")) + '"></label><label class="fl">Carbs g<input class="field" id="bcc" type="text" inputmode="decimal" value="' + esc(v("c")) + '"></label><label class="fl">Fat g<input class="field" id="bcf" type="text" inputmode="decimal" value="' + esc(v("f")) + '"></label></div>';
+  h += '<p class="small">Label shows kJ only? Divide by 4.2 for kcal.</p>';
+  h += '<label class="fl">Serving size (' + unit + ', optional)<input class="field" id="bcs" type="text" inputmode="decimal" value="' + esc(pre.serv || "") + '" placeholder="e.g. 175"></label>';
+  if (sh.warned && (sh.issues || []).length) h += '<p class="note"><b>Check:</b> ' + esc(sh.issues.join("; ")) + '. Tap Save again if the label really says so.</p>';
+  h += '<button class="btn solid" type="button" data-act="bcsave">Save and add</button>';
+  if (sh.why === "edit") h += '<button type="button" class="link" data-act="bcdel">' + (sh.confirmDel ? "Tap again to forget this barcode" : "Forget this barcode") + '</button>';
+  return {title: sh.why === "edit" ? "Edit label values" : "Add this product", back: true, body: h};
+}
+function scanClick(a, b) {
+  var sh = UI.sheet;
+  if (a === "scanopen") { openSheet({mode: "scan", meal: sh && sh.meal, pick: sh && sh.pick}); return true; }
+  if (a === "bclook") { var n = $("bcnum"); stopScan(); bcLookupCode(n ? n.value : ""); return true; }
+  if (!sh) return false;
+  if (a === "sback" && (sh.mode === "scan" || sh.mode === "bcwait" || sh.mode === "bcnew")) { stopScan(); openSheet({mode: "add", meal: sh.meal, q: "", cat: "Recent", pick: sh.pick}); return true; }
+  if (a === "bcunit") { sh.unit = b.getAttribute("data-v"); sh.pre = bcFormVals(); renderSheet(); return true; }
+  if (a === "bcok") { var xo = foodLookup(sh.fid), ro = xo && bcFind(xo.id.slice(3)); if (ro) { ro.ok = true; ro.savedAt = Date.now(); mark("profile"); sh.amt = $("famt") ? readAmt() : sh.amt; renderSheet(); toast("Thanks. Marked as checked."); } return true; }
+  if (a === "bcedit") { var x = foodLookup(sh.fid); if (!x || !x.bc) return true; openSheet({mode: "bcnew", code: x.id.slice(3), meal: sh.meal, pick: sh.pick, why: "edit"}); return true; }
+  if (a === "bcsave") {
+    var rec = bcFormVals(); rec.code = sh.code; rec.src = "me";
+    if (!rec.n) { toast("Give it a name"); return true; }
+    if (rec.kcal == null || rec.p == null) { toast("Enter at least kcal and protein"); return true; }
+    rec.c = rec.c || 0; rec.f = rec.f || 0;
+    var iss = bcCheck(rec);
+    if (iss.length && !sh.warned) { sh.warned = true; sh.pre = rec; sh.issues = iss; renderSheet(); toast("Check: " + iss[0] + ". Tap Save again if the label really says so."); return true; }
+    rec.ok = true;
+    bcSave(rec); bcOpen(sh.code); toast("Saved. Next scan finds it."); return true;
+  }
+  if (a === "bcdel") {
+    if (!sh.confirmDel) { sh.pre = bcFormVals(); sh.confirmDel = true; renderSheet(); return true; }
+    (S.profile.barcodes || []).forEach(function (q) { if (q.code === sh.code) { q.deleted = true; q.savedAt = Date.now(); } });
+    mark("profile"); openSheet({mode: "add", meal: sh.meal, q: "", cat: "Recent", pick: sh.pick}); toast("Barcode forgotten"); return true;
+  }
+  return false;
+}
+function bcFormVals() {
+  var g = function (id) { var e = $(id); return e ? e.value : ""; }, nv = function (id) { var x = num(g(id)); return x == null ? null : r1(x); };
+  var prev = bcFind((UI.sheet || {}).code) || {};
+  return {n: g("bcn").trim(), unit: (UI.sheet && UI.sheet.unit) || (UI.sheet.pre || {}).unit || prev.unit || "g", kcal: nv("bck"), p: nv("bcp"), c: nv("bcc"), f: nv("bcf"), serv: nv("bcs") || 0, pack: prev.pack || 0};
+}
 /* ---------- Plate calculator (barbell, Smith and plate-loaded machines) ---------- */
 var PLATES = [25, 20, 15, 10, 5, 2.5, 1.25];
 function plateable(e) { var t = eqType(e); return t === "barbell" || t === "smith" || /plate-loaded/i.test(e.eq || ""); }
@@ -5024,6 +5228,7 @@ function itemFor(id, s) { return fullList(curDay(), s).filter(function (q) { ret
 document.addEventListener("keydown", function (ev) {
   if (ev.key === "Escape" && UI.sheet) closeSheet();
   if (ev.key === "Enter" && (ev.target.id === "fsearch" || ev.target.id === "exq")) ev.target.blur();
+  if (ev.key === "Enter" && ev.target.id === "bcnum") { stopScan(); bcLookupCode(ev.target.value); }
   if (ev.key === "Enter" && UI.sheet && ev.target.id === "famt") { var bt = document.querySelector('[data-act="aadd"],[data-act="asave"]'); if (bt) bt.click(); }
 });
 document.addEventListener("click", function (ev) {
@@ -5084,7 +5289,7 @@ document.addEventListener("click", function (ev) {
   }
   if (a !== "clear") UI.confirmClear = false;
   if (a !== "import") UI.confirmImport = false;
-  if (mealClick(a, b) || planClick(a, b) || histClick(a, b) || waterClick(a, b) || fastClick(a, b) || foodClick(a, b)) return;
+  if (scanClick(a, b) || mealClick(a, b) || planClick(a, b) || histClick(a, b) || waterClick(a, b) || fastClick(a, b) || foodClick(a, b)) return;
   if (a === "fastopen") { UI.tab = "food"; UI.fdate = todayStr(); if (UI.sheet) closeSheet(); render(false); saveUI(); return; }
   if (a === "tab") { UI.tab = b.getAttribute("data-tab"); if (UI.sheet) closeSheet(); render(false); saveUI(); }
   else if (a === "extab") { UI.extab = UI.extab || {}; UI.extab[id] = b.getAttribute("data-v"); saveUI(); render(true); }
@@ -5206,7 +5411,10 @@ setSync("local");
 paintAvatar();
 render(false);
 askPersist(); setTimeout(function () { snapTake(true); }, 3000);
-document.addEventListener("visibilitychange", function () { if (document.visibilityState === "hidden") snapTake(true); });
+document.addEventListener("visibilitychange", function () {
+  if (document.visibilityState === "hidden") { snapTake(true); stopScan(); }
+  else if (UI.sheet && UI.sheet.mode === "scan") startScan();
+});
 (function () {
   var hd = document.querySelector("header.top"); if (!hd) return;
   var setHH = function () { document.documentElement.style.setProperty("--hh", hd.offsetHeight + "px"); };
