@@ -1086,3 +1086,11 @@ PORTION NOTES: Whole-pizza weights for Ital Pizza Classic/Familia (other than th
 Portion weights marked "≈" or "approximate" in the note are typical pack weights, not printed on the source.
 */
 ```
+
+
+## Scanned products
+
+Barcode scans read Open Food Facts (https://world.openfoodfacts.org, open data, ODbL) per 100 g/ml as sold.
+The app rejects values that don't add up (kcal vs 4·protein + 4·carbs + 9·fat within 25%, protein + carbs + fat ≤ 100 g,
+≤ 950 kcal, no flagged data-quality errors) and asks the user to confirm each new product against its label once.
+Products not in the database are entered from the label by the user and stored in their profile only.

@@ -900,6 +900,9 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .bcwait { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px 0; }
 .spinner { width: 36px; height: 36px; border-radius: 50%; border: 3px solid var(--line-2); border-top-color: var(--food); animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
+.bccheck { border: 1px solid color-mix(in srgb, var(--food) 45%, transparent); background: color-mix(in srgb, var(--food) 8%, transparent); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.bccheck p { margin: 0; font-size: 14px; } .bcvals { font-weight: 700; font-variant-numeric: tabular-nums; }
+.bccheck .btnrow { margin: 0; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -4473,7 +4476,8 @@ function sheetBody() {
     h += '<p class="label">Meal</p>' + mealChips(meal);
     if (sh.editT) h += '<div class="btnrow"><button class="btn solid" type="button" data-act="asave">Save</button><button class="btn quiet" type="button" data-act="adel">' + (sh.confirmDel ? "Tap again to remove" : "Remove") + '</button></div>';
     else h += '<button class="btn solid" type="button" data-act="aadd">Add to ' + esc(meal) + '</button>';
-    if (x.bc) h += '<button type="button" class="link" data-act="bcedit">Edit label values</button>';
+    if (x.bc) { var bcr = bcFind(x.id.slice(3)) || {}; if (bcr.src === "off" && !bcr.ok) h = '<div class="bccheck"><p><b>New product: check it once.</b> Does the label say about this per 100 ' + (bcr.unit === "ml" ? "ml" : "g") + '?</p><p class="bcvals">' + r0(bcr.kcal) + ' kcal · ' + r1(bcr.p) + ' g protein · ' + r1(bcr.c) + ' g carbs · ' + r1(bcr.f) + ' g fat</p><div class="btnrow"><button class="btn" type="button" data-act="bcok">Matches my label</button><button class="btn quiet" type="button" data-act="bcedit">Fix values</button></div></div>' + h;
+      else h += '<button type="button" class="link" data-act="bcedit">' + (bcr.ok || bcr.src === "me" ? "✓ Checked against the label · edit" : "Edit label values") + '</button>'; }
     if (x.mymeal) h += '<button type="button" class="link" data-act="mealedit" data-id="' + esc(x.id) + '">Edit this meal</button>';
     if (x.my) h += '<button type="button" class="link" data-act="fdelmy" data-id="' + esc(x.id) + '">' + (sh.confirmMy ? "Tap again to delete from My foods" : "Delete from My foods") + '</button>';
     return {title: sh.editT ? "Edit" : "How much?", back: !sh.editT, body: h};
@@ -4896,16 +4900,40 @@ function startScan() {
     scanMsg(n === "NotAllowedError" || n === "SecurityError" ? "Camera access is blocked. Allow the camera for this site in your browser settings, or type the number below." : n === "NotFoundError" ? "No camera found. Type the number under the barcode instead." : "The camera didn't start. Type the number under the barcode instead.", true);
   });
 }
+/* Values per 100 g/ml as sold. Falls back to per-serving values scaled up, then checks that they add up. */
+function bcCheck(r) {
+  var why = [];
+  ["kcal", "p", "c", "f"].forEach(function (k) { if (r[k] != null && (!isFinite(r[k]) || r[k] < 0)) why.push("a value is negative or not a number"); });
+  if (r.kcal != null && r.kcal > 950) why.push("more than 950 kcal per 100 " + r.unit);
+  if (r.p != null && r.c != null && r.f != null && r.p + r.c + r.f > 101) why.push("protein + carbs + fat add up to more than 100 g");
+  if (r.kcal != null && r.p != null && r.c != null && r.f != null) {
+    var mk = 4 * r.p + 4 * r.c + 9 * r.f;
+    if (mk > 25 && Math.abs(r.kcal - mk) / Math.max(r.kcal, mk) > 0.25) why.push("the kcal (" + r0(r.kcal) + ") doesn't match the protein, carbs and fat (about " + r0(mk) + " kcal)");
+  }
+  return why.filter(function (w, i, a) { return a.indexOf(w) === i; });
+}
 function offParse(code, j) {
   var p = j && j.product; if (!p || j.status === 0) return null;
   var nm = (p.product_name_en || p.product_name || p.generic_name || "").trim(), br = String(p.brands || "").split(",")[0].trim();
   if (br && nm.toLowerCase().indexOf(br.toLowerCase()) < 0) nm = nm ? nm + " (" + br + ")" : br;
-  var nu = p.nutriments || {}, kj = nu["energy-kj_100g"] != null ? +nu["energy-kj_100g"] : (nu["energy_100g"] != null ? +nu["energy_100g"] : null);
-  var kcal = nu["energy-kcal_100g"] != null ? +nu["energy-kcal_100g"] : kj != null ? kj / 4.184 : null;
   var unit = p.product_quantity_unit === "ml" || /\d\s*(ml|cl|l)\b/i.test(p.quantity || "") ? "ml" : "g";
   var serv = +p.serving_quantity > 0 && +p.serving_quantity < 2000 ? +p.serving_quantity : 0, pack = +p.product_quantity > 0 && +p.product_quantity < 10000 ? +p.product_quantity : 0;
-  var rec = {code: code, n: (nm || "Product " + code).slice(0, 60), unit: unit, kcal: kcal == null ? null : r1(kcal), p: nu.proteins_100g == null ? null : r1(+nu.proteins_100g), c: nu.carbohydrates_100g == null ? null : r1(+nu.carbohydrates_100g), f: nu.fat_100g == null ? null : r1(+nu.fat_100g), serv: serv, pack: pack, src: "off"};
-  rec.complete = rec.kcal != null && rec.p != null && rec.c != null && rec.f != null && isFinite(rec.kcal);
+  var nu = p.nutriments || {}, per = function (k) {
+    var v = nu[k + "_100g"]; if (v != null && v !== "" && isFinite(+v)) return +v;
+    var sv = nu[k + "_serving"]; if (serv && sv != null && sv !== "" && isFinite(+sv)) return +sv / serv * 100;
+    return null;
+  };
+  var kj = per("energy-kj"); if (kj == null && nu["energy_unit"] !== "kcal") kj = per("energy");
+  var kc = per("energy-kcal"), pr = per("proteins"), cb = per("carbohydrates"), ft = per("fat");
+  /* kcal from the label's kJ when the two disagree and the kJ fits the macros better */
+  if (kj != null && pr != null && cb != null && ft != null) {
+    var mk = 4 * pr + 4 * cb + 9 * ft, fromKj = kj / 4.184;
+    if (kc == null || (Math.abs(kc - fromKj) / Math.max(kc, fromKj, 1) > 0.05 && Math.abs(fromKj - mk) < Math.abs(kc - mk))) kc = fromKj;
+  } else if (kc == null && kj != null) kc = kj / 4.184;
+  var rec = {code: code, n: (nm || "Product " + code).slice(0, 60), unit: unit, kcal: kc == null ? null : r1(kc), p: pr == null ? null : r1(pr), c: cb == null ? null : r1(cb), f: ft == null ? null : r1(ft), serv: serv, pack: pack, src: "off"};
+  rec.complete = rec.kcal != null && rec.p != null && rec.c != null && rec.f != null;
+  var dq = (p.data_quality_errors_tags || []).filter(function (t) { return /nutri|energy|protein|fat|carbohydrat|sugar/.test(t); });
+  rec.issues = bcCheck(rec).concat(dq.length ? ["the database itself flags a problem with these values"] : []);
   return rec;
 }
 function bcLookupCode(code) {
@@ -4915,13 +4943,13 @@ function bcLookupCode(code) {
   var keep = UI.sheet || {};
   openSheet({mode: "bcwait", code: code, meal: keep.meal, pick: keep.pick});
   var ctl = window.AbortController ? new AbortController() : null, to = setTimeout(function () { if (ctl) ctl.abort(); }, 9000);
-  fetch(OFF_URL + code + ".json?fields=product_name,product_name_en,generic_name,brands,quantity,product_quantity,product_quantity_unit,serving_quantity,nutriments", ctl ? {signal: ctl.signal} : {})
+  fetch(OFF_URL + code + ".json?fields=product_name,product_name_en,generic_name,brands,quantity,product_quantity,product_quantity_unit,serving_quantity,nutriments,data_quality_errors_tags", ctl ? {signal: ctl.signal} : {})
     .then(function (r) { if (r.status === 404) return {status: 0}; if (!r.ok) throw new Error("http " + r.status); return r.json(); })
     .then(function (j) {
       clearTimeout(to); if (!UI.sheet || UI.sheet.mode !== "bcwait" || UI.sheet.code !== code) return;
       var rec = offParse(code, j);
-      if (rec && rec.complete) { delete rec.complete; bcSave(rec); bcOpen(code); toast("Found: " + shortName(rec.n)); return; }
-      openSheet({mode: "bcnew", code: code, meal: keep.meal, pick: keep.pick, pre: rec, why: rec ? "partial" : "missing"});
+      if (rec && rec.complete && !rec.issues.length) { delete rec.complete; delete rec.issues; rec.ok = false; bcSave(rec); bcOpen(code); toast("Found: " + shortName(rec.n)); return; }
+      openSheet({mode: "bcnew", code: code, meal: keep.meal, pick: keep.pick, pre: rec, why: !rec ? "missing" : rec.complete ? "check" : "partial", issues: rec ? rec.issues : []});
     })
     .catch(function () { clearTimeout(to); if (!UI.sheet || UI.sheet.mode !== "bcwait") return; openSheet({mode: "bcnew", code: code, meal: keep.meal, pick: keep.pick, why: "offline"}); });
 }
@@ -4935,13 +4963,14 @@ function scanBody() {
 function bcWaitBody() { return {title: "Looking it up", back: true, body: '<div class="bcwait"><span class="spinner"></span><p>Finding barcode <b>' + esc(UI.sheet.code) + '</b>…</p></div>'}; }
 function bcNewBody() {
   var sh = UI.sheet, pre = sh.pre || bcFind(sh.code) || {}, unit = sh.unit || pre.unit || "g", v = function (k) { return pre[k] == null ? "" : pre[k]; };
-  var why = sh.why === "partial" ? "Open Food Facts knows this product but not all its values. Copy them from the label once and they're saved." : sh.why === "offline" ? "Couldn't reach the product database (no signal?). Enter the label values, or go back and try again later." : sh.why === "edit" ? "Fix any value from the label. It's saved for every future scan." : "This product isn't in the database yet. Copy the values from the label once and the next scan finds it.";
+  var why = sh.why === "check" ? "Open Food Facts has this product, but its numbers don't add up: " + (sh.issues || []).join("; ") + ". Check them against the label and fix what's wrong." : sh.why === "partial" ? "Open Food Facts knows this product but not all its values. Copy them from the label once and they're saved." : sh.why === "offline" ? "Couldn't reach the product database (no signal?). Enter the label values, or go back and try again later." : sh.why === "edit" ? "Fix any value from the label. It's saved for every future scan." : "This product isn't in the database yet. Copy the values from the label once and the next scan finds it.";
   var h = '<p class="small">' + why + '</p><p class="small">Barcode <b>' + esc(sh.code) + '</b></p>';
   h += '<input class="field" id="bcn" type="text" placeholder="Name, e.g. Greek yoghurt (Woolworths)" value="' + esc(v("n")) + '" aria-label="Product name" autocomplete="off">';
   h += '<p class="label">Label values per 100</p><div class="chips"><button class="chip xs" type="button" data-act="bcunit" data-v="g" aria-pressed="' + (unit === "g") + '">per 100 g</button><button class="chip xs" type="button" data-act="bcunit" data-v="ml" aria-pressed="' + (unit === "ml") + '">per 100 ml</button></div>';
   h += '<div class="row4"><label class="fl">kcal<input class="field" id="bck" type="text" inputmode="decimal" value="' + esc(v("kcal")) + '"></label><label class="fl">Protein g<input class="field" id="bcp" type="text" inputmode="decimal" value="' + esc(v("p")) + '"></label><label class="fl">Carbs g<input class="field" id="bcc" type="text" inputmode="decimal" value="' + esc(v("c")) + '"></label><label class="fl">Fat g<input class="field" id="bcf" type="text" inputmode="decimal" value="' + esc(v("f")) + '"></label></div>';
   h += '<p class="small">Label shows kJ only? Divide by 4.2 for kcal.</p>';
   h += '<label class="fl">Serving size (' + unit + ', optional)<input class="field" id="bcs" type="text" inputmode="decimal" value="' + esc(pre.serv || "") + '" placeholder="e.g. 175"></label>';
+  if (sh.warned && (sh.issues || []).length) h += '<p class="note"><b>Check:</b> ' + esc(sh.issues.join("; ")) + '. Tap Save again if the label really says so.</p>';
   h += '<button class="btn solid" type="button" data-act="bcsave">Save and add</button>';
   if (sh.why === "edit") h += '<button type="button" class="link" data-act="bcdel">' + (sh.confirmDel ? "Tap again to forget this barcode" : "Forget this barcode") + '</button>';
   return {title: sh.why === "edit" ? "Edit label values" : "Add this product", back: true, body: h};
@@ -4953,12 +4982,16 @@ function scanClick(a, b) {
   if (!sh) return false;
   if (a === "sback" && (sh.mode === "scan" || sh.mode === "bcwait" || sh.mode === "bcnew")) { stopScan(); openSheet({mode: "add", meal: sh.meal, q: "", cat: "Recent", pick: sh.pick}); return true; }
   if (a === "bcunit") { sh.unit = b.getAttribute("data-v"); sh.pre = bcFormVals(); renderSheet(); return true; }
+  if (a === "bcok") { var xo = foodLookup(sh.fid), ro = xo && bcFind(xo.id.slice(3)); if (ro) { ro.ok = true; ro.savedAt = Date.now(); mark("profile"); sh.amt = $("famt") ? readAmt() : sh.amt; renderSheet(); toast("Thanks. Marked as checked."); } return true; }
   if (a === "bcedit") { var x = foodLookup(sh.fid); if (!x || !x.bc) return true; openSheet({mode: "bcnew", code: x.id.slice(3), meal: sh.meal, pick: sh.pick, why: "edit"}); return true; }
   if (a === "bcsave") {
     var rec = bcFormVals(); rec.code = sh.code; rec.src = "me";
     if (!rec.n) { toast("Give it a name"); return true; }
     if (rec.kcal == null || rec.p == null) { toast("Enter at least kcal and protein"); return true; }
     rec.c = rec.c || 0; rec.f = rec.f || 0;
+    var iss = bcCheck(rec);
+    if (iss.length && !sh.warned) { sh.warned = true; sh.pre = rec; sh.issues = iss; renderSheet(); toast("Check: " + iss[0] + ". Tap Save again if the label really says so."); return true; }
+    rec.ok = true;
     bcSave(rec); bcOpen(sh.code); toast("Saved. Next scan finds it."); return true;
   }
   if (a === "bcdel") {
