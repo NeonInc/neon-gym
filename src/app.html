@@ -877,6 +877,10 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .snap > span { display: flex; flex-direction: column; min-width: 0; }
 .bkload { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
 :root[data-theme="daylight"] .timer { box-shadow: 0 8px 28px rgba(0, 0, 0, .12); }
+.prline { display: flex; align-items: center; gap: 8px; margin: -2px 0 2px 28px; padding: 7px 10px; border-radius: 10px; background: color-mix(in srgb, #f2c230 12%, transparent); border: 1px solid color-mix(in srgb, #f2c230 45%, transparent); font-size: 13.5px; animation: pop .45s cubic-bezier(.2, 1.4, .4, 1); }
+.prline b { color: #f2c230; } .prline .medal { width: 20px; height: 20px; }
+:root[data-theme="daylight"] .prline b, [data-style="clean"][data-theme="daylight"] .prline b { color: #9a6b00; }
+.plq span { min-width: 42px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -1443,6 +1447,7 @@ function exRow(item, sess, key, used) {
         (e.bw ? '<span class="bwtag">Body</span>' : '<input class="setin" type="text" inputmode="decimal" data-ex="' + e.id + '" data-i="' + i + '" data-f="w" value="' + esc(r.w) + '" placeholder="' + esc(ph.w || "kg") + '" aria-label="Set ' + (i + 1) + ' weight in kg">') +
         '<input class="setin" type="text" inputmode="numeric" data-ex="' + e.id + '" data-i="' + i + '" data-f="r" value="' + esc(r.r) + '" placeholder="' + esc(ph.r || (e.unit === "sec" ? "sec" : "reps")) + '" aria-label="Set ' + (i + 1) + ' ' + (e.unit === "sec" ? "seconds" : "reps") + '">' +
         '<button class="chk" type="button" data-act="tick" data-ex="' + e.id + '" data-i="' + i + '" data-pw="' + esc(ph.w || "") + '" data-pr="' + esc(ph.r || "") + '" aria-pressed="' + !!r.d + '" aria-label="Set ' + (i + 1) + ' done">✓</button></div>';
+      if (r.pr && r.d) { var was = prBefore(e, key); h += '<div class="prline">' + MEDAL + '<span><b>New PR</b> · ' + esc(bestTxt(e, bestOf(e, [r]))) + (was ? ' <span class="small">(best before: ' + esc(bestTxt(e, was)) + ')</span>' : "") + '</span></div>'; }
     }
     h += '</div><div class="logfoot"><button class="link" type="button" data-act="addset" data-ex="' + e.id + '">+ Add a set</button>' + (plateable(e) ? '<button class="link plbtn" type="button" data-act="plates" data-ex="' + e.id + '" aria-expanded="' + !!UI.open["pl-" + e.id] + '"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="3" height="12" rx="1"/><rect x="7" y="4" width="3" height="16" rx="1"/><path d="M10 12h11"/></svg>Plates per side</button>' : "") + '</div>';
     if (plateable(e) && UI.open["pl-" + e.id]) h += platePanel(e, rows, prev);
@@ -4802,7 +4807,14 @@ var PLATES = [25, 20, 15, 10, 5, 2.5, 1.25];
 function plateable(e) { var t = eqType(e); return t === "barbell" || t === "smith" || /plate-loaded/i.test(e.eq || ""); }
 function barOpts(e) { var t = eqType(e); return /plate-loaded/i.test(e.eq || "") ? [] : /EZ/i.test(e.eq || "") ? [10, 7.5, 12] : t === "smith" ? [15, 20, 10, 0] : [20, 15, 10]; }
 function barFor(e) { var b = (S.profile.bars || {})[e.id]; return b != null && (barOpts(e).indexOf(b) >= 0 || !barOpts(e).length) ? b : (barOpts(e)[0] || 0); }
+function plateSet(e, rows) {
+  var f = (UI.plIdx || {})[e.id];
+  if (f != null && rows[f] && num(rows[f].w)) return f;
+  for (var i = 0; i < rows.length; i++) { var r = rows[i] || {}; if (!r.d) return num(r.w) ? i : null; }
+  return null;
+}
 function plateTarget(e, rows, prev) {
+  var k = plateSet(e, rows); if (k != null) return num(rows[k].w);
   for (var i = 0; i < rows.length; i++) { var r = rows[i] || {}; if (!r.d && num(r.w)) return num(r.w); }
   for (var j = rows.length - 1; j >= 0; j--) if (rows[j] && num(rows[j].w)) return num(rows[j].w);
   return prev.length && num(prev[0].w) ? num(prev[0].w) : "";
@@ -4824,9 +4836,19 @@ function plateOut(e, total) {
   var note = r.left > 0.01 ? '<p class="small">Closest you can load: <b>' + r1(r.made) + ' kg</b> (smallest plate is 1.25 kg).</p>' : '<p class="small">' + (mach ? "Plates only: the machine's own sled isn't counted. Log it the same way every time." : r1(t) + " kg = " + bar + " kg bar + 2 × " + r1(r.side) + " kg") + '</p>';
   return (pl.length ? vis : "") + txt + note;
 }
+function plateFollow(id, i, v) {
+  UI.plIdx = UI.plIdx || {}; UI.plIdx[id] = i;
+  var e = BY[id], inp = document.querySelector('.plin[data-ex="' + id + '"]'), out = $("plout-" + id), lab = $("plset-" + id);
+  if (!e || !inp || !num(v)) return;
+  inp.value = v; if (out) out.innerHTML = plateOut(e, v); if (lab) lab.textContent = "Set " + (i + 1);
+}
+document.addEventListener("focusin", function (ev) {
+  var t = ev.target; if (!t.classList || !t.classList.contains("setin") || t.getAttribute("data-f") !== "w") return;
+  var v = t.value || t.getAttribute("placeholder"); if (num(v)) plateFollow(t.getAttribute("data-ex"), +t.getAttribute("data-i"), v);
+});
 function platePanel(e, rows, prev) {
-  var opts = barOpts(e), bar = barFor(e), t = plateTarget(e, rows, prev);
-  var h = '<div class="plates"><div class="plhead"><label class="plq">Target<input class="field plin" type="text" inputmode="decimal" data-ex="' + e.id + '" value="' + esc(t) + '" aria-label="Target weight in kg"><span>kg</span></label>';
+  var opts = barOpts(e), bar = barFor(e), t = plateTarget(e, rows, prev), k = plateSet(e, rows);
+  var h = '<div class="plates" id="plates-' + e.id + '"><div class="plhead"><label class="plq"><span id="plset-' + e.id + '">' + (k != null ? "Set " + (k + 1) : "Target") + '</span><input class="field plin" type="text" inputmode="decimal" data-ex="' + e.id + '" value="' + esc(t) + '" aria-label="Target weight in kg"><span>kg</span></label>';
   if (opts.length) h += '<div class="plbars"><span class="label">Bar</span>' + opts.map(function (b) { return '<button type="button" class="chip xs" data-act="plbar" data-ex="' + e.id + '" data-v="' + b + '" aria-pressed="' + (b === bar) + '">' + (b ? b + " kg" : "None") + '</button>'; }).join("") + '</div>';
   h += '</div><div class="plout" id="plout-' + e.id + '">' + plateOut(e, t) + '</div>';
   if (eqType(e) === "smith") h += '<p class="small">Smith bars weigh anything from about 7 to 20 kg (some are counterbalanced to 0). Check the sticker on yours.</p>';
@@ -4834,6 +4856,11 @@ function platePanel(e, rows, prev) {
 }
 /* ---------- PR medal and the History tab ---------- */
 var MEDAL = '<svg class="medal" viewBox="0 0 24 24" aria-hidden="true"><path class="mr" d="M7 2h4l2 6H9zM13 2h4l-2 6h-4z"/><circle class="mc" cx="12" cy="15" r="6.5"/><path class="ms" d="M12 11.2l1.1 2.3 2.5.3-1.8 1.7.5 2.5-2.3-1.2-2.3 1.2.5-2.5-1.8-1.7 2.5-.3z"/></svg>';
+/* best set from every other session, so a PR line can say what it beat */
+function prBefore(e, key) {
+  var rows = []; Object.keys(S.sessions).forEach(function (k) { if (k === key) return; ((S.sessions[k].sets || {})[e.id] || []).forEach(function (q) { if (q && q.d && num(q.r)) rows.push(q); }); });
+  return rows.length ? bestOf(e, rows) : null;
+}
 function e1rm(w, r) { return r <= 1 ? w : w * (1 + r / 30); }
 function histTab(e) {
   var hs = (exHistory()[e.id] || []);
@@ -4969,6 +4996,7 @@ document.addEventListener("input", function (ev) {
     while (arr.length <= i) arr.push({});
     arr[i][t.getAttribute("data-f")] = t.value;
     mark("session", curKey());
+    if (t.getAttribute("data-f") === "w") plateFollow(id, i, t.value);
   } else if (t.id === "fsearch") { if (UI.sheet) { UI.sheet.q = t.value; renderFoodList(); }
   } else if (t.classList.contains("plin")) { var pe = BY[t.getAttribute("data-ex")], po = $("plout-" + pe.id); if (po) po.innerHTML = plateOut(pe, t.value);
   } else if (t.id === "exq") { if (UI.sheet) { UI.sheet.q = t.value; renderExList(); }
@@ -5092,7 +5120,7 @@ document.addEventListener("click", function (ev) {
   else if (a === "tick") {
     var s = ensureSess(), i = +b.getAttribute("data-i"), e = BY[id], arr = s.sets[id] = s.sets[id] || [];
     while (arr.length <= i) arr.push({});
-    var r = arr[i];
+    var r = arr[i]; if (UI.plIdx) delete UI.plIdx[id];
     if (r.d) { r.d = false; delete r.pr; s.done[id] = false; }
     else {
       if (!e.bw && (r.w == null || r.w === "") && b.getAttribute("data-pw")) r.w = b.getAttribute("data-pw");
