@@ -11,7 +11,9 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
 - **Today:** shows the next workout in your plan. Each exercise is a row you tick off. Tap a row for sets, reps, rest, technique, your last numbers, what to do next time, set-by-set logging, a choice of machine, cable or dumbbell versions, and a how-to video.
 - **Equipment tags:** every exercise shows what it uses, colour-coded: Machine, Machine (plate-loaded / assisted), Cable (single / rope / bar / V-handle / double), Dumbbell, Barbell (EZ bar), Smith machine and Bodyweight. The add-exercise list can be filtered by equipment, and the kg column says "kg each" for dumbbells and "assist kg" for assisted machines.
 - **Workout:** today's workout stays put even if your phone closes the app. Tap **Change** to pick another workout from a list of cards; the choice is saved. Do the exercises in any order. Each exercise opens to three tabs: Log sets, How-to and Swap. Tap **Finish workout** whenever you're done: it asks "Done for today?", lists anything you didn't get to (saved as skipped), and shows exercises, sets, kg lifted and time. Your plan then moves on to the next workout. The app reopens on the tab and exercise you were on, and the rest timer keeps counting.
-- **Rest timer:** starts on its own when you tick a set.
+- **Rest timer:** starts on its own when you tick a set and shows what's next, with −15 / +15 / Skip. When rest is over it flashes, buzzes and beeps; turn on "Alert when the app is closed" (Profile) to get a notification even with the phone locked.
+- **Plates per side:** for barbell, Smith and plate-loaded exercises. Follows the set you're on, shows the plates in gym colours and the closest weight you can load; pick the bar weight per exercise.
+- **PRs and History:** a set that beats your best gets a gold medal and a "New PR" line right under it. Each exercise has a History tab: best set, estimated 1-rep max, last time's average and your last sessions.
 - **Finish from anywhere:** a small Finish button sits in the top bar while you train (it fills in once you've ticked something), so you don't have to scroll to the bottom.
 - **Add an exercise:** a search box finds exercises by name, muscle or gym slang ("pectoral machine", "pec deck", "lats", "bum", "db row", "hammer strength"), with muscle-group and equipment filters. The same search is in the plan builder. 113 exercises, including pendulum squat, hip abduction/adduction, standing and seated calf raises, Bayesian curl, Arnold press, iso-lateral (Hammer Strength) machines and more cable work.
 - **Plans:**
@@ -40,7 +42,7 @@ On Android, open it in Chrome, then tap **⋮ → Add to Home screen** (or **Ins
   - **Body:** log weight and waist, a 7-day average chart (weight or waist) and a plain note on whether to eat more, less or the same, plus all entries.
   - **Food:** protein per day this week against your target, and your daily targets.
 - **Guide** (book button, top right): progression rules, the first 12 weeks, food (no fish needed), supplements, recovery and sources.
-- **Backup codes** (in Profile): copy a code to back up your log or move it to another phone.
+- **Backups** (Profile → Backups and restore): signed in, everything is saved to your account as you go. The phone also keeps a copy of each of the last 14 days you can roll back to, and you can download or load a backup file or copy a backup code.
 
 ## Files
 

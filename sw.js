@@ -1,5 +1,5 @@
 /* Neon Gym service worker: network first, cached copy when the gym has no signal */
-const CACHE = "neon-gym-v23";
+const CACHE = "neon-gym-v24";
 const CORE = ["./", "index.html", "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
@@ -17,7 +17,7 @@ self.addEventListener("fetch", e => {
 /* Fasting notification buttons: "End fast" / "Open" (and a tap on the notification) */
 self.addEventListener("notificationclick", e => {
   e.notification.close();
-  const end = e.action === "end", msg = { type: end ? "fast-end" : "fast-open" };
+  const rest = (e.notification.data || {}).kind === "rest", end = !rest && e.action === "end", msg = { type: rest ? "rest-open" : end ? "fast-end" : "fast-open" };
   e.waitUntil((async () => {
     const wins = await clients.matchAll({ type: "window", includeUncontrolled: true });
     const w = wins.find(c => c.url.startsWith(self.registration.scope));
@@ -28,6 +28,16 @@ self.addEventListener("notificationclick", e => {
 /* "Fast complete" push from the neon-gym-push Worker (arrives even when the app is closed) */
 self.addEventListener("push", e => {
   let d = {}; try { d = e.data ? e.data.json() : {}; } catch (_) {}
+  if (d.kind === "rest") {
+    /* Rest over: the open app buzzes and beeps by itself, so only notify when it isn't on screen */
+    e.waitUntil((async () => {
+      const wins = await clients.matchAll({ type: "window", includeUncontrolled: true });
+      if (wins.some(c => c.visibilityState === "visible")) return;
+      await self.registration.showNotification(d.title || "Rest over", { body: d.body || "Time for your next set.", icon: "icon-192.png", badge: "badge-96.png",
+        tag: "rest", renotify: true, vibrate: [250, 120, 250, 120, 450], timestamp: d.at || Date.now(), data: { kind: "rest" } });
+    })());
+    return;
+  }
   e.waitUntil((async () => {
     (await self.registration.getNotifications({ tag: "fast" })).forEach(n => n.close());
     await self.registration.showNotification(d.title || "Fast complete ✓", { body: d.body || "Nice work. Your eating window is open.", icon: "icon-192.png", badge: "badge-96.png", image: "fast-done.png",

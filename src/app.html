@@ -820,6 +820,67 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .fuel { background: var(--surface); }
 [data-style="clean"] { --prot: #f5f5f7; --cal: #8e8e93; --cal2: #5a5a5f; }
 [data-style="clean"][data-theme="daylight"] { --prot: #111113; --cal: #6e6e73; --cal2: #3a3a3c; }
+/* plates, PR medal, history tab, rest timer */
+.logfoot { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.plbtn { display: inline-flex; align-items: center; gap: 6px; }
+.plbtn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.plates { display: flex; flex-direction: column; gap: 10px; background: var(--field); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.plhead { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.plq { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.plq .field { width: 86px; min-height: 40px; text-align: center; font-size: 18px; font-weight: 700; }
+.plbars { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.plbars .label { margin-right: 2px; }
+.pvis { display: flex; align-items: center; height: 92px; padding: 0 4px; }
+.pbar { width: 34px; height: 12px; border-radius: 3px 0 0 3px; background: linear-gradient(#9aa0a8, #5b6068); flex: none; }
+.pcol { width: 24px; height: 18px; border-radius: 0 3px 3px 0; background: linear-gradient(#b7bcc4, #6b7078); flex: none; }
+.pl { display: grid; place-items: center; width: 18px; margin-right: 2px; border-radius: 4px; color: #fff; font-size: 9.5px; font-weight: 800; flex: none; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25); }
+.pl b { transform: rotate(-90deg); white-space: nowrap; }
+.pl.p25 { height: 90px; background: #d64545; } .pl.p20 { height: 90px; background: #3b6fd6; } .pl.p15 { height: 80px; background: #e2b423; color: #2a2100; }
+.pl.p10 { height: 66px; background: #3a9a5b; } .pl.p5 { height: 50px; background: #e9ecef; color: #222; width: 14px; }
+.pl.p2-5 { height: 40px; background: #c94040; width: 12px; font-size: 8px; } .pl.p1-25 { height: 32px; background: #a7adb5; color: #222; width: 10px; font-size: 7px; }
+.pside { margin: 0; font-size: 15px; }
+.medal { width: 18px; height: 18px; flex: none; vertical-align: -4px; }
+.medal .mr { fill: #d64545; } .medal .mc { fill: #f2c230; stroke: #b8860b; stroke-width: 1; } .medal .ms { fill: #fff6cc; }
+.set.pr .sn { display: grid; place-items: center; }
+.set.pr .sn .medal { width: 22px; height: 22px; animation: pop .5s cubic-bezier(.2, 1.6, .4, 1); }
+.set.pr .setin { border-color: color-mix(in srgb, #f2c230 60%, transparent); }
+@keyframes pop { from { transform: scale(.2) rotate(-25deg); opacity: 0; } }
+.sp.pr { display: inline-flex; align-items: center; gap: 3px; border-color: color-mix(in srgb, #f2c230 55%, transparent); }
+.sp.pr .medal { width: 14px; height: 14px; }
+.toast.prt { display: flex; align-items: center; justify-content: center; gap: 8px; border-color: color-mix(in srgb, #f2c230 60%, transparent); }
+.toast.prt .medal { width: 26px; height: 26px; animation: pop .5s cubic-bezier(.2, 1.6, .4, 1); }
+.htiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.htiles > div { background: var(--field); border: 1px solid var(--line); border-radius: 10px; padding: 8px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.htiles span { font-size: 10.5px; color: var(--muted); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.htiles b { font-size: 15px; font-variant-numeric: tabular-nums; }
+.htiles .hb { border-color: color-mix(in srgb, #f2c230 45%, transparent); }
+.htiles .hb .medal { width: 20px; height: 20px; }
+.hlist { display: flex; flex-direction: column; }
+.hrow { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); }
+.hrow .hd { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.extabs { grid-template-columns: repeat(4, 1fr) !important; }
+.extabs button { font-size: 13px; padding-inline: 2px; }
+.timer { position: relative; overflow: hidden; display: flex; align-items: center; gap: 12px; padding: 10px 10px 13px 16px; border-radius: 16px; background: var(--surface-2); border: 1px solid var(--line-2); box-shadow: 0 8px 28px rgba(0, 0, 0, .35); }
+.tbar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--line); }
+#tprog { display: block; height: 100%; width: 100%; background: var(--accent); transition: width .25s linear; }
+.tcol { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.timer .tl { font-family: var(--font-body); font-size: 12px; letter-spacing: 0; text-transform: none; font-weight: 600; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.timer .tt { font-size: 34px; color: var(--ink); flex: none; }
+.tbtns { display: flex; gap: 6px; flex: none; }
+.tbtns button { min-height: 42px; min-width: 46px; padding: 0 10px; border-radius: 12px; border: 1px solid var(--line-2); background: transparent; font-weight: 700; font-size: 14px; color: var(--ink); }
+.tbtns .tskip { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.timer.go { border-color: var(--accent); animation: tgo .7s ease 3; }
+.timer.go .tt { color: var(--accent); }
+@keyframes tgo { 50% { background: color-mix(in srgb, var(--accent) 25%, var(--surface-2)); } }
+.snaps { display: flex; flex-direction: column; }
+.snap { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); }
+.snap > span { display: flex; flex-direction: column; min-width: 0; }
+.bkload { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+:root[data-theme="daylight"] .timer { box-shadow: 0 8px 28px rgba(0, 0, 0, .12); }
+.prline { display: flex; align-items: center; gap: 8px; margin: -2px 0 2px 28px; padding: 7px 10px; border-radius: 10px; background: color-mix(in srgb, #f2c230 12%, transparent); border: 1px solid color-mix(in srgb, #f2c230 45%, transparent); font-size: 13.5px; animation: pop .45s cubic-bezier(.2, 1.4, .4, 1); }
+.prline b { color: #f2c230; } .prline .medal { width: 20px; height: 20px; }
+:root[data-theme="daylight"] .prline b, [data-style="clean"][data-theme="daylight"] .prline b { color: #9a6b00; }
+.plq span { min-width: 42px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -838,8 +899,9 @@ header.top.scrolled { border-bottom-color: var(--line); }
 <div class="dock"><div class="dock-in">
   <div id="toast" class="toast" role="status" hidden></div>
   <div id="timerBar" class="timer" hidden>
-    <span class="tl">Rest</span><span id="timerTxt" class="tt">0:00</span>
-    <button type="button" data-act="t15">+15s</button><button type="button" data-act="tskip">Skip</button>
+    <i class="tbar"><i id="tprog"></i></i>
+    <div class="tcol"><span class="tl" id="timerLbl">Rest</span><span id="timerTxt" class="tt">0:00</span></div>
+    <div class="tbtns"><button type="button" data-act="tm15" aria-label="15 seconds less">−15</button><button type="button" data-act="t15" aria-label="15 seconds more">+15</button><button type="button" class="tskip" data-act="tskip">Skip</button></div>
   </div>
   <nav class="nav" id="nav" role="tablist" aria-label="Sections">
     <button type="button" role="tab" data-act="tab" data-tab="today"><svg viewBox="0 0 24 24"><path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12"/></svg>Workout</button>
@@ -1154,7 +1216,7 @@ function fixProfile() {
     s.sets = s.sets || {}; s.done = s.done || {}; s.extras = s.extras || []; s.picks = s.picks || {};
   });
 }
-function cacheSave() { try { localStorage.setItem(LK, JSON.stringify(S)); } catch (e) {} }
+function cacheSave() { try { localStorage.setItem(LK, JSON.stringify(S)); } catch (e) {} if (typeof snapTake === "function") snapTake(); }
 function cacheLoad() {
   try { var r = localStorage.getItem(LK); if (r) { var o = JSON.parse(r); if (o && o.profile) S = o; } } catch (e) {}
   fixProfile();
@@ -1372,7 +1434,7 @@ function exRow(item, sess, key, used) {
   var vopts = item.core ? CORE_OPTS : (item.slot && SLOTS[item.slot.split("#")[0]] ? SLOTS[item.slot.split("#")[0]] : []);
   var tab = (UI.extab && UI.extab[e.id]) || "log";
   h += '<div class="pills"><span class="pill hi">' + item.sets + ' × ' + esc(e.reps) + (e.unit === "sec" ? " sec" : "") + (e.per ? " " + esc(e.per) : "") + '</span><span class="pill">Rest ' + esc(e.restTxt) + '</span><span class="pill">' + esc(e.rir) + '</span></div>';
-  h += '<div class="extabs" role="tablist">' + [["log", "Log sets"], ["how", "How-to"], ["swap", item.core ? "Change" : "Swap"]].map(function (tb) {
+  h += '<div class="extabs" role="tablist">' + [["log", "Log"], ["how", "How-to"], ["swap", item.core ? "Change" : "Swap"], ["hist", "History"]].map(function (tb) {
     return '<button type="button" role="tab" data-act="extab" data-ex="' + e.id + '" data-v="' + tb[0] + '" aria-selected="' + (tab === tb[0]) + '">' + tb[1] + '</button>';
   }).join("") + '</div>';
   if (tab === "log") {
@@ -1381,12 +1443,14 @@ function exRow(item, sess, key, used) {
     h += '<div class="sets"><div class="sethead"><span>Set</span><span>' + kgLabel(e) + '</span><span>' + (e.unit === "sec" ? "sec" : "reps") + '</span><span></span></div>';
     for (var i = 0; i < n; i++) {
       var r = rows[i] || {}, ph = prev.length ? prev[Math.min(i, prev.length - 1)] : {};
-      h += '<div class="set' + (r.d ? " on" : "") + '"><span class="sn">' + (i + 1) + '</span>' +
+      h += '<div class="set' + (r.d ? " on" : "") + (r.pr && r.d ? " pr" : "") + '"><span class="sn">' + (r.pr && r.d ? MEDAL : (i + 1)) + '</span>' +
         (e.bw ? '<span class="bwtag">Body</span>' : '<input class="setin" type="text" inputmode="decimal" data-ex="' + e.id + '" data-i="' + i + '" data-f="w" value="' + esc(r.w) + '" placeholder="' + esc(ph.w || "kg") + '" aria-label="Set ' + (i + 1) + ' weight in kg">') +
         '<input class="setin" type="text" inputmode="numeric" data-ex="' + e.id + '" data-i="' + i + '" data-f="r" value="' + esc(r.r) + '" placeholder="' + esc(ph.r || (e.unit === "sec" ? "sec" : "reps")) + '" aria-label="Set ' + (i + 1) + ' ' + (e.unit === "sec" ? "seconds" : "reps") + '">' +
         '<button class="chk" type="button" data-act="tick" data-ex="' + e.id + '" data-i="' + i + '" data-pw="' + esc(ph.w || "") + '" data-pr="' + esc(ph.r || "") + '" aria-pressed="' + !!r.d + '" aria-label="Set ' + (i + 1) + ' done">✓</button></div>';
+      if (r.pr && r.d) { var was = prBefore(e, key); h += '<div class="prline">' + MEDAL + '<span><b>New PR</b> · ' + esc(bestTxt(e, bestOf(e, [r]))) + (was ? ' <span class="small">(best before: ' + esc(bestTxt(e, was)) + ')</span>' : "") + '</span></div>'; }
     }
-    h += '</div><button class="link" type="button" data-act="addset" data-ex="' + e.id + '">+ Add a set</button>';
+    h += '</div><div class="logfoot"><button class="link" type="button" data-act="addset" data-ex="' + e.id + '">+ Add a set</button>' + (plateable(e) ? '<button class="link plbtn" type="button" data-act="plates" data-ex="' + e.id + '" aria-expanded="' + !!UI.open["pl-" + e.id] + '"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="3" height="12" rx="1"/><rect x="7" y="4" width="3" height="16" rx="1"/><path d="M10 12h11"/></svg>Plates per side</button>' : "") + '</div>';
+    if (plateable(e) && UI.open["pl-" + e.id]) h += platePanel(e, rows, prev);
   } else if (tab === "how") {
     h += '<p class="how">' + esc(e.cue) + '</p>';
     h += '<div class="btnrow"><a class="btn" target="_blank" rel="noopener" href="' + ytUrl(e.yt) + '">How-to video</a>' +
@@ -1394,6 +1458,8 @@ function exRow(item, sess, key, used) {
     if (UI.open["note-" + e.id] || S.profile.notes[e.id] || item.extra) {
       h += '<input class="field note" type="text" data-ex="' + e.id + '" value="' + esc(S.profile.notes[e.id]) + '" placeholder="My settings, e.g. seat 4, back pad 3" aria-label="Notes for ' + esc(e.n) + '">';
     }
+  } else if (tab === "hist") {
+    h += histTab(e);
   } else if (vopts.length > 1) {
     h += '<p class="small">' + (item.core ? "Easy ones need only a mat. Skip it on days you run out of time." : "Machine busy, or prefer dumbbells? Pick another version. Your choice is remembered for this workout.") + '</p><div class="opts">' + vopts.map(function (vid) {
       var o = BY[vid];
@@ -1435,7 +1501,7 @@ function viewToday() {
 
 /* ---------- Resume after the phone closes the app (kept on this device only) ---------- */
 function saveUI() {
-  S.ui = {tab: UI.tab, open: UI.open, extab: UI.extab || {}, statTab: UI.statTab || "", timerEnd: T.end > Date.now() ? T.end : 0, at: Date.now()};
+  S.ui = {tab: UI.tab, open: UI.open, extab: UI.extab || {}, statTab: UI.statTab || "", timerEnd: T.end > Date.now() ? T.end : 0, timerTotal: T.total || 0, timerNext: T.next || "", at: Date.now()};
   cacheSave();
 }
 function restoreUI() {
@@ -1443,7 +1509,7 @@ function restoreUI() {
   if (!u || !u.at || Date.now() - u.at > 6 * 3600e3) return;
   if (["today","plans","progress","food","water","guide"].indexOf(u.tab) >= 0) UI.tab = u.tab;
   UI.open = u.open || {}; UI.extab = u.extab || {}; if (u.statTab) UI.statTab = u.statTab;
-  if (u.timerEnd && u.timerEnd > Date.now()) { T.end = u.timerEnd; T.fired = false; $("timerBar").hidden = false; if (!T.iv) T.iv = setInterval(tick, 250); tick(); }
+  if (u.timerEnd && u.timerEnd > Date.now()) { T.end = u.timerEnd; T.total = u.timerTotal || (u.timerEnd - Date.now()); T.next = u.timerNext || ""; T.fired = false; $("timerBar").hidden = false; $("timerLbl").textContent = (T.next ? "Next: " + T.next : "Rest"); if (!T.iv) T.iv = setInterval(tick, 250); tick(); }
 }
 
 /* ---------- Finish workout ---------- */
@@ -1526,7 +1592,7 @@ function calCard() {
     '<div class="callegend"><span><em class="dw"></em>Workout · ' + wkN + '</span><span><em class="df"></em>Food logged · ' + fdN + '</span><span class="small">Tap a day to see it</span></div>';
 }
 function setLine(e, rows) { return rows.map(function (r) { return e && e.bw ? (r.r + (e.unit === "sec" ? " s" : "")) : ((r.w || "?") + " × " + r.r); }).join(" · "); }
-function setPills(e, rows) { return rows.map(function (r) { return '<span class="sp">' + esc(e && e.bw ? (r.r + (e.unit === "sec" ? " s" : "")) : ((r.w || "?") + " × " + r.r)) + '</span>'; }).join(""); }
+function setPills(e, rows) { return rows.map(function (r) { return '<span class="sp' + (r.pr ? " pr" : "") + '">' + (r.pr ? MEDAL : "") + esc(e && e.bw ? (r.r + (e.unit === "sec" ? " s" : "")) : ((r.w || "?") + " × " + r.r)) + '</span>'; }).join(""); }
 /* Short equipment tag (Machine, Cable, Dumbbell…) where space is tight */
 function eqTagShort(e) { var t = eqType(e), l = EQ_FILTERS.filter(function (f) { return f[0] === t; })[0]; return '<span class="eqt ' + t + '">' + (l ? l[1] : esc(e.eq)) + '</span>'; }
 function sessExercises(s) {
@@ -1926,11 +1992,11 @@ function profileBody() {
   var nW = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length, nF = Object.keys(S.food).filter(function (d) { return foodDay(d).length; }).length, nB = Object.keys(S.body).length;
   h += '<p class="label">Theme</p>' + themePicker() + '<p class="small">Saved with your account, so it follows you to other phones.</p>';
   h += '<p class="label">Your data</p><div class="plist"><div class="prow"><span>Logged</span><span class="v">' + nW + ' workout' + (nW === 1 ? "" : "s") + ' · ' + nF + ' food day' + (nF === 1 ? "" : "s") + ' · ' + nB + ' weigh-in' + (nB === 1 ? "" : "s") + '</span></div></div>';
-  h += '<details class="fold" data-k="backup"' + (UI.open.backup ? " open" : "") + '><summary>Back up or move your log</summary><div class="in">' +
-    '<p class="small">' + (u ? "Your log is already saved in your account. " : "") + 'Copy a backup code and keep it in your notes, or paste a code from another phone to load it here.</p>' +
-    '<button class="btn" type="button" data-act="export">Copy backup code</button>' +
-    '<textarea class="field" id="impcode" placeholder="Paste a backup code here" aria-label="Backup code"></textarea>' +
-    '<button class="btn quiet" type="button" data-act="import">' + (UI.confirmImport ? "Tap again to replace this log" : "Load backup code") + '</button></div></details>';
+  var rs = restS(), canPush = !!PUSH_URL && !window.claude && "PushManager" in window;
+  h += '<p class="label">Rest timer</p><div class="chips"><button class="chip xs" type="button" data-act="restopt" data-k="sound" aria-pressed="' + rs.sound + '">Sound</button><button class="chip xs" type="button" data-act="restopt" data-k="vib" aria-pressed="' + rs.vib + '">Vibrate</button>' +
+    (canPush ? '<button class="chip xs" type="button" data-act="restopt" data-k="push" aria-pressed="' + rs.push + '">Alert when the app is closed</button>' : "") + '</div>' +
+    '<p class="small">' + (canPush ? "With the alert on, your phone buzzes when rest is over even if you switched apps or locked the screen." + (IS_IOS ? " On iPhone this needs the app added to your Home Screen." : "") : "The timer buzzes and beeps while the app is open.") + '</p>';
+  h += backupSection();
   h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version __BUILD__' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
   return {title: "Profile", body: h};
 }
@@ -4119,6 +4185,7 @@ if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("mess
   var m = e.data || {};
   if (m.type === "fast-end" && fasting()) endFast();
   if (m.type === "fast-end" || m.type === "fast-open") { UI.tab = "food"; UI.fdate = todayStr(); closeSheet(); render(false); }
+  if (m.type === "rest-open" && UI.tab !== "today") { UI.tab = "today"; closeSheet(); render(false); }
 });
 /* While the app is open on Android, keep the notification text roughly right */
 setInterval(function () { if (fasting() && !IS_IOS && document.visibilityState === "visible") showFastNote(false); }, 10 * 60 * 1000);
@@ -4711,20 +4778,189 @@ function render(keepScroll) {
 
 /* ---------- Toast and rest timer ---------- */
 var toastT = null;
-function toast(t, undo) {
-  var el = $("toast"); UI.undo = undo || null;
-  if (undo) el.innerHTML = '<span>' + esc(t) + '</span><button type="button" class="tundo" data-act="undo">Undo</button>'; else el.textContent = t;
+function toast(t, undo, cls) {
+  var el = $("toast"); UI.undo = undo || null; el.classList.toggle("prt", cls === "prt");
+  if (undo) el.innerHTML = '<span>' + esc(t) + '</span><button type="button" class="tundo" data-act="undo">Undo</button>'; else if (cls === "prt") el.innerHTML = MEDAL + '<span>' + esc(t) + '</span>'; else el.textContent = t;
   el.classList.toggle("hasundo", !!undo); el.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { el.hidden = true; UI.undo = null; }, undo ? 4500 : 2200);
 }
-var T = {end: 0, iv: null, fired: false};
-function startRest(sec) { T.end = Date.now() + sec * 1000; T.fired = false; $("timerBar").hidden = false; $("timerBar").classList.remove("go"); if (!T.iv) T.iv = setInterval(tick, 250); tick(); saveUI(); }
-function hideTimer() { $("timerBar").hidden = true; clearInterval(T.iv); T.iv = null; if (T.end > Date.now()) { T.end = 0; saveUI(); } }
+var T = {end: 0, iv: null, fired: false, total: 0, next: ""};
+function startRest(sec, next) {
+  T.end = Date.now() + sec * 1000; T.total = sec * 1000; T.next = next || ""; T.fired = false; unlockAudio();
+  $("timerBar").hidden = false; $("timerBar").classList.remove("go"); $("timerLbl").textContent = (T.next ? "Next: " + T.next : "Rest");
+  if (!T.iv) T.iv = setInterval(tick, 250); tick(); saveUI(); restPush();
+}
+function hideTimer() { $("timerBar").hidden = true; clearInterval(T.iv); T.iv = null; clearTimeout(T.hideT); if (T.end > Date.now()) { T.end = 0; saveUI(); restPush(true); } }
 function tick() {
-  var left = Math.ceil((T.end - Date.now()) / 1000);
-  if (left > 0) { $("timerTxt").textContent = mmss(left); return; }
-  if (!T.fired) { T.fired = true; $("timerTxt").textContent = "Go"; $("timerBar").classList.add("go"); try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {} setTimeout(hideTimer, 6000); }
+  var ms = T.end - Date.now(), left = Math.ceil(ms / 1000), pg = $("tprog");
+  if (left > 0) { $("timerTxt").textContent = mmss(left); if (pg) pg.style.width = (T.total ? Math.max(0, Math.min(100, ms / T.total * 100)) : 0).toFixed(1) + "%"; return; }
+  if (!T.fired) {
+    T.fired = true; $("timerTxt").textContent = "Go"; $("timerLbl").textContent = T.next ? "Go: " + T.next : "Time for your next set"; if (pg) pg.style.width = "0%";
+    $("timerBar").classList.add("go");
+    try { if (restS().vib && navigator.vibrate) navigator.vibrate([250, 120, 250, 120, 450]); } catch (e) {}
+    if (document.visibilityState === "visible") beep();
+    T.hideT = setTimeout(hideTimer, 8000);
+  }
 }
 
+/* ---------- Plate calculator (barbell, Smith and plate-loaded machines) ---------- */
+var PLATES = [25, 20, 15, 10, 5, 2.5, 1.25];
+function plateable(e) { var t = eqType(e); return t === "barbell" || t === "smith" || /plate-loaded/i.test(e.eq || ""); }
+function barOpts(e) { var t = eqType(e); return /plate-loaded/i.test(e.eq || "") ? [] : /EZ/i.test(e.eq || "") ? [10, 7.5, 12] : t === "smith" ? [15, 20, 10, 0] : [20, 15, 10]; }
+function barFor(e) { var b = (S.profile.bars || {})[e.id]; return b != null && (barOpts(e).indexOf(b) >= 0 || !barOpts(e).length) ? b : (barOpts(e)[0] || 0); }
+function plateSet(e, rows) {
+  var f = (UI.plIdx || {})[e.id];
+  if (f != null && rows[f] && num(rows[f].w)) return f;
+  for (var i = 0; i < rows.length; i++) { var r = rows[i] || {}; if (!r.d) return num(r.w) ? i : null; }
+  return null;
+}
+function plateTarget(e, rows, prev) {
+  var k = plateSet(e, rows); if (k != null) return num(rows[k].w);
+  for (var i = 0; i < rows.length; i++) { var r = rows[i] || {}; if (!r.d && num(r.w)) return num(r.w); }
+  for (var j = rows.length - 1; j >= 0; j--) if (rows[j] && num(rows[j].w)) return num(rows[j].w);
+  return prev.length && num(prev[0].w) ? num(prev[0].w) : "";
+}
+function platesFor(total, bar) {
+  var side = (total - bar) / 2, left = Math.round(side * 100) / 100, out = [];
+  if (side < 0) return null;
+  PLATES.forEach(function (p) { while (left >= p - 1e-6) { out.push(p); left = Math.round((left - p) * 100) / 100; } });
+  return {side: side, plates: out, made: bar + 2 * (side - left), left: left};
+}
+function plateOut(e, total) {
+  var bar = barFor(e), mach = !barOpts(e).length, t = num(total);
+  if (!t) return '<p class="small">Type the weight you want on the ' + (mach ? "machine" : "bar") + '.</p>';
+  var r = platesFor(t, bar);
+  if (!r) return '<p class="small">That\'s less than the ' + bar + ' kg bar on its own.</p>';
+  var pl = r.plates;
+  var vis = '<div class="pvis" aria-hidden="true"><span class="pbar"></span>' + pl.map(function (p) { return '<span class="pl p' + String(p).replace(".", "-") + '"><b>' + p + '</b></span>'; }).join("") + '<span class="pcol"></span></div>';
+  var txt = pl.length ? '<p class="pside"><b>Each side:</b> ' + pl.join(" + ") + ' kg</p>' : '<p class="pside"><b>Empty ' + (mach ? "machine" : "bar") + '</b>, no plates.</p>';
+  var note = r.left > 0.01 ? '<p class="small">Closest you can load: <b>' + r1(r.made) + ' kg</b> (smallest plate is 1.25 kg).</p>' : '<p class="small">' + (mach ? "Plates only: the machine's own sled isn't counted. Log it the same way every time." : r1(t) + " kg = " + bar + " kg bar + 2 × " + r1(r.side) + " kg") + '</p>';
+  return (pl.length ? vis : "") + txt + note;
+}
+function plateFollow(id, i, v) {
+  UI.plIdx = UI.plIdx || {}; UI.plIdx[id] = i;
+  var e = BY[id], inp = document.querySelector('.plin[data-ex="' + id + '"]'), out = $("plout-" + id), lab = $("plset-" + id);
+  if (!e || !inp || !num(v)) return;
+  inp.value = v; if (out) out.innerHTML = plateOut(e, v); if (lab) lab.textContent = "Set " + (i + 1);
+}
+document.addEventListener("focusin", function (ev) {
+  var t = ev.target; if (!t.classList || !t.classList.contains("setin") || t.getAttribute("data-f") !== "w") return;
+  var v = t.value || t.getAttribute("placeholder"); if (num(v)) plateFollow(t.getAttribute("data-ex"), +t.getAttribute("data-i"), v);
+});
+function platePanel(e, rows, prev) {
+  var opts = barOpts(e), bar = barFor(e), t = plateTarget(e, rows, prev), k = plateSet(e, rows);
+  var h = '<div class="plates" id="plates-' + e.id + '"><div class="plhead"><label class="plq"><span id="plset-' + e.id + '">' + (k != null ? "Set " + (k + 1) : "Target") + '</span><input class="field plin" type="text" inputmode="decimal" data-ex="' + e.id + '" value="' + esc(t) + '" aria-label="Target weight in kg"><span>kg</span></label>';
+  if (opts.length) h += '<div class="plbars"><span class="label">Bar</span>' + opts.map(function (b) { return '<button type="button" class="chip xs" data-act="plbar" data-ex="' + e.id + '" data-v="' + b + '" aria-pressed="' + (b === bar) + '">' + (b ? b + " kg" : "None") + '</button>'; }).join("") + '</div>';
+  h += '</div><div class="plout" id="plout-' + e.id + '">' + plateOut(e, t) + '</div>';
+  if (eqType(e) === "smith") h += '<p class="small">Smith bars weigh anything from about 7 to 20 kg (some are counterbalanced to 0). Check the sticker on yours.</p>';
+  return h + '</div>';
+}
+/* ---------- PR medal and the History tab ---------- */
+var MEDAL = '<svg class="medal" viewBox="0 0 24 24" aria-hidden="true"><path class="mr" d="M7 2h4l2 6H9zM13 2h4l-2 6h-4z"/><circle class="mc" cx="12" cy="15" r="6.5"/><path class="ms" d="M12 11.2l1.1 2.3 2.5.3-1.8 1.7.5 2.5-2.3-1.2-2.3 1.2.5-2.5-1.8-1.7 2.5-.3z"/></svg>';
+/* best set from every other session, so a PR line can say what it beat */
+function prBefore(e, key) {
+  var rows = []; Object.keys(S.sessions).forEach(function (k) { if (k === key) return; ((S.sessions[k].sets || {})[e.id] || []).forEach(function (q) { if (q && q.d && num(q.r)) rows.push(q); }); });
+  return rows.length ? bestOf(e, rows) : null;
+}
+function e1rm(w, r) { return r <= 1 ? w : w * (1 + r / 30); }
+function histTab(e) {
+  var hs = (exHistory()[e.id] || []);
+  if (!hs.length) return '<p class="empty">No history yet. Tick a set and it shows up here, with your best and your averages.</p>';
+  var all = []; hs.forEach(function (x) { x.rows.forEach(function (r) { all.push(r); }); });
+  var best = bestOf(e, all), last = hs[hs.length - 1], lw = 0, lr = 0, n = 0, rm = 0;
+  last.rows.forEach(function (r) { var w = num(r.w) || 0, rp = num(r.r) || 0; lw += w; lr += rp; n++; });
+  all.forEach(function (r) { var w = num(r.w) || 0, rp = num(r.r) || 0; if (w && rp && rp <= 15) rm = Math.max(rm, e1rm(w, rp)); });
+  var unit = e.bw ? (e.unit === "sec" ? "s" : "reps") : "kg";
+  var h = '<div class="htiles"><div class="hb">' + MEDAL + '<span>Best set</span><b>' + esc(bestTxt(e, best)) + '</b></div>' +
+    (!e.bw && !e.assist && rm ? '<div><span>Est. 1-rep max</span><b>' + r1(Math.round(rm * 2) / 2) + ' kg</b></div>' : '<div><span>Sessions</span><b>' + hs.length + '</b></div>') +
+    '<div><span>Last time, average</span><b>' + (e.bw ? r1(lr / n) + " " + unit : r1(lw / n) + " kg × " + r1(lr / n)) + '</b></div></div>';
+  h += '<div class="hlist">' + hs.slice(-5).reverse().map(function (x) {
+    var dt = new Date(dnum(x.d) * 864e5);
+    return '<div class="hrow"><span class="hd">' + WD[dt.getUTCDay()] + ' ' + fmtD(x.d) + '</span><span class="dvsets">' + setPills(e, x.rows) + '</span></div>';
+  }).join("") + '</div>';
+  h += '<button type="button" class="link" data-act="exhist" data-ex="' + e.id + '">Chart and full history</button>';
+  if (!e.bw && !e.assist && rm) h += '<p class="small">The 1-rep max is an estimate from your best sets (Epley formula), not something to test.</p>';
+  return h;
+}
+/* ---------- Rest timer: sleek bar, sound, vibration, alert when the app is in the background ---------- */
+function restS() { var r = S.profile.rest || {}; return {sound: r.sound !== false, vib: r.vib !== false, push: !!r.push}; }
+var AC = null;
+function beep() {
+  if (!restS().sound) return;
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === "suspended") AC.resume();
+    [0, .18, .36].forEach(function (t0, i) { var o = AC.createOscillator(), g = AC.createGain(), t = AC.currentTime + t0; o.type = "sine"; o.frequency.value = i === 2 ? 1175 : 880; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.25, t + .02); g.gain.exponentialRampToValueAtTime(0.0001, t + .15); o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + .16); });
+  } catch (e) {}
+}
+function unlockAudio() { if (!restS().sound || AC) return; try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
+function restPush(cancel) {
+  if (!PUSH_URL || !("serviceWorker" in navigator)) return;
+  var on = restS().push && pushOk() && T.end > Date.now() + 4000 && !cancel;
+  if (!on && !T.pushed) return;
+  clearTimeout(T.pushT);
+  T.pushT = setTimeout(function () {
+    navigator.serviceWorker.ready.then(function (reg) { return on ? pushSub() : reg.pushManager.getSubscription(); }).then(function (sub) {
+      if (!sub) return;
+      if (on) { T.pushed = true; return fetch(PUSH_URL + "/rest", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({sub: sub.toJSON(), at: T.end, title: "Rest over · Go 💪", body: T.next ? "Next: " + T.next : "Time for your next set.", url: location.href.split("?")[0].split("#")[0]})}); }
+      T.pushed = false; return fetch(PUSH_URL + "/cancel", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({sub: sub.toJSON(), kind: "rest"})});
+    }).catch(function () {});
+  }, 400);
+}
+/* ---------- Keeping data safe: persistent storage, daily on-device snapshots, backup files ---------- */
+function askPersist() { try { if (navigator.storage && navigator.storage.persist) navigator.storage.persisted().then(function (p) { if (!p) return navigator.storage.persist(); }).catch(function () {}); } catch (e) {} }
+var SNAP = {db: null, last: 0, list: null};
+function snapDb() {
+  if (SNAP.db) return Promise.resolve(SNAP.db);
+  return new Promise(function (res, rej) {
+    if (!window.indexedDB) return rej("no idb");
+    var q = indexedDB.open("neongym-backups", 1);
+    q.onupgradeneeded = function () { q.result.createObjectStore("snaps", {keyPath: "k"}); };
+    q.onsuccess = function () { SNAP.db = q.result; res(SNAP.db); }; q.onerror = function () { rej(q.error); };
+  });
+}
+function snapOwner() { return UID || "local"; }
+function snapAll() {
+  return snapDb().then(function (db) { return new Promise(function (res) { var out = [], c = db.transaction("snaps").objectStore("snaps").openCursor(); c.onsuccess = function () { var cur = c.result; if (cur) { out.push(cur.value); cur.continue(); } else res(out); }; c.onerror = function () { res(out); }; }); });
+}
+/* One copy per day (refreshed at most every 30 minutes), the last 14 days kept, only for whoever is signed in on this phone */
+function snapTake(force) {
+  if (!force && Date.now() - SNAP.last < 30 * 6e4) return;
+  if (!Object.keys(S.sessions).length && !Object.keys(S.food).length && !Object.keys(S.body).length) return;
+  SNAP.last = Date.now();
+  var own = snapOwner(), d = todayStr();
+  snapDb().then(function (db) {
+    return snapAll().then(function (all) {
+      var tx = db.transaction("snaps", "readwrite"), st = tx.objectStore("snaps");
+      st.put({k: own + "|" + d, owner: own, d: d, at: Date.now(), data: JSON.stringify(S)});
+      var mine = all.filter(function (x) { return x.owner === own && x.k !== own + "|" + d; }).sort(function (a, b) { return a.d < b.d ? 1 : -1; });
+      mine.slice(13).forEach(function (x) { st.delete(x.k); });
+      if (own !== "local") all.forEach(function (x) { if (x.owner !== own && x.owner !== "local") st.delete(x.k); });
+      tx.oncomplete = function () { SNAP.list = null; if (UI.sheet && UI.sheet.mode === "profile") renderSheet(); };
+    });
+  }).catch(function () {});
+}
+function snapSummary(data) { try { var o = JSON.parse(data), w = Object.keys(o.sessions || {}).filter(function (k) { return hasDone(o.sessions[k]); }).length, f = Object.keys(o.food || {}).length; return w + " workout" + (w === 1 ? "" : "s") + " · " + f + " food day" + (f === 1 ? "" : "s"); } catch (e) { return ""; } }
+function backupSection() {
+  var h = '<details class="fold" data-k="backup"' + (UI.open.backup ? " open" : "") + '><summary>Backups and restore</summary><div class="in">';
+  h += '<p class="small">' + (ncUser() ? "Your log is saved to your account as you go. " : "Not signed in: your log lives only on this phone. Sign in so it's also saved to your account. ") + 'This phone also keeps a copy of each of the last 14 days.</p>';
+  if (SNAP.list == null) { snapAll().then(function (all) { SNAP.list = all.filter(function (x) { return x.owner === snapOwner(); }).sort(function (a, b) { return a.d < b.d ? 1 : -1; }); if (UI.sheet && UI.sheet.mode === "profile") renderSheet(); }).catch(function () { SNAP.list = []; }); h += '<p class="small">Loading copies…</p>'; }
+  else if (!SNAP.list.length) h += '<p class="small">No daily copies yet. The first one is made today.</p>';
+  else h += '<div class="snaps">' + SNAP.list.map(function (x) { var dt = new Date(dnum(x.d) * 864e5); return '<div class="snap"><span><b>' + WD[dt.getUTCDay()] + ' ' + fmtD(x.d) + '</b><span class="small">' + new Date(x.at).toTimeString().slice(0, 5) + (x.pre ? " · before a restore" : "") + ' · ' + esc(snapSummary(x.data)) + '</span></span><button type="button" class="chip xs" data-act="snaprestore" data-k="' + esc(x.k) + '">' + (UI.confirmSnap === x.k ? "Tap again" : "Restore") + '</button></div>'; }).join("") + '</div>';
+  if (!window.claude) h += '<div class="btnrow"><button class="btn" type="button" data-act="bkfile">Download a backup file</button><label class="btn quiet bkload">Load a backup file<input type="file" id="bkfile" accept=".json,application/json" hidden></label></div>';
+  h += '<p class="label">Backup code</p><p class="small">Or copy a code and keep it in your notes, or paste a code from another phone to load it here.</p>' +
+    '<button class="btn" type="button" data-act="export">Copy backup code</button>' +
+    '<textarea class="field" id="impcode" placeholder="Paste a backup code here" aria-label="Backup code"></textarea>' +
+    '<button class="btn quiet" type="button" data-act="import">' + (UI.confirmImport ? "Tap again to replace this log" : "Load backup code") + '</button>';
+  return h + '</div></details>';
+}
+function snapPre() {
+  var own = snapOwner(), d = todayStr();
+  return snapDb().then(function (db) { db.transaction("snaps", "readwrite").objectStore("snaps").put({k: own + "|" + d + "|pre" + Date.now(), owner: own, d: d, at: Date.now(), pre: true, data: JSON.stringify(S)}); SNAP.list = null; }).catch(function () {});
+}
+function loadData(o, msg) {
+  if (!o || !o.profile) return false;
+  snapPre();
+  S = o; fixProfile(); markAll(); cacheSave(); closeSheet(); render(true); toast(msg); return true;
+}
 /* ---------- Backup codes ---------- */
 function exportCode() {
   var json = JSON.stringify({v: 1, app: "neon-gym", data: S});
@@ -4745,6 +4981,12 @@ document.addEventListener("toggle", function (ev) {
   var d = ev.target; if (d && d.getAttribute && d.getAttribute("data-k")) { UI.open[d.getAttribute("data-k")] = d.open; saveUI(); }
 }, true);
 document.addEventListener("change", function (ev) {
+  var t = ev.target;
+  if (t.id === "bkfile" && t.files && t.files[0]) {
+    var fr = new FileReader();
+    fr.onload = function () { try { var o = JSON.parse(fr.result); if (o && o.app === "neon-gym" && loadData(o.data, "Backup file loaded")) return; } catch (x) {} toast("That isn't a Neon Gym backup file"); };
+    fr.readAsText(t.files[0]); t.value = "";
+  }
 
 });
 document.addEventListener("input", function (ev) {
@@ -4754,7 +4996,9 @@ document.addEventListener("input", function (ev) {
     while (arr.length <= i) arr.push({});
     arr[i][t.getAttribute("data-f")] = t.value;
     mark("session", curKey());
+    if (t.getAttribute("data-f") === "w") plateFollow(id, i, t.value);
   } else if (t.id === "fsearch") { if (UI.sheet) { UI.sheet.q = t.value; renderFoodList(); }
+  } else if (t.classList.contains("plin")) { var pe = BY[t.getAttribute("data-ex")], po = $("plout-" + pe.id); if (po) po.innerHTML = plateOut(pe, t.value);
   } else if (t.id === "exq") { if (UI.sheet) { UI.sheet.q = t.value; renderExList(); }
   } else if (t.id === "famt") { updatePreview();
   } else if (t.classList.contains("camt")) { var pt = UI.sheet.parts[+t.getAttribute("data-i")]; pt.amt = num(t.value) || 0; var cp = $("cpreview"); if (cp) cp.innerHTML = previewTiles(comboTotals());
@@ -4775,6 +5019,35 @@ document.addEventListener("click", function (ev) {
   if (a === "fedit" && UI.noClick && Date.now() - UI.noClick < 400) return;
   if (a === "undo") { var u = UI.undo; UI.undo = null; $("toast").hidden = true; if (u) u(); return; }
   if (a === "fminitop") { window.scrollTo({top: 0, behavior: "smooth"}); return; }
+  if (a === "plates") { UI.open["pl-" + id] = !UI.open["pl-" + id]; saveUI(); render(true); return; }
+  if (a === "plbar") { S.profile.bars = S.profile.bars || {}; S.profile.bars[id] = +b.getAttribute("data-v"); mark("profile"); render(true); return; }
+  if (a === "restopt") {
+    var rk = b.getAttribute("data-k"), ro = S.profile.rest = Object.assign({}, restS());
+    if (rk !== "push" || ro.push) { ro[rk] = !ro[rk]; mark("profile"); renderSheet(); if (rk === "push") restPush(true); if (rk === "sound" && ro.sound) beep(); return; }
+    if (!("Notification" in window)) { toast("This browser can't show notifications"); return; }
+    Notification.requestPermission().then(function (pm) {
+      if (pm !== "granted") { toast("Notifications are blocked. Allow them in your browser settings."); return; }
+      if (!pushOk()) { toast("Open the app once more, then try again"); return; }
+      pushSub().then(function () { ro.push = true; mark("profile"); renderSheet(); toast("Rest alerts on"); }).catch(function () { toast("Couldn't turn alerts on. Try again later."); });
+    });
+    return;
+  }
+  if (a === "snaprestore") {
+    var k = b.getAttribute("data-k");
+    if (UI.confirmSnap !== k) { UI.confirmSnap = k; renderSheet(); return; }
+    UI.confirmSnap = null;
+    var sn = (SNAP.list || []).filter(function (x) { return x.k === k; })[0];
+    try { if (sn && loadData(JSON.parse(sn.data), "Restored your log from " + fmtD(sn.d))) return; } catch (x) {}
+    toast("That copy couldn't be read"); return;
+  }
+  if (a === "bkfile") {
+    try {
+      var blob = new Blob([JSON.stringify({v: 1, app: "neon-gym", saved: new Date().toISOString(), data: S})], {type: "application/json"}), u2 = URL.createObjectURL(blob), lk = document.createElement("a");
+      lk.href = u2; lk.download = "neon-gym-backup-" + todayStr() + ".json"; document.body.appendChild(lk); lk.click(); setTimeout(function () { URL.revokeObjectURL(u2); lk.remove(); }, 1000);
+      toast("Backup file saved to your downloads");
+    } catch (x) { toast("Couldn't make the file. Use the backup code instead."); }
+    return;
+  }
   if (a === "fxdel") { delEntry(UI.fdate || todayStr(), +b.getAttribute("data-t")); return; }
   if (a === "fastx") { UI.open.fastmin = !UI.open.fastmin; saveUI(); render(true); return; }
   if (a === "fset") { UI.fdate = b.getAttribute("data-d"); render(true); return; }
@@ -4847,16 +5120,17 @@ document.addEventListener("click", function (ev) {
   else if (a === "tick") {
     var s = ensureSess(), i = +b.getAttribute("data-i"), e = BY[id], arr = s.sets[id] = s.sets[id] || [];
     while (arr.length <= i) arr.push({});
-    var r = arr[i];
-    if (r.d) { r.d = false; s.done[id] = false; }
+    var r = arr[i]; if (UI.plIdx) delete UI.plIdx[id];
+    if (r.d) { r.d = false; delete r.pr; s.done[id] = false; }
     else {
       if (!e.bw && (r.w == null || r.w === "") && b.getAttribute("data-pw")) r.w = b.getAttribute("data-pw");
       if ((r.r == null || r.r === "") && b.getAttribute("data-pr")) r.r = b.getAttribute("data-pr");
       if (r.r == null || r.r === "") { toast("Enter your " + (e.unit === "sec" ? "seconds" : "reps") + " first"); return; }
       r.d = true;
       var it = itemFor(id, s), pr = isBest(e, curKey(), r);
-      if (it && exDone(it, s)) { s.done[id] = true; toast(pr ? "New best set: " + bestTxt(e, pr) + ". " + e.n + " done" : e.n + " done"); }
-      else { startRest(e.rs); if (pr) toast("New best set: " + bestTxt(e, pr)); }
+      if (pr) { r.pr = true; try { if (navigator.vibrate) navigator.vibrate([40, 40, 90]); } catch (x) {} }
+      if (it && exDone(it, s)) { s.done[id] = true; if (pr) toast("New PR: " + bestTxt(e, pr) + " · " + e.n + " done", null, "prt"); else toast(e.n + " done"); }
+      else { var nd = setsDone(id, s); startRest(e.rs, "set " + (nd + 1) + (it ? " of " + Math.max(it.sets, (s.sets[id] || []).length) : "") + " · " + e.n); if (pr) toast("New PR: " + bestTxt(e, pr), null, "prt"); }
     }
     mark("session", curKey()); render(true);
   }
@@ -4903,7 +5177,12 @@ document.addEventListener("click", function (ev) {
     UI.confirmImport = false;
     if (importCode(v)) { closeSheet(); render(true); toast("Backup loaded"); } else { redraw(); toast("That code didn't work. Copy the whole code and try again."); }
   }
-  else if (a === "t15") { T.end += 15000; T.fired = false; $("timerBar").classList.remove("go"); if (!T.iv) T.iv = setInterval(tick, 250); tick(); saveUI(); }
+  else if (a === "t15" || a === "tm15") {
+    if (T.fired) { T.end = Date.now(); T.total = 0; clearTimeout(T.hideT); }
+    T.end += a === "t15" ? 15000 : -15000; T.total = Math.max(T.total + (a === "t15" ? 15000 : 0), T.end - Date.now());
+    if (T.end <= Date.now() + 1000) { hideTimer(); return; }
+    T.fired = false; $("timerBar").classList.remove("go"); $("timerLbl").textContent = (T.next ? "Next: " + T.next : "Rest"); if (!T.iv) T.iv = setInterval(tick, 250); tick(); saveUI(); restPush();
+  }
   else if (a === "tskip") { hideTimer(); }
 });
 
@@ -4912,6 +5191,8 @@ restoreUI();
 setSync("local");
 paintAvatar();
 render(false);
+askPersist(); setTimeout(function () { snapTake(true); }, 3000);
+document.addEventListener("visibilitychange", function () { if (document.visibilityState === "hidden") snapTake(true); });
 (function () {
   var hd = document.querySelector("header.top"); if (!hd) return;
   var setHH = function () { document.documentElement.style.setProperty("--hh", hd.offsetHeight + "px"); };

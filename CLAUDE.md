@@ -26,6 +26,11 @@ Neon Gym is live at https://neoninc.github.io/neon-gym/ and is one tile on the N
 - My meals: `profile.myMeals = [{id: "mm-…", n, parts: [{fid, n, portion, amt, mode, kcal, p, c, f}], serves, savedAt}]` (deleted ones get
   `deleted: true`). `foodLookup("mm-…")` turns one into a food with base "1 serving", so logging, editing and quick-add reuse the normal food code.
 - Food screen colours: `--prot` (protein, yellow), `--cal`/`--cal2` (calories, silver gradient), `--carb`, `--fat`; `--food` is the orange for buttons.
+- Sets: a ticked set that beat every earlier set gets `pr: true` (cleared when unticked). Plate calculator: `PLATES`, `plateable()`, bar per exercise in `profile.bars`.
+- Rest timer: `profile.rest = {sound, vib, push}`. With `push`, `restPush()` schedules `POST /rest` on the push worker (separate from the fast job; cancel with `kind: "rest"`).
+  The service worker only shows the rest notification when no app window is visible.
+- Backups: daily snapshots of `S` in IndexedDB `neongym-backups` (store `snaps`, key `owner|date`, last 14 kept, owner = uid or "local";
+  other accounts' copies are deleted when someone else signs in). Restores go through `loadData()`, which saves a "before a restore" copy first.
 - Water is stored per day inside that day's food doc (`S.food[d].water = [{ml, t}]`), so it syncs with food.
   A food doc can hold only water: use `tidyFoodDay(d)` instead of deleting a day when its items run out.
 - Fasting state lives in the profile (`profile.fast = {on, plan, h, start, consent, notify}`, `profile.fastLog`). The service worker
