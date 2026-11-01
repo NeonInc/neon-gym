@@ -917,6 +917,60 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .bccheck { border: 1px solid color-mix(in srgb, var(--food) 45%, transparent); background: color-mix(in srgb, var(--food) 8%, transparent); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
 .bccheck p { margin: 0; font-size: 14px; } .bcvals { font-weight: 700; font-variant-numeric: tabular-nums; }
 .bccheck .btnrow { margin: 0; }
+/* Stats → Recap */
+.stabs { grid-template-columns: repeat(4, 1fr) !important; }
+.recap { gap: 14px; }
+.rchead { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.rcseg { display: inline-grid; grid-template-columns: 1fr 1fr; padding: 3px; gap: 3px; border-radius: 10px; background: var(--field); border: 1px solid var(--line); }
+.rcseg button { border: 0; background: none; color: var(--muted); font-weight: 700; font-size: 13px; min-height: 34px; padding: 0 16px; border-radius: 8px; }
+.rcseg button[aria-selected="true"] { background: var(--surface-2); color: var(--ink); }
+.rcnav { display: flex; align-items: center; gap: 6px; }
+.rcnav .iconbtn { width: 36px; height: 36px; min-height: 36px; }
+.rcnav > span { display: flex; flex-direction: column; align-items: center; min-width: 92px; font-weight: 700; font-size: 14px; line-height: 1.15; }
+.rcnav small { font-size: 11px; color: var(--muted); font-weight: 500; white-space: nowrap; }
+.rchero { display: flex; align-items: baseline; gap: 10px; }
+.rchero > b { font-family: var(--font-display); font-weight: 400; font-size: 64px; line-height: .85; color: var(--accent); }
+.rchero > span { display: flex; align-items: baseline; gap: 8px; font-weight: 700; font-size: 16px; }
+.rcd { font-style: normal; font-size: 11.5px; font-weight: 600; color: var(--muted); }
+.rcd.up { color: var(--accent); } .rcd.down { color: var(--muted); }
+.rcdots { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.rcdots span { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.rcdots i { width: 100%; max-width: 38px; aspect-ratio: 1; border-radius: 10px; background: var(--surface-2); border: 1px solid var(--line); }
+.rcdots .on i { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent); }
+.rcdots .now i { border-color: var(--ink); }
+.rcdots .fut i { opacity: .35; }
+.rcdots em { font-style: normal; font-size: 10.5px; font-weight: 700; color: var(--muted); }
+.rcmonth { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+.rcmonth span { height: 22px; border-radius: 6px; background: var(--surface-2); }
+.rcmonth .pad { background: none; }
+.rcmonth em { font-style: normal; font-size: 10.5px; font-weight: 700; color: var(--muted); text-align: center; }
+.rcmonth .on { background: var(--accent); }
+.rcmonth .now { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.rcmonth .fut { opacity: .35; }
+.rctiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.rctiles > div { background: var(--field); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+.rctiles span { font-size: 10.5px; color: var(--muted); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.rctiles b { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1; font-variant-numeric: tabular-nums; }
+.rctiles b small { font-family: var(--font-body); font-size: 12px; font-weight: 600; color: var(--muted); }
+.rcfun { margin: 0; font-size: 13px; color: var(--muted); text-align: center; }
+.rcnote { margin: -6px 0 0; font-size: 11px; color: var(--muted); text-align: center; opacity: .8; }
+.rcbar .rv span { color: var(--muted); font-size: 12px; }
+.rccount { display: inline-flex; align-items: center; gap: 4px; font-weight: 800; font-size: 18px; }
+.rccount .medal { width: 22px; height: 22px; }
+.rclist { display: flex; flex-direction: column; }
+.rcrow { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); }
+.rcrow .nm { display: flex; flex-direction: column; min-width: 0; }
+.rcbars { display: flex; flex-direction: column; gap: 4px; }
+.rcbar { display: grid; grid-template-columns: 18px 1fr auto; align-items: center; gap: 10px; padding: 7px 0; border: 0; background: none; color: inherit; text-align: left; }
+.rcbar .rk { font-family: var(--font-display); font-size: 18px; color: var(--muted); text-align: center; }
+.rcbar .nm { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.rcbar .nm b { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rcbar .nm i { display: block; height: 6px; border-radius: 99px; background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, transparent)); }
+.rcbar .rv { display: flex; flex-direction: column; align-items: flex-end; font-size: 12px; color: var(--muted); white-space: nowrap; }
+.rcbar .rv b { font-size: 16px; color: var(--ink); }
+.rcmus { display: flex; flex-wrap: wrap; gap: 6px; }
+.rcmus span { display: inline-flex; align-items: baseline; gap: 5px; padding: 5px 10px; border-radius: 999px; background: var(--surface-2); font-size: 12.5px; color: var(--muted); }
+.rcmus b { color: var(--ink); font-size: 14px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -2033,7 +2087,7 @@ function profileBody() {
     (canPush ? '<button class="chip xs" type="button" data-act="restopt" data-k="push" aria-pressed="' + rs.push + '">Alert when the app is closed</button>' : "") + '</div>' +
     '<p class="small">' + (canPush ? "With the alert on, your phone buzzes when rest is over even if you switched apps or locked the screen." + (IS_IOS ? " On iPhone this needs the app added to your Home Screen." : "") : "The timer buzzes and beeps while the app is open.") + '</p>';
   h += backupSection();
-  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.10.29 15:58' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
+  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.11.01 10:16' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
   return {title: "Profile", body: h};
 }
 
@@ -2062,13 +2116,15 @@ function statSummary() {
     '<div class="fh"><span>Protein</span><b>' + (avgP != null ? avgP + '<small>g</small>' : "–") + '</b><i>' + (avgP != null ? "avg · goal " + g.p : "no food yet") + '</i></div></div>';
 }
 function viewProgress() {
-  var logged = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length, tab = UI.statTab || "training";
+  var logged = Object.keys(S.sessions).filter(function (k) { return hasDone(S.sessions[k]); }).length, tab = UI.statTab || "recap";
   var h = '<div class="sec"><div><p class="label">Week ' + (weekIdx() + 1) + ' · ' + logged + ' workout' + (logged === 1 ? "" : "s") + ' logged</p><h2>Your <em>progress.</em></h2></div>';
   h += statSummary();
-  h += '<div class="extabs stabs" role="tablist" aria-label="Stats sections">' + [["training", "Training"], ["body", "Body"], ["food", "Food"]].map(function (t) {
+  h += '<div class="extabs stabs" role="tablist" aria-label="Stats sections">' + [["recap", "Recap"], ["training", "Training"], ["body", "Body"], ["food", "Food"]].map(function (t) {
     return '<button type="button" role="tab" data-act="stab" data-v="' + t[0] + '" aria-selected="' + (tab === t[0]) + '">' + t[1] + '</button>';
   }).join("") + '</div>';
-  if (tab === "training") {
+  if (tab === "recap") {
+    h += viewRecap();
+  } else if (tab === "training") {
     h += '<div class="card">' + calCard() + '</div>';
     h += '<div class="card"><h3>Exercise history</h3><p class="small">Your best set last time and the change since your first session. Tap one for every session and a strength chart.</p>' + exHistCard() + '</div>';
   } else if (tab === "body") {
@@ -2092,6 +2148,110 @@ function viewProgress() {
   return h + '</div>';
 }
 
+/* ---------- Stats → Recap: week or month at a glance, worked out from the log (nothing extra is stored) ---------- */
+var MONTHS3 = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function rcPeriod(kind, off) {
+  var t = todayStr();
+  if (kind === "month") {
+    var y = +t.slice(0, 4), m = +t.slice(5, 7) - 1 + off; y += Math.floor(m / 12); m = ((m % 12) + 12) % 12;
+    var a = y + "-" + pad(m + 1) + "-01", nx = m === 11 ? (y + 1) + "-01-01" : y + "-" + pad(m + 2) + "-01";
+    return {a: a, b: dstr(dnum(nx) - 1), label: MONTHS[m] + " " + y, kind: kind, off: off};
+  }
+  var mon = monNum(t) + off * 7, a2 = dstr(mon), b2 = dstr(mon + 6);
+  return {a: a2, b: b2, label: fmtD(a2) + " – " + fmtD(b2), kind: kind, off: off};
+}
+function rcStats(P) {
+  var st = {workouts: 0, days: {}, sets: 0, reps: 0, kg: 0, mins: 0, prs: [], ex: {}, mus: {}};
+  Object.keys(S.sessions).forEach(function (k) {
+    var s = S.sessions[k]; if (!s || !s.date || s.date < P.a || s.date > P.b || !(hasDone(s) || s.finished)) return;
+    st.workouts++; st.days[s.date] = (st.days[s.date] || 0) + 1;
+    if (DAYS[s.day]) { var ss = sessStats(s.day, s); st.mins += ss.mins || 0; }
+    Object.keys(s.sets || {}).forEach(function (id) {
+      var e = BY[id]; if (!e) return;
+      (s.sets[id] || []).forEach(function (r) {
+        if (!r || !r.d) return;
+        var w = num(r.w) || 0, rp = num(r.r) || 0;
+        st.sets++; if (e.unit !== "sec") st.reps += rp;
+        if (w && rp && !e.bw && !e.assist && e.unit !== "sec") st.kg += w * rp;
+        var x = st.ex[id] = st.ex[id] || {sets: 0, kg: 0}; x.sets++; if (w && rp && !e.bw && !e.assist) x.kg += w * rp;
+        (e.mg || []).forEach(function (mg) { st.mus[mg] = (st.mus[mg] || 0) + 1; });
+        if (r.pr) st.prs.push({id: id, d: s.date, r: r});
+      });
+    });
+  });
+  st.kg = Math.round(st.kg);
+  var g = targets(), fd = 0, pSum = 0, kSum = 0, hit = 0, wSum = 0, wDays = 0;
+  for (var n = dnum(P.a); n <= Math.min(dnum(P.b), dnum(todayStr())); n++) {
+    var d = dstr(n), it = foodDay(d), wm = waterMl(d);
+    if (it.length) { var t = totals(it); fd++; pSum += t.p; kSum += t.kcal; if (t.p >= g.p * 0.95) hit++; }
+    if (wm) { wSum += wm; wDays++; }
+  }
+  st.food = {days: fd, p: fd ? pSum / fd : 0, kcal: fd ? kSum / fd : 0, hit: hit, water: wDays ? wSum / wDays : 0, gp: g.p};
+  var bd = Object.keys(S.body).filter(function (d) { return d >= P.a && d <= P.b && S.body[d].kg != null; }).sort();
+  st.body = bd.length >= 2 ? {from: +S.body[bd[0]].kg, to: +S.body[bd[bd.length - 1]].kg} : null;
+  return st;
+}
+function rcDelta(now, before, unit) {
+  if (!before && !now) return "";
+  var d = now - before; if (!d) return "";
+  return '<i class="rcd ' + (d > 0 ? "up" : "down") + '">' + (d > 0 ? "▲ " : "▼ ") + fmtK(Math.abs(d)) + (unit || "") + '</i>';
+}
+function rcFun(kg) {
+  var things = [["a loaded bus", 12000], ["an elephant", 6000], ["a small car", 1000], ["a grand piano", 450], ["a fridge", 80]];
+  for (var i = 0; i < things.length; i++) { var x = kg / things[i][1]; if (x >= 1) return "About " + (x >= 10 ? Math.round(x) : Math.round(x * 10) / 10) + " × the weight of " + things[i][0] + "."; }
+  return "";
+}
+function viewRecap() {
+  var R = UI.recap = UI.recap || {kind: "week", off: 0}, P = rcPeriod(R.kind, R.off), Q = rcPeriod(R.kind, R.off - 1);
+  /* this week/month isn't over yet: compare with the same number of days last time */
+  if (R.off === 0) Q.b = dstr(Math.min(dnum(Q.b), dnum(Q.a) + (dnum(todayStr()) - dnum(P.a))));
+  var st = rcStats(P), pv = rcStats(Q);
+  var word = R.kind === "week" ? "week" : "month";
+  var h = '<div class="card recap"><div class="rchead"><div class="rcseg" role="tablist">' + [["week", "Week"], ["month", "Month"]].map(function (k) { return '<button type="button" data-act="rckind" data-v="' + k[0] + '" aria-selected="' + (R.kind === k[0]) + '">' + k[1] + '</button>'; }).join("") + '</div>' +
+    '<div class="rcnav"><button type="button" class="iconbtn" data-act="rcoff" data-d="-1" aria-label="Previous ' + word + '">‹</button><span>' + (R.off === 0 ? "This " + word : R.off === -1 ? "Last " + word : esc(P.label)) + '<small>' + esc(P.label) + '</small></span><button type="button" class="iconbtn" data-act="rcoff" data-d="1" aria-label="Next ' + word + '"' + (R.off >= 0 ? " disabled" : "") + '>›</button></div></div>';
+  /* headline: workouts, with the days you trained */
+  h += '<div class="rchero"><b>' + st.workouts + '</b><span>workout' + (st.workouts === 1 ? "" : "s") + rcDelta(st.workouts, pv.workouts, "") + '</span></div>';
+  if (R.kind === "week") {
+    h += '<div class="rcdots">' + [0, 1, 2, 3, 4, 5, 6].map(function (i) { var d = dstr(dnum(P.a) + i), on = st.days[d], fut = d > todayStr(); return '<span class="' + (on ? "on" : "") + (fut ? " fut" : "") + (d === todayStr() ? " now" : "") + '"><i></i><em>' + "MTWTFSS".charAt(i) + '</em></span>'; }).join("") + '</div>';
+  } else {
+    var first = dnum(P.a), last = dnum(P.b), lead = (new Date(first * 864e5).getUTCDay() + 6) % 7, cells = "MTWTFSS".split("").map(function (c) { return '<em>' + c + '</em>'; }).join("");
+    for (var j = 0; j < lead; j++) cells += '<span class="pad"></span>';
+    for (var n = first; n <= last; n++) { var dd = dstr(n); cells += '<span class="' + (st.days[dd] ? "on" : "") + (dd > todayStr() ? " fut" : "") + (dd === todayStr() ? " now" : "") + '" title="' + fmtD(dd) + '"></span>'; }
+    h += '<div class="rcmonth">' + cells + '</div>';
+  }
+  if (!st.workouts) h += '<p class="small">No workouts logged this ' + word + ' yet.</p>';
+  /* totals */
+  h += '<div class="rctiles"><div><span>Sets</span><b>' + fmtK(st.sets) + '</b>' + rcDelta(st.sets, pv.sets, "") + '</div><div><span>Lifted</span><b>' + (st.kg >= 1000 ? r1(st.kg / 1000) + '<small> t</small>' : fmtK(st.kg) + '<small> kg</small>') + '</b>' + rcDelta(st.kg, pv.kg, " kg") + '</div>' +
+    '<div><span>Reps</span><b>' + fmtK(st.reps) + '</b></div><div><span>Time</span><b>' + (st.mins >= 60 ? Math.floor(st.mins / 60) + '<small> h </small>' + (st.mins % 60) + '<small> m</small>' : st.mins + '<small> min</small>') + '</b></div></div>';
+  var fun = rcFun(st.kg); if (fun) h += '<p class="rcfun">' + fun + '</p>';
+  h += '<p class="rcnote">▲▼ compared with ' + (R.off === 0 ? "the same days last " + word : "the " + word + " before") + '</p>';
+  h += '</div>';
+  /* PRs */
+  h += '<div class="card"><div class="chead"><h3>PRs</h3><span class="rccount">' + MEDAL + st.prs.length + '</span></div>';
+  if (st.prs.length) {
+    var prs = st.prs.slice().sort(function (a, b) { return a.d < b.d ? 1 : -1; }), all = UI.rcAllPr ? prs : prs.slice(0, 5);
+    h += '<div class="rclist">' + all.map(function (x) { var e = BY[x.id]; return '<div class="rcrow"><span class="nm"><b>' + esc(e.n) + '</b><span class="small">' + fmtD(x.d) + '</span></span><span class="sp pr">' + MEDAL + esc(bestTxt(e, bestOf(e, [x.r]))) + '</span></div>'; }).join("") + '</div>';
+    if (prs.length > 5) h += '<button type="button" class="link" data-act="rcallpr">' + (UI.rcAllPr ? "Show fewer" : "Show all " + prs.length) + '</button>';
+  } else h += '<p class="small">No new bests this ' + word + '. Add a rep or a little weight next time to earn a medal.</p>';
+  h += '</div>';
+  /* top exercises by sets */
+  var ids = Object.keys(st.ex).sort(function (a, b) { return st.ex[b].sets - st.ex[a].sets || st.ex[b].kg - st.ex[a].kg; }).slice(0, 7);
+  if (ids.length) {
+    var mx = st.ex[ids[0]].sets;
+    h += '<div class="card"><h3>Top exercises</h3><p class="small">By sets done this ' + word + '.</p><div class="rcbars">' + ids.map(function (id, i) {
+      var x = st.ex[id];
+      return '<button type="button" class="rcbar" data-act="exhist" data-ex="' + id + '"><span class="rk">' + (i + 1) + '</span><span class="nm"><b>' + esc(BY[id].n) + '</b><i style="width:' + Math.max(6, x.sets / mx * 100).toFixed(1) + '%"></i></span><span class="rv"><span><b>' + x.sets + '</b> set' + (x.sets === 1 ? "" : "s") + '</span>' + (x.kg ? '<small>' + (x.kg >= 1000 ? r1(x.kg / 1000) + " t" : fmtK(Math.round(x.kg)) + " kg") + '</small>' : "") + '</span></button>';
+    }).join("") + '</div>';
+    var mus = MUSCLES.filter(function (m) { return st.mus[m]; });
+    if (mus.length) h += '<p class="label">Sets per muscle</p><div class="rcmus">' + mus.map(function (m) { return '<span><b>' + st.mus[m] + '</b>' + m + '</span>'; }).join("") + '</div>';
+    h += '</div>';
+  }
+  /* food, water and body */
+  var f = st.food;
+  h += '<div class="card"><h3>Food and body</h3>' + (f.days ? '<div class="rctiles"><div><span>Avg protein</span><b>' + r0(f.p) + '<small> g/day</small></b></div><div><span>Target hit</span><b>' + f.hit + '<small> of ' + f.days + ' days</small></b></div><div><span>Avg calories</span><b>' + fmtK(f.kcal) + '<small> kcal</small></b></div><div><span>Avg water</span><b>' + (f.water ? r1(f.water / 1000) + '<small> L</small>' : '–') + '</b></div></div>' : '<p class="small">No food logged this ' + word + '.</p>') +
+    (st.body ? '<p class="small">Weight: ' + r1(st.body.from) + ' → ' + r1(st.body.to) + ' kg (' + (st.body.to - st.body.from >= 0 ? "+" : "") + r1(st.body.to - st.body.from) + ' kg)</p>' : "") + '</div>';
+  return h;
+}
 /* ---------- Guide ---------- */
 function fold(k, title, inner) { return '<details class="fold" data-k="g-' + k + '"' + (UI.open["g-" + k] ? " open" : "") + '><summary>' + title + '</summary><div class="in">' + inner + '</div></details>'; }
 /* Big page titles: last word in the accent colour, gym-poster style */
@@ -5301,6 +5461,9 @@ document.addEventListener("click", function (ev) {
     if (!UI.sheet.confirmOut) { UI.sheet.confirmOut = true; renderSheet(); return; }
     var ncO = ncOn(); if (ncO) ncO.signOut().then(function () { toast("Signed out. Your log stays in your account."); });
   }
+  else if (a === "rckind") { UI.recap = {kind: b.getAttribute("data-v"), off: 0}; UI.rcAllPr = false; render(true); }
+  else if (a === "rcoff") { UI.recap = UI.recap || {kind: "week", off: 0}; UI.recap.off = Math.min(0, UI.recap.off + +b.getAttribute("data-d")); UI.rcAllPr = false; render(true); }
+  else if (a === "rcallpr") { UI.rcAllPr = !UI.rcAllPr; render(true); }
   else if (a === "stab") { UI.statTab = b.getAttribute("data-v"); render(true); saveUI(); }
   else if (a === "bchart") { UI.bchart = b.getAttribute("data-v"); render(true); }
   else if (a === "pickday") {
