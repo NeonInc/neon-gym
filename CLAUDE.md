@@ -35,6 +35,7 @@ Neon Gym is live at https://neoninc.github.io/neon-gym/ and is one tile on the N
   `foodLookup("bc-<code>")` gives a food with base "100 g|ml". Lookups go to Open Food Facts (`OFF_URL`); `offParse()` scales
   per-serving values, prefers kJ when kcal disagrees with the macros, and `bcCheck()` sends anything that doesn't add up to the
   label form. `ok` = the user confirmed it against the label. Scanning uses the built-in BarcodeDetector or loads `BD_URL` (ZXing).
+- Stats → Recap (`viewRecap()`, `rcStats()`, `streakInfo()`) is worked out from `S` every time; it stores nothing.
 - Water is stored per day inside that day's food doc (`S.food[d].water = [{ml, t}]`), so it syncs with food.
   A food doc can hold only water: use `tidyFoodDay(d)` instead of deleting a day when its items run out.
 - Fasting state lives in the profile (`profile.fast = {on, plan, h, start, consent, notify}`, `profile.fastLog`). The service worker
