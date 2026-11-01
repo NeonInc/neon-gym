@@ -971,6 +971,11 @@ header.top.scrolled { border-bottom-color: var(--line); }
 .rcmus { display: flex; flex-wrap: wrap; gap: 6px; }
 .rcmus span { display: inline-flex; align-items: baseline; gap: 5px; padding: 5px 10px; border-radius: 999px; background: var(--surface-2); font-size: 12.5px; color: var(--muted); }
 .rcmus b { color: var(--ink); font-size: 14px; }
+.rcstreak { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; background: var(--field); border: 1px solid var(--line); }
+.rcstreak.on { border-color: color-mix(in srgb, var(--food) 45%, transparent); background: color-mix(in srgb, var(--food) 8%, var(--field)); }
+.rcstreak .fl { font-size: 26px; line-height: 1; }
+.rcstreak .tx { display: flex; flex-direction: column; min-width: 0; }
+.rcstreak b { font-size: 16px; } .rcstreak small { font-size: 12px; color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -2087,7 +2092,7 @@ function profileBody() {
     (canPush ? '<button class="chip xs" type="button" data-act="restopt" data-k="push" aria-pressed="' + rs.push + '">Alert when the app is closed</button>' : "") + '</div>' +
     '<p class="small">' + (canPush ? "With the alert on, your phone buzzes when rest is over even if you switched apps or locked the screen." + (IS_IOS ? " On iPhone this needs the app added to your Home Screen." : "") : "The timer buzzes and beeps while the app is open.") + '</p>';
   h += backupSection();
-  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.11.01 10:16' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
+  h += '<p class="pfoot">NEON GYM · Neon Inc™ © 2026 · version 2026.11.01 10:26' + (nc ? '<br><a href="../">Neon Inc hub</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>' : "") + '</p>';
   return {title: "Profile", body: h};
 }
 
@@ -2098,6 +2103,14 @@ function weekStreak() {
   if (!wk[m]) m -= 7;
   while (wk[m]) { n++; m -= 7; }
   return n;
+}
+/* Week streak: weeks in a row (Mon–Sun) with at least one workout, plus the best run ever */
+function streakInfo() {
+  var wk = {}; Object.keys(S.sessions).forEach(function (k) { var s = S.sessions[k]; if (s && s.date && (hasDone(s) || s.finished)) wk[monNum(s.date)] = 1; });
+  var ks = Object.keys(wk).map(Number).sort(function (a, b) { return a - b; }), best = 0, run = 0, prev = null;
+  ks.forEach(function (m) { run = prev != null && m - prev === 7 ? run + 1 : 1; best = Math.max(best, run); prev = m; });
+  var cur = weekStreak();
+  return {cur: cur, best: Math.max(best, cur), total: ks.length, thisWeek: !!wk[monNum(todayStr())]};
 }
 function lastWeigh() {
   var ds = Object.keys(S.body).filter(function (d) { return S.body[d].kg != null; }).sort();
@@ -2220,6 +2233,11 @@ function viewRecap() {
     h += '<div class="rcmonth">' + cells + '</div>';
   }
   if (!st.workouts) h += '<p class="small">No workouts logged this ' + word + ' yet.</p>';
+  if (R.off === 0) {
+    var sk = streakInfo();
+    h += '<div class="rcstreak' + (sk.cur ? " on" : "") + '"><span class="fl" aria-hidden="true">' + (sk.cur ? "🔥" : "💤") + '</span><span class="tx"><b>' + (sk.cur ? sk.cur + "-week streak" : "No streak yet") + '</b><small>' +
+      (sk.cur && !sk.thisWeek ? "Train once this week to keep it going. " : !sk.cur ? "Train at least once a week to start one. " : "") + (sk.best ? "Best: " + sk.best + " week" + (sk.best === 1 ? "" : "s") + " · " : "") + sk.total + " week" + (sk.total === 1 ? "" : "s") + " trained in total</small></span></div>";
+  }
   /* totals */
   h += '<div class="rctiles"><div><span>Sets</span><b>' + fmtK(st.sets) + '</b>' + rcDelta(st.sets, pv.sets, "") + '</div><div><span>Lifted</span><b>' + (st.kg >= 1000 ? r1(st.kg / 1000) + '<small> t</small>' : fmtK(st.kg) + '<small> kg</small>') + '</b>' + rcDelta(st.kg, pv.kg, " kg") + '</div>' +
     '<div><span>Reps</span><b>' + fmtK(st.reps) + '</b></div><div><span>Time</span><b>' + (st.mins >= 60 ? Math.floor(st.mins / 60) + '<small> h </small>' + (st.mins % 60) + '<small> m</small>' : st.mins + '<small> min</small>') + '</b></div></div>';
