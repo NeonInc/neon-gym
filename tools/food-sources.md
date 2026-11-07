@@ -2,6 +2,571 @@
 
 Values per base amount as listed in `src/app.html` (`fd(...)` lines). Pack labels and brand pages first, FatSecret South Africa and Open Food Facts next, USDA FoodData Central for generic items (marked "Generic value." in the app).
 
+## South African menu and label expansion
+
+Nutrition is for the exact named serving, pack, size or variant. Energy in kJ is divided by 4.184. Historical entries use their stored totals. Existing catalog IDs and base amounts are preserved where label values were corrected. The older Futurelife Honey granola remains marked as an estimate because the matching label could not be verified. The official Original Boost is a separate entry.
+
+The Mugg & Bean Summer 2026 guide includes variants such as bread, sides, sizes and Halaal versions. Entries with inconsistent nutrition or unclear portions open the manual form. Woolworths figures come from pack-specific nutrition tables on the product pages. Some SPAR, Checkers and Nando’s values use specifically identified FatSecret South Africa product listings. Use the current pack label if it differs. KFC's public guide states June 2022; calorie-only entries refer to the serving published there. Availability can vary. Other legacy catalog entries were outside this label audit.
+
+| Food ID | Reference | Serving |
+| --- | --- | --- |
+| `futurelife-hp` | [High Protein Smart Food, vanilla (dry)](https://futurelife.co.za/collections/smart-protein-3d/products/high-protein-smart-food%E2%84%A2-vanilla-75g-x-8) | 75 g serving |
+| `za-fl-hp-chocolate` | [High Protein Smart Food, chocolate (dry)](https://futurelife.co.za/collections/chocolate-cereal/products/high-protein-smart-food-chocolate-1kg) | 75 g serving |
+| `sm-fl-smartfood` | [Smart Food, original (dry)](https://futurelife.co.za/products/smart-food%E2%84%A2-original-10-x-50g) | 1 serving 50 g |
+| `sm-fl-smartfood-choc` | [Smart Food, chocolate (dry)](https://futurelife.co.za/collections/cereal/products/smart-food-chocolate-500g) | 1 serving 50 g |
+| `fl-bar` | [High Protein Chocolate Crunch Bar](https://futurelife.co.za/collections/on-the-go/products/high-protein-bar-chocolate-crunch-multipack) | 1 bar 50 g |
+| `sm-fl-lite-bar` | [High Protein Lite Chocolate Crunch Bar](https://futurelife.co.za/collections/all-products/products/high-protein-lite-bar-chocolate-crunch-multipack) | 1 bar 40 g |
+| `za-fl-zero-original` | [Zero Smart Food, original (dry)](https://futurelife.co.za/collections/online-without-bundles/products/smart-food%E2%84%A2-zero-original-10x50g) | 1 serving 50 g |
+| `za-fl-zero-chocolate` | [Zero Smart Food, chocolate (dry)](https://futurelife.co.za/collections/as-seen-on-tiktok/products/smart-food-zero-chocolate-500g) | 1 serving 50 g |
+| `za-fl-zero-banana` | [Zero Smart Food, banana (dry)](https://futurelife.co.za/collections/as-seen-on-tiktok/products/smart-food%E2%84%A2-zero-banana-500g) | 1 serving 50 g |
+| `za-fl-oats-classic` | [Smart Instant Oats, classic (dry)](https://futurelife.co.za/products/smart-instant-oats-with-ancient-grains-original) | 1 serving 50 g |
+| `za-fl-granola-boost` | [Granola Crunch Original Boost (dry)](https://futurelife.co.za/products/crunch-smart-food-original-425g) | 100 g |
+| `sm-ww-lasagne` | [Beef Lasagne 300 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Beef-Lasagne-300-g/_/A-20034948) | 1 meal 300 g |
+| `za-ww-6009233018428` | [Chicken Broccoli 220 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Traditional-Meals/Chicken-Broccoli-220-g/_/A-6009233018428) | 1 pack 220 g |
+| `za-ww-20128883` | [Butter Chicken 350 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Butter-Chicken-350-g/_/A-20128883) | 1 pack 350 g |
+| `sm-ww-spag-bol` | [Spaghetti Bolognese 300 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Spaghetti-Bolognese-300-g/_/A-20152123) | 1 meal 300 g |
+| `za-ww-20123895` | [Spaghetti Carbonara 300 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Spaghetti-Carbonara-300-g/_/A-20123895) | 1 pack 300 g |
+| `za-ww-6009249163884` | [Tikka Chicken Booster Bowl 350 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Booster-Soup-Bowls/Tikka-Chicken-Booster-Bowl-350-g/_/A-6009249163884) | 1 pack 350 g |
+| `za-ww-6009233018435` | [Beef Mince Curry & Rice 220 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Beef-Mince-Curry-Rice-220-g/_/A-6009233018435) | 1 pack 220 g |
+| `za-ww-6009204359239` | [Basil & Ricotta Ravioli 400 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Basil-Ricotta-Ravioli-400-g/_/A-6009204359239) | 1 pack 400 g |
+| `sm-ww-mac-cheese` | [Macaroni Cheese 300 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Macaroni-Cheese-300-g/_/A-20039707) | 1 meal 300 g |
+| `sm-ww-cottage-pie` | [Cottage Pie 350 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Traditional-Meals/Cottage-Pie-350-g/_/A-20007294) | 1 meal 350 g |
+| `za-ww-20082154` | [Tagliatelle Alfredo 300 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Tagliatelle-Alfredo-300-g/_/A-20082154) | 1 pack 300 g |
+| `za-ww-6009245640303` | [Meatballs & Mash 220 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Traditional-Meals/Meatballs-Mash-220-g/_/A-6009245640303) | 1 pack 220 g |
+| `za-ww-6009226278648` | [Beef Lasagne 420 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Beef-Lasagne-420-g/_/A-6009226278648) | 1 pack 420 g |
+| `za-ww-6009189968822` | [Braised Beef Stew 350 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Traditional-Meals/Braised-Beef-Stew-350-g/_/A-6009189968822) | 1 pack 350 g |
+| `za-ww-20080709` | [Macaroni Cheese with Bacon 300 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Macaroni-Cheese-with-Bacon-300-g/_/A-20080709) | 1 pack 300 g |
+| `za-ww-6009182630214` | [BBQ Chicken & Bacon Pasta 300 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/BBQ-Chicken-Bacon-Pasta-300-g/_/A-6009182630214) | 1 pack 300 g |
+| `za-ww-6009171333751` | [Teriyaki Chicken Rice Bowl 350 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Teriyaki-Chicken-Rice-Bowl-350-g/_/A-6009171333751) | 1 pack 350 g |
+| `za-ww-6009249163914` | [Hot Honey Chicken Booster Bowl 350 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Booster-Soup-Bowls/Hot-Honey-Chicken-Booster-Bowl-350-g/_/A-6009249163914) | 1 pack 350 g |
+| `sm-ww-cashew-chicken` | [Cashew Nut Chicken 400 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Cashew-Nut-Chicken-400-g/_/A-6009204041141) | 1 meal 400 g |
+| `za-ww-6009207323695` | [Sesame Chicken Noodle 400 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Sesame-Chicken-Noodle-400-g/_/A-6009207323695) | 1 pack 400 g |
+| `za-ww-6001009000811` | [Chicken Lasagne 300 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Chicken-Lasagne-300-g/_/A-6001009000811) | 1 pack 300 g |
+| `sm-ww-alaking` | [Chicken A La King with Rice 400 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Traditional-Meals/Chicken-A-La-King-with-Rice-400-g/_/A-20139797) | 1 meal 400 g |
+| `za-ww-20149284` | [Spinach & Ricotta Cannelloni 400 g](https://www.woolworths.co.za/prod/Food/Flavours-of-the-World/Italian/Spinach-Ricotta-Cannelloni-400-g/_/A-20149284) | 1 pack 400 g |
+| `za-ww-6007875250121` | [Lamb Rogan Josh 350 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Lamb-Rogan-Josh-350-g/_/A-6007875250121) | 1 pack 350 g |
+| `za-ww-20152130` | [Macaroni Cheese & Beef Bolognese 300 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Macaroni-Cheese-Beef-Bolognese-300-g/_/A-20152130) | 1 pack 300 g |
+| `za-ww-6009182759595` | [Tuna Penne 300 g](https://www.woolworths.co.za/prod/Food/Flavours-of-the-World/Italian/Italian-Ready-Meals/Tuna-Penne-300-g/_/A-6009182759595) | 1 pack 300 g |
+| `za-ww-6009233165467` | [Tomato, Basil & Mozzarella Fusilli 300 g](https://www.woolworths.co.za/prod/Food/Flavours-of-the-World/Italian/Italian-Ready-Meals/Tomato-Basil-Mozzarella-Fusilli-300-g/_/A-6009233165467) | 1 pack 300 g |
+| `za-ww-6009182759540` | [Spaghetti Bolognese 400 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Spaghetti-Bolognese-400-g/_/A-6009182759540) | 1 pack 400 g |
+| `za-ww-6009233883644` | [Spinach & Ricotta Cannelloni 350 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Spinach-Ricotta-Cannelloni-350-g/_/A-6009233883644) | 1 pack 350 g |
+| `za-ww-6009226278631` | [Macaroni Cheese 400 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Italian-Meals/Macaroni-Cheese-400-g/_/A-6009226278631) | 1 pack 400 g |
+| `za-ww-6009207839264` | [Chilli Prawn Linguine 400 g](https://www.woolworths.co.za/prod/Food/Flavours-of-the-World/Italian/Italian-Ready-Meals/Chilli-Prawn-Linguine-400-g/_/A-6009207839264) | 1 pack 400 g |
+| `za-ww-20102135` | [Chicken Broccoli 350 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Traditional-Meals/Chicken-Broccoli-350-g/_/A-20102135) | 1 pack 350 g |
+| `za-ww-6009226142291` | [Citrus Honey Chicken Booster Bowl 350 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Booster-Soup-Bowls/Citrus-Honey-Chicken-Booster-Bowl-350-g/_/A-6009226142291) | 1 pack 350 g |
+| `za-ww-6009233951084` | [Chimichurri Steak Booster Bowl 350 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Booster-Soup-Bowls/Chimichurri-Steak-Booster-Bowl-350-g/_/A-6009233951084) | 1 pack 350 g |
+| `za-ww-6009233946271` | [Chilli Crunch Chicken Booster Bowl 350 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Booster-Soup-Bowls/Chilli-Crunch-Chicken-Booster-Bowl-350-g/_/A-6009233946271) | 1 pack 350 g |
+| `za-ww-6009204041158` | [Beef Chow Mein 400 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Beef-Chow-Mein-400-g/_/A-6009204041158) | 1 pack 400 g |
+| `za-ww-20147686` | [Chicken Korma 350 g](https://www.woolworths.co.za/prod/Food/Ready-Meals/Single-Meals/Chicken-Korma-350-g/_/A-20147686) | 1 pack 350 g |
+| `za-ww-6009245458472` | [Durban Style Lamb Curry 430 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Durban-Style-Lamb-Curry-430-g/_/A-6009245458472) | 1 pack 430 g |
+| `za-ww-6009233148453` | [Durban Style Chicken Curry with Basmati Rice 350 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Durban-Style-Chicken-Curry-with-Basmati-Rice-350-g/_/A-6009233148453) | 1 pack 350 g |
+| `za-ww-6009249180973` | [Char Siu Pork Rice Bowl 350 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Char-Siu-Pork-Rice-Bowl-350-g/_/A-6009249180973) | 1 pack 350 g |
+| `za-ww-6009223395539` | [Tikka Chicken Curry 350 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Heat-Eat-Single-Ready-Meals/Tikka-Chicken-Curry-350-g/_/A-6009223395539) | 1 pack 350 g |
+| `za-ww-20184469` | [Kids Meaty Macaroni & Cheese 200 g](https://www.woolworths.co.za/prod/Food/Kids/Kids-Meaty-Macaroni-Cheese-200-g/_/A-20184469) | 1 pack 200 g |
+| `za-ww-6009101225699` | [Kids Spaghetti with Savoury Beef Mince 200 g](https://www.woolworths.co.za/prod/Food/Kids/Kids-Spaghetti-with-Savoury-Beef-Mince-200-g/_/A-6009101225699) | 1 pack 200 g |
+| `za-ww-6009233882876` | [Kids Buttery Butter Chicken 200 g](https://www.woolworths.co.za/prod/Food/Food-To-Go/Kids-Ready-Meals/Kids-Buttery-Butter-Chicken-200-g/_/A-6009233882876) | 1 pack 200 g |
+| `za-ww-20196356` | [Kids Cheese-a-roni Macaroni Cheese 200 g](https://www.woolworths.co.za/prod/Food/Kids/Kids-Cheese-a-roni-Macaroni-Cheese-200-g/_/A-20196356) | 1 pack 200 g |
+| `za-ww-6008000747493` | [Kids Eezy Cheesy Chicken 200 g](https://www.woolworths.co.za/prod/Food/Kids/Kids-Eezy-Cheesy-Chicken-200-g/_/A-6008000747493) | 1 pack 200 g |
+| `za-ww-20196370` | [Kids Pasta Pillows 200 g](https://www.woolworths.co.za/prod/Food/Kids/Kids-Pasta-Pillows-200-g/_/A-20196370) | 1 pack 200 g |
+| `za-ww-6009214621081` | [Kids Chirpy Chicken Pie 200 g](https://www.woolworths.co.za/prod/Food/Kids/Kids-Chirpy-Chicken-Pie-200-g/_/A-6009214621081) | 1 pack 200 g |
+| `za-ww-20196349` | [Kids Chicken Noodle Doo 200 g](https://www.woolworths.co.za/prod/Food/Kids/Kids-Chicken-Noodle-Doo-200-g/_/A-20196349) | 1 pack 200 g |
+| `za-ww-20196363` | [Kids Criss Cross Cottage Pie 220 g](https://www.woolworths.co.za/prod/Food/Kids/Kids-Criss-Cross-Cottage-Pie-220-g/_/A-20196363) | 1 pack 220 g |
+| `za-mb-americano` | [Americano](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `r-mb-latte` | [Caffè Latte](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-caffe-mocha` | [Caffè Mocha](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `r-mb-cappuccino` | [Cappuccino, Easy](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-cappuccino-serious` | [Cappuccino, Serious](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-cappuccino-short` | [Cappuccino, Short](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-cortado` | [Cortado](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-doppio-espresso` | [Doppio Espresso](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-espresso` | [Espresso](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-filter-coffee-single-cup` | [Filter Coffee, Single Cup](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-flat-white` | [Flat White](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-spanish-latte` | [Spanish Latte](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-sticky-toffee-latte` | [Sticky Toffee Latte](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=4) | 1 cup |
+| `za-mb-iced-latte` | [Iced Latte](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-muggachino` | [Muggachino](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-vietnamese-iced-latte` | [Vietnamese Iced Latte](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-caribbean-mocha` | [Caribbean Mocha](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-chai-latte` | [Chai Latte](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-cinnamilk-matcha-latte` | [Cinnamilk Matcha Latte](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `r-mb-hot-chocolate` | [Hot Chocolate](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-pot-of-tea` | [Pot Of Tea](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-red-cappuccino-easy` | [Red Cappuccino, Easy](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-red-cappuccino-serious` | [Red Cappuccino, Serious](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-iced-cinnamilk-matcha-latte` | [Iced Cinnamilk Matcha Latte](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-frozen-cinnamilk-matcha` | [Frozen Cinnamilk Matcha](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-fruit-juice-medium` | [Fruit Juice, Medium](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=5) | 1 cup |
+| `za-mb-fruit-juice-small` | [Fruit Juice, Small](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 cup |
+| `za-mb-fruit-juice-tall` | [Fruit Juice, Tall](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 cup |
+| `za-mb-milkshake-medium` | [Milkshake, Medium](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | Manual entry |
+| `za-mb-milkshake-small` | [Milkshake, Small](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | Manual entry |
+| `za-mb-milkshake-tall` | [Milkshake, Tall](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | Manual entry |
+| `za-mb-soft-drink` | [Soft Drink](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 cup |
+| `za-mb-soft-drink-no-sugar` | [Soft Drink, No Sugar](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 cup |
+| `za-mb-strawberry-hibiscus-ginger-slush` | [Strawberry, Hibiscus & Ginger Slush](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 cup |
+| `za-mb-guava-grapefruit-fruity-fizz` | [Guava & Grapefruit Fruity Fizz](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 cup |
+| `za-mb-kiwi-watermelon-fruity-fizz` | [Kiwi & Watermelon Fruity Fizz](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 cup |
+| `za-mb-peach-iced-tea` | [Peach Iced Tea](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 cup |
+| `za-mb-eggs-benedict-big-ben-double` | [Eggs Benedict, Big Ben, Double](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 serving |
+| `za-mb-eggs-benedict-big-ben-double-halaal` | [Eggs Benedict, Big Ben, Double, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 serving |
+| `za-mb-eggs-benedict-big-ben-single` | [Eggs Benedict, Big Ben, Single](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=6) | 1 serving |
+| `za-mb-eggs-benedict-big-ben-single-halaal` | [Eggs Benedict, Big Ben, Single, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-eggs-benedict-buffalo-chicken-blue-cheese-double` | [Eggs Benedict, Buffalo Chicken & Blue Cheese, Double](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-eggs-benedict-buffalo-chicken-blue-cheese-single` | [Eggs Benedict, Buffalo Chicken & Blue Cheese, Single](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-eggs-benedict-classic-double` | [Eggs Benedict, Classic, Double](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-eggs-benedict-classic-double-halaal` | [Eggs Benedict, Classic, Double, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-eggs-benedict-classic-single` | [Eggs Benedict, Classic, Single](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-eggs-benedict-classic-single-halaal` | [Eggs Benedict, Classic, Single, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-eggs-benedict-south-african-double` | [Eggs Benedict, South African, Double](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `r-mb-eggs-benedict` | [Eggs Benedict, South African, Single](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 meal |
+| `za-mb-tex-mex-eggs-benedict-double` | [Tex-Mex Eggs Benedict, Double](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-tex-mex-eggs-benedict-single` | [Tex-Mex Eggs Benedict, Single](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-california-omelette-rye` | [California Omelette, Rye](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-california-omelette-rye-halaal` | [California Omelette, Rye, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-california-omelette-white` | [California Omelette, White](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-california-omelette-white-halaal` | [California Omelette, White, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=7) | 1 serving |
+| `za-mb-california-omelette-wholewheat` | [California Omelette, Wholewheat](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-california-omelette-wholewheat-halaal` | [California Omelette, Wholewheat, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-create-your-own-omelette` | [Create Your Own Omelette](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-create-your-own-omelette-egg-white` | [Create Your Own Omelette, Egg White](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-rancheros-omelette` | [Rancheros Omelette](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-rancheros-omelette-halaal` | [Rancheros Omelette, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-back-bacon` | [Back Bacon](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-bacon-bits` | [Bacon Bits](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-beef-macon` | [Beef Macon](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-boerewors` | [Boerewors](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-buttered-rye-toast-1-slice` | [Buttered Rye Toast, 1 Slice](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-buttered-sourdough-toast-1-slice` | [Buttered Sourdough Toast, 1 Slice](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-buttered-wholewheat-toast-1-slice` | [Buttered Wholewheat Toast, 1 Slice](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-cheddar` | [Cheddar](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-chicken-livers` | [Chicken Livers](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=8) | 1 serving |
+| `za-mb-hashbrowns-two` | [Hashbrowns, Two](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-herbed-mushrooms` | [Herbed Mushrooms](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-hickory-ham` | [Hickory Ham](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-macon-bits` | [Macon Bits](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-mozzarella` | [Mozzarella](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-onion` | [Onion](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-pastrami` | [Pastrami](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-pork-banger` | [Pork Banger](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-rump-100g` | [Rump, 100G](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-tomato` | [Tomato](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `r-mb-classic-breakfast` | [Breakfast, Classic](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 meal |
+| `za-mb-breakfast-classic-halaal` | [Breakfast, Classic, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `r-mb-hearty-grill` | [Breakfast, Hearty Grill](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 meal |
+| `za-mb-breakfast-hearty-grill-halaal` | [Breakfast, Hearty Grill, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-breakfast-on-the-go` | [Breakfast, On-The-Go](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=9) | 1 serving |
+| `za-mb-breakfast-on-the-go-halaal` | [Breakfast, On-The-Go, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 serving |
+| `r-mb-farm-breakfast` | [Breakfast, South African Farm](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 meal |
+| `za-mb-breakfast-south-african-farm-halaal` | [Breakfast, South African Farm, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 serving |
+| `za-mb-avo-on-toast-rye` | [Avo On Toast, Rye](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 serving |
+| `r-mb-avo-toast` | [Avo On Toast, Wholewheat](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 meal |
+| `r-mb-lowcarb-breakfast` | [Low-Carb Breakfast](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 meal |
+| `za-mb-spicy-beans-on-toast-rye` | [Spicy Beans On Toast, Rye](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 serving |
+| `za-mb-spicy-beans-on-toast-sourdough` | [Spicy Beans On Toast, Sourdough](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 serving |
+| `za-mb-spicy-beans-on-toast-wholewheat` | [Spicy Beans On Toast, Wholewheat](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 serving |
+| `za-mb-yoghurt-fruit-granola-bowl` | [Yoghurt, Fruit & Granola Bowl](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 serving |
+| `r-mb-breakfast-bagel` | [Bagel, Breakfast](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 bagel |
+| `za-mb-bagel-breakfast-halaal` | [Bagel, Breakfast, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 serving |
+| `za-mb-bagel-smoked-trout` | [Bagel, Smoked Trout](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=10) | 1 serving |
+| `za-mb-alabama-chicken-stack-rosemary-salted-skin-on-fries-sourdough` | [Alabama Chicken Stack, Rosemary-Salted Skin-On Fries, Sourdough](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-alabama-chicken-stack-rosemary-salted-skin-on-fries-sourdough-halaal` | [Alabama Chicken Stack, Rosemary-Salted Skin-On Fries, Sourdough, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-alabama-chicken-stack-side-salad-sourdough` | [Alabama Chicken Stack, Side Salad, Sourdough](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-alabama-chicken-stack-side-salad-sourdough-halaal` | [Alabama Chicken Stack, Side Salad, Sourdough, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-alabama-chicken-stack-sweet-potato-fries-sourdough` | [Alabama Chicken Stack, Sweet Potato Fries, Sourdough](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-alabama-chicken-stack-sweet-potato-fries-sourdough-halaal` | [Alabama Chicken Stack, Sweet Potato Fries, Sourdough, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-bbq-steak-rosemary-salted-skin-on-fries-sourdough` | [BBQ Steak, Rosemary-Salted Skin-On Fries, Sourdough](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-bbq-steak-sweet-potato-fries-sourdough` | [BBQ Steak, Sweet Potato Fries, Sourdough](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-bbq-steak-side-salad-sourdough` | [BBQ Steak, Side Salad, Sourdough](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-smoked-trout-rye` | [Smoked Trout, Rye](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-smoked-trout-wholewheat` | [Smoked Trout, Wholewheat](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=11) | 1 serving |
+| `za-mb-back-bacon-egg-toasted-sandwich-rosemary-salted-skin-on-fries-rye` | [Back Bacon & Egg Toasted Sandwich, Rosemary-Salted Skin-on Fries, Rye](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=12) | 1 serving |
+| `r-mb-bacon-egg-toastie` | [Back Bacon & Egg Toasted Sandwich, Rosemary-Salted Skin-On Fries, White](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=12) | 1 sandwich |
+| `za-mb-back-bacon-egg-toasted-sandwich-rosemary-salted-skin-on-fries-wholewheat` | [Back Bacon & Egg Toasted Sandwich, Rosemary-Salted Skin-On Fries, Wholewheat](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=12) | 1 serving |
+| `za-mb-beef-macon-egg-toasted-sandwich-rosemary-salted-skin-on-fries-rye-halaal` | [Beef Macon & Egg Toasted Sandwich, Rosemary-Salted Skin-On Fries, Rye, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=12) | 1 serving |
+| `za-mb-beef-macon-egg-toasted-sandwich-rosemary-salted-skin-on-fries-white-halaal` | [Beef Macon & Egg Toasted Sandwich, Rosemary-Salted Skin-On Fries, White, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=12) | 1 serving |
+| `za-mb-beef-macon-egg-toasted-sandwich-rosemary-salted-skin-on-fries-wholewheat-halaal` | [Beef Macon & Egg Toasted Sandwich, Rosemary-Salted Skin-On Fries, Wholewheat, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=12) | 1 serving |
+| `za-mb-cheddar-tomato-toasted-sandwich-rosemary-salted-skin-on-fries-rye` | [Cheddar & Tomato Toasted Sandwich, Rosemary-Salted Skin-On Fries, Rye](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=12) | 1 serving |
+| `za-mb-cheddar-tomato-toasted-sandwich-rosemary-salted-skin-on-fries-white` | [Cheddar & Tomato Toasted Sandwich, Rosemary-Salted Skin-On Fries, White](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=12) | 1 serving |
+| `za-mb-cheddar-tomato-toasted-sandwich-rosemary-salted-skin-on-fries-wholewheat` | [Cheddar & Tomato Toasted Sandwich, Rosemary-Salted Skin-On Fries, Wholewheat](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=12) | 1 serving |
+| `za-mb-chicken-mayo-toasted-sandwich-rosemary-salted-skin-on-fries-rye` | [Chicken Mayo Toasted Sandwich, Rosemary-Salted Skin-On Fries, Rye](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | Manual entry |
+| `za-mb-chicken-mayo-toasted-sandwich-rosemary-salted-skin-on-fries-white` | [Chicken Mayo Toasted Sandwich, Rosemary-Salted Skin-On Fries, White](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | 1 serving |
+| `za-mb-chicken-mayo-toasted-sandwich-rosemary-salted-skin-on-fries-wholewheat` | [Chicken Mayo Toasted Sandwich, Rosemary-Salted Skin-On Fries, Wholewheat](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | 1 serving |
+| `za-mb-chicken-mayo-toasted-sandwich-sweet-potato-fries-rye` | [Chicken Mayo Toasted Sandwich, Sweet Potato Fries, Rye](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | 1 serving |
+| `za-mb-chicken-mayo-toasted-sandwich-sweet-potato-fries-white` | [Chicken Mayo Toasted Sandwich, Sweet Potato Fries, White](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | 1 serving |
+| `r-mb-chicken-mayo-toastie` | [Chicken Mayo Toasted Sandwich, Sweet Potato Fries, Wholewheat](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | 1 sandwich |
+| `za-mb-chicken-mayo-toasted-sandwich-side-salad-rye` | [Chicken Mayo Toasted Sandwich, Side Salad, Rye](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | 1 serving |
+| `za-mb-chicken-mayo-toasted-sandwich-side-salad-white` | [Chicken Mayo Toasted Sandwich, Side Salad, White](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | 1 serving |
+| `za-mb-chicken-mayo-toasted-sandwich-side-salad-wholewheat` | [Chicken Mayo Toasted Sandwich, Side Salad, Wholewheat](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | 1 serving |
+| `za-mb-salad-chicken-caesar-light` | [Salad, Chicken Caesar, Light](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | 1 serving |
+| `za-mb-salad-chicken-caesar-light-halaal` | [Salad, Chicken Caesar, Light, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=13) | 1 serving |
+| `r-mb-caesar-regular` | [Salad, Chicken Caesar, Regular](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 salad |
+| `za-mb-salad-chicken-caesar-regular-halaal` | [Salad, Chicken Caesar, Regular, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-salad-monte-cristo-light` | [Salad, Monte Cristo, Light](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-salad-monte-cristo-light-halaal` | [Salad, Monte Cristo, Light, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-salad-monte-cristo-regular` | [Salad, Monte Cristo, Regular](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-salad-monte-cristo-regular-halaal` | [Salad, Monte Cristo, Regular, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-bbq-cheddar-gourmet-burger-rosemary-salted-skin-on-fries` | [BBQ Cheddar Gourmet Burger, Rosemary-Salted Skin-On Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-big-daddy-gourmet-burger-rosemary-salted-skin-on-fries` | [Big Daddy Gourmet Burger, Rosemary-Salted Skin-On Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-big-daddy-gourmet-burger-rosemary-salted-skin-on-fries-halaal` | [Big Daddy Gourmet Burger, Rosemary-Salted Skin-On Fries, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-buttermilk-chicken-gourmet-burger-rosemary-salted-skin-on-fries` | [Buttermilk Chicken Gourmet Burger, Rosemary-Salted Skin-On Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-coated-spicy-buffalo-chicken-wings` | [Coated Spicy Buffalo Chicken Wings](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-creamy-jalapeno-gourmet-burger-rosemary-salted-skin-on-fries` | [Creamy Jalapeno Gourmet Burger, Rosemary-Salted Skin-On Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-mini-burger-duo-rosemary-salted-skin-on-fries` | [Mini Burger Duo, Rosemary-Salted Skin-On Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=14) | 1 serving |
+| `za-mb-sesame-crusted-buttermilk-chicken-strips` | [Sesame-Crusted Buttermilk Chicken Strips](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-veggie-gourmet-burger-rosemary-salted-skin-on-fries` | [Veggie Gourmet Burger, Rosemary-Salted Skin-On Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-chicken-mushroom-pot-pie` | [Chicken & Mushroom Pot Pie](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-chipotle-chicken-livers` | [Chipotle Chicken Livers](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-sesame-crusted-chicken-veg-bowl` | [Sesame-Crusted Chicken & Veg Bowl](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-roasted-tomato-basil-soup-rye` | [Roasted Tomato & Basil Soup, Rye](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-roasted-tomato-basil-soup-sourdough` | [Roasted Tomato & Basil Soup, Sourdough](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-roasted-tomato-basil-soup-white` | [Roasted Tomato & Basil Soup, White](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-roasted-tomato-basil-soup-wholewheat` | [Roasted Tomato Basil Soup, Wholewheat](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-local-braai-plate` | [Local Braai Plate](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-pit-boss-bbq-grill-rosemary-salted-skin-on-fries` | [Pit Boss BBQ Grill, Rosemary-Salted Skin-On Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-pit-boss-bbq-grill-sweet-potato-fries` | [Pit Boss BBQ Grill, Sweet Potato Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=15) | 1 serving |
+| `za-mb-pit-boss-bbq-grill-side-salad` | [Pit Boss BBQ Grill, Side Salad](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-pit-boss-bbq-grill-rosemary-salted-skin-on-fries-halaal` | [Pit Boss BBQ Grill, Rosemary-Salted Skin-On Fries, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-pit-boss-bbq-grill-sweet-potato-fries-halaal` | [Pit Boss BBQ Grill, Sweet Potato Fries, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-pit-boss-bbq-grill-side-salad-halaal` | [Pit Boss BBQ Grill, Side Salad, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-rib-wing-combo` | [Rib & Wing Combo](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-rib-wing-combo-halaal` | [Rib & Wing Combo, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-rump-wings-rings-rosemary-salted-skin-on-fries` | [Rump, Wings & Rings, Rosemary-Salted Skin-On Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-rump-wings-rings-sweet-potato-fries` | [Rump, Wings & Rings, Sweet Potato Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-rump-wings-rings-side-salad` | [Rump, Wings & Rings, Side Salad](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-rosemary-salted-skin-on-fries` | [Rosemary-Salted Skin-On Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-rosemary-salted-sweet-potato-fries` | [Rosemary-Salted Sweet Potato Fries](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-side-salad` | [Side Salad](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-apple-banana-pie` | [Apple & Banana Pie](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `za-mb-apple-crumble-cheesecake` | [Apple Crumble Cheesecake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=16) | 1 serving |
+| `r-mb-bacon-cheddar-muffin` | [Back Bacon & Cheddar Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 muffin |
+| `za-mb-back-bacon-cheddar-muffin-preserves` | [Back Bacon & Cheddar Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `r-mb-cheesecake` | [Baked Cheesecake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 slice |
+| `za-mb-banana-muffin` | [Banana Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `za-mb-banana-muffin-preserves` | [Banana Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `za-mb-beef-macon-cheddar-muffin` | [Beef Macon & Cheddar Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `za-mb-beef-macon-cheddar-muffin-preserves` | [Beef Macon & Cheddar Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `za-mb-berry-lime-cake` | [Berry & Lime Cake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `za-mb-blueberry-cheesecake` | [Blueberry Cheesecake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `r-mb-blueberry-muffin` | [Blueberry Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 muffin |
+| `za-mb-blueberry-muffin-preserves` | [Blueberry Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `r-mb-bran-muffin` | [Bran Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 muffin |
+| `za-mb-bran-muffin-preserves` | [Bran Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `za-mb-brown-butter-oat-raisin-cookie` | [Brown Butter Oat & Raisin Cookie](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `za-mb-brownie-tart` | [Brownie Tart](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `za-mb-cappuccino-cookie` | [Cappuccino Cookie](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=17) | 1 serving |
+| `za-mb-cappuccino-muffin` | [Cappuccino Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-cappuccino-muffin-preserves` | [Cappuccino Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-caramel-cheesecake` | [Caramel Cheesecake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-caramel-popcorn-cheesecake` | [Caramel Popcorn Cheesecake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-carrot-cake` | [Carrot Cake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-carrot-cheesecake` | [Carrot Cheesecake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-chai-pistachio-muffin` | [Chai Pistachio Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-chai-pistachio-muffin-preserves` | [Chai Pistachio Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-choc-chip-cookie` | [Choc-Chip Cookie](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `r-mb-chocchip-muffin` | [Choc-Chip Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 muffin |
+| `za-mb-choc-chip-muffin-preserves` | [Choc-Chip Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-chocolate-crinkle-cookie` | [Chocolate Crinkle Cookie](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-chocolate-mousse-cake` | [Chocolate Mousse Cake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-chocolate-peanut-butter-banana-cake` | [Chocolate, Peanut Butter & Banana Cake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-cinnamon-ginger-cookie` | [Cinnamon Ginger Cookie](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-citrus-ginger-muffin` | [Citrus & Ginger Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=18) | 1 serving |
+| `za-mb-citrus-ginger-muffin-preserves` | [Citrus & Ginger Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-coconut-fruit-tart` | [Coconut Fruit Tart](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-cranberry-white-chocolate-cookie` | [Cranberry & White Chocolate Cookie](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-date-nut-muffin` | [Date & Nut Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-date-nut-muffin-preserves` | [Date & Nut Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-honey-rooibos-cake` | [Honey & Rooibos Cake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-hot-cross-muffin` | [Hot Cross Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-hot-cross-muffin-preserves` | [Hot Cross Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-lemon-meringue` | [Lemon Meringue](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-lemon-poppy-muffin` | [Lemon Poppy Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-lemon-poppy-muffin-preserves` | [Lemon Poppy Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-millionaire-s-cake` | [Millionaire'S Cake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-oreo-whispers-cheesecake` | [Oreo® Whispers Cheesecake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-pecan-fudge-crumble` | [Pecan Fudge Crumble](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-peppermint-crisp-cake` | [Peppermint Crisp® Cake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-pineapple-coconut-cheesecake` | [Pineapple & Coconut Cheesecake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=19) | 1 serving |
+| `za-mb-raspberry-pistachio-panna-cotta-tart` | [Raspberry & Pistachio Panna Cotta Tart](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-rich-chocolate-cake` | [Rich Chocolate Cake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-scones` | [Scones](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-shortbread` | [Shortbread](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-snickerdoodle-cookie` | [Snickerdoodle Cookie](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-spiced-apple-crumble-muffin` | [Spiced Apple Crumble Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-spiced-apple-crumble-muffin-preserves` | [Spiced Apple Crumble Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-strawberry-walnut-muffin` | [Strawberry & Walnut Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-strawberry-walnut-muffin-preserves` | [Strawberry & Walnut Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-strawberry-cheesecake` | [Strawberry Cheesecake](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `r-mb-triplechoc-muffin` | [Triple Chocolate Muffin](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 muffin |
+| `za-mb-triple-chocolate-muffin-preserves` | [Triple Chocolate Muffin, Preserves](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-ice-cream` | [Ice Cream](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-preserves-butter-strawberry-jam-cheddar` | [Preserves, Butter, Strawberry Jam & Cheddar](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-whipped-cream` | [Whipped Cream](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=20) | 1 serving |
+| `za-mb-kids-big-boy-breakfast` | [Kids, Big Boy Breakfast](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-kids-big-boy-breakfast-halaal` | [Kids, Big Boy Breakfast, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-kids-egg-in-a-nest` | [Kids, Egg In A Nest](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-kids-egg-in-a-nest-halaal` | [Kids, Egg In A Nest, Halaal](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-kids-small-bowl-of-goodness` | [Kids, Small Bowl Of Goodness](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-kids-beef-burger` | [Kids, Beef Burger](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-kids-chicken-burger` | [Kids, Chicken Burger](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-kids-deep-fried-sesame-crusted-buttermilk-chicken-strips` | [Kids, Deep-Fried Sesame Crusted Buttermilk Chicken Strips](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-kids-grilled-chicken-strips-salad` | [Kids, Grilled Chicken Strips & Salad](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-kids-little-chino` | [Kids, Little Chino](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 cup |
+| `za-mb-asian-bbq-cauliflower-bites-dinner` | [Asian BBQ Cauliflower Bites [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-chipotle-chicken-livers-dinner` | [Chipotle Chicken Livers [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=21) | 1 serving |
+| `za-mb-garlic-parmesan-chicken-wings-dinner` | [Garlic & Parmesan Chicken Wings [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `r-mb-greek-salad` | [Salad, Greek, Light [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 salad |
+| `za-mb-salad-greek-regular-dinner` | [Salad, Greek, Regular [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-thai-basil-chicken-spring-rolls-dinner` | [Thai Basil Chicken Spring Rolls [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-thai-basil-pork-spring-rolls-dinner` | [Thai Basil Pork Spring Rolls [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-whipped-feta-bruschetta-balsamic-tomato-salad-dinner` | [Whipped Feta Bruschetta & Balsamic Tomato Salad [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-bacon-blue-cheese-gourmet-burger-rosemary-salted-skin-on-fries-dinner` | [Bacon & Blue Cheese Gourmet Burger, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-bbq-beef-bun-rosemary-salted-skin-on-fries-dinner` | [BBQ Beef Bun, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-bbq-cheddar-gourmet-burger-rosemary-salted-skin-on-fries-dinner` | [BBQ Cheddar Gourmet Burger, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-bbq-pork-bun-rosemary-salted-skin-on-fries-dinner` | [BBQ Pork Bun, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-garlic-chicken-parmesan-bun-rosemary-salted-skin-on-fries-dinner` | [Garlic Chicken Parmesan Bun, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-macon-blue-cheese-gourmet-burger-rosemary-salted-skin-on-fries-dinner` | [Macon & Blue Cheese Gourmet Burger, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-veggie-gourmet-burger-rosemary-salted-skin-on-fries-dinner` | [Veggie Gourmet Burger, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=22) | 1 serving |
+| `za-mb-butter-chicken-curry-bowl-dinner` | [Butter Chicken Curry Bowl [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-french-onion-mac-cheese-dinner` | [French Onion Mac & Cheese [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-french-onion-mac-cheese-halaal-dinner` | [French Onion Mac & Cheese, Halaal [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-fried-hake-rosemary-salted-skin-on-fries-dinner` | [Fried Hake, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-fried-hake-sweet-potato-fries-dinner` | [Fried Hake, Sweet Potato Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-fried-hake-side-salad-dinner` | [Fried Hake, Side Salad [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-peri-peri-chicken-dinner` | [Peri-Peri Chicken [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-sundried-tomato-gnocchi-dinner` | [Sundried Tomato Gnocchi [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-400g-bbq-beef-ribs-rosemary-salted-skin-on-fries-dinner` | [400G BBQ Beef Ribs, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-400g-bbq-pork-ribs-rosemary-salted-skin-on-fries-dinner` | [400G BBQ Pork Ribs, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-800g-bbq-beef-ribs-rosemary-salted-skin-on-fries-dinner` | [800G BBQ Beef Ribs, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | Manual entry |
+| `za-mb-800g-bbq-pork-ribs-rosemary-salted-skin-on-fries-dinner` | [800G BBQ Pork Ribs, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-bbq-ribeye-rosemary-salted-skin-on-fries-dinner` | [BBQ Ribeye, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=23) | 1 serving |
+| `za-mb-lamb-chops-rosemary-salted-skin-on-fries-dinner` | [Lamb Chops, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-lamb-chops-rosemary-salted-skin-on-fries-halaal-dinner` | [Lamb Chops, Rosemary-Salted Skin-On Fries, Halaal [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-rump-wings-rosemary-salted-skin-on-fries-dinner` | [Rump & Wings, Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-basmati-rice-dinner` | [Basmati Rice [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-blue-cheese-sauce-dinner` | [Blue Cheese Sauce [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-crispy-chipotle-onions-dinner` | [Crispy Chipotle Onions [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-crushed-baby-potatoes-dinner` | [Crushed Baby Potatoes [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-mushroom-thyme-sauce-dinner` | [Mushroom Thyme Sauce [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-oven-roasted-veg-dinner` | [Oven Roasted Veg [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-peppercorn-sauce-dinner` | [Peppercorn Sauce [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-rosemary-salted-skin-on-fries-dinner` | [Rosemary-Salted Skin-On Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-rosemary-salted-sweet-potato-fries-dinner` | [Rosemary-Salted Sweet Potato Fries [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-side-salad-dinner` | [Side Salad [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-whiskey-peppercorn-sauce-dinner` | [Whiskey Peppercorn Sauce [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=24) | 1 serving |
+| `za-mb-chocolate-tart-dinner` | [Chocolate Tart [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=25) | 1 serving |
+| `za-mb-pecan-toffee-pudding-dinner` | [Pecan Toffee Pudding [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=25) | 1 serving |
+| `za-mb-amarula-salted-caramel-sit-down-spiked-shake-dinner` | [Amarula & Salted Caramel Sit Down Spiked Shake [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=25) | 1 serving |
+| `za-mb-dom-pedro-dinner` | [Dom Pedro [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=25) | 1 serving |
+| `za-mb-irish-coffee-dinner` | [Irish Coffee [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=25) | 1 serving |
+| `za-mb-kahlua-nutella-spiked-shake-dinner` | [Kahlua & Nutella Spiked Shake [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=25) | Manual entry |
+| `za-mb-limoncello-white-chocolate-spiked-shake-dinner` | [Limoncello & White Chocolate Spiked Shake [Dinner]](https://apos-alt-muggandbean-prod.s3.af-south-1.amazonaws.com/attachments/ymqttkb18j4l5h46t9vglyk4-mugg-bean-summer-menu-2026-sd-nutriguide.pdf#page=25) | 1 serving |
+| `za-spar-lasagne-sheets` | [Lasagne sheets, dry](https://www.fatsecret.co.za/calories-nutrition/spar/lasagne-sheets/100g) | 100 g |
+| `za-spar-milk-ff-uht` | [Fat free long life milk](https://www.fatsecret.co.za/calories-nutrition/spar/fat-free-long-life-milk/100ml) | 100 ml |
+| `za-spar-milk-lf` | [Low fat milk](https://www.fatsecret.co.za/calories-nutrition/spar/low-fat-milk/1-cup) | 1 cup 250 ml |
+| `za-spar-double-cream-yoghurt` | [Double cream plain yoghurt](https://www.fatsecret.co.za/calories-nutrition/spar/double-cream-plain-yoghurt/100g) | 100 g |
+| `za-ch-butter-chicken` | [Ready-to-cook butter chicken, no rice](https://www.fatsecret.co.za/calories-nutrition/checkers/ready-to-cook-butter-chicken/100g) | 100 g |
+| `za-ch-tuna` | [Light meat shredded tuna](https://www.fatsecret.co.za/calories-nutrition/checkers/light-meat-shredded-tuna/100g) | 100 g |
+| `za-ch-extra-lean-mince` | [Extra lean minced beef, raw](https://www.fatsecret.co.za/calories-nutrition/checkers/extra-lean-minced-beef/100g?frc=True) | 100 g |
+| `za-ch-uht-low-fat-milk` | [Low fat long life milk](https://www.fatsecret.co.za/calories-nutrition/checkers/low-fat-long-life-milk/100ml?frc=True) | 100 ml |
+| `za-ch-hummus` | [Hummus](https://www.fatsecret.co.za/calories-nutrition/checkers/hummus/100g) | 100 g |
+| `za-nandos-full-chicken-100` | [Full chicken, per 100 g](https://www.fatsecret.co.za/calories-nutrition/nandos/full-chicken/100g) | 100 g |
+| `za-kfc-streetwise-3-with-chips` | [Streetwise 3 with chips](https://order.kfc.co.za/nutrition-allergen) | Published calories prefilled |
+| `za-kfc-dunked-wings-10-pieces` | [Dunked Wings, 10 pieces](https://order.kfc.co.za/nutrition-allergen) | Published calories prefilled |
+| `za-kfc-zinger-wings-10-pieces` | [Zinger Wings, 10 pieces](https://order.kfc.co.za/nutrition-allergen) | Published calories prefilled |
+| `za-kfc-small-pops` | [Small Pops](https://order.kfc.co.za/nutrition-allergen) | Published calories prefilled |
+| `za-kfc-mash-gravy-large` | [Mash & gravy, large](https://order.kfc.co.za/nutrition-allergen) | Published calories prefilled |
+| `za-kfc-original-wrapsta` | [Original Wrapsta](https://order.kfc.co.za/nutrition-allergen) | Manual entry |
+| `za-kfc-sweet-chilli-dip-pot` | [Sweet Chilli Dip Pot](https://order.kfc.co.za/nutrition-allergen) | Manual entry |
+| `za-kfc-colonel-dip-pot` | [Colonel Dip Pot](https://order.kfc.co.za/nutrition-allergen) | Manual entry |
+| `za-kfc-bbq-dip-pot` | [BBQ Dip Pot](https://order.kfc.co.za/nutrition-allergen) | Manual entry |
+| `za-kfc-ranch-dip-pot` | [Ranch Dip Pot](https://order.kfc.co.za/nutrition-allergen) | Manual entry |
+| `za-nandos-chicken-caesar-wrap` | [Chicken Caesar Wrap](https://www.nandos.co.za/eat/order/menu) | Manual entry |
+| `za-nandos-starter-livers-and-portuguese-roll` | [Starter livers and Portuguese roll](https://www.nandos.co.za/eat/order/menu) | Manual entry |
+| `za-nandos-da-malva-pudding` | [Da Malva Pudding](https://www.nandos.co.za/eat/order/menu) | Manual entry |
+| `za-nandos-nandinos-strips-and-chips` | [Nandinos strips and chips](https://www.nandos.co.za/eat/order/menu) | Manual entry |
+| `za-nandos-nandinos-veg-burger-and-chips` | [Nandinos veg burger and chips](https://www.nandos.co.za/eat/order/menu) | Manual entry |
+| `za-nandos-nandinos-winglets-and-chips` | [Nandinos winglets and chips](https://www.nandos.co.za/eat/order/menu) | Manual entry |
+| `za-spar-food-stall-hot-dog-and-chips` | [Food Stall hot dog and chips](https://www.spar.co.za/SPAR-deli) | Manual entry |
+| `za-spar-food-stall-hake-and-chips` | [Food Stall hake and chips](https://www.spar.co.za/SPAR-deli) | Manual entry |
+| `za-spar-food-stall-spinach-and-butternut` | [Food Stall spinach and butternut](https://www.spar.co.za/SPAR-deli) | Manual entry |
+| `za-spar-food-stall-tripe-and-rice` | [Food Stall tripe and rice](https://www.spar.co.za/SPAR-deli) | Manual entry |
+| `za-spar-food-stall-stew` | [Food Stall stew](https://www.spar.co.za/SPAR-deli) | Manual entry |
+| `za-spar-food-stall-rib-burger-and-chips` | [Food Stall rib burger and chips](https://www.spar.co.za/SPAR-deli) | Manual entry |
+| `za-spar-food-stall-russian-and-chips` | [Food Stall Russian and chips](https://www.spar.co.za/SPAR-deli) | Manual entry |
+| `za-ch-simple-truth-roast-veg-ready-meal` | [Simple Truth roast veg ready meal](https://specials.checkers.co.za/deals/wccheckersphesantekraalstoreopening24jul10aug/files/assets/common/downloads/wccheckersphesantekraalstoreopening24jul10aug.pdf) | Manual entry |
+| `za-ch-simple-truth-spinach-and-butternut-ready-meal` | [Simple Truth spinach and butternut ready meal](https://specials.checkers.co.za/deals/wccheckersphesantekraalstoreopening24jul10aug/files/assets/common/downloads/wccheckersphesantekraalstoreopening24jul10aug.pdf) | Manual entry |
+| `za-ch-foodies-heat-and-eat-soup` | [Foodies heat and eat soup](https://specials.checkers.co.za/deals/wccheckersphesantekraalstoreopening24jul10aug/files/assets/common/downloads/wccheckersphesantekraalstoreopening24jul10aug.pdf) | Manual entry |
+| `za-ch-forage-feast-heat-and-eat-soup` | [Forage & Feast heat and eat soup](https://specials.checkers.co.za/deals/wccheckersphesantekraalstoreopening24jul10aug/files/assets/common/downloads/wccheckersphesantekraalstoreopening24jul10aug.pdf) | Manual entry |
+| `za-kauai-mocha-protein-350` | [Mocha Protein smoothie, 350 ml](https://kauai.co.za/menu/?_sft_menu-group=protein-smoothies) | 1 cup 350 ml |
+| `za-kauai-mocha-protein-500` | [Mocha Protein smoothie, 500 ml](https://kauai.co.za/menu/?_sft_menu-group=protein-smoothies) | 1 cup 500 ml |
+| `za-kauai-peanut-butter-bomb-350` | [Peanut Butter Bomb smoothie, 350 ml](https://kauai.co.za/menu/?_sft_menu-group=protein-smoothies) | 1 cup 350 ml |
+| `za-kauai-peanut-butter-bomb-500` | [Peanut Butter Bomb smoothie, 500 ml](https://kauai.co.za/menu/?_sft_menu-group=protein-smoothies) | 1 cup 500 ml |
+
+## McDonald’s South Africa menu, checked 7 November 2026
+
+The [public menu](https://www.mcdonalds.co.za/menu) listed 152 distinct items across its categories, including current limited offers. The catalog covers all of those items and lists the Jalapeño Chicken Burger separately from the meal because the chicken category links to a burger-only nutrition page under a meal title. The existing Chicken Big Mac entry is retained.
+
+Figures are for the serving shown on the linked South African product page. A page that shows size buttons can expose only one numeric set of values in its public listing. Values for unverified sizes were not extrapolated. Where a summary mislabeled kilojoules as calories, the detailed Kilocalorie line was used. Oreo McFlurry has conflicting official snapshots, so its existing 344 kcal serving was retained. Plain Bonaqua water uses 0 kcal and 0 g macros.
+
+Large inconsistencies between energy and macros, unclear serving definitions, and incomplete nutrition are available as manual entries. Calories are prefilled only when the calorie figure can be used independently. Latte and Mango Frappe energy is converted from published kJ using 4.184 kJ per kcal. Other fries sizes and dips mentioned on the [fries](https://www.mcdonalds.co.za/menu/medium-fries) and [nuggets](https://www.mcdonalds.co.za/menu/6-pack-nuggets) pages have manual entries.
+
+| Food ID | Product source | Serving or entry method |
+| --- | --- | --- |
+| `mc-sa-boerie-egg-burger` | [Boerie & Egg Burger](https://www.mcdonalds.co.za/menu/boerie-egg-burger) | 1 serving |
+| `mc-sa-boerie-egg-meal-with-fries-small-coffee` | [Boerie & Egg Meal with Fries & Small Coffee](https://www.mcdonalds.co.za/menu/boerie-egg-meal-with-fries-small-coffee) | 1 meal |
+| `mc-sa-boerie-hashbrown-stack` | [Boerie & Hash Brown Stack](https://www.mcdonalds.co.za/menu/boerie-hashbrown-stack) | 1 serving |
+| `mc-sa-boerie-and-hash-stack-with-filter-coffee` | [Boerie & Hash Brown Stack with Filter Coffee](https://www.mcdonalds.co.za/menu/boerie-and-hash-stack-with-filter-coffee) | 1 serving |
+| `mc-sa-boerie-burger` | [Boerie Burger](https://www.mcdonalds.co.za/menu/boerie-burger) | 1 serving |
+| `mc-sa-boerie-burger-double` | [Boerie Burger Double](https://www.mcdonalds.co.za/menu/boerie-burger-double) | 1 serving |
+| `mc-sa-boerie-burger-double-meal` | [Boerie Burger Double Meal](https://www.mcdonalds.co.za/menu/boerie-burger-double-meal) | 1 meal |
+| `mc-sa-boerie-burger--meal` | [Boerie Burger Meal](https://www.mcdonalds.co.za/menu/boerie-burger--meal) | 1 meal |
+| `mc-sa-egg-mcmuffin` | [Egg McMuffin](https://www.mcdonalds.co.za/menu/egg-mcmuffin) | 1 serving |
+| `mc-sa-egg-mcmuffin-meal` | [Egg McMuffin Meal](https://www.mcdonalds.co.za/menu/egg-mcmuffin-meal) | 1 meal |
+| `mc-sa-hash-brown` | [Hash Brown](https://www.mcdonalds.co.za/menu/hash-brown) | 1 serving |
+| `mc-sa-mega-mcmuffin` | [Mega McMuffin](https://www.mcdonalds.co.za/menu/mega-mcmuffin) | 1 serving |
+| `mc-sa-mega-mcmuffin-meal` | [Mega McMuffin Meal](https://www.mcdonalds.co.za/menu/mega-mcmuffin-meal) | 1 meal |
+| `mc-sa-south-african-breakfast` | [SA Breakfast](https://www.mcdonalds.co.za/menu/south-african-breakfast) | 1 serving |
+| `mc-sa-south-african-breakfast-meal` | [SA Breakfast Meal](https://www.mcdonalds.co.za/menu/south-african-breakfast-meal) | 1 meal |
+| `mc-sa-sausage-mcmuffin-1` | [Sausage McMuffin](https://www.mcdonalds.co.za/menu/sausage-mcmuffin-1) | 1 serving |
+| `mc-sa-sausage-mcmuffin-meal` | [Sausage McMuffin Meal](https://www.mcdonalds.co.za/menu/sausage-mcmuffin-meal) | 1 meal |
+| `mc-sa-sausage-mcmuffin-with-egg` | [Sausage McMuffin with Egg](https://www.mcdonalds.co.za/menu/sausage-mcmuffin-with-egg) | 1 serving |
+| `mc-sa-sausage-egg-mcmuffin-meal` | [Sausage McMuffin with egg Meal](https://www.mcdonalds.co.za/menu/sausage-egg-mcmuffin-meal) | 1 meal |
+| `mc-sa-chicken-tenders-2-piece` | [2 Piece Chicken Tenders](https://www.mcdonalds.co.za/menu/chicken-tenders-2-piece) | 1 box |
+| `mc-sa-4-pack-nuggets` | [4 Piece Chicken McNuggets](https://www.mcdonalds.co.za/menu/4-pack-nuggets) | 1 box |
+| `mc-sa-chicken-tenders-4-piece` | [4 Piece Chicken Tenders](https://www.mcdonalds.co.za/menu/chicken-tenders-4-piece) | 1 box |
+| `mc-nuggets6` | [6 Piece Chicken McNuggets](https://www.mcdonalds.co.za/menu/6-pack-nuggets) | Existing values and ID retained |
+| `mc-sa-cajun-chicken` | [Cajun Chicken](https://www.mcdonalds.co.za/menu/cajun-chicken) | 1 serving |
+| `mc-sa-chicken-burger` | [Chicken Burger](https://www.mcdonalds.co.za/menu/chicken-burger) | 1 serving |
+| `mc-sa-chicken-foldover` | [Chicken Foldover](https://www.mcdonalds.co.za/menu/chicken-foldover) | 1 serving |
+| `mc-sa-foldover-spicy` | [Chicken Foldover Spicy](https://www.mcdonalds.co.za/menu/foldover-spicy) | 1 serving |
+| `mc-sa-chilli-cheese-tenders` | [Chilli Cheese Tenders](https://www.mcdonalds.co.za/menu/chilli-cheese-tenders) | 1 serving |
+| `mc-sa-crispy-chicken-salad` | [Crispy Chicken Salad](https://www.mcdonalds.co.za/menu/crispy-chicken-salad) | Manual entry |
+| `mc-sa-double-jalape-o-chicken` | [Double Jalapeño Chicken](https://www.mcdonalds.co.za/menu/double-jalape-o-chicken) | 1 serving |
+| `mc-sa-grand-chicken-classic` | [Grand Chicken Classic](https://www.mcdonalds.co.za/menu/grand-chicken-classic) | 1 serving |
+| `mc-sa-grand-chicken-special` | [Grand Chicken Special](https://www.mcdonalds.co.za/menu/grand-chicken-special) | 1 serving |
+| `mc-sa-grand-chicken-spicy` | [Grand Chicken Spicy](https://www.mcdonalds.co.za/menu/grand-chicken-spicy) | 1 serving |
+| `mc-sa-jalapeno-chicken-meal` | [Jalapeño Chicken Meal](https://www.mcdonalds.co.za/menu/jalapeno-chicken-meal) | 1 meal |
+| `mcchicken` | [McChicken](https://www.mcdonalds.co.za/menu/mcchicken) | Existing values and ID retained |
+| `mc-sa-mccrispy` | [McCrispy](https://www.mcdonalds.co.za/menu/mccrispy) | 1 serving |
+| `mc-sa-mccrispy-deluxe` | [McCrispy Deluxe](https://www.mcdonalds.co.za/menu/mccrispy-deluxe) | 1 serving |
+| `mc-sa-mccrispy-spicy` | [McCrispy Spicy](https://www.mcdonalds.co.za/menu/mccrispy-spicy) | 1 serving |
+| `mc-sa-snackwrap` | [SnackWrap](https://www.mcdonalds.co.za/menu/snackwrap) | 1 serving |
+| `bigmac` | [Big Mac](https://www.mcdonalds.co.za/menu/big-mac) | Existing values and ID retained |
+| `mc-cheeseburger` | [Cheeseburger](https://www.mcdonalds.co.za/menu/cheeseburger) | Existing values and ID retained |
+| `mc-sa-chilli-cheese-double` | [Chilli Cheese Double burger](https://www.mcdonalds.co.za/menu/chilli-cheese-double) | 1 serving |
+| `mc-sa-double-cheese-burger` | [Double Cheeseburger](https://www.mcdonalds.co.za/menu/double-cheese-burger) | 1 serving |
+| `mc-sa-hamburger` | [Hamburger](https://www.mcdonalds.co.za/menu/hamburger) | 1 serving |
+| `mc-sa-mcfeast` | [McFeast](https://www.mcdonalds.co.za/menu/mcfeast) | 1 serving |
+| `mc-qpc` | [Quarter Pounder with Cheese](https://www.mcdonalds.co.za/menu/quarter-pounder-with-cheese-1) | Existing values and ID retained |
+| `mc-sa-qpcd` | [Quarter Pounder with Cheese Deluxe](https://www.mcdonalds.co.za/menu/qpcd) | 1 serving |
+| `mc-sa-medium-corn` | [Corn](https://www.mcdonalds.co.za/menu/medium-corn) | 1 serving |
+| `mcfries` | [Fries](https://www.mcdonalds.co.za/menu/medium-fries) | Existing values and ID retained |
+| `mc-sa-green-salad` | [Green Salad](https://www.mcdonalds.co.za/menu/green-salad) | Manual entry |
+| `mc-sa-veggie` | [Veggie Burger](https://www.mcdonalds.co.za/menu/veggie) | 1 serving |
+| `mc-sa-americano` | [Americano](https://www.mcdonalds.co.za/menu/americano) | Manual entry, calories prefilled |
+| `mc-sa-blueberry-muffin` | [Blueberry Muffin](https://www.mcdonalds.co.za/menu/blueberry-muffin) | 1 serving |
+| `mc-sa-bran-muffin` | [Bran Muffin](https://www.mcdonalds.co.za/menu/bran-muffin) | Manual entry |
+| `mc-sa-caff--latte` | [Café Latte](https://www.mcdonalds.co.za/menu/caff--latte) | Manual entry |
+| `mc-sa-cappuccino` | [Cappuccino](https://www.mcdonalds.co.za/menu/cappuccino) | 1 serving |
+| `mc-sa-caramel-frappe-1` | [Caramel Frappe](https://www.mcdonalds.co.za/menu/caramel-frappe-1) | 1 serving |
+| `mc-sa-caramel-muffin` | [Caramel muffin](https://www.mcdonalds.co.za/menu/caramel-muffin) | Manual entry |
+| `mc-sa-choc-chip-muffin` | [Choc Chip Muffin](https://www.mcdonalds.co.za/menu/choc-chip-muffin) | 1 serving |
+| `mc-sa-koko-donut` | [Choc Doughnut](https://www.mcdonalds.co.za/menu/koko-donut) | Manual entry |
+| `mc-sa-chocco-frappe` | [Choco Frappe](https://www.mcdonalds.co.za/menu/chocco-frappe) | 1 serving |
+| `mc-sa-chocolate-danish` | [Chocolate Danish](https://www.mcdonalds.co.za/menu/chocolate-danish) | Manual entry |
+| `mc-sa-chocolate-ganache` | [Chocolate Ganache](https://www.mcdonalds.co.za/menu/chocolate-ganache) | Manual entry |
+| `mc-sa-custard-danish` | [Custard Danish](https://www.mcdonalds.co.za/menu/custard-danish) | Manual entry |
+| `mc-sa-espresso` | [Espresso](https://www.mcdonalds.co.za/menu/espresso) | 1 serving |
+| `mc-sa-filter-coffee-no-milk` | [Filter Coffee](https://www.mcdonalds.co.za/menu/filter-coffee-no-milk) | 1 serving |
+| `mc-sa-filter-coffee-with-milk` | [Filter Coffee with Milk](https://www.mcdonalds.co.za/menu/filter-coffee-with-milk) | Manual entry |
+| `mc-sa-flat-white` | [Flat White](https://www.mcdonalds.co.za/menu/flat-white) | Manual entry |
+| `mc-sa-glazed-doughnut` | [Glazed doughnut](https://www.mcdonalds.co.za/menu/glazed-doughnut) | Manual entry |
+| `mc-sa-homestyle-donut` | [Homestyle Doughnut](https://www.mcdonalds.co.za/menu/homestyle-donut) | 1 serving |
+| `mc-sa-hot-chocolate` | [Hot Chocolate](https://www.mcdonalds.co.za/menu/hot-chocolate) | 1 serving |
+| `mc-sa-iced-coffee` | [Iced Latte](https://www.mcdonalds.co.za/menu/iced-coffee) | Manual entry |
+| `mc-sa-iced-coffee-caramel` | [Iced Latte Caramel](https://www.mcdonalds.co.za/menu/iced-coffee-caramel) | Manual entry |
+| `mc-sa-iced-coffe-hazelnut` | [Iced Latte Hazelnut](https://www.mcdonalds.co.za/menu/iced-coffe-hazelnut) | Manual entry |
+| `mc-sa-iced-coffee-vanilla` | [Iced Latte Vanilla](https://www.mcdonalds.co.za/menu/iced-coffee-vanilla) | Manual entry |
+| `mc-sa-latte-frappe` | [Latte Frappe](https://www.mcdonalds.co.za/menu/latte-frappe) | Manual entry, calories prefilled |
+| `mc-sa-low-gi-cheese-and-tomato-sandwich` | [Low GI Cheese and Tomato Sandwich](https://www.mcdonalds.co.za/menu/low-gi-cheese-and-tomato-sandwich) | 1 serving |
+| `mc-sa-low-gi-cheese-tomato-chicken` | [Low GI Cheese, Tomato and Chicken Roll](https://www.mcdonalds.co.za/menu/low-gi-cheese-tomato-chicken) | 1 serving |
+| `mc-sa-low-gi-chicken-club-sandwich` | [Low GI Chicken Club Sandwich](https://www.mcdonalds.co.za/menu/low-gi-chicken-club-sandwich) | 1 serving |
+| `mc-sa-macchiato` | [Macchiato](https://www.mcdonalds.co.za/menu/macchiato) | 1 serving |
+| `mc-sa-mango-frappe` | [Mango Frappe](https://www.mcdonalds.co.za/menu/mango-frappe) | Manual entry, calories prefilled |
+| `mc-sa-mocha` | [Mocha](https://www.mcdonalds.co.za/menu/mocha) | 1 serving |
+| `mc-sa-mocha-frappe` | [Mocha Frappe](https://www.mcdonalds.co.za/menu/mocha-frappe) | Manual entry |
+| `mc-sa-white-choc-donut-with-oreo-bits` | [Oreo Doughnut](https://www.mcdonalds.co.za/menu/white-choc-donut-with-oreo-bits) | 1 serving |
+| `mc-sa-pistachio-iced-latte-glazed-doughnut` | [Pistachio Iced Latte & Glazed Doughnut](https://www.mcdonalds.co.za/menu/pistachio-iced-latte-glazed-doughnut) | Manual entry |
+| `mc-sa-red-velvet-round` | [Red Velvet Round Cake](https://www.mcdonalds.co.za/menu/red-velvet-round) | 1 serving |
+| `mc-sa-rooibos-tea` | [Rooibos Tea](https://www.mcdonalds.co.za/menu/rooibos-tea) | Manual entry |
+| `mc-sa-round-carmel-cake` | [Round Carmel Cake](https://www.mcdonalds.co.za/menu/round-carmel-cake) | Manual entry |
+| `mc-sa-carrot-cake` | [Round Carrot Cake](https://www.mcdonalds.co.za/menu/carrot-cake) | Manual entry |
+| `mc-sa-strawberry-frappe` | [Strawberry Frappe](https://www.mcdonalds.co.za/menu/strawberry-frappe) | Manual entry |
+| `mc-sa-tea` | [Tea](https://www.mcdonalds.co.za/menu/tea) | 1 serving |
+| `mc-sa-white-chocolate-donut` | [White Chocolate Doughnut](https://www.mcdonalds.co.za/menu/white-chocolate-donut) | 1 serving |
+| `mc-sa-apple-juice` | [Apple Juice](https://www.mcdonalds.co.za/menu/apple-juice) | 1 serving |
+| `mc-sa-bonaqua-water` | [Bonaqua Water](https://www.mcdonalds.co.za/menu/bonaqua-water) | 1 serving |
+| `mc-sa-cappy-apple-juice` | [Cappy Apple Juice](https://www.mcdonalds.co.za/menu/cappy-apple-juice) | Manual entry, calories prefilled |
+| `mc-sa-coke` | [Coke](https://www.mcdonalds.co.za/menu/coke) | 1 serving |
+| `mc-sa-medium-coke-zero` | [Coke No Sugar](https://www.mcdonalds.co.za/menu/medium-coke-zero) | 1 serving |
+| `mc-sa-creme-soda` | [Creme Soda](https://www.mcdonalds.co.za/menu/creme-soda) | 1 serving |
+| `mc-sa-medium-fanta` | [Fanta](https://www.mcdonalds.co.za/menu/medium-fanta) | 1 serving |
+| `mc-sa-medium-orange-juice` | [Orange Juice](https://www.mcdonalds.co.za/menu/medium-orange-juice) | 1 serving |
+| `mc-sa-passion-fruit-mcfizz` | [Passion Fruit McFizz](https://www.mcdonalds.co.za/menu/passion-fruit-mcfizz) | 1 serving |
+| `mc-sa-powerade-mountain-blast` | [Powerade Mountain Blast](https://www.mcdonalds.co.za/menu/powerade-mountain-blast) | Manual entry, calories prefilled |
+| `mc-sa-medium-sprite` | [Sprite](https://www.mcdonalds.co.za/menu/medium-sprite) | 1 serving |
+| `mc-sa-stoney-zero` | [Stoney Zero](https://www.mcdonalds.co.za/menu/stoney-zero) | Manual entry, calories prefilled |
+| `mc-sa-watermelon-mcfizz` | [Watermelon McFizz](https://www.mcdonalds.co.za/menu/watermelon-mcfizz) | 1 serving |
+| `mc-sa-apple-pie` | [Apple Pie](https://www.mcdonalds.co.za/menu/apple-pie) | 1 serving |
+| `mc-sa-caramel-sundae` | [Caramel Sundae](https://www.mcdonalds.co.za/menu/caramel-sundae) | 1 serving |
+| `mc-sa-medium-chocolate-shake` | [Chocolate Shake](https://www.mcdonalds.co.za/menu/medium-chocolate-shake) | 1 serving |
+| `mc-sa-chocolate-sundae` | [Chocolate Sundae](https://www.mcdonalds.co.za/menu/chocolate-sundae) | 1 serving |
+| `mc-sa-cone` | [Ice-Cream Cone](https://www.mcdonalds.co.za/menu/cone) | Manual entry |
+| `mc-sa-kitkat-mcflurry` | [McFlurry Kit Kat](https://www.mcdonalds.co.za/menu/kitkat-mcflurry) | 1 serving |
+| `mc-sa-mcflurry-pistachio` | [McFlurry Pistachio](https://www.mcdonalds.co.za/menu/mcflurry-pistachio) | 1 serving |
+| `mc-mcflurry` | [Oreo McFlurry](https://www.mcdonalds.co.za/menu/oreo-mcflurry) | Existing values and ID retained |
+| `mc-sa-plain-sundae` | [Plain Sundae](https://www.mcdonalds.co.za/menu/plain-sundae) | Manual entry |
+| `mc-sa-medium-strawberry-shake` | [Strawberry Shake](https://www.mcdonalds.co.za/menu/medium-strawberry-shake) | 1 serving |
+| `mc-sa-strawberry-sundae` | [Strawberry Sundae](https://www.mcdonalds.co.za/menu/strawberry-sundae) | 1 serving |
+| `mc-sa-medium-vanilla-shake` | [Vanilla Shake](https://www.mcdonalds.co.za/menu/medium-vanilla-shake) | 1 serving |
+| `mc-sa-happy--meal-nuggets` | [4 Piece Chicken McNuggets Happy Meal](https://www.mcdonalds.co.za/menu/happy--meal-nuggets) | 1 meal |
+| `mc-sa-happy-meal-corn-nuggets` | [4 Piece Chicken McNuggets Happy Meal with Corn](https://www.mcdonalds.co.za/menu/happy-meal-corn-nuggets) | Manual entry |
+| `mc-sa-happy-meal-cheeseburger` | [Cheeseburger Happy Meal](https://www.mcdonalds.co.za/menu/happy-meal-cheeseburger) | 1 meal |
+| `mc-sa-happy-meal-corn-cheese-burger` | [Cheeseburger Happy Meal with Corn](https://www.mcdonalds.co.za/menu/happy-meal-corn-cheese-burger) | Manual entry |
+| `mc-sa-happy-meal-chicken-burger` | [Chicken Burger Happy Meal](https://www.mcdonalds.co.za/menu/happy-meal-chicken-burger) | 1 meal |
+| `mc-sa-happy-meal-corn-chicken-burger` | [Chicken Burger Happy Meal with Corn](https://www.mcdonalds.co.za/menu/happy-meal-corn-chicken-burger) | 1 meal |
+| `mc-sa-happy-meal-hamburger` | [Hamburger Happy Meal](https://www.mcdonalds.co.za/menu/happy-meal-hamburger) | 1 meal |
+| `mc-sa-happy-meal-corn-hamburger` | [Hamburger Happy Meal with Corn](https://www.mcdonalds.co.za/menu/happy-meal-corn-hamburger) | 1 meal |
+| `mc-sa-2-cheeseburger-meal` | [2 Cheeseburger Meal](https://www.mcdonalds.co.za/menu/2-cheeseburger-meal) | 1 meal |
+| `mc-sa-6-nuggets-meal` | [6 Piece Chicken McNuggets Meal](https://www.mcdonalds.co.za/menu/6-nuggets-meal) | 1 meal |
+| `mc-sa-bigmac-meal` | [Big Mac Meal](https://www.mcdonalds.co.za/menu/bigmac-meal) | 1 meal |
+| `mc-sa-cajun-chicken-meal` | [Cajun Chicken Meal](https://www.mcdonalds.co.za/menu/cajun-chicken-meal) | 1 meal |
+| `mc-sa-cheeseburger-1` | [Cheeseburger Meal](https://www.mcdonalds.co.za/menu/cheeseburger-1) | 1 meal |
+| `mc-sa-chicken-foldover-meal` | [Chicken Foldover Meal](https://www.mcdonalds.co.za/menu/chicken-foldover-meal) | 1 meal |
+| `mc-sa-chilli-cheese-double-meal` | [Chilli Cheeseburger Double Meal](https://www.mcdonalds.co.za/menu/chilli-cheese-double-meal) | 1 meal |
+| `mc-sa-double-jalape-o-chicken-meal` | [Double Jalapeño Chicken Meal](https://www.mcdonalds.co.za/menu/double-jalape-o-chicken-meal) | 1 meal |
+| `mc-sa-grand-chicken-spicy-hot-meal` | [Grand Chicken Spicy Meal](https://www.mcdonalds.co.za/menu/grand-chicken-spicy-hot-meal) | 1 meal |
+| `mc-sa-mcchicken-meal` | [McChicken Meal](https://www.mcdonalds.co.za/menu/mcchicken-meal) | 1 meal |
+| `mc-sa-mccrispy-meal` | [McCrispy Meal](https://www.mcdonalds.co.za/menu/mccrispy-meal) | 1 meal |
+| `mc-sa-mcfeast-chicken` | [McFeast Chicken Meal](https://www.mcdonalds.co.za/menu/mcfeast-chicken) | 1 meal |
+| `mc-sa-mcfeast-meal` | [McFeast Meal](https://www.mcdonalds.co.za/menu/mcfeast-meal) | 1 meal |
+| `mc-sa-mcfeast-chicken-spicy` | [McFeast Spicy Meal](https://www.mcdonalds.co.za/menu/mcfeast-chicken-spicy) | Manual entry |
+| `mc-sa-qpcd-meal` | [Quarter Pounder with Cheese Deluxe Meal](https://www.mcdonalds.co.za/menu/qpcd-meal) | 1 meal |
+| `mc-sa-quarter-pounder-with-cheese-meal` | [Quarter Pounder with Cheese Meal](https://www.mcdonalds.co.za/menu/quarter-pounder-with-cheese-meal) | 1 meal |
+| `mc-sa-foldover-spicy-meal` | [Spicy Chicken Foldover Meal](https://www.mcdonalds.co.za/menu/foldover-spicy-meal) | 1 meal |
+| `mc-sa-veggie-meal` | [Veggie Burger Meal](https://www.mcdonalds.co.za/menu/veggie-meal) | 1 meal |
+| `mc-sa-beef-share-bag` | [Beef Sharebag](https://www.mcdonalds.co.za/menu/beef-share-bag) | 1 sharebag |
+| `mc-sa-chicken-share-bag` | [Chicken Sharebag](https://www.mcdonalds.co.za/menu/chicken-share-bag) | 1 sharebag |
+| `mc-sa-combo-sharebag` | [Combo Sharebag](https://www.mcdonalds.co.za/menu/combo-sharebag) | 1 sharebag |
+| `mc-sa-mega-chilli-cheese` | [Mega Chilli Cheese](https://www.mcdonalds.co.za/menu/mega-chilli-cheese) | 1 serving |
+| `mc-sa-korean-bbq-mcwrap` | [Korean BBQ McWrap](https://www.mcdonalds.co.za/menu/korean-bbq-mcwrap) | 1 serving |
+| `mc-sa-jalapeno-mcwrap` | [Jalapeno McWrap](https://www.mcdonalds.co.za/menu/jalapeno-mcwrap) | 1 serving |
+| `mc-sa-spicy-mcwrap` | [Spicy McWrap](https://www.mcdonalds.co.za/menu/spicy-mcwrap) | 1 serving |
+| `mc-sa-lemon-pepper-mcwrap` | [Lemon Pepper McWrap](https://www.mcdonalds.co.za/menu/lemon-pepper-mcwrap) | 1 serving |
+| `mc-sa-breakfast-wrap-2` | [Breakfast Wrap](https://www.mcdonalds.co.za/menu/breakfast-wrap-2) | 1 serving |
+| `mc-sa-jalapeno-chicken` | [Jalapeño Chicken Burger](https://www.mcdonalds.co.za/menu/jalapeno-chicken) | 1 serving |
+
 ## Pizza and takeaways
 
 ```
