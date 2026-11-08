@@ -1230,6 +1230,14 @@ var DAYS = {
        ex: [["incline-press",3],["lat-pulldown",3],["chest-press",2],["chest-row",2],["cable-lateral",3],["cable-curl",3],["pushdown",3]]},
   LO: {n: "Lower", hint: "Quads, hamstrings, glutes, calves", core: "side-plank",
        ex: [["leg-press",3],["seated-curl",3],["leg-ext",3],["lying-curl",2],["hip-thrust",2],["calf-raise",3],["core",2]]},
+  UPA: {n: "Upper A", hint: "Chest and back first",
+        ex: [["incline-press",3],["chest-row",3],["lat-pulldown",3],["chest-press",2],["cable-lateral",2],["db-curl",2],["pushdown",2]]},
+  LOA: {n: "Lower A", hint: "Quads first",
+        ex: [["leg-press",3],["seated-curl",3],["leg-ext",3],["hip-thrust",2],["standing-calf",3]]},
+  UPB: {n: "Upper B", hint: "Shoulders first, with rear delts and arms",
+        ex: [["shoulder-press",3],["chest-press",3],["chest-row",3],["lat-pulldown",2],["rear-pec",2],["cable-lateral",2],["hammer-curl",2],["overhead-ext",2]]},
+  LOB: {n: "Lower B", hint: "Hamstrings and glutes first",
+        ex: [["smith-rdl",3],["hack-squat",3],["seated-curl",2],["leg-ext",2],["standing-calf",3]]},
   PU: {n: "Push", hint: "Chest, shoulders, triceps",
        ex: [["chest-press",3],["incline-press",3],["shoulder-press",3],["cable-lateral",3],["pushdown",3],["overhead-ext",2]]},
   PL: {n: "Pull", hint: "Back, rear shoulders, biceps", core: "dead-bug",
@@ -1255,6 +1263,9 @@ var PLANS = {
          why: "Every muscle trained about 3 times a week: 7 exercises on A, 8 on B. A mix of machines, cables and dumbbells. You learn a small set of machines and a missed day costs little."},
   ul:   {n: "Upper / Lower", stage: "Stage 2", when: "After about 3 months of steady training", days: "4 days", perWeek: 4, sched: "Mon Upper · Tue Lower · Thu Upper · Fri Lower", cycle: ["UP","LO"],
          why: "Each muscle twice a week with more sets per session. The natural step up once 3 full-body days feel easy and you can train 4 days."},
+  "ul-ab": {n: "Upper / Lower A/B", stage: "Stage 2", when: "When you want more variety across four sessions", days: "4 days", perWeek: 4,
+            sched: "Upper A → Lower A → Upper B → Lower B. Pick the days that fit your week and continue the rotation next time you train.",
+            cycle: ["UPA","LOA","UPB","LOB"], why: "Train upper and lower body twice per rotation. Upper A starts with chest and back, and Upper B starts with shoulders. Lower A leads with quads, while Lower B starts with a hip hinge."},
   ppl:  {n: "Push / Pull / Legs", stage: "Stage 2 or 3", when: "When you want shorter, focused sessions", days: "3 or 6 days", perWeek: 3, sched: "Rotate Push → Pull → Legs on Mon · Wed · Fri. Later: 6 days, twice through.", cycle: ["PU","PL","LG"],
          why: "Push is chest, shoulders and triceps. Pull is back and biceps. Legs is the lower body. At 3 days a week each muscle is trained about once a week, so it suits 6 days better."},
   pair: {n: "Body-part pairs", stage: "Stage 3", when: "Once you know the machines well", days: "4 days", perWeek: 4, sched: "Mon Chest & Biceps · Tue Legs · Thu Back & Triceps · Fri Shoulders & Arms", cycle: ["CB","LG","BT","SA"],
@@ -1262,7 +1273,7 @@ var PLANS = {
   arnold: {n: "Arnold Split", stage: "Stage 3 · advanced", when: "After 6+ months of steady training", days: "6 days", perWeek: 6, sched: "Mon Chest & Back · Tue Shoulders & Arms · Wed Legs · repeat Thu to Sat · Sun rest", cycle: ["ACB","ASA","ALG"],
          why: "Arnold Schwarzenegger's high-volume split: chest with back, shoulders with arms, then legs, each twice a week. Alternate a chest and a back exercise to save time. Machine and dumbbell versions here; new to it? Run it once through (3 days) first."}
 };
-var PLAN_ORDER = ["fb","ul","ppl","pair","arnold"];
+var PLAN_ORDER = ["fb","ul","ul-ab","ppl","pair","arnold"];
 var WARMUP = ["3–5 min easy bike or incline walk","10 shoulder circles or band pull-aparts, 10 bodyweight squats, 10 hip bridges","Ramp-up on your first exercise: about 50% of working weight × 8, then about 75% × 4"];
 
 /* ---------- Helpers ---------- */
@@ -1641,7 +1652,7 @@ function dayPickBody() {
   var p = PLANS[S.profile.plan], nd = nextDay();
   var h = '<p class="label">' + esc(p.n) + ' · your plan</p><div class="daycards">' + p.cycle.map(function (d) { return dayCard(d, d === nd ? "Next up" : ""); }).join("") + '</div>';
   var other = '';
-  var groups = [["Full body", ["A","B"]], ["Upper / Lower", ["UP","LO"]], ["Push / Pull / Legs", ["PU","PL","LG"]], ["Body-part pairs", ["CB","BT","SA"]], ["Arnold split", ["ACB","ASA","ALG"]]];
+  var groups = [["Full body", ["A","B"]], ["Upper / Lower", ["UP","LO"]], [PLANS["ul-ab"].n, PLANS["ul-ab"].cycle], ["Push / Pull / Legs", ["PU","PL","LG"]], ["Body-part pairs", ["CB","BT","SA"]], ["Arnold split", ["ACB","ASA","ALG"]]];
   groups.forEach(function (g) {
     var ds = g[1].filter(function (d) { return p.cycle.indexOf(d) < 0; });
     if (ds.length) other += '<p class="label">' + esc(g[0]) + '</p><div class="daycards">' + ds.map(function (d) { return dayCard(d, ""); }).join("") + '</div>';
